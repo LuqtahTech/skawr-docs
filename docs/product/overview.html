@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Overview - Skawr Documentation</title>
+    <link rel="stylesheet" href="../gitbook-style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body>
+    <div class="book">
+        <!-- Sidebar -->
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <h1 class="book-title">
+                        <span class="book-title-icon">📚</span>
+                        Skawr
+                    </h1>
+                    <p class="book-subtitle">Platform Documentation</p>
+                </div>
+
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter">
+                            <a href="../index.html">📖 Introduction</a>
+                        </li>
+                        <li class="chapter expanded">
+                            <a href="#business" class="chapter-link">🏢 Business Overview</a>
+                            <ul class="articles">
+                                <li><a href="overview.html" class="active">Product Overview</a></li>
+                                <li><a href="value-proposition.html">Value Proposition</a></li>
+                                <li><a href="../market/competition.html">Competitive Analysis</a></li>
+                                <li><a href="../business/model.html">Business Model</a></li>
+                                <li><a href="../brand/identity.html">Brand Identity</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="#platforms" class="chapter-link">🏗️ Platform Architecture</a>
+                            <ul class="articles">
+                                <li><a href="../platforms/index.html">Platform Overview</a></li>
+                                <li><a href="../platforms/backend-api.html">Backend API</a></li>
+                                <li><a href="../platforms/web-app.html">Web Application</a></li>
+                                <li><a href="../platforms/mobile-app.html">Mobile App</a></li>
+                                <li><a href="../platforms/scraper-service.html">Scraper Service</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="#developer" class="chapter-link">🔧 Developer Resources</a>
+                            <ul class="articles">
+                                <li><a href="../developer/getting-started.html">Getting Started</a></li>
+                                <li><a href="../developer/api-reference.html">API Reference</a></li>
+                                <li><a href="../developer/integration-guides.html">Integration Guides</a></li>
+                                <li><a href="../developer/sdk-docs.html">SDK Documentation</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="#partnerships" class="chapter-link">🤝 Partnerships</a>
+                            <ul class="articles">
+                                <li><a href="../partnerships/marketplace-integration.html">Marketplace Integration</a></li>
+                                <li><a href="../partnerships/salla-plugin.html">Salla Plugin Guide</a></li>
+                                <li><a href="../partnerships/white-label.html">White-label Solutions</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/ziyad00/skawr-docs" class="github-link">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                        Edit on GitHub
+                    </a>
+                    <div class="sidebar-version">v1.0.0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="book-body">
+            <div class="body-inner">
+                <div class="book-toolbar">
+                    <div class="toolbar-left">
+                        <button class="btn btn-sm sidebar-toggle">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z"></path>
+                            </svg>
+                        </button>
+                        <nav class="breadcrumb">
+                            <a href="../index.html">Documentation</a>
+                            <span>›</span>
+                            <a href="#business">Business Overview</a>
+                            <span>›</span>
+                            <span>Product Overview</span>
+                        </nav>
+                    </div>
+                    <div class="toolbar-right">
+                        <a href="https://github.com/ziyad00/skawr-docs" class="btn btn-sm">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <article class="page-content">
+                            <h1>🏢 Product Overview</h1>
+
+                            <div class="overview-highlight">
+                                <h2>What is Skawr?</h2>
+                                <p>Skawr is Saudi Arabia's first <strong>AI-powered marketplace aggregator</strong> that revolutionizes how consumers discover and compare products across multiple online marketplaces. Instead of visiting dozens of separate websites, users can search once and see results from all major Saudi e-commerce platforms.</p>
+                            </div>
+
+                            <h2>🎯 The Problem We Solve</h2>
+
+                            <h3>Current Shopping Pain Points</h3>
+
+                            <div class="problem-grid">
+                                <div class="problem-card">
+                                    <h4>🔍 Fragmented Search Experience</h4>
+                                    <ul>
+                                        <li>Consumers visit 5-8 different marketplace websites per shopping session</li>
+                                        <li>Each platform has different search interfaces and capabilities</li>
+                                        <li>No way to compare prices across platforms easily</li>
+                                    </ul>
+                                </div>
+
+                                <div class="problem-card">
+                                    <h4>🌐 Language & Search Barriers</h4>
+                                    <ul>
+                                        <li>Mixed Arabic/English product listings create search difficulties</li>
+                                        <li>Typos and variations in product names cause missed results</li>
+                                        <li>Traditional keyword search misses relevant products</li>
+                                    </ul>
+                                </div>
+
+                                <div class="problem-card">
+                                    <h4>⏱️ Time-Consuming Price Comparison</h4>
+                                    <ul>
+                                        <li>Manual checking across platforms takes 20-30 minutes per product</li>
+                                        <li>No unified view of pricing and availability</li>
+                                        <li>Missing out on better deals due to incomplete search</li>
+                                    </ul>
+                                </div>
+
+                                <div class="problem-card">
+                                    <h4>📱 Limited Discovery</h4>
+                                    <ul>
+                                        <li>Platform-specific algorithms show limited product sets</li>
+                                        <li>Similar products scattered across different sites</li>
+                                        <li>No cross-platform recommendation engine</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h2>💡 Our Solution</h2>
+
+                            <div class="solution-cards">
+                                <div class="solution-card">
+                                    <div class="solution-icon">🔍</div>
+                                    <h3>Unified Search Experience</h3>
+                                    <ul>
+                                        <li><strong>Single Search Interface</strong>: One search box to find products across all major Saudi marketplaces</li>
+                                        <li><strong>Cross-Platform Results</strong>: Instant access to products from Haraj, Dubizzle, OpenSooq, Mstaml, and more</li>
+                                        <li><strong>Intelligent Aggregation</strong>: Duplicate detection and result consolidation</li>
+                                    </ul>
+                                </div>
+
+                                <div class="solution-card">
+                                    <div class="solution-icon">🤖</div>
+                                    <h3>AI-Powered Intelligence</h3>
+                                    <ul>
+                                        <li><strong>Bilingual Search</strong>: Natural search in Arabic and English ("ايفون رخيص" = "cheap iPhone")</li>
+                                        <li><strong>Semantic Understanding</strong>: Finds products even with typos or partial descriptions</li>
+                                        <li><strong>Intent Recognition</strong>: Understands user shopping intent beyond exact keywords</li>
+                                    </ul>
+                                </div>
+
+                                <div class="solution-card">
+                                    <div class="solution-icon">⚡</div>
+                                    <h3>Real-Time Comparison</h3>
+                                    <ul>
+                                        <li><strong>Live Pricing</strong>: Up-to-date prices across all platforms</li>
+                                        <li><strong>Availability Status</strong>: Real-time stock information</li>
+                                        <li><strong>Deal Detection</strong>: Automatic identification of best prices and special offers</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h2>🌟 Key Features</h2>
+
+                            <div class="feature-section">
+                                <h3>For Consumers</h3>
+                                <div class="feature-grid">
+                                    <div class="feature-item">
+                                        <h4>🔍 Smart Search</h4>
+                                        <ul>
+                                            <li>Bilingual AI search (Arabic/English)</li>
+                                            <li>Typo tolerance and fuzzy matching</li>
+                                            <li>Voice search capabilities</li>
+                                            <li>Visual search (coming soon)</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="feature-item">
+                                        <h4>📊 Comprehensive Results</h4>
+                                        <ul>
+                                            <li>Products from 10+ major marketplaces</li>
+                                            <li>Unified product information display</li>
+                                            <li>High-quality product images</li>
+                                            <li>Seller ratings and reviews aggregation</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="feature-item">
+                                        <h4>💰 Price Intelligence</h4>
+                                        <ul>
+                                            <li>Real-time price comparison</li>
+                                            <li>Price history tracking</li>
+                                            <li>Deal alerts and notifications</li>
+                                            <li>Best price recommendations</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="feature-item">
+                                        <h4>📱 Mobile-First Experience</h4>
+                                        <ul>
+                                            <li>Native iOS and Android apps</li>
+                                            <li>Optimized for Saudi user preferences</li>
+                                            <li>Offline favorites and watchlists</li>
+                                            <li>Push notifications for price drops</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="feature-section">
+                                <h3>For Businesses</h3>
+                                <div class="feature-grid">
+                                    <div class="feature-item">
+                                        <h4>🏪 Marketplace Integration</h4>
+                                        <ul>
+                                            <li>API access for marketplace partners</li>
+                                            <li>Product catalog synchronization</li>
+                                            <li>Analytics and insights dashboard</li>
+                                            <li>Performance metrics</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="feature-item">
+                                        <h4>📢 Advertising Platform</h4>
+                                        <ul>
+                                            <li>Sponsored product placements</li>
+                                            <li>Targeted advertising based on search intent</li>
+                                            <li>Brand awareness campaigns</li>
+                                            <li>Performance-based advertising</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2>🎯 Target Markets</h2>
+
+                            <div class="market-segments">
+                                <div class="market-segment primary">
+                                    <h3>🎯 Primary: Active Online Shoppers (18-45)</h3>
+                                    <ul>
+                                        <li>Tech-savvy consumers who shop online regularly</li>
+                                        <li>Price-conscious buyers seeking best deals</li>
+                                        <li>Time-pressed individuals valuing efficiency</li>
+                                        <li><strong>Market Size</strong>: ~8M users in Saudi Arabia</li>
+                                    </ul>
+                                </div>
+
+                                <div class="market-segment secondary">
+                                    <h3>🛍️ Secondary: Bargain Hunters (25-55)</h3>
+                                    <ul>
+                                        <li>Deal seekers who compare prices extensively</li>
+                                        <li>Bulk buyers for families or businesses</li>
+                                        <li>Seasonal shoppers (Ramadan, Eid, Back-to-school)</li>
+                                        <li><strong>Market Size</strong>: ~3M users in Saudi Arabia</li>
+                                    </ul>
+                                </div>
+
+                                <div class="market-segment tertiary">
+                                    <h3>🏢 Tertiary: Business Buyers (30-60)</h3>
+                                    <ul>
+                                        <li>Small business owners sourcing products</li>
+                                        <li>Procurement managers for companies</li>
+                                        <li>Resellers looking for wholesale opportunities</li>
+                                        <li><strong>Market Size</strong>: ~500K users in Saudi Arabia</li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <h2>📈 Market Opportunity</h2>
+
+                            <div class="market-stats">
+                                <h3>Saudi E-commerce Landscape</h3>
+                                <div class="stats-grid">
+                                    <div class="stat-card">
+                                        <div class="stat-number">$8.2B</div>
+                                        <div class="stat-label">Total Market Size (2024)</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-number">23%</div>
+                                        <div class="stat-label">Annual Growth Rate (CAGR)</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-number">65%</div>
+                                        <div class="stat-label">Online Penetration</div>
+                                    </div>
+                                    <div class="stat-card">
+                                        <div class="stat-number">78%</div>
+                                        <div class="stat-label">Mobile Commerce</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2>🚀 Success Metrics & Future Vision</h2>
+
+                            <div class="metrics-section">
+                                <div class="metrics-card">
+                                    <h3>User Engagement Targets</h3>
+                                    <ul>
+                                        <li><strong>Daily Active Users</strong>: 100K by end of year 1</li>
+                                        <li><strong>Search Sessions</strong>: 3-4 searches per user per session</li>
+                                        <li><strong>Conversion Rate</strong>: 15% click-through to marketplace partners</li>
+                                        <li><strong>Retention Rate</strong>: 70% monthly active user retention</li>
+                                    </ul>
+                                </div>
+
+                                <div class="metrics-card">
+                                    <h3>Business Metrics</h3>
+                                    <ul>
+                                        <li><strong>Revenue Growth</strong>: $500K ARR by end of year 1</li>
+                                        <li><strong>Platform Partners</strong>: 15+ integrated marketplaces</li>
+                                        <li><strong>Product Catalog</strong>: 1M+ unique products indexed</li>
+                                        <li><strong>Geographic Coverage</strong>: All major Saudi cities</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </article>
+
+                        <div class="page-navigation">
+                            <div class="nav-prev">
+                                <a href="../index.html" class="nav-link">
+                                    <div class="nav-icon">←</div>
+                                    <div class="nav-text">
+                                        <div class="nav-label">Previous</div>
+                                        <div class="nav-title">Introduction</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nav-next">
+                                <a href="value-proposition.html" class="nav-link">
+                                    <div class="nav-text">
+                                        <div class="nav-label">Next</div>
+                                        <div class="nav-title">Value Proposition</div>
+                                    </div>
+                                    <div class="nav-icon">→</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle for mobile
+        document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+
+        // Chapter toggle functionality
+        document.querySelectorAll('.chapter-link').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const chapter = this.parentElement;
+                chapter.classList.toggle('expanded');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-left: 1rem;
+        }
+        .breadcrumb a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .overview-highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+        }
+        .overview-highlight h2 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .problem-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .solution-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .solution-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            border-left: 4px solid var(--color-accent);
+        }
+        .solution-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-section {
+            margin-bottom: 2rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 2rem;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+        .feature-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .market-segments {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .market-segment {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+        .market-segment.primary {
+            border-left: 4px solid #2ecc71;
+        }
+        .market-segment.secondary {
+            border-left: 4px solid #f39c12;
+        }
+        .market-segment.tertiary {
+            border-left: 4px solid #9b59b6;
+        }
+
+        .market-stats {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .stat-card {
+            text-align: center;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .metrics-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+        .metrics-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: all 0.2s ease;
+        }
+        .nav-link:hover {
+            border-color: var(--color-accent);
+        }
+        .nav-prev .nav-link:hover {
+            transform: translateX(-4px);
+        }
+        .nav-next .nav-link:hover {
+            transform: translateX(4px);
+        }
+    </style>
+</body>
+</html>
