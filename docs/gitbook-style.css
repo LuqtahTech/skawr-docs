@@ -1,16 +1,56 @@
-/* GitBook-style CSS */
+/* Skawr Brand Documentation CSS */
+/* Import Skawr Typography */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Import Skawr design tokens */
 :root {
-    --color-primary: #1976d2;
-    --color-sidebar-bg: #2c3e50;
-    --color-sidebar-text: #bdc3c7;
-    --color-sidebar-active: #ffffff;
-    --color-content-bg: #ffffff;
-    --color-border: #e1e8ed;
-    --color-text: #333333;
-    --color-text-light: #666666;
-    --color-accent: #3498db;
-    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    --sidebar-width: 300px;
+  /* ─── Skawr Brand Colors ─────────────────────────────── */
+  --skawr-primary:      #ED7453;
+  --skawr-primary-dk:   #E95223;
+  --skawr-green:        #4CAF50;
+  --skawr-discount:     #23E2C0;
+  --skawr-error:        #F44336;
+  --skawr-hyperlink:    #5688FF;
+  --skawr-highlight:    #E0A28F;
+
+  /* ─── Neutrals ──────────────────────────────────────── */
+  --skawr-white:        #FFFFFF;
+  --skawr-black:        #000000;
+  --skawr-charcoal:     #151517;
+  --skawr-charcoal-bar: #262626;
+  --skawr-profile-card: #1E1E1E;
+  --skawr-bg-dark-1:    #444152;
+  --skawr-bg-dark-2:    #6F6C7D;
+
+  /* ─── Text Colors ───────────────────────────────────── */
+  --skawr-text-primary:   #000000;
+  --skawr-text-secondary: #515151;
+  --skawr-text-muted:     #878787;
+  --skawr-text-disabled:  #929292;
+  --skawr-text-inactive:  #ADADAD;
+  --skawr-text-subtle:    #B9B9B9;
+  --skawr-text-title:     #363636;
+
+  /* ─── Surfaces ──────────────────────────────────────── */
+  --skawr-card-bg:        #F8F8F8;
+  --skawr-placeholder:    #F0F0F0;
+  --skawr-divider:        #C5C5C5;
+
+  /* ─── Typography ────────────────────────────────────── */
+  --skawr-font-family: 'Gilroy', 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* ─── Documentation Theme Variables ─────────────────── */
+  --color-primary: var(--skawr-primary);
+  --color-sidebar-bg: var(--skawr-charcoal);
+  --color-sidebar-text: var(--skawr-text-inactive);
+  --color-sidebar-active: var(--skawr-white);
+  --color-content-bg: var(--skawr-white);
+  --color-border: var(--skawr-divider);
+  --color-text: var(--skawr-text-primary);
+  --color-text-light: var(--skawr-text-secondary);
+  --color-accent: var(--skawr-primary);
+  --font-family: var(--skawr-font-family);
+  --sidebar-width: 300px;
 }
 
 * {
@@ -72,7 +112,14 @@ body {
 /* Sidebar Header */
 .book-header {
     padding: 2rem 1.5rem 1.5rem;
-    border-bottom: 1px solid #34495e;
+    border-bottom: 1px solid var(--skawr-charcoal-bar);
+    text-align: center;
+}
+
+.skawr-logo {
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: center;
 }
 
 .book-title {
@@ -265,15 +312,17 @@ body {
     padding: 2rem 0;
 }
 
+.hero-logo {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
 .hero-title {
     font-size: 2.5rem;
     font-weight: 700;
-    color: var(--color-text);
+    color: var(--skawr-text-title);
     margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
 }
 
 .hero-icon {
@@ -303,7 +352,7 @@ body {
 .stat-number {
     font-size: 2rem;
     font-weight: 700;
-    color: var(--color-accent);
+    color: var(--skawr-primary);
 }
 
 .stat-label {
@@ -349,19 +398,19 @@ body {
 }
 
 .nav-card.business {
-    border-left: 4px solid #e74c3c;
+    border-left: 4px solid var(--skawr-primary);
 }
 
 .nav-card.platform {
-    border-left: 4px solid #3498db;
+    border-left: 4px solid var(--skawr-hyperlink);
 }
 
 .nav-card.developer {
-    border-left: 4px solid #2ecc71;
+    border-left: 4px solid var(--skawr-green);
 }
 
 .nav-card.partnership {
-    border-left: 4px solid #f39c12;
+    border-left: 4px solid var(--skawr-discount);
 }
 
 .card-icon {
