@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ & Support - Skawr Documentation</title>
+    <link rel="stylesheet" href="../gitbook-style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body>
+    <div class="book">
+        <!-- Sidebar -->
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <h1 class="book-title">
+                        <span class="book-title-icon">📚</span>
+                        Skawr
+                    </h1>
+                    <p class="book-subtitle">Platform Documentation</p>
+                </div>
+
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter">
+                            <a href="../index.html">📖 Introduction</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="#business" class="chapter-link">🏢 Business Overview</a>
+                            <ul class="articles">
+                                <li><a href="../product/overview.html">Product Overview</a></li>
+                                <li><a href="../product/value-proposition.html">Value Proposition</a></li>
+                                <li><a href="../market/competition.html">Competitive Analysis</a></li>
+                                <li><a href="../business/model.html">Business Model</a></li>
+                                <li><a href="../brand/identity.html">Brand Identity</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="#platforms" class="chapter-link">🏗️ Platform Architecture</a>
+                            <ul class="articles">
+                                <li><a href="../platforms/index.html">Platform Overview</a></li>
+                                <li><a href="../platforms/backend-api.html">Backend API</a></li>
+                                <li><a href="../platforms/web-app.html">Web Application</a></li>
+                                <li><a href="../platforms/mobile-app.html">Mobile App</a></li>
+                                <li><a href="../platforms/scraper-service.html">Scraper Service</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="#developer" class="chapter-link">🔧 Developer Resources</a>
+                            <ul class="articles">
+                                <li><a href="../developer/getting-started.html">Getting Started</a></li>
+                                <li><a href="../developer/api-reference.html">API Reference</a></li>
+                                <li><a href="../developer/integration-guides.html">Integration Guides</a></li>
+                                <li><a href="../developer/sdk-docs.html">SDK Documentation</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="#partnerships" class="chapter-link">🤝 Partnerships</a>
+                            <ul class="articles">
+                                <li><a href="../partnerships/marketplace-integration.html">Marketplace Integration</a></li>
+                                <li><a href="../partnerships/salla-plugin.html">Salla Plugin Guide</a></li>
+                                <li><a href="../partnerships/white-label.html">White-label Solutions</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter expanded">
+                            <a href="#support" class="chapter-link">❓ Support</a>
+                            <ul class="articles">
+                                <li><a href="faq.html" class="active">FAQ</a></li>
+                                <li><a href="troubleshooting.html">Troubleshooting</a></li>
+                                <li><a href="contact.html">Contact Support</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/ziyad00/skawr-docs" class="github-link">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                        Edit on GitHub
+                    </a>
+                    <div class="sidebar-version">v1.0.0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="book-body">
+            <div class="body-inner">
+                <div class="book-toolbar">
+                    <div class="toolbar-left">
+                        <button class="btn btn-sm sidebar-toggle">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z"></path>
+                            </svg>
+                        </button>
+                        <nav class="breadcrumb">
+                            <a href="../index.html">Documentation</a>
+                            <span>›</span>
+                            <a href="#support">Support</a>
+                            <span>›</span>
+                            <span>FAQ</span>
+                        </nav>
+                    </div>
+                    <div class="toolbar-right">
+                        <div class="faq-search-container">
+                            <input type="text" id="faq-search" placeholder="Search FAQ..." class="faq-search-input">
+                            <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M11.742 10.344a6.5 6.5 0 10-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 001.415-1.414l-3.85-3.85a1.007 1.007 0 00-.115-.1zM12 6.5a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0z"></path>
+                            </svg>
+                        </div>
+                        <a href="https://github.com/ziyad00/skawr-docs" class="btn btn-sm">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <article class="page-content">
+                            <h1>❓ Frequently Asked Questions</h1>
+
+                            <div class="faq-intro">
+                                <p>Find answers to commonly asked questions about Skawr's platform, API, and services. Can't find what you're looking for? <a href="contact.html">Contact our support team</a>.</p>
+                            </div>
+
+                            <div class="faq-categories">
+                                <div class="category-tabs">
+                                    <button class="category-tab active" data-category="general">General</button>
+                                    <button class="category-tab" data-category="api">API</button>
+                                    <button class="category-tab" data-category="integration">Integration</button>
+                                    <button class="category-tab" data-category="pricing">Pricing</button>
+                                    <button class="category-tab" data-category="technical">Technical</button>
+                                </div>
+
+                                <!-- General FAQ -->
+                                <div class="faq-category" data-category="general">
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h3>What is Skawr and how does it work?</h3>
+                                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Skawr is Saudi Arabia's first AI-powered marketplace aggregator that allows users to search and compare products across multiple e-commerce platforms simultaneously. Instead of visiting individual websites like Haraj, Dubizzle, or OpenSooq, users can search once and see results from all platforms.</p>
+                                            <p>Our platform uses advanced AI to understand Arabic and English queries, handle typos, and provide semantic search results that match user intent rather than just keywords.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h3>Which marketplaces does Skawr support?</h3>
+                                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Currently, Skawr integrates with major Saudi Arabian marketplaces including:</p>
+                                            <ul>
+                                                <li>Haraj.com.sa</li>
+                                                <li>Dubizzle Saudi Arabia</li>
+                                                <li>OpenSooq</li>
+                                                <li>Mstaml</li>
+                                                <li>And more being added regularly</li>
+                                            </ul>
+                                            <p>We're continuously expanding our marketplace partnerships to provide comprehensive coverage of the Saudi e-commerce ecosystem.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h3>Is Skawr free to use?</h3>
+                                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Yes, Skawr is free for consumers to use. You can search, compare prices, and access all basic features without any cost. We generate revenue through:</p>
+                                            <ul>
+                                                <li>Partnership fees from marketplace integrations</li>
+                                                <li>Premium API access for businesses</li>
+                                                <li>Sponsored listings and advertising</li>
+                                                <li>White-label solutions for enterprises</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h3>How accurate are the prices and product information?</h3>
+                                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>We update product information and prices in real-time using automated scraping and API integrations. Our system refreshes data every 15-30 minutes to ensure accuracy. However, we recommend verifying final pricing and availability directly with the seller before making a purchase.</p>
+                                            <p>If you notice outdated or incorrect information, please report it to help us improve our data quality.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- API FAQ -->
+                                <div class="faq-category" data-category="api" style="display: none;">
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h3>How do I get an API key?</h3>
+                                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>To get an API key:</p>
+                                            <ol>
+                                                <li>Sign up for a Skawr developer account</li>
+                                                <li>Verify your email address</li>
+                                                <li>Complete the developer application form</li>
+                                                <li>Choose your pricing plan (Free tier available)</li>
+                                                <li>Generate your API key from the dashboard</li>
+                                            </ol>
+                                            <p>Free tier includes 1,000 requests per month. See our <a href="../developer/getting-started.html">Getting Started guide</a> for detailed instructions.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h3>What are the API rate limits?</h3>
+                                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Rate limits depend on your plan:</p>
+                                            <ul>
+                                                <li><strong>Free Tier:</strong> 100 requests per hour, 1,000 per month</li>
+                                                <li><strong>Starter:</strong> 1,000 requests per hour, 50,000 per month</li>
+                                                <li><strong>Pro:</strong> 5,000 requests per hour, 500,000 per month</li>
+                                                <li><strong>Enterprise:</strong> Custom limits based on agreement</li>
+                                            </ul>
+                                            <p>Rate limit headers are included in all API responses to help you monitor usage.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h3>How do I handle API errors?</h3>
+                                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Our API uses standard HTTP status codes:</p>
+                                            <ul>
+                                                <li><strong>400:</strong> Bad Request - Check your parameters</li>
+                                                <li><strong>401:</strong> Unauthorized - Invalid API key</li>
+                                                <li><strong>429:</strong> Rate Limited - Slow down your requests</li>
+                                                <li><strong>500:</strong> Server Error - Try again later</li>
+                                            </ul>
+                                            <p>All errors include detailed error messages and request IDs for debugging. Implement exponential backoff for rate limit handling.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Integration FAQ -->
+                                <div class="faq-category" data-category="integration" style="display: none;">
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h3>Which programming languages are supported?</h3>
+                                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>We provide official SDKs for:</p>
+                                            <ul>
+                                                <li><strong>JavaScript/Node.js:</strong> npm install skawr-sdk</li>
+                                                <li><strong>Python:</strong> pip install skawr-python</li>
+                                                <li><strong>PHP:</strong> composer require skawr/skawr-php</li>
+                                                <li><strong>React/Vue:</strong> Frontend components available</li>
+                                            </ul>
+                                            <p>You can also use our REST API directly with any language that supports HTTP requests. See our <a href="../developer/sdk-docs.html">SDK documentation</a> for examples.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h3>Can I white-label Skawr for my business?</h3>
+                                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Yes! Our SaaS platform allows you to create white-label marketplace aggregators with:</p>
+                                            <ul>
+                                                <li>Custom branding and domain</li>
+                                                <li>Configurable feature sets</li>
+                                                <li>API access and customization</li>
+                                                <li>Analytics and reporting</li>
+                                                <li>Multi-tenant architecture</li>
+                                            </ul>
+                                            <p>Contact our sales team to discuss enterprise pricing and custom implementations.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h3>How long does integration typically take?</h3>
+                                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Integration timeframes depend on complexity:</p>
+                                            <ul>
+                                                <li><strong>Basic API Integration:</strong> 1-2 days</li>
+                                                <li><strong>Frontend Widget:</strong> 2-5 days</li>
+                                                <li><strong>Full Platform Integration:</strong> 1-2 weeks</li>
+                                                <li><strong>White-label Solution:</strong> 2-4 weeks</li>
+                                                <li><strong>Custom Implementation:</strong> 1-3 months</li>
+                                            </ul>
+                                            <p>We provide dedicated support during integration with technical account managers for enterprise customers.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Pricing FAQ -->
+                                <div class="faq-category" data-category="pricing" style="display: none;">
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h3>What pricing plans are available?</h3>
+                                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Our pricing is designed to scale with your usage:</p>
+                                            <ul>
+                                                <li><strong>Free:</strong> $0/month - 1,000 requests, basic support</li>
+                                                <li><strong>Starter:</strong> $99/month - 50,000 requests, email support</li>
+                                                <li><strong>Pro:</strong> $499/month - 500,000 requests, priority support</li>
+                                                <li><strong>Enterprise:</strong> Custom pricing - Unlimited requests, dedicated support</li>
+                                            </ul>
+                                            <p>All plans include access to our search API, real-time data updates, and comprehensive documentation.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h3>Do you offer custom pricing for high-volume usage?</h3>
+                                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Yes, we offer volume discounts and custom pricing for:</p>
+                                            <ul>
+                                                <li>Businesses requiring 1M+ requests per month</li>
+                                                <li>Multi-year contracts</li>
+                                                <li>Enterprise white-label solutions</li>
+                                                <li>Strategic partnerships</li>
+                                            </ul>
+                                            <p>Contact our sales team to discuss your specific requirements and get a custom quote.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Technical FAQ -->
+                                <div class="faq-category" data-category="technical" style="display: none;">
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h3>What is the API response time?</h3>
+                                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Our API is optimized for speed:</p>
+                                            <ul>
+                                                <li><strong>Average Response Time:</strong> 200-500ms</li>
+                                                <li><strong>95th Percentile:</strong> < 1 second</li>
+                                                <li><strong>Uptime SLA:</strong> 99.9%</li>
+                                                <li><strong>Global CDN:</strong> Distributed across Middle East regions</li>
+                                            </ul>
+                                            <p>Response times may vary based on query complexity and the number of marketplaces being searched.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h3>Do you provide webhooks for real-time updates?</h3>
+                                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Yes, we offer webhook notifications for:</p>
+                                            <ul>
+                                                <li><strong>Price Changes:</strong> When product prices are updated</li>
+                                                <li><strong>New Products:</strong> When matching products are discovered</li>
+                                                <li><strong>Availability:</strong> When product availability changes</li>
+                                                <li><strong>Custom Events:</strong> Based on your specific requirements</li>
+                                            </ul>
+                                            <p>Webhooks are available in Pro and Enterprise plans. Configure them through the dashboard or API.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="faq-item">
+                                        <div class="faq-question">
+                                            <h3>How do you handle Arabic text and RTL layouts?</h3>
+                                            <svg class="faq-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                            </svg>
+                                        </div>
+                                        <div class="faq-answer">
+                                            <p>Skawr is built with Arabic-first design:</p>
+                                            <ul>
+                                                <li><strong>Native Arabic Search:</strong> Full Unicode support and text normalization</li>
+                                                <li><strong>RTL Support:</strong> Right-to-left layout handling in responses</li>
+                                                <li><strong>Bilingual Processing:</strong> Simultaneous Arabic and English query processing</li>
+                                                <li><strong>Cultural Context:</strong> Understanding of Saudi market terminology</li>
+                                            </ul>
+                                            <p>Our AI models are specifically trained on Arabic e-commerce data and Saudi marketplace content.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <div class="page-navigation">
+                            <div class="nav-prev">
+                                <a href="../developer/sdk-docs.html" class="nav-link">
+                                    <div class="nav-icon">←</div>
+                                    <div class="nav-text">
+                                        <div class="nav-label">Previous</div>
+                                        <div class="nav-title">SDK Documentation</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nav-next">
+                                <a href="troubleshooting.html" class="nav-link">
+                                    <div class="nav-text">
+                                        <div class="nav-label">Next</div>
+                                        <div class="nav-title">Troubleshooting</div>
+                                    </div>
+                                    <div class="nav-icon">→</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle for mobile
+        document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+
+        // Chapter toggle functionality
+        document.querySelectorAll('.chapter-link').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const chapter = this.parentElement;
+                chapter.classList.toggle('expanded');
+            });
+        });
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(function(question) {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                const answer = item.querySelector('.faq-answer');
+                const icon = this.querySelector('.faq-icon');
+
+                item.classList.toggle('active');
+
+                if (item.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(45deg)';
+                } else {
+                    answer.style.maxHeight = '0';
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+
+        // Category tabs
+        document.querySelectorAll('.category-tab').forEach(function(tab) {
+            tab.addEventListener('click', function() {
+                const category = this.dataset.category;
+
+                // Update active tab
+                document.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                // Show relevant category
+                document.querySelectorAll('.faq-category').forEach(cat => {
+                    if (cat.dataset.category === category) {
+                        cat.style.display = 'block';
+                    } else {
+                        cat.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // FAQ search
+        document.getElementById('faq-search').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const allItems = document.querySelectorAll('.faq-item');
+
+            allItems.forEach(item => {
+                const question = item.querySelector('.faq-question h3').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+
+                if (question.includes(query) || answer.includes(query)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = query ? 'none' : 'block';
+                }
+            });
+
+            // Show all categories when searching
+            if (query) {
+                document.querySelectorAll('.faq-category').forEach(cat => cat.style.display = 'block');
+                document.querySelectorAll('.category-tab').forEach(tab => tab.classList.remove('active'));
+            }
+        });
+    </script>
+
+    <style>
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-left: 1rem;
+        }
+        .breadcrumb a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .faq-search-container {
+            position: relative;
+            margin-right: 1rem;
+            max-width: 200px;
+        }
+
+        .faq-search-input {
+            width: 100%;
+            padding: 0.4rem 2rem 0.4rem 0.8rem;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            background: white;
+            font-size: 0.8rem;
+        }
+
+        .faq-intro {
+            background: #f8f9fa;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+            overflow-x: auto;
+        }
+
+        .category-tab {
+            background: transparent;
+            border: none;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .category-tab.active {
+            color: var(--color-accent);
+            border-bottom-color: var(--color-accent);
+        }
+
+        .category-tab:hover {
+            color: var(--color-accent);
+        }
+
+        .faq-category {
+            display: block;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .faq-item:hover {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+        }
+
+        .faq-question h3 {
+            margin: 0;
+            color: var(--color-text);
+            font-size: 1.1rem;
+            flex: 1;
+        }
+
+        .faq-icon {
+            color: var(--color-accent);
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #f8f9fa;
+        }
+
+        .faq-answer > div {
+            padding: 1.5rem;
+        }
+
+        .faq-answer p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-answer ul, .faq-answer ol {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .faq-answer li {
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .faq-answer a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .faq-answer a:hover {
+            text-decoration: underline;
+        }
+
+        .faq-item.active .faq-answer {
+            border-top: 1px solid var(--color-border);
+        }
+
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            border-color: var(--color-accent);
+        }
+
+        @media (max-width: 768px) {
+            .category-tabs {
+                flex-wrap: wrap;
+                gap: 0.5rem;
+            }
+
+            .category-tab {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.9rem;
+            }
+
+            .faq-question {
+                padding: 1rem;
+            }
+
+            .faq-question h3 {
+                font-size: 1rem;
+            }
+
+            .faq-answer > div {
+                padding: 1rem;
+            }
+
+            .faq-search-container {
+                display: none;
+            }
+        }
+    </style>
+</body>
+</html>

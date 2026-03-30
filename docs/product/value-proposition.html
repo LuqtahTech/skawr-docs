@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Value Proposition - Skawr Documentation</title>
+    <link rel="stylesheet" href="../gitbook-style.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <style>
+        .value-metric {
+            background: linear-gradient(135deg, #f8fffe 0%, #e8f5e8 100%);
+            border: 1px solid var(--skawr-green);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .value-metric-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--skawr-green);
+            display: block;
+        }
+
+        .value-metric-label {
+            font-size: 1rem;
+            color: var(--skawr-text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        .stakeholder-section {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .stakeholder-header {
+            background: linear-gradient(135deg, var(--skawr-primary) 0%, var(--skawr-primary-dk) 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .stakeholder-content {
+            padding: 2rem;
+        }
+
+        .value-prop {
+            background: #fafbfc;
+            border-left: 4px solid var(--skawr-primary);
+            border-radius: 0 8px 8px 0;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .value-prop h4 {
+            color: var(--skawr-primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .value-prop-item {
+            margin: 0.75rem 0;
+        }
+
+        .value-prop-item strong {
+            color: var(--skawr-text-title);
+        }
+
+        .comparison-table {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+
+        .comparison-table th {
+            background: var(--skawr-charcoal);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .comparison-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--color-border);
+            background: white;
+        }
+
+        .comparison-table tr:nth-child(even) td {
+            background: #f8f9fa;
+        }
+
+        .comparison-table td:first-child {
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            background: #fafbfc !important;
+        }
+
+        .usp-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .usp-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(237, 116, 83, 0.15);
+            border-color: var(--skawr-primary);
+        }
+
+        .usp-number {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: var(--skawr-primary);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .usp-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            margin-bottom: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .usp-description {
+            color: var(--skawr-text-secondary);
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-section {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-phase {
+            border-left: 3px solid var(--skawr-primary);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .timeline-phase::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--skawr-primary);
+            border-radius: 50%;
+        }
+
+        .timeline-phase h4 {
+            color: var(--skawr-primary);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .proof-points {
+            background: linear-gradient(135deg, #fff5f0 0%, #fef2e8 100%);
+            border: 1px solid var(--skawr-highlight);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .proof-points h3 {
+            color: var(--skawr-primary);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .proof-item {
+            text-align: center;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid rgba(237, 116, 83, 0.2);
+        }
+
+        .proof-item strong {
+            color: var(--skawr-primary);
+            font-size: 1.1rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--skawr-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: var(--skawr-primary-dk);
+        }
+
+        .breadcrumb-separator {
+            color: var(--skawr-text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .proof-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stakeholder-header {
+                padding: 1rem 1.5rem;
+                font-size: 1.2rem;
+            }
+
+            .stakeholder-content {
+                padding: 1.5rem;
+            }
+
+            .usp-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <!-- Sidebar -->
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <div class="skawr-logo">
+                        <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" fill="#ED7453"/>
+                            <path d="M30 35 L50 55 L70 35 L65 30 L50 45 L35 30 Z" fill="white"/>
+                            <path d="M30 65 L50 45 L70 65 L65 70 L50 55 L35 70 Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h1 class="book-title">
+                        <span class="book-title-icon">📖</span>
+                        Skawr Docs
+                    </h1>
+                    <p class="book-subtitle">Complete Documentation</p>
+                </div>
+
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter">
+                            <a href="../index.html">🏠 Overview</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../product/overview.html">📦 Product</a>
+                            <ul class="articles">
+                                <li><a href="../product/overview.html">Overview</a></li>
+                                <li><a href="value-proposition.html">Value Proposition</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="../platforms/README.html">🛠️ Platforms</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../developer/getting-started.html">👨‍💻 Developer</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../system/architecture.html">🏗️ Architecture</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../support/faq.html">❓ Support</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/skawr" class="github-link">
+                        <span>📖</span>
+                        <span>GitHub</span>
+                    </a>
+                    <div class="sidebar-version">Version 1.0.0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="book-body">
+            <div class="body-inner">
+                <!-- Toolbar -->
+                <div class="book-toolbar">
+                    <div>
+                        <button class="btn btn-sm sidebar-toggle">☰ Menu</button>
+                    </div>
+                    <div>
+                        <a href="https://github.com/skawr/skawr-docs" class="btn btn-sm">📝 Edit</a>
+                    </div>
+                </div>
+
+                <!-- Breadcrumb -->
+                <div class="breadcrumb">
+                    <nav class="breadcrumb-nav">
+                        <a href="../index.html">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="../product/overview.html">Product</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span>Value Proposition</span>
+                    </nav>
+                </div>
+
+                <!-- Page Content -->
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <header>
+                            <h1>Value Proposition</h1>
+                            <p class="hero-description">
+                                Understanding the unique value Skawr delivers to consumers, marketplace partners, and advertisers across the Saudi e-commerce ecosystem.
+                            </p>
+                        </header>
+
+                        <!-- Core Value Statement -->
+                        <section class="platform-overview">
+                            <h2 class="section-title">Core Value Statement</h2>
+                            <div class="overview-text">
+                                <blockquote style="font-size: 1.5rem; font-weight: 600; color: var(--skawr-primary); text-align: center; margin: 2rem 0; padding: 2rem; background: linear-gradient(135deg, #fff5f0 0%, #fef2e8 100%); border-radius: 12px; border-left: 6px solid var(--skawr-primary);">
+                                    "Find anything, anywhere, instantly - Skawr brings every Saudi marketplace into one intelligent search."
+                                </blockquote>
+                                <p>Skawr eliminates the frustration of marketplace hopping by providing instant access to products from all major Saudi e-commerce platforms through a single, AI-powered search experience.</p>
+                            </div>
+                        </section>
+
+                        <!-- Value Metrics Overview -->
+                        <section>
+                            <h2 class="section-title">Key Value Metrics</h2>
+                            <div class="metrics-grid">
+                                <div class="value-metric">
+                                    <span class="value-metric-number">90%</span>
+                                    <div class="value-metric-label">Time Savings</div>
+                                </div>
+                                <div class="value-metric">
+                                    <span class="value-metric-number">20%</span>
+                                    <div class="value-metric-label">Average Savings</div>
+                                </div>
+                                <div class="value-metric">
+                                    <span class="value-metric-number">3x</span>
+                                    <div class="value-metric-label">More Discovery</div>
+                                </div>
+                                <div class="value-metric">
+                                    <span class="value-metric-number">30s</span>
+                                    <div class="value-metric-label">Search Time</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Value Propositions by Stakeholder -->
+                        <section>
+                            <h2 class="section-title">Value Propositions by Stakeholder</h2>
+
+                            <!-- For Consumers -->
+                            <div class="stakeholder-section">
+                                <div class="stakeholder-header">
+                                    🛒 For Consumers
+                                </div>
+                                <div class="stakeholder-content">
+                                    <div class="value-prop">
+                                        <h4>🕐 Save Time</h4>
+                                        <div class="value-prop-item"><strong>Problem:</strong> Visiting 5-8 marketplace websites takes 20-30 minutes per product search</div>
+                                        <div class="value-prop-item"><strong>Solution:</strong> Find products from all marketplaces in under 30 seconds</div>
+                                        <div class="value-prop-item"><strong>Value:</strong> Save 90% of shopping research time</div>
+                                    </div>
+
+                                    <div class="value-prop">
+                                        <h4>💰 Save Money</h4>
+                                        <div class="value-prop-item"><strong>Problem:</strong> Missing better deals by not checking all platforms</div>
+                                        <div class="value-prop-item"><strong>Solution:</strong> Automatic price comparison across all marketplaces</div>
+                                        <div class="value-prop-item"><strong>Value:</strong> Average savings of 15-25% per purchase through price visibility</div>
+                                    </div>
+
+                                    <div class="value-prop">
+                                        <h4>🔍 Find More</h4>
+                                        <div class="value-prop-item"><strong>Problem:</strong> Limited discovery due to platform-specific search algorithms</div>
+                                        <div class="value-prop-item"><strong>Solution:</strong> AI-powered semantic search finds products you didn't know existed</div>
+                                        <div class="value-prop-item"><strong>Value:</strong> 3x more relevant product options discovered</div>
+                                    </div>
+
+                                    <div class="value-prop">
+                                        <h4>🌐 Search Naturally</h4>
+                                        <div class="value-prop-item"><strong>Problem:</strong> Language barriers and typos cause missed results</div>
+                                        <div class="value-prop-item"><strong>Solution:</strong> Bilingual AI understands Arabic, English, and mixed queries</div>
+                                        <div class="value-prop-item"><strong>Value:</strong> Find products regardless of how you describe them</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- For Marketplace Partners -->
+                            <div class="stakeholder-section">
+                                <div class="stakeholder-header">
+                                    🏪 For Marketplace Partners
+                                </div>
+                                <div class="stakeholder-content">
+                                    <div class="value-prop">
+                                        <h4>📈 Increase Sales</h4>
+                                        <div class="value-prop-item"><strong>Problem:</strong> Limited organic discovery on crowded platforms</div>
+                                        <div class="value-prop-item"><strong>Solution:</strong> Exposure to millions of cross-platform shoppers</div>
+                                        <div class="value-prop-item"><strong>Value:</strong> 30-40% increase in product visibility and sales</div>
+                                    </div>
+
+                                    <div class="value-prop">
+                                        <h4>🎯 Targeted Traffic</h4>
+                                        <div class="value-prop-item"><strong>Problem:</strong> Generic traffic with low conversion rates</div>
+                                        <div class="value-prop-item"><strong>Solution:</strong> Pre-qualified buyers with specific product intent</div>
+                                        <div class="value-prop-item"><strong>Value:</strong> 2-3x higher conversion rates from Skawr traffic</div>
+                                    </div>
+
+                                    <div class="value-prop">
+                                        <h4>📊 Market Intelligence</h4>
+                                        <div class="value-prop-item"><strong>Problem:</strong> Limited visibility into competitive landscape</div>
+                                        <div class="value-prop-item"><strong>Solution:</strong> Comprehensive market analytics and insights</div>
+                                        <div class="value-prop-item"><strong>Value:</strong> Data-driven pricing and inventory decisions</div>
+                                    </div>
+
+                                    <div class="value-prop">
+                                        <h4>⚡ Reduced CAC</h4>
+                                        <div class="value-prop-item"><strong>Problem:</strong> High customer acquisition costs through ads</div>
+                                        <div class="value-prop-item"><strong>Solution:</strong> Organic discovery through search relevance</div>
+                                        <div class="value-prop-item"><strong>Value:</strong> 50% reduction in customer acquisition costs</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- For Advertisers & Brands -->
+                            <div class="stakeholder-section">
+                                <div class="stakeholder-header">
+                                    📢 For Advertisers & Brands
+                                </div>
+                                <div class="stakeholder-content">
+                                    <div class="value-prop">
+                                        <h4>🎯 Intent-Based Advertising</h4>
+                                        <div class="value-prop-item"><strong>Problem:</strong> Broad advertising with poor ROI</div>
+                                        <div class="value-prop-item"><strong>Solution:</strong> Ads based on specific product searches</div>
+                                        <div class="value-prop-item"><strong>Value:</strong> 5-10x higher click-through rates</div>
+                                    </div>
+
+                                    <div class="value-prop">
+                                        <h4>📱 Cross-Platform Reach</h4>
+                                        <div class="value-prop-item"><strong>Problem:</strong> Fragmented advertising across multiple platforms</div>
+                                        <div class="value-prop-item"><strong>Solution:</strong> Single campaign reaching all marketplace audiences</div>
+                                        <div class="value-prop-item"><strong>Value:</strong> Unified brand presence across Saudi e-commerce</div>
+                                    </div>
+
+                                    <div class="value-prop">
+                                        <h4>📈 Performance Transparency</h4>
+                                        <div class="value-prop-item"><strong>Problem:</strong> Limited visibility into ad performance</div>
+                                        <div class="value-prop-item"><strong>Solution:</strong> Comprehensive analytics on ad performance and ROI</div>
+                                        <div class="value-prop-item"><strong>Value:</strong> Data-driven optimization of advertising spend</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Competitive Differentiation -->
+                        <section>
+                            <h2 class="section-title">Competitive Differentiation</h2>
+
+                            <h3>vs. Individual Marketplaces</h3>
+                            <div class="comparison-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Factor</th>
+                                            <th>Individual Marketplaces</th>
+                                            <th>Skawr</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Product Coverage</td>
+                                            <td>Platform-specific inventory</td>
+                                            <td>All major platforms combined</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Search Quality</td>
+                                            <td>Basic keyword matching</td>
+                                            <td>AI-powered semantic search</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Price Comparison</td>
+                                            <td>None</td>
+                                            <td>Real-time across all platforms</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Language Support</td>
+                                            <td>Platform-dependent</td>
+                                            <td>Unified Arabic/English</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Discovery</td>
+                                            <td>Algorithm-limited</td>
+                                            <td>Cross-platform recommendations</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h3>vs. International Aggregators (Amazon, Google Shopping)</h3>
+                            <div class="comparison-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Factor</th>
+                                            <th>International Players</th>
+                                            <th>Skawr</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Local Focus</td>
+                                            <td>Global, generic approach</td>
+                                            <td>Saudi-specific optimization</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Language</td>
+                                            <td>English-first</td>
+                                            <td>Arabic-first with English</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Market Understanding</td>
+                                            <td>Limited local insight</td>
+                                            <td>Deep Saudi market knowledge</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Platform Coverage</td>
+                                            <td>Limited local partnerships</td>
+                                            <td>All major Saudi platforms</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cultural Relevance</td>
+                                            <td>Generic international</td>
+                                            <td>Saudi shopping behavior</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h3>vs. Price Comparison Sites</h3>
+                            <div class="comparison-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Factor</th>
+                                            <th>Traditional Comparison Sites</th>
+                                            <th>Skawr</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Technology</td>
+                                            <td>Basic scraping</td>
+                                            <td>AI-powered intelligence</td>
+                                        </tr>
+                                        <tr>
+                                            <td>User Experience</td>
+                                            <td>Cluttered interfaces</td>
+                                            <td>Clean, mobile-first design</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Search Capability</td>
+                                            <td>Exact keyword matching</td>
+                                            <td>Natural language understanding</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Real-time Data</td>
+                                            <td>Often outdated</td>
+                                            <td>Live synchronization</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Mobile Experience</td>
+                                            <td>Desktop-focused</td>
+                                            <td>Mobile-native approach</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <!-- Unique Selling Propositions -->
+                        <section>
+                            <h2 class="section-title">Unique Selling Propositions (USPs)</h2>
+
+                            <div class="usp-card">
+                                <div class="usp-number">1</div>
+                                <h3 class="usp-title">First-Mover Advantage</h3>
+                                <p class="usp-description">"The only comprehensive marketplace aggregator built specifically for Saudi Arabia"</p>
+                            </div>
+
+                            <div class="usp-card">
+                                <div class="usp-number">2</div>
+                                <h3 class="usp-title">AI-Powered Bilingual Search</h3>
+                                <p class="usp-description">"Search in Arabic, English, or mixed - our AI understands what you mean, not just what you type"</p>
+                            </div>
+
+                            <div class="usp-card">
+                                <div class="usp-number">3</div>
+                                <h3 class="usp-title">Real-Time Everything</h3>
+                                <p class="usp-description">"Live prices, instant availability, up-to-the-minute deals across all platforms"</p>
+                            </div>
+
+                            <div class="usp-card">
+                                <div class="usp-number">4</div>
+                                <h3 class="usp-title">Saudi-First Design</h3>
+                                <p class="usp-description">"Built by Saudis, for Saudis - understanding local shopping behavior and preferences"</p>
+                            </div>
+
+                            <div class="usp-card">
+                                <div class="usp-number">5</div>
+                                <h3 class="usp-title">Complete Market Coverage</h3>
+                                <p class="usp-description">"If it's sold online in Saudi Arabia, we'll help you find it"</p>
+                            </div>
+                        </section>
+
+                        <!-- Value Realization Timeline -->
+                        <section>
+                            <h2 class="section-title">Value Realization Timeline</h2>
+
+                            <div class="timeline-section">
+                                <div class="timeline-phase">
+                                    <h4>Immediate (First Use)</h4>
+                                    <ul>
+                                        <li>Instant access to products from multiple marketplaces</li>
+                                        <li>Immediate price comparison across platforms</li>
+                                        <li>Faster search results than traditional methods</li>
+                                    </ul>
+                                </div>
+
+                                <div class="timeline-phase">
+                                    <h4>Short-term (First Month)</h4>
+                                    <ul>
+                                        <li>Significant time savings in shopping research</li>
+                                        <li>Discovery of new products and better deals</li>
+                                        <li>Improved shopping efficiency and satisfaction</li>
+                                    </ul>
+                                </div>
+
+                                <div class="timeline-phase">
+                                    <h4>Medium-term (3-6 Months)</h4>
+                                    <ul>
+                                        <li>Substantial cost savings through better price awareness</li>
+                                        <li>Enhanced shopping knowledge and market understanding</li>
+                                        <li>Behavioral change towards more informed purchasing</li>
+                                    </ul>
+                                </div>
+
+                                <div class="timeline-phase">
+                                    <h4>Long-term (6+ Months)</h4>
+                                    <ul>
+                                        <li>Transformation of shopping habits</li>
+                                        <li>Consistent savings and time efficiency</li>
+                                        <li>Complete reliance on unified search experience</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Proof Points -->
+                        <section>
+                            <div class="proof-points">
+                                <h3>Value Communication Framework</h3>
+                                <div style="text-align: center; margin-bottom: 2rem;">
+                                    <h4 style="color: var(--skawr-primary); font-size: 1.3rem; margin-bottom: 1rem;">Primary Message</h4>
+                                    <p style="font-size: 1.2rem; font-weight: 600; color: var(--skawr-text-title);">"Stop wasting time visiting multiple websites - find everything in one search"</p>
+                                </div>
+
+                                <div class="proof-grid">
+                                    <div class="proof-item">
+                                        <strong>"90% faster product discovery"</strong>
+                                        <span>Efficiency</span>
+                                    </div>
+                                    <div class="proof-item">
+                                        <strong>"Average 20% savings per purchase"</strong>
+                                        <span>Savings</span>
+                                    </div>
+                                    <div class="proof-item">
+                                        <strong>"3x more relevant results"</strong>
+                                        <span>Discovery</span>
+                                    </div>
+                                    <div class="proof-item">
+                                        <strong>"Works in Arabic and English"</strong>
+                                        <span>Intelligence</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Navigation -->
+                        <div class="page-navigation">
+                            <a href="../product/overview.html" class="nav-link">
+                                <span class="nav-icon">←</span>
+                                <div class="nav-text">
+                                    <div class="nav-label">Previous</div>
+                                    <div class="nav-title">Product Overview</div>
+                                </div>
+                            </a>
+                            <a href="../market/competition.html" class="nav-link">
+                                <div class="nav-text">
+                                    <div class="nav-label">Next</div>
+                                    <div class="nav-title">Market Analysis</div>
+                                </div>
+                                <span class="nav-icon">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        document.querySelector('.sidebar-toggle')?.addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+
+        // Add smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Highlight active section in sidebar
+        function updateActiveSection() {
+            const sections = document.querySelectorAll('section[id], h2[id], h3[id]');
+            const navLinks = document.querySelectorAll('.summary a');
+
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Update active section on scroll
+        window.addEventListener('scroll', updateActiveSection);
+
+        // Add animation to value metrics on scroll
+        const observeElements = (selector, animationClass) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll(selector).forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        };
+
+        // Observe various elements for animations
+        observeElements('.value-metric', 'animate-up');
+        observeElements('.stakeholder-section', 'animate-up');
+        observeElements('.usp-card', 'animate-up');
+    </script>
+</body>
+</html>

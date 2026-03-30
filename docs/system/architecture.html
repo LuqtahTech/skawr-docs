@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Architecture - Skawr Documentation</title>
+    <link rel="stylesheet" href="../gitbook-style.css">
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body>
+    <div class="book">
+        <!-- Sidebar -->
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <h1 class="book-title">
+                        <span class="book-title-icon">📚</span>
+                        Skawr
+                    </h1>
+                    <p class="book-subtitle">Platform Documentation</p>
+                </div>
+
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter">
+                            <a href="../index.html">📖 Introduction</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="#business" class="chapter-link">🏢 Business Overview</a>
+                            <ul class="articles">
+                                <li><a href="../product/overview.html">Product Overview</a></li>
+                                <li><a href="../product/value-proposition.html">Value Proposition</a></li>
+                                <li><a href="../market/competition.html">Competitive Analysis</a></li>
+                                <li><a href="../business/model.html">Business Model</a></li>
+                                <li><a href="../brand/identity.html">Brand Identity</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter expanded">
+                            <a href="#platforms" class="chapter-link">🏗️ Platform Architecture</a>
+                            <ul class="articles">
+                                <li><a href="../platforms/index.html">Platform Overview</a></li>
+                                <li><a href="architecture.html" class="active">System Architecture</a></li>
+                                <li><a href="../platforms/backend-api.html">Backend API</a></li>
+                                <li><a href="../platforms/web-app.html">Web Application</a></li>
+                                <li><a href="../platforms/mobile-app.html">Mobile App</a></li>
+                                <li><a href="../platforms/scraper-service.html">Scraper Service</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="#developer" class="chapter-link">🔧 Developer Resources</a>
+                            <ul class="articles">
+                                <li><a href="../developer/getting-started.html">Getting Started</a></li>
+                                <li><a href="../developer/api-reference.html">API Reference</a></li>
+                                <li><a href="../developer/integration-guides.html">Integration Guides</a></li>
+                                <li><a href="../developer/sdk-docs.html">SDK Documentation</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="#partnerships" class="chapter-link">🤝 Partnerships</a>
+                            <ul class="articles">
+                                <li><a href="../partnerships/marketplace-integration.html">Marketplace Integration</a></li>
+                                <li><a href="../partnerships/salla-plugin.html">Salla Plugin Guide</a></li>
+                                <li><a href="../partnerships/white-label.html">White-label Solutions</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="#support" class="chapter-link">❓ Support</a>
+                            <ul class="articles">
+                                <li><a href="../support/faq.html">FAQ</a></li>
+                                <li><a href="../support/troubleshooting.html">Troubleshooting</a></li>
+                                <li><a href="../support/contact.html">Contact Support</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/ziyad00/skawr-docs" class="github-link">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                        Edit on GitHub
+                    </a>
+                    <div class="sidebar-version">v1.0.0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="book-body">
+            <div class="body-inner">
+                <div class="book-toolbar">
+                    <div class="toolbar-left">
+                        <button class="btn btn-sm sidebar-toggle">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z"></path>
+                            </svg>
+                        </button>
+                        <nav class="breadcrumb">
+                            <a href="../index.html">Documentation</a>
+                            <span>›</span>
+                            <a href="#platforms">Platform Architecture</a>
+                            <span>›</span>
+                            <span>System Architecture</span>
+                        </nav>
+                    </div>
+                    <div class="toolbar-right">
+                        <button class="btn btn-sm" onclick="toggleDiagrams()">
+                            <span id="diagram-text">Expand All</span>
+                        </button>
+                        <a href="https://github.com/ziyad00/skawr-docs" class="btn btn-sm">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <article class="page-content">
+                            <h1>🏗️ SKAWR System Architecture</h1>
+
+                            <div class="architecture-intro">
+                                <p>This document provides comprehensive system architecture diagrams and technical documentation for the SKAWR SaaS platform. Our architecture is designed for scalability, multi-tenancy, and high availability across multiple AWS services.</p>
+
+                                <div class="architecture-stats">
+                                    <div class="arch-stat">
+                                        <div class="stat-number">7</div>
+                                        <div class="stat-label">Architecture Diagrams</div>
+                                    </div>
+                                    <div class="arch-stat">
+                                        <div class="stat-number">4</div>
+                                        <div class="stat-label">Core Services</div>
+                                    </div>
+                                    <div class="arch-stat">
+                                        <div class="stat-number">15+</div>
+                                        <div class="stat-label">AWS Components</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="diagram-nav">
+                                <h2>📋 Architecture Diagrams</h2>
+                                <div class="nav-grid">
+                                    <a href="#high-level" class="diagram-nav-item">
+                                        <span class="nav-icon">🏛️</span>
+                                        <span>High-Level Architecture</span>
+                                    </a>
+                                    <a href="#authentication" class="diagram-nav-item">
+                                        <span class="nav-icon">🔐</span>
+                                        <span>Authentication Flow</span>
+                                    </a>
+                                    <a href="#api-architecture" class="diagram-nav-item">
+                                        <span class="nav-icon">🔧</span>
+                                        <span>API Architecture</span>
+                                    </a>
+                                    <a href="#data-flow" class="diagram-nav-item">
+                                        <span class="nav-icon">🌊</span>
+                                        <span>Data Flow</span>
+                                    </a>
+                                    <a href="#cicd" class="diagram-nav-item">
+                                        <span class="nav-icon">🚀</span>
+                                        <span>CI/CD Pipeline</span>
+                                    </a>
+                                    <a href="#database" class="diagram-nav-item">
+                                        <span class="nav-icon">💾</span>
+                                        <span>Database Schema</span>
+                                    </a>
+                                    <a href="#frontend" class="diagram-nav-item">
+                                        <span class="nav-icon">🎨</span>
+                                        <span>Frontend Architecture</span>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <!-- High-Level Architecture -->
+                            <div class="diagram-section" id="high-level">
+                                <div class="diagram-header">
+                                    <h2>🏛️ High-Level Architecture</h2>
+                                    <button class="diagram-toggle" onclick="toggleDiagram('high-level-diagram')">
+                                        <span class="toggle-text">Show Diagram</span>
+                                        <svg class="toggle-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="diagram-description">
+                                    <p>Complete system overview showing the client layer, CDN distribution, application services, data persistence layer, and AWS infrastructure components.</p>
+                                </div>
+                                <div class="diagram-container collapsed" id="high-level-diagram">
+                                    <div class="mermaid">
+graph TB
+    subgraph "Client Layer"
+        WEB[Web Dashboard<br/>React + TypeScript]
+        EXT[Browser Extension<br/>Content Script]
+        API_CONSUMERS[API Consumers<br/>Third-party Apps]
+    end
+
+    subgraph "CDN & Load Balancing"
+        CF[CloudFront CDN<br/>Static Assets]
+        ALB[Application Load Balancer<br/>skawr-indexer-alb]
+    end
+
+    subgraph "Application Layer"
+        ECS[ECS Fargate Cluster<br/>skawr-indexer-cluster]
+
+        subgraph "Services"
+            MAIN[Main API Service<br/>FastAPI + Python]
+            AUTH[Authentication Service<br/>bcrypt + API Keys]
+            SEARCH[Search Service<br/>Full-text Search]
+        end
+    end
+
+    subgraph "Data Layer"
+        RDS[(PostgreSQL Database<br/>Products, Users, API Keys)]
+        OS[(OpenSearch<br/>Search Index)]
+        S3[(S3 Buckets<br/>Artifacts, Models, Cache)]
+    end
+
+    subgraph "Infrastructure"
+        ECR[Elastic Container Registry<br/>Docker Images]
+        LOGS[CloudWatch<br/>Logs & Metrics]
+        SECRETS[Secrets Manager<br/>DB Credentials, API Keys]
+    end
+
+    subgraph "CI/CD"
+        GH[GitHub Repository<br/>Source Code]
+        CP[CodePipeline<br/>CI/CD Workflow]
+        CB[CodeBuild<br/>Build & Deploy]
+    end
+
+    %% Client connections
+    WEB --> CF
+    WEB --> ALB
+    EXT --> ALB
+    API_CONSUMERS --> ALB
+
+    %% Load balancer to services
+    ALB --> ECS
+    CF --> ALB
+
+    %% Service connections
+    ECS --> RDS
+    ECS --> OS
+    ECS --> S3
+    ECS --> SECRETS
+
+    %% Infrastructure connections
+    ECS --> LOGS
+    CB --> ECR
+    ECS --> ECR
+
+    %% CI/CD flow
+    GH --> CP
+    CP --> CB
+    CB --> ECS
+
+    %% Styling
+    classDef clientLayer fill:#e1f5fe
+    classDef infraLayer fill:#f3e5f5
+    classDef dataLayer fill:#e8f5e8
+    classDef cdnLayer fill:#fff3e0
+
+    class WEB,EXT,API_CONSUMERS clientLayer
+    class ECR,LOGS,SECRETS,GH,CP,CB infraLayer
+    class RDS,OS,S3 dataLayer
+    class CF,ALB cdnLayer
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Authentication Flow -->
+                            <div class="diagram-section" id="authentication">
+                                <div class="diagram-header">
+                                    <h2>🔐 Authentication Flow</h2>
+                                    <button class="diagram-toggle" onclick="toggleDiagram('auth-diagram')">
+                                        <span class="toggle-text">Show Diagram</span>
+                                        <svg class="toggle-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="diagram-description">
+                                    <p>User registration, API key generation, session management, and authentication validation flows with bcrypt security.</p>
+                                </div>
+                                <div class="diagram-container collapsed" id="auth-diagram">
+                                    <div class="mermaid">
+sequenceDiagram
+    participant U as User
+    participant D as Dashboard
+    participant API as FastAPI Backend
+    participant DB as PostgreSQL
+    participant SM as Secrets Manager
+
+    Note over U,SM: User Registration & API Key Generation
+
+    U->>D: Sign up with email/password
+    D->>API: POST /api/v1/public/signup
+    API->>DB: Create client record
+    API->>DB: Generate & store API key (bcrypt hash)
+    API-->>D: Return API key
+    D->>D: Store API key in localStorage
+    D-->>U: Show dashboard
+
+    Note over U,SM: Subsequent API Requests
+
+    U->>D: Navigate to dashboard page
+    D->>D: Get API key from localStorage
+    D->>API: GET /api/v1/saas/indices<br/>X-API-Key: sk-xxxx
+
+    API->>API: Extract API key prefix
+    API->>DB: Query keys by prefix
+    API->>API: bcrypt.verify(provided_key, stored_hash)
+
+    alt Valid API Key
+        API->>DB: Update last_used_at
+        API->>API: Process request
+        API-->>D: Return data
+        D-->>U: Show content
+    else Invalid API Key
+        API-->>D: 401 Unauthorized
+        D->>D: Clear localStorage
+        D-->>U: Redirect to login
+    end
+
+    Note over U,SM: Session Management
+
+    U->>D: Refresh page
+    D->>D: Check localStorage for API key
+    D->>API: GET /api/v1/saas/usage (validate key)
+
+    alt Key Valid
+        API-->>D: 200 OK
+        D-->>U: Stay logged in
+    else Key Invalid/Expired
+        API-->>D: 401 Unauthorized
+        D->>D: Clear localStorage & redirect
+        D-->>U: Show login page
+    end
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- API Architecture -->
+                            <div class="diagram-section" id="api-architecture">
+                                <div class="diagram-header">
+                                    <h2>🔧 API Architecture</h2>
+                                    <button class="diagram-toggle" onclick="toggleDiagram('api-diagram')">
+                                        <span class="toggle-text">Show Diagram</span>
+                                        <svg class="toggle-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="diagram-description">
+                                    <p>FastAPI middleware stack, route handlers, business logic services, and data access layer with OpenSearch integration.</p>
+                                </div>
+                                <div class="diagram-container collapsed" id="api-diagram">
+                                    <div class="mermaid">
+graph TB
+    subgraph "API Gateway Layer"
+        ALB[Application Load Balancer]
+        MW[Middleware Stack]
+    end
+
+    subgraph "Authentication Middleware"
+        AUTH_MW[API Key Authentication<br/>bcrypt verification]
+        RATE_MW[Rate Limiting<br/>Per API key limits]
+        CORS_MW[CORS Handler<br/>Cross-origin requests]
+    end
+
+    subgraph "Route Handlers"
+        PUBLIC[Public Routes<br/>/api/v1/public/*]
+        SAAS[SaaS Routes<br/>/api/v1/saas/*]
+        SEARCH[Search Routes<br/>/api/v1/search]
+        ADMIN[Admin Routes<br/>/api/v1/admin/*]
+    end
+
+    subgraph "Business Logic"
+        AUTH_SERVICE[Authentication Service<br/>Login, Signup, Key Management]
+        INDEX_SERVICE[Index Management Service<br/>Create, Update, Delete Indices]
+        SEARCH_SERVICE[Search Service<br/>Full-text search, Filters]
+        UPLOAD_SERVICE[Data Upload Service<br/>Bulk import, Validation]
+        ANALYTICS_SERVICE[Analytics Service<br/>Usage tracking, Metrics]
+    end
+
+    subgraph "Data Access Layer"
+        ORM[SQLAlchemy ORM<br/>Database Models]
+        SEARCH_CLIENT[OpenSearch Client<br/>Search Operations]
+        CACHE[Redis Cache<br/>Session & Query Cache]
+    end
+
+    subgraph "External Services"
+        DB[(PostgreSQL<br/>Primary Database)]
+        OS[(OpenSearch<br/>Search Engine)]
+        S3[(S3<br/>File Storage)]
+    end
+
+    %% Request flow
+    ALB --> MW
+    MW --> AUTH_MW
+    MW --> RATE_MW
+    MW --> CORS_MW
+
+    %% Route distribution
+    AUTH_MW --> PUBLIC
+    AUTH_MW --> SAAS
+    AUTH_MW --> SEARCH
+    AUTH_MW --> ADMIN
+
+    %% Service layer
+    PUBLIC --> AUTH_SERVICE
+    SAAS --> INDEX_SERVICE
+    SAAS --> ANALYTICS_SERVICE
+    SEARCH --> SEARCH_SERVICE
+    SAAS --> UPLOAD_SERVICE
+
+    %% Data access
+    AUTH_SERVICE --> ORM
+    INDEX_SERVICE --> ORM
+    INDEX_SERVICE --> SEARCH_CLIENT
+    SEARCH_SERVICE --> SEARCH_CLIENT
+    UPLOAD_SERVICE --> ORM
+    UPLOAD_SERVICE --> SEARCH_CLIENT
+    ANALYTICS_SERVICE --> ORM
+
+    %% External connections
+    ORM --> DB
+    SEARCH_CLIENT --> OS
+    UPLOAD_SERVICE --> S3
+
+    %% Styling
+    classDef apiLayer fill:#e3f2fd
+    classDef serviceLayer fill:#f1f8e9
+    classDef dataLayer fill:#fce4ec
+    classDef middleware fill:#fff8e1
+
+    class ALB,MW apiLayer
+    class AUTH_SERVICE,INDEX_SERVICE,SEARCH_SERVICE,UPLOAD_SERVICE,ANALYTICS_SERVICE serviceLayer
+    class ORM,SEARCH_CLIENT,CACHE,DB,OS,S3 dataLayer
+    class AUTH_MW,RATE_MW,CORS_MW middleware
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Data Flow -->
+                            <div class="diagram-section" id="data-flow">
+                                <div class="diagram-header">
+                                    <h2>🌊 Data Flow</h2>
+                                    <button class="diagram-toggle" onclick="toggleDiagram('data-diagram')">
+                                        <span class="toggle-text">Show Diagram</span>
+                                        <svg class="toggle-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="diagram-description">
+                                    <p>Data ingestion, processing pipeline, storage architecture, and access patterns for search and analytics.</p>
+                                </div>
+                                <div class="diagram-container collapsed" id="data-diagram">
+                                    <div class="mermaid">
+flowchart TD
+    subgraph "Data Ingestion"
+        UI[Dashboard Upload UI]
+        API_UPLOAD[Bulk Upload API]
+        VALIDATION[Data Validation<br/>Schema Checking]
+    end
+
+    subgraph "Data Processing"
+        TRANSFORM[Data Transformation<br/>Normalize, Clean]
+        EMBED[Embedding Generation<br/>ML Model Service]
+        INDEX_PREP[Index Preparation<br/>Format for Search]
+    end
+
+    subgraph "Data Storage"
+        PG[(PostgreSQL<br/>Structured Data<br/>Products, Metadata)]
+        OS[(OpenSearch<br/>Search Index<br/>Full-text + Vector)]
+        S3[(S3<br/>Raw Files<br/>Backups)]
+    end
+
+    subgraph "Data Access"
+        SEARCH_API[Search API<br/>Query Interface]
+        ANALYTICS[Analytics Engine<br/>Usage Metrics]
+        EXPORT[Data Export<br/>Bulk Download]
+    end
+
+    subgraph "Client Applications"
+        DASHBOARD[Web Dashboard<br/>Management UI]
+        WIDGET[Search Widget<br/>Embedded Search]
+        API_CLIENT[API Consumers<br/>Third-party Apps]
+    end
+
+    %% Data flow
+    UI --> API_UPLOAD
+    API_UPLOAD --> VALIDATION
+    VALIDATION --> TRANSFORM
+    TRANSFORM --> EMBED
+    EMBED --> INDEX_PREP
+
+    INDEX_PREP --> PG
+    INDEX_PREP --> OS
+    VALIDATION --> S3
+
+    %% Access patterns
+    SEARCH_API --> OS
+    SEARCH_API --> PG
+    ANALYTICS --> PG
+    EXPORT --> PG
+    EXPORT --> OS
+
+    %% Client connections
+    DASHBOARD --> SEARCH_API
+    DASHBOARD --> ANALYTICS
+    DASHBOARD --> EXPORT
+    WIDGET --> SEARCH_API
+    API_CLIENT --> SEARCH_API
+
+    %% Styling
+    classDef ingestion fill:#e8f5e8
+    classDef processing fill:#e1f5fe
+    classDef storage fill:#fce4ec
+    classDef access fill:#f3e5f5
+    classDef client fill:#fff3e0
+
+    class UI,API_UPLOAD,VALIDATION ingestion
+    class TRANSFORM,EMBED,INDEX_PREP processing
+    class PG,OS,S3 storage
+    class SEARCH_API,ANALYTICS,EXPORT access
+    class DASHBOARD,WIDGET,API_CLIENT client
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- CI/CD Pipeline -->
+                            <div class="diagram-section" id="cicd">
+                                <div class="diagram-header">
+                                    <h2>🚀 CI/CD Pipeline</h2>
+                                    <button class="diagram-toggle" onclick="toggleDiagram('cicd-diagram')">
+                                        <span class="toggle-text">Show Diagram</span>
+                                        <svg class="toggle-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="diagram-description">
+                                    <p>Complete deployment pipeline from GitHub source control through CodePipeline to ECS Fargate with automated rollback capabilities.</p>
+                                </div>
+                                <div class="diagram-container collapsed" id="cicd-diagram">
+                                    <div class="mermaid">
+flowchart TD
+    subgraph "Source Control"
+        GH[GitHub Repository<br/>LuqtahTech/skawr-backend]
+        BRANCH[Main Branch<br/>Protected Branch]
+    end
+
+    subgraph "Pipeline Trigger"
+        WEBHOOK[GitHub Webhook<br/>Push to main]
+        TRIGGER[Pipeline Trigger<br/>File path filters]
+    end
+
+    subgraph "Build Stage"
+        SOURCE[Source Download<br/>CodePipeline Artifact]
+        DOCKER_BUILD[Docker Build<br/>Multi-stage Dockerfile]
+        IMAGE_TAG[Image Tagging<br/>Commit SHA + latest]
+        ECR_PUSH[Push to ECR<br/>Container Registry]
+    end
+
+    subgraph "Infrastructure"
+        TERRAFORM[Terraform State<br/>Infrastructure as Code]
+        ECR[ECR Repository<br/>Docker Images]
+        S3_ARTIFACTS[S3 Artifacts<br/>Pipeline Cache]
+    end
+
+    subgraph "Migration Stage"
+        MIGRATION_TASK[ECS Migration Task<br/>Alembic Database Migrations]
+        TASK_DEF[Task Definition<br/>Migration Container]
+        DB_MIGRATE[Database Migration<br/>Schema Updates]
+    end
+
+    subgraph "Deployment"
+        ECS_UPDATE[ECS Service Update<br/>Rolling Deployment]
+        TASK_DEF_NEW[New Task Definition<br/>Latest Image]
+        HEALTH_CHECK[Health Check<br/>Load Balancer]
+        ROLLBACK[Automatic Rollback<br/>On Failure]
+    end
+
+    subgraph "Monitoring"
+        CW_LOGS[CloudWatch Logs<br/>Application Logs]
+        CW_METRICS[CloudWatch Metrics<br/>Performance Data]
+        ALERTS[CloudWatch Alarms<br/>Error Notifications]
+    end
+
+    %% Pipeline flow
+    GH --> WEBHOOK
+    WEBHOOK --> TRIGGER
+    TRIGGER --> SOURCE
+
+    SOURCE --> DOCKER_BUILD
+    DOCKER_BUILD --> IMAGE_TAG
+    IMAGE_TAG --> ECR_PUSH
+    ECR_PUSH --> ECR
+
+    %% Migration flow
+    ECR --> MIGRATION_TASK
+    MIGRATION_TASK --> TASK_DEF
+    TASK_DEF --> DB_MIGRATE
+
+    %% Deployment flow
+    DB_MIGRATE --> ECS_UPDATE
+    ECR --> TASK_DEF_NEW
+    TASK_DEF_NEW --> ECS_UPDATE
+    ECS_UPDATE --> HEALTH_CHECK
+    HEALTH_CHECK --> ROLLBACK
+
+    %% Monitoring
+    ECS_UPDATE --> CW_LOGS
+    ECS_UPDATE --> CW_METRICS
+    CW_METRICS --> ALERTS
+
+    %% Infrastructure connections
+    SOURCE --> S3_ARTIFACTS
+    DOCKER_BUILD --> S3_ARTIFACTS
+    TERRAFORM --> TASK_DEF
+    TERRAFORM --> ECS_UPDATE
+
+    %% Styling
+    classDef source fill:#e8f5e8
+    classDef build fill:#e1f5fe
+    classDef deploy fill:#fce4ec
+    classDef monitor fill:#f3e5f5
+
+    class GH,BRANCH,WEBHOOK,TRIGGER source
+    class SOURCE,DOCKER_BUILD,IMAGE_TAG,ECR_PUSH,ECR build
+    class MIGRATION_TASK,TASK_DEF,DB_MIGRATE,ECS_UPDATE,TASK_DEF_NEW,HEALTH_CHECK,ROLLBACK deploy
+    class CW_LOGS,CW_METRICS,ALERTS monitor
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Database Schema -->
+                            <div class="diagram-section" id="database">
+                                <div class="diagram-header">
+                                    <h2>💾 Database Schema</h2>
+                                    <button class="diagram-toggle" onclick="toggleDiagram('db-diagram')">
+                                        <span class="toggle-text">Show Diagram</span>
+                                        <svg class="toggle-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="diagram-description">
+                                    <p>Entity relationship diagram showing multi-tenant architecture with clients, API keys, search indices, and usage tracking.</p>
+                                </div>
+                                <div class="diagram-container collapsed" id="db-diagram">
+                                    <div class="mermaid">
+erDiagram
+    CLIENTS ||--o{ API_KEYS : "has"
+    CLIENTS ||--o{ INDICES : "owns"
+    CLIENTS ||--o{ USAGE_LOGS : "generates"
+    INDICES ||--o{ DOCUMENTS : "contains"
+    API_KEYS ||--o{ USAGE_LOGS : "tracks"
+
+    CLIENTS {
+        uuid id PK
+        string name
+        string email
+        string password_hash
+        jsonb preferences
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+        string description
+    }
+
+    API_KEYS {
+        uuid id PK
+        uuid client_id FK
+        string key_prefix
+        string key_hash
+        string name
+        jsonb permissions
+        boolean is_active
+        timestamp expires_at
+        timestamp last_used_at
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    INDICES {
+        uuid id PK
+        uuid client_id FK
+        string name
+        jsonb schema_definition
+        jsonb settings
+        integer document_count
+        float storage_size_mb
+        boolean is_active
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    DOCUMENTS {
+        uuid id PK
+        uuid index_id FK
+        string external_id
+        jsonb content
+        jsonb metadata
+        vector embedding
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    USAGE_LOGS {
+        uuid id PK
+        uuid client_id FK
+        uuid api_key_id FK
+        string endpoint
+        string method
+        integer status_code
+        float response_time_ms
+        jsonb request_metadata
+        timestamp created_at
+    }
+
+    ALEMBIC_VERSION {
+        string version_num PK
+    }
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Frontend Architecture -->
+                            <div class="diagram-section" id="frontend">
+                                <div class="diagram-header">
+                                    <h2>🎨 Frontend Architecture</h2>
+                                    <button class="diagram-toggle" onclick="toggleDiagram('frontend-diagram')">
+                                        <span class="toggle-text">Show Diagram</span>
+                                        <svg class="toggle-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8 2a.5.5 0 01.5.5v5h5a.5.5 0 010 1h-5v5a.5.5 0 01-1 0v-5h-5a.5.5 0 010-1h5v-5A.5.5 0 018 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <div class="diagram-description">
+                                    <p>React application architecture with context providers, component hierarchy, state management, and service integrations.</p>
+                                </div>
+                                <div class="diagram-container collapsed" id="frontend-diagram">
+                                    <div class="mermaid">
+graph TB
+    subgraph "Frontend Application"
+        BROWSER[Web Browser<br/>Chrome, Firefox, Safari]
+
+        subgraph "React Application"
+            ROUTER[React Router<br/>Client-side Routing]
+
+            subgraph "Context Providers"
+                AUTH_CTX[AuthContext<br/>Authentication State]
+                TOAST_CTX[ToastContext<br/>Notifications]
+                QUERY_CTX[QueryClient<br/>React Query Cache]
+            end
+
+            subgraph "Pages"
+                LOGIN[Login Page<br/>Sign in/Sign up]
+                DASHBOARD[Dashboard<br/>Overview & Stats]
+                INDICES[Indices Page<br/>Search Index Management]
+                UPLOAD[Upload Page<br/>Bulk Data Import]
+                SEARCH_TEST[Search Test<br/>Query Testing]
+                API_KEYS[API Keys<br/>Key Management]
+                SETTINGS[Settings<br/>User Preferences]
+            end
+
+            subgraph "Components"
+                LAYOUT[Layout Component<br/>Navigation & Sidebar]
+                UI_COMPONENTS[UI Components<br/>shadcn/ui Library]
+                FORMS[Form Components<br/>React Hook Form]
+            end
+
+            subgraph "Services"
+                API_CLIENT[API Client<br/>Axios HTTP Client]
+                STORAGE[Storage Utility<br/>localStorage Cache]
+                AUTH_SERVICE[Auth Service<br/>Session Management]
+            end
+        end
+
+        subgraph "State Management"
+            LOCAL_STATE[Component State<br/>useState, useReducer]
+            SERVER_STATE[Server State<br/>React Query Cache]
+            PERSISTED[Persisted State<br/>localStorage]
+        end
+    end
+
+    subgraph "External Services"
+        BACKEND_API[Backend API<br/>FastAPI Service]
+        CDN[CloudFront CDN<br/>Static Assets]
+    end
+
+    %% Browser flow
+    BROWSER --> ROUTER
+
+    %% Context flow
+    ROUTER --> AUTH_CTX
+    ROUTER --> TOAST_CTX
+    ROUTER --> QUERY_CTX
+
+    %% Page routing
+    ROUTER --> LOGIN
+    ROUTER --> DASHBOARD
+    ROUTER --> INDICES
+    ROUTER --> UPLOAD
+    ROUTER --> SEARCH_TEST
+    ROUTER --> API_KEYS
+    ROUTER --> SETTINGS
+
+    %% Component usage
+    DASHBOARD --> LAYOUT
+    INDICES --> LAYOUT
+    UPLOAD --> LAYOUT
+    SEARCH_TEST --> LAYOUT
+    API_KEYS --> LAYOUT
+    SETTINGS --> LAYOUT
+
+    LAYOUT --> UI_COMPONENTS
+    LOGIN --> FORMS
+    UPLOAD --> FORMS
+    SETTINGS --> FORMS
+
+    %% Service connections
+    AUTH_CTX --> AUTH_SERVICE
+    AUTH_SERVICE --> API_CLIENT
+    API_CLIENT --> STORAGE
+
+    QUERY_CTX --> API_CLIENT
+    LOCAL_STATE --> PERSISTED
+    SERVER_STATE --> API_CLIENT
+
+    %% External connections
+    API_CLIENT --> BACKEND_API
+    BROWSER --> CDN
+
+    %% Styling
+    classDef frontend fill:#e3f2fd
+    classDef context fill:#f1f8e9
+    classDef pages fill:#fce4ec
+    classDef components fill:#fff8e1
+    classDef services fill:#f3e5f5
+    classDef state fill:#e8f5e8
+    classDef external fill:#ffebee
+
+    class BROWSER,ROUTER frontend
+    class AUTH_CTX,TOAST_CTX,QUERY_CTX context
+    class LOGIN,DASHBOARD,INDICES,UPLOAD,SEARCH_TEST,API_KEYS,SETTINGS pages
+    class LAYOUT,UI_COMPONENTS,FORMS components
+    class API_CLIENT,STORAGE,AUTH_SERVICE services
+    class LOCAL_STATE,SERVER_STATE,PERSISTED state
+    class BACKEND_API,CDN external
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="architecture-summary">
+                                <h2>📋 Architecture Summary</h2>
+                                <div class="summary-grid">
+                                    <div class="summary-card">
+                                        <h3>🏗️ Infrastructure</h3>
+                                        <ul>
+                                            <li>AWS ECS Fargate for container orchestration</li>
+                                            <li>Application Load Balancer for traffic distribution</li>
+                                            <li>PostgreSQL RDS for structured data</li>
+                                            <li>OpenSearch for full-text and vector search</li>
+                                            <li>S3 for file storage and backups</li>
+                                            <li>CloudFront CDN for static asset delivery</li>
+                                        </ul>
+                                    </div>
+                                    <div class="summary-card">
+                                        <h3>🔧 Application Services</h3>
+                                        <ul>
+                                            <li>FastAPI backend with Python</li>
+                                            <li>React frontend with TypeScript</li>
+                                            <li>Multi-tenant SaaS architecture</li>
+                                            <li>API key authentication with bcrypt</li>
+                                            <li>Rate limiting per client/API key</li>
+                                            <li>Real-time search and analytics</li>
+                                        </ul>
+                                    </div>
+                                    <div class="summary-card">
+                                        <h3>🚀 DevOps & Deployment</h3>
+                                        <ul>
+                                            <li>GitHub source control with protected branches</li>
+                                            <li>CodePipeline for CI/CD automation</li>
+                                            <li>Automated database migrations</li>
+                                            <li>Rolling deployments with health checks</li>
+                                            <li>CloudWatch monitoring and alerting</li>
+                                            <li>Automatic rollback on deployment failure</li>
+                                        </ul>
+                                    </div>
+                                    <div class="summary-card">
+                                        <h3>💾 Data Architecture</h3>
+                                        <ul>
+                                            <li>Multi-tenant database design</li>
+                                            <li>Hybrid search (keyword + vector embeddings)</li>
+                                            <li>Real-time data synchronization</li>
+                                            <li>Usage analytics and tracking</li>
+                                            <li>Bulk data import/export capabilities</li>
+                                            <li>Data validation and transformation pipeline</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <div class="page-navigation">
+                            <div class="nav-prev">
+                                <a href="../platforms/index.html" class="nav-link">
+                                    <div class="nav-icon">←</div>
+                                    <div class="nav-text">
+                                        <div class="nav-label">Previous</div>
+                                        <div class="nav-title">Platform Overview</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nav-next">
+                                <a href="../platforms/backend-api.html" class="nav-link">
+                                    <div class="nav-text">
+                                        <div class="nav-label">Next</div>
+                                        <div class="nav-title">Backend API</div>
+                                    </div>
+                                    <div class="nav-icon">→</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Mermaid
+        mermaid.initialize({
+            theme: 'default',
+            themeVariables: {
+                primaryColor: '#1976d2',
+                primaryTextColor: '#333',
+                primaryBorderColor: '#1976d2',
+                lineColor: '#666',
+                secondaryColor: '#f8f9fa',
+                tertiaryColor: '#fff'
+            },
+            flowchart: {
+                useMaxWidth: true,
+                htmlLabels: true
+            },
+            sequence: {
+                useMaxWidth: true,
+                wrap: true
+            },
+            er: {
+                useMaxWidth: true
+            }
+        });
+
+        // Sidebar toggle for mobile
+        document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+
+        // Chapter toggle functionality
+        document.querySelectorAll('.chapter-link').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const chapter = this.parentElement;
+                chapter.classList.toggle('expanded');
+            });
+        });
+
+        // Diagram toggle functionality
+        function toggleDiagram(diagramId) {
+            const container = document.getElementById(diagramId);
+            const button = container.previousElementSibling.querySelector('.diagram-toggle');
+            const toggleText = button.querySelector('.toggle-text');
+            const toggleIcon = button.querySelector('.toggle-icon');
+
+            if (container.classList.contains('collapsed')) {
+                container.classList.remove('collapsed');
+                toggleText.textContent = 'Hide Diagram';
+                toggleIcon.style.transform = 'rotate(45deg)';
+            } else {
+                container.classList.add('collapsed');
+                toggleText.textContent = 'Show Diagram';
+                toggleIcon.style.transform = 'rotate(0deg)';
+            }
+        }
+
+        // Toggle all diagrams
+        function toggleDiagrams() {
+            const containers = document.querySelectorAll('.diagram-container');
+            const button = document.getElementById('diagram-text');
+            const allCollapsed = Array.from(containers).every(c => c.classList.contains('collapsed'));
+
+            containers.forEach(container => {
+                const diagramButton = container.previousElementSibling.querySelector('.diagram-toggle');
+                const toggleText = diagramButton.querySelector('.toggle-text');
+                const toggleIcon = diagramButton.querySelector('.toggle-icon');
+
+                if (allCollapsed) {
+                    container.classList.remove('collapsed');
+                    toggleText.textContent = 'Hide Diagram';
+                    toggleIcon.style.transform = 'rotate(45deg)';
+                } else {
+                    container.classList.add('collapsed');
+                    toggleText.textContent = 'Show Diagram';
+                    toggleIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            button.textContent = allCollapsed ? 'Collapse All' : 'Expand All';
+        }
+
+        // Smooth scrolling for diagram navigation
+        document.querySelectorAll('.diagram-nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Auto-expand the diagram when navigating to it
+                    const diagramContainer = target.querySelector('.diagram-container');
+                    if (diagramContainer && diagramContainer.classList.contains('collapsed')) {
+                        const diagramId = diagramContainer.id;
+                        toggleDiagram(diagramId);
+                    }
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-left: 1rem;
+        }
+        .breadcrumb a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .architecture-intro {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .architecture-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .arch-stat {
+            text-align: center;
+        }
+
+        .arch-stat .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .arch-stat .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .diagram-nav {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .diagram-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: all 0.2s ease;
+        }
+
+        .diagram-nav-item:hover {
+            background: var(--color-accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-icon {
+            font-size: 1.25rem;
+        }
+
+        .diagram-section {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .diagram-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: #f8f9fa;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .diagram-header h2 {
+            margin: 0;
+            color: var(--color-text);
+        }
+
+        .diagram-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+        }
+
+        .diagram-toggle:hover {
+            background: #1565c0;
+        }
+
+        .toggle-icon {
+            transition: transform 0.2s ease;
+        }
+
+        .diagram-description {
+            padding: 1rem 2rem;
+            background: #fafbfc;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .diagram-container {
+            padding: 2rem;
+            background: white;
+            overflow-x: auto;
+        }
+
+        .diagram-container.collapsed {
+            display: none;
+        }
+
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            min-height: 400px;
+        }
+
+        .architecture-summary {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .summary-card {
+            background: #f8f9fa;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            padding: 1.5rem;
+        }
+
+        .summary-card h3 {
+            color: var(--color-text);
+            margin-bottom: 1rem;
+        }
+
+        .summary-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e9ecef;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .summary-card li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .summary-card li:last-child {
+            border-bottom: none;
+        }
+
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            border-color: var(--color-accent);
+        }
+
+        @media (max-width: 768px) {
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .architecture-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .diagram-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            .diagram-container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>

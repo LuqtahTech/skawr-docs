@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend API Features - Skawr Documentation</title>
+    <link rel="stylesheet" href="../../gitbook-style.css">
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <style>
+        .api-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .api-hero::before {
+            content: '🚀';
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            font-size: 4rem;
+            opacity: 0.3;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .api-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .feature-section {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            margin: 3rem 0;
+            overflow: hidden;
+        }
+
+        .section-header {
+            background: linear-gradient(135deg, var(--skawr-charcoal) 0%, var(--skawr-bg-dark-1) 100%);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-icon {
+            font-size: 2.5rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-description {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .section-content {
+            padding: 2rem;
+        }
+
+        .endpoint-group {
+            margin: 2rem 0;
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--skawr-primary);
+        }
+
+        .group-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--skawr-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .endpoint-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .endpoint {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .endpoint:hover {
+            border-color: var(--skawr-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .method-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            min-width: 4rem;
+            text-align: center;
+        }
+
+        .method-get { background: #10b981; color: white; }
+        .method-post { background: #3b82f6; color: white; }
+        .method-delete { background: #ef4444; color: white; }
+        .method-put { background: #f59e0b; color: white; }
+
+        .endpoint-path {
+            font-family: 'Consolas', 'Monaco', monospace;
+            background: #f3f4f6;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: var(--skawr-text-title);
+        }
+
+        .endpoint-title {
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            font-size: 1.1rem;
+        }
+
+        .endpoint-description {
+            color: var(--skawr-text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .endpoint-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .feature-tag {
+            background: rgba(237, 116, 83, 0.1);
+            color: var(--skawr-primary);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .code-example {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        .code-header {
+            color: #94a3b8;
+            margin-bottom: 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .implementation-details {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid var(--skawr-hyperlink);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .details-title {
+            color: var(--skawr-hyperlink);
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .implementation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .implementation-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(86, 136, 255, 0.2);
+        }
+
+        .card-title {
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-content {
+            color: var(--skawr-text-secondary);
+            line-height: 1.5;
+        }
+
+        .performance-metrics {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid var(--skawr-green);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .metrics-title {
+            color: var(--skawr-green);
+            font-size: 1.6rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(76, 175, 80, 0.2);
+        }
+
+        .metric-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--skawr-green);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: var(--skawr-text-secondary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-description {
+            color: var(--skawr-text-muted);
+            font-size: 0.85rem;
+        }
+
+        .security-section {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .security-title {
+            color: #d97706;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .security-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .security-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--skawr-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: var(--skawr-primary-dk);
+        }
+
+        .breadcrumb-separator {
+            color: var(--skawr-text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .api-stats {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            .implementation-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .security-features {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .endpoint-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <!-- Sidebar -->
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <div class="skawr-logo">
+                        <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" fill="#ED7453"/>
+                            <path d="M30 35 L50 55 L70 35 L65 30 L50 45 L35 30 Z" fill="white"/>
+                            <path d="M30 65 L50 45 L70 65 L65 70 L50 55 L35 70 Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h1 class="book-title">
+                        <span class="book-title-icon">📖</span>
+                        Skawr Docs
+                    </h1>
+                    <p class="book-subtitle">Complete Documentation</p>
+                </div>
+
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter">
+                            <a href="../../index.html">🏠 Overview</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../product/overview.html">📦 Product</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../market/competition.html">📊 Market Analysis</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../business/model.html">💼 Business Model</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../brand/identity.html">🎨 Brand Identity</a>
+                        </li>
+                        <li class="chapter active">
+                            <a href="../features-overview.html">🛠️ Platform Features</a>
+                            <ul class="articles">
+                                <li><a href="../features-overview.html">Features Overview</a></li>
+                                <li><a href="features.html">Backend API</a></li>
+                                <li><a href="../web-app/features.html">Web Application</a></li>
+                                <li><a href="../mobile-app/features.html">Mobile App</a></li>
+                                <li><a href="../scraper-service/features.html">Scraper Service</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../developer/getting-started.html">👨‍💻 Developer</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../system/architecture.html">🏗️ Architecture</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../support/faq.html">❓ Support</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/skawr" class="github-link">
+                        <span>📖</span>
+                        <span>GitHub</span>
+                    </a>
+                    <div class="sidebar-version">Version 1.0.0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="book-body">
+            <div class="body-inner">
+                <!-- Toolbar -->
+                <div class="book-toolbar">
+                    <div>
+                        <button class="btn btn-sm sidebar-toggle">☰ Menu</button>
+                    </div>
+                    <div>
+                        <a href="https://github.com/skawr/skawr-docs" class="btn btn-sm">📝 Edit</a>
+                    </div>
+                </div>
+
+                <!-- Breadcrumb -->
+                <div class="breadcrumb">
+                    <nav class="breadcrumb-nav">
+                        <a href="../../index.html">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="../features-overview.html">Platforms</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span>Backend API</span>
+                    </nav>
+                </div>
+
+                <!-- Page Content -->
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <!-- API Hero -->
+                        <div class="api-hero">
+                            <h1 class="hero-title">Backend API Engine</h1>
+                            <div class="hero-subtitle">
+                                FastAPI-powered core system providing intelligent search, multi-tenant SaaS capabilities, and seamless marketplace integrations
+                            </div>
+
+                            <div class="api-stats">
+                                <div class="stat-item">
+                                    <span class="stat-value">&lt;200ms</span>
+                                    <div class="stat-label">Average Response</div>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">1000+</span>
+                                    <div class="stat-label">Requests/Sec</div>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">99.9%</span>
+                                    <div class="stat-label">Uptime SLA</div>
+                                </div>
+                                <div class="stat-item">
+                                    <span class="stat-value">24/7</span>
+                                    <div class="stat-label">Monitoring</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Core Search API -->
+                        <div class="feature-section">
+                            <div class="section-header">
+                                <div class="section-icon">🔍</div>
+                                <div>
+                                    <h2 class="section-title">Intelligent Search API</h2>
+                                    <div class="section-description">AI-powered search engine with hybrid search capabilities, real-time suggestions, and advanced filtering</div>
+                                </div>
+                            </div>
+                            <div class="section-content">
+                                <div class="endpoint-group">
+                                    <h3 class="group-title">
+                                        <span>🎯</span>
+                                        Core Search Endpoints
+                                    </h3>
+
+                                    <div class="endpoint-list">
+                                        <div class="endpoint">
+                                            <div class="endpoint-header">
+                                                <span class="method-badge method-post">POST</span>
+                                                <span class="endpoint-path">/api/v1/search</span>
+                                                <span class="endpoint-title">Hybrid Product Search</span>
+                                            </div>
+                                            <div class="endpoint-description">
+                                                Combines keyword matching with semantic vector search to understand user intent beyond exact keywords. Supports Arabic and English with intelligent typo correction and synonym matching.
+                                            </div>
+                                            <div class="endpoint-features">
+                                                <div class="feature-tag">Keyword + Vector</div>
+                                                <div class="feature-tag">Arabic/English</div>
+                                                <div class="feature-tag">Typo Tolerance</div>
+                                                <div class="feature-tag">Intent Recognition</div>
+                                                <div class="feature-tag">Personalization</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="endpoint">
+                                            <div class="endpoint-header">
+                                                <span class="method-badge method-get">GET</span>
+                                                <span class="endpoint-path">/api/v1/autocomplete</span>
+                                                <span class="endpoint-title">Real-Time Search Suggestions</span>
+                                            </div>
+                                            <div class="endpoint-description">
+                                                Lightning-fast autocomplete with intelligent suggestions based on user behavior, popular searches, and product availability. Returns suggestions in under 100ms.
+                                            </div>
+                                            <div class="endpoint-features">
+                                                <div class="feature-tag">&lt;100ms Response</div>
+                                                <div class="feature-tag">Smart Suggestions</div>
+                                                <div class="feature-tag">Popular Terms</div>
+                                                <div class="feature-tag">User Behavior</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="endpoint">
+                                            <div class="endpoint-header">
+                                                <span class="method-badge method-get">GET</span>
+                                                <span class="endpoint-path">/api/v1/filters</span>
+                                                <span class="endpoint-title">Dynamic Filter System</span>
+                                            </div>
+                                            <div class="endpoint-description">
+                                                Advanced faceted search with dynamic filters for price ranges, categories, locations, conditions, and marketplace-specific attributes. Automatically adjusts based on search results.
+                                            </div>
+                                            <div class="endpoint-features">
+                                                <div class="feature-tag">Price Ranges</div>
+                                                <div class="feature-tag">Category Trees</div>
+                                                <div class="feature-tag">Location-Based</div>
+                                                <div class="feature-tag">Condition Filters</div>
+                                                <div class="feature-tag">Dynamic Facets</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="endpoint">
+                                            <div class="endpoint-header">
+                                                <span class="method-badge method-post">POST</span>
+                                                <span class="endpoint-path">/api/v1/search/track-click</span>
+                                                <span class="endpoint-title">Search Analytics Tracking</span>
+                                            </div>
+                                            <div class="endpoint-description">
+                                                Track user interactions with search results to improve relevance ranking and provide personalized recommendations. Powers the learning algorithm for better search quality.
+                                            </div>
+                                            <div class="endpoint-features">
+                                                <div class="feature-tag">Click Tracking</div>
+                                                <div class="feature-tag">Relevance Learning</div>
+                                                <div class="feature-tag">Personalization</div>
+                                                <div class="feature-tag">Quality Metrics</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="code-example">
+                                    <div class="code-header">Example Search Request</div>
+POST /api/v1/search
+{
+  "query": "iPhone 15 Pro",
+  "filters": {
+    "price_range": [3000, 5000],
+    "location": "Riyadh",
+    "condition": "new"
+  },
+  "sort_by": "relevance",
+  "limit": 20,
+  "offset": 0
+}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SaaS Platform API -->
+                        <div class="feature-section">
+                            <div class="section-header">
+                                <div class="section-icon">🏢</div>
+                                <div>
+                                    <h2 class="section-title">Multi-Tenant SaaS Platform</h2>
+                                    <div class="section-description">Enterprise-grade SaaS platform with client isolation, custom indices, and comprehensive management tools</div>
+                                </div>
+                            </div>
+                            <div class="section-content">
+                                <div class="endpoint-group">
+                                    <h3 class="group-title">
+                                        <span>🔐</span>
+                                        Client Management
+                                    </h3>
+
+                                    <div class="endpoint-list">
+                                        <div class="endpoint">
+                                            <div class="endpoint-header">
+                                                <span class="method-badge method-post">POST</span>
+                                                <span class="endpoint-path">/api/v1/saas/search</span>
+                                                <span class="endpoint-title">Client-Isolated Search</span>
+                                            </div>
+                                            <div class="endpoint-description">
+                                                Dedicated search functionality with complete client data isolation. Each client has separate search indices with custom configurations and security boundaries.
+                                            </div>
+                                            <div class="endpoint-features">
+                                                <div class="feature-tag">Data Isolation</div>
+                                                <div class="feature-tag">Custom Indices</div>
+                                                <div class="feature-tag">Security Boundaries</div>
+                                                <div class="feature-tag">Performance Quotas</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="endpoint">
+                                            <div class="endpoint-header">
+                                                <span class="method-badge method-post">POST</span>
+                                                <span class="endpoint-path">/api/v1/saas/products/bulk</span>
+                                                <span class="endpoint-title">Bulk Product Operations</span>
+                                            </div>
+                                            <div class="endpoint-description">
+                                                High-performance bulk operations for enterprise clients. Support for millions of products with progress tracking, validation, and error handling.
+                                            </div>
+                                            <div class="endpoint-features">
+                                                <div class="feature-tag">Bulk Upload</div>
+                                                <div class="feature-tag">Progress Tracking</div>
+                                                <div class="feature-tag">Validation</div>
+                                                <div class="feature-tag">Error Handling</div>
+                                                <div class="feature-tag">Performance Optimized</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="endpoint">
+                                            <div class="endpoint-header">
+                                                <span class="method-badge method-post">POST</span>
+                                                <span class="endpoint-path">/api/v1/saas/indices</span>
+                                                <span class="endpoint-title">Custom Index Management</span>
+                                            </div>
+                                            <div class="endpoint-description">
+                                                Create and manage custom search indices for specific client needs. Support for different data schemas, search configurations, and performance settings.
+                                            </div>
+                                            <div class="endpoint-features">
+                                                <div class="feature-tag">Custom Schemas</div>
+                                                <div class="feature-tag">Search Config</div>
+                                                <div class="feature-tag">Performance Tuning</div>
+                                                <div class="feature-tag">Index Analytics</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="endpoint-group">
+                                    <h3 class="group-title">
+                                        <span>👨‍💼</span>
+                                        Admin Management
+                                    </h3>
+
+                                    <div class="endpoint-list">
+                                        <div class="endpoint">
+                                            <div class="endpoint-header">
+                                                <span class="method-badge method-post">POST</span>
+                                                <span class="endpoint-path">/api/v1/admin/clients</span>
+                                                <span class="endpoint-title">Client Creation & Management</span>
+                                            </div>
+                                            <div class="endpoint-description">
+                                                Complete client lifecycle management with onboarding, configuration, and resource allocation. Automated setup of search indices and API keys.
+                                            </div>
+                                            <div class="endpoint-features">
+                                                <div class="feature-tag">Client Onboarding</div>
+                                                <div class="feature-tag">Resource Allocation</div>
+                                                <div class="feature-tag">Auto Configuration</div>
+                                                <div class="feature-tag">Lifecycle Management</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="endpoint">
+                                            <div class="endpoint-header">
+                                                <span class="method-badge method-get">GET</span>
+                                                <span class="endpoint-path">/api/v1/admin/usage/costs</span>
+                                                <span class="endpoint-title">Cost Analysis & Billing</span>
+                                            </div>
+                                            <div class="endpoint-description">
+                                                Comprehensive cost tracking and billing analytics with variable cost calculation, fixed cost allocation, and revenue analytics for business intelligence.
+                                            </div>
+                                            <div class="endpoint-features">
+                                                <div class="feature-tag">Cost Tracking</div>
+                                                <div class="feature-tag">Billing Analytics</div>
+                                                <div class="feature-tag">Revenue Analytics</div>
+                                                <div class="feature-tag">Usage Metrics</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Marketplace Integrations -->
+                        <div class="feature-section">
+                            <div class="section-header">
+                                <div class="section-icon">🔗</div>
+                                <div>
+                                    <h2 class="section-title">Marketplace Integrations</h2>
+                                    <div class="section-description">Comprehensive marketplace connectivity with OAuth, webhooks, and real-time synchronization</div>
+                                </div>
+                            </div>
+                            <div class="section-content">
+                                <div class="endpoint-group">
+                                    <h3 class="group-title">
+                                        <span>🛒</span>
+                                        Salla Integration Suite
+                                    </h3>
+
+                                    <div class="endpoint-list">
+                                        <div class="endpoint">
+                                            <div class="endpoint-header">
+                                                <span class="method-badge method-get">GET</span>
+                                                <span class="endpoint-path">/api/v1/salla/oauth/authorize</span>
+                                                <span class="endpoint-title">OAuth Authorization Flow</span>
+                                            </div>
+                                            <div class="endpoint-description">
+                                                Secure OAuth 2.0 integration with Salla marketplace. Complete authorization flow with token management and refresh capabilities for seamless store integration.
+                                            </div>
+                                            <div class="endpoint-features">
+                                                <div class="feature-tag">OAuth 2.0</div>
+                                                <div class="feature-tag">Token Management</div>
+                                                <div class="feature-tag">Auto Refresh</div>
+                                                <div class="feature-tag">Security</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="endpoint">
+                                            <div class="endpoint-header">
+                                                <span class="method-badge method-post">POST</span>
+                                                <span class="endpoint-path">/api/v1/salla/webhook</span>
+                                                <span class="endpoint-title">Real-Time Webhook Processing</span>
+                                            </div>
+                                            <div class="endpoint-description">
+                                                High-reliability webhook system with automatic retries, dead letter queues, and comprehensive monitoring for real-time marketplace event processing.
+                                            </div>
+                                            <div class="endpoint-features">
+                                                <div class="feature-tag">Real-time Events</div>
+                                                <div class="feature-tag">Auto Retry</div>
+                                                <div class="feature-tag">Dead Letter Queue</div>
+                                                <div class="feature-tag">Monitoring</div>
+                                                <div class="feature-tag">Error Recovery</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="endpoint">
+                                            <div class="endpoint-header">
+                                                <span class="method-badge method-post">POST</span>
+                                                <span class="endpoint-path">/api/v1/salla/sync/products</span>
+                                                <span class="endpoint-title">Product Synchronization</span>
+                                            </div>
+                                            <div class="endpoint-description">
+                                                Automated product synchronization between Salla stores and Skawr search indices. Supports bulk sync, incremental updates, and conflict resolution.
+                                            </div>
+                                            <div class="endpoint-features">
+                                                <div class="feature-tag">Bulk Sync</div>
+                                                <div class="feature-tag">Incremental Updates</div>
+                                                <div class="feature-tag">Conflict Resolution</div>
+                                                <div class="feature-tag">Data Validation</div>
+                                            </div>
+                                        </div>
+
+                                        <div class="endpoint">
+                                            <div class="endpoint-header">
+                                                <span class="method-badge method-get">GET</span>
+                                                <span class="endpoint-path">/api/v1/salla/widget/loader.js</span>
+                                                <span class="endpoint-title">JavaScript Widget Embedding</span>
+                                            </div>
+                                            <div class="endpoint-description">
+                                                Embeddable search widget for Salla stores with customizable design, real-time search, and seamless integration with store themes.
+                                            </div>
+                                            <div class="endpoint-features">
+                                                <div class="feature-tag">Embeddable Widget</div>
+                                                <div class="feature-tag">Custom Design</div>
+                                                <div class="feature-tag">Theme Integration</div>
+                                                <div class="feature-tag">Real-time Search</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Implementation Details -->
+                        <div class="implementation-details">
+                            <h3 class="details-title">
+                                <span>🔧</span>
+                                Technical Implementation Details
+                            </h3>
+
+                            <div class="implementation-grid">
+                                <div class="implementation-card">
+                                    <h4 class="card-title">
+                                        <span>🧠</span>
+                                        AI & Machine Learning
+                                    </h4>
+                                    <div class="card-content">
+                                        <strong>Vector Search:</strong> Advanced semantic search using embeddings for understanding user intent beyond keywords.<br><br>
+                                        <strong>Personalization Engine:</strong> Machine learning models for personalized search ranking and recommendations.<br><br>
+                                        <strong>Arabic NLP:</strong> Specialized Arabic language processing with cultural context understanding.
+                                    </div>
+                                </div>
+
+                                <div class="implementation-card">
+                                    <h4 class="card-title">
+                                        <span>⚡</span>
+                                        Performance Architecture
+                                    </h4>
+                                    <div class="card-content">
+                                        <strong>Async Processing:</strong> Full async/await implementation for maximum concurrency and performance.<br><br>
+                                        <strong>Smart Caching:</strong> Multi-layer caching with Redis for frequently accessed data and search results.<br><br>
+                                        <strong>Connection Pooling:</strong> Optimized database connections with automatic scaling and health monitoring.
+                                    </div>
+                                </div>
+
+                                <div class="implementation-card">
+                                    <h4 class="card-title">
+                                        <span>🔍</span>
+                                        Search Technology Stack
+                                    </h4>
+                                    <div class="card-content">
+                                        <strong>Elasticsearch Integration:</strong> Advanced search capabilities with custom analyzers for Arabic text processing.<br><br>
+                                        <strong>Hybrid Search:</strong> Combines full-text search with vector similarity for superior relevance.<br><br>
+                                        <strong>Real-time Indexing:</strong> Live product data synchronization with zero-downtime index updates.
+                                    </div>
+                                </div>
+
+                                <div class="implementation-card">
+                                    <h4 class="card-title">
+                                        <span>🏢</span>
+                                        Enterprise Features
+                                    </h4>
+                                    <div class="card-content">
+                                        <strong>Multi-Tenancy:</strong> Complete client isolation with separate data, indices, and resource quotas.<br><br>
+                                        <strong>API Management:</strong> Comprehensive API key management with rate limiting and usage tracking.<br><br>
+                                        <strong>Monitoring & Alerts:</strong> Real-time system monitoring with automated alerting and health checks.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Security Features -->
+                        <div class="security-section">
+                            <h3 class="security-title">
+                                <span>🛡️</span>
+                                Security & Compliance Features
+                            </h3>
+
+                            <div class="security-features">
+                                <div class="security-card">
+                                    <h4 class="card-title">
+                                        <span>🔐</span>
+                                        Authentication & Authorization
+                                    </h4>
+                                    <div class="card-content">
+                                        <strong>API Key Authentication:</strong> Secure API key-based authentication with scoped permissions and automatic rotation.<br><br>
+                                        <strong>Rate Limiting:</strong> Configurable rate limits per client with burst protection and fair usage policies.
+                                    </div>
+                                </div>
+
+                                <div class="security-card">
+                                    <h4 class="card-title">
+                                        <span>🔒</span>
+                                        Data Protection
+                                    </h4>
+                                    <div class="card-content">
+                                        <strong>Encryption:</strong> End-to-end encryption for data in transit and at rest with industry-standard protocols.<br><br>
+                                        <strong>Data Isolation:</strong> Complete client data separation with secure multi-tenancy architecture.
+                                    </div>
+                                </div>
+
+                                <div class="security-card">
+                                    <h4 class="card-title">
+                                        <span>📊</span>
+                                        Compliance & Monitoring
+                                    </h4>
+                                    <div class="card-content">
+                                        <strong>Audit Logging:</strong> Comprehensive audit trails for all API access and data modifications.<br><br>
+                                        <strong>GDPR Compliance:</strong> Built-in privacy controls and data protection mechanisms for regulatory compliance.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Performance Metrics -->
+                        <div class="performance-metrics">
+                            <h3 class="metrics-title">Performance & Reliability Metrics</h3>
+
+                            <div class="metrics-grid">
+                                <div class="metric-card">
+                                    <span class="metric-value">&lt;200ms</span>
+                                    <div class="metric-label">Average API Response</div>
+                                    <div class="metric-description">Fast response times for all search operations</div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <span class="metric-value">1000+</span>
+                                    <div class="metric-label">Requests per Second</div>
+                                    <div class="metric-description">High-throughput processing capacity</div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <span class="metric-value">99.9%</span>
+                                    <div class="metric-label">Uptime SLA</div>
+                                    <div class="metric-description">Enterprise-grade reliability guarantee</div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <span class="metric-value">&lt;0.1%</span>
+                                    <div class="metric-label">Error Rate</div>
+                                    <div class="metric-description">Ultra-low error rates across all endpoints</div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <span class="metric-value">5M+</span>
+                                    <div class="metric-label">Products Indexed</div>
+                                    <div class="metric-description">Massive scale product database</div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <span class="metric-value">24/7</span>
+                                    <div class="metric-label">Monitoring</div>
+                                    <div class="metric-description">Continuous system health monitoring</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation -->
+                        <div class="page-navigation">
+                            <a href="../features-overview.html" class="nav-link">
+                                <span class="nav-icon">←</span>
+                                <div class="nav-text">
+                                    <div class="nav-label">Previous</div>
+                                    <div class="nav-title">Platform Overview</div>
+                                </div>
+                            </a>
+                            <a href="../web-app/features.html" class="nav-link">
+                                <div class="nav-text">
+                                    <div class="nav-label">Next</div>
+                                    <div class="nav-title">Web Application</div>
+                                </div>
+                                <span class="nav-icon">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        document.querySelector('.sidebar-toggle')?.addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+
+        // Add animation to elements on scroll
+        const observeElements = (selector) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll(selector).forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        };
+
+        // Observe various elements for animations
+        observeElements('.feature-section');
+        observeElements('.endpoint');
+        observeElements('.implementation-card');
+        observeElements('.security-card');
+        observeElements('.metric-card');
+
+        // Interactive endpoint hover effects
+        document.querySelectorAll('.endpoint').forEach(endpoint => {
+            endpoint.addEventListener('click', function() {
+                this.classList.toggle('expanded');
+            });
+        });
+
+        // Copy endpoint path to clipboard
+        document.querySelectorAll('.endpoint-path').forEach(path => {
+            path.addEventListener('click', function() {
+                navigator.clipboard.writeText(this.textContent);
+                // Show temporary success message
+                const original = this.textContent;
+                this.textContent = 'Copied!';
+                setTimeout(() => {
+                    this.textContent = original;
+                }, 1000);
+            });
+            path.style.cursor = 'pointer';
+            path.title = 'Click to copy';
+        });
+
+        // Animate API stats counters
+        function animateCounters() {
+            document.querySelectorAll('.stat-value, .metric-value').forEach(counter => {
+                const value = counter.textContent;
+                if (value.includes('%')) {
+                    const finalValue = parseFloat(value);
+                    let currentValue = 0;
+                    const increment = finalValue / 30;
+
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= finalValue) {
+                            counter.textContent = value;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = currentValue.toFixed(1) + '%';
+                        }
+                    }, 50);
+                }
+            });
+        }
+
+        // Start animations when elements come into view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('.api-stats, .performance-metrics').forEach(section => {
+            statsObserver.observe(section);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace Integration - Partnerships | Skawr Documentation</title>
+    <link rel="stylesheet" href="../gitbook-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body>
+    <div class="book">
+        <!-- Sidebar -->
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <div class="skawr-logo">
+                        <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" width="120" height="30">
+                            <text x="10" y="150" font-family="'Inter', Arial, sans-serif" font-size="160" font-weight="600" fill="#FFFFFF" letter-spacing="-5">SKAWR</text>
+                            <circle cx="760" cy="130" r="30" fill="#ED7453"/>
+                        </svg>
+                    </div>
+                    <p class="book-subtitle">Platform Documentation</p>
+                </div>
+
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter">
+                            <a href="../index.html">📖 Introduction</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="#business" class="chapter-link">🏢 Business Overview</a>
+                            <ul class="articles">
+                                <li><a href="../product/overview.html">Product Overview</a></li>
+                                <li><a href="../product/value-proposition.html">Value Proposition</a></li>
+                                <li><a href="../market/competition.html">Competitive Analysis</a></li>
+                                <li><a href="../business/model.html">Business Model</a></li>
+                                <li><a href="../brand/identity.html">Brand Identity</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="#platforms" class="chapter-link">🏗️ Platform Architecture</a>
+                            <ul class="articles">
+                                <li><a href="../platforms/features-overview.html">Platform Overview</a></li>
+                                <li><a href="../system/architecture.html">System Architecture</a></li>
+                                <li><a href="../platforms/backend-api/features.html">Backend API</a></li>
+                                <li><a href="../platforms/web-app/features.html">Web Application</a></li>
+                                <li><a href="../platforms/mobile-app/features.html">Mobile App</a></li>
+                                <li><a href="../platforms/scraper-service/features.html">Scraper Service</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="#developer" class="chapter-link">🔧 Developer Resources</a>
+                            <ul class="articles">
+                                <li><a href="../developer/getting-started.html">Getting Started</a></li>
+                                <li><a href="../developer/api-reference.html">API Reference</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter expanded">
+                            <a href="#partnerships" class="chapter-link">🤝 Partnerships</a>
+                            <ul class="articles">
+                                <li><a href="marketplace-integration.html" class="active">Marketplace Integration</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="../support/faq.html">❓ Support & FAQ</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/ziyad00/skawr-docs" class="github-link">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                        Edit on GitHub
+                    </a>
+                    <div class="sidebar-version">v1.0.0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="book-body">
+            <div class="body-inner">
+                <div class="book-toolbar">
+                    <div class="toolbar-left">
+                        <button class="btn btn-sm sidebar-toggle">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z"></path>
+                            </svg>
+                        </button>
+                        <nav class="breadcrumb">
+                            <a href="../index.html">Documentation</a>
+                            <span>›</span>
+                            <a href="#partnerships">Partnerships</a>
+                            <span>›</span>
+                            <span>Marketplace Integration</span>
+                        </nav>
+                    </div>
+                    <div class="toolbar-right">
+                        <a href="https://github.com/ziyad00/skawr-docs" class="btn btn-sm">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <article class="page-content">
+                            <h1>🤝 Marketplace Integration</h1>
+
+                            <div class="intro-callout">
+                                <p>Partner with Skawr to expand your marketplace reach across Saudi Arabia. Integrate your platform with our aggregation engine to reach millions of potential customers.</p>
+                            </div>
+
+                            <h2>🎯 Why Partner with Skawr?</h2>
+                            <div class="benefits-grid">
+                                <div class="benefit-card">
+                                    <div class="benefit-icon">📈</div>
+                                    <h3>Increased Visibility</h3>
+                                    <p>Your products appear in search results across our platform, web app, and mobile apps, reaching Skawr's growing user base.</p>
+                                </div>
+
+                                <div class="benefit-card">
+                                    <div class="benefit-icon">🔍</div>
+                                    <h3>Enhanced Discoverability</h3>
+                                    <p>Our AI-powered search engine helps customers find your products with Arabic/English bilingual search and semantic understanding.</p>
+                                </div>
+
+                                <div class="benefit-card">
+                                    <div class="benefit-icon">📊</div>
+                                    <h3>Analytics & Insights</h3>
+                                    <p>Access detailed analytics about search trends, customer behavior, and product performance across our network.</p>
+                                </div>
+
+                                <div class="benefit-card">
+                                    <div class="benefit-icon">⚡</div>
+                                    <h3>Zero Technical Overhead</h3>
+                                    <p>Our scraper service handles data collection automatically. No need to build or maintain API integrations.</p>
+                                </div>
+                            </div>
+
+                            <h2>🏪 Current Partners</h2>
+                            <div class="partners-showcase">
+                                <div class="partner-card verified">
+                                    <div class="partner-logo">🏪</div>
+                                    <h3>Haraj.com.sa</h3>
+                                    <p>Saudi Arabia's largest classified marketplace</p>
+                                    <div class="partner-stats">
+                                        <span class="stat">📦 2M+ products indexed</span>
+                                        <span class="stat">🔄 Real-time sync</span>
+                                    </div>
+                                </div>
+
+                                <div class="partner-card verified">
+                                    <div class="partner-logo">🌟</div>
+                                    <h3>Dubizzle Saudi</h3>
+                                    <p>Leading online marketplace for cars, properties & more</p>
+                                    <div class="partner-stats">
+                                        <span class="stat">🚗 800K+ listings</span>
+                                        <span class="stat">⚡ Hourly updates</span>
+                                    </div>
+                                </div>
+
+                                <div class="partner-card">
+                                    <div class="partner-logo">📱</div>
+                                    <h3>OpenSooq</h3>
+                                    <p>Regional marketplace connecting buyers & sellers</p>
+                                    <div class="partner-stats">
+                                        <span class="stat">🛍️ 500K+ products</span>
+                                        <span class="stat">📈 Growing integration</span>
+                                    </div>
+                                </div>
+
+                                <div class="partner-card coming-soon">
+                                    <div class="partner-logo">🔜</div>
+                                    <h3>Your Marketplace</h3>
+                                    <p>Join our growing network of partners</p>
+                                    <div class="cta-button">
+                                        <a href="#integration-process">Get Started →</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2 id="integration-process">🔗 Integration Process</h2>
+
+                            <div class="integration-steps">
+                                <div class="step">
+                                    <div class="step-number">1</div>
+                                    <div class="step-content">
+                                        <h3>Initial Contact & Assessment</h3>
+                                        <div class="step-details">
+                                            <p><strong>Duration:</strong> 1-2 business days</p>
+                                            <p><strong>What We Need:</strong></p>
+                                            <ul>
+                                                <li>Marketplace URL and basic information</li>
+                                                <li>Product catalog size and structure</li>
+                                                <li>Update frequency requirements</li>
+                                                <li>Preferred contact method for coordination</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step">
+                                    <div class="step-number">2</div>
+                                    <div class="step-content">
+                                        <h3>Technical Integration</h3>
+                                        <div class="step-details">
+                                            <p><strong>Duration:</strong> 3-5 business days</p>
+                                            <p><strong>Our Process:</strong></p>
+                                            <ul>
+                                                <li>Configure our scraper service for your platform</li>
+                                                <li>Set up data processing pipeline</li>
+                                                <li>Implement product categorization</li>
+                                                <li>Configure search optimization</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step">
+                                    <div class="step-number">3</div>
+                                    <div class="step-content">
+                                        <h3>Testing & Validation</h3>
+                                        <div class="step-details">
+                                            <p><strong>Duration:</strong> 2-3 business days</p>
+                                            <p><strong>Quality Assurance:</strong></p>
+                                            <ul>
+                                                <li>Data accuracy verification</li>
+                                                <li>Search result validation</li>
+                                                <li>Link integrity testing</li>
+                                                <li>Performance optimization</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="step">
+                                    <div class="step-number">4</div>
+                                    <div class="step-content">
+                                        <h3>Go Live & Monitoring</h3>
+                                        <div class="step-details">
+                                            <p><strong>Duration:</strong> Ongoing</p>
+                                            <p><strong>Launch Support:</strong></p>
+                                            <ul>
+                                                <li>Products appear in Skawr search results</li>
+                                                <li>24/7 monitoring and maintenance</li>
+                                                <li>Regular performance reports</li>
+                                                <li>Dedicated partnership support</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2>📋 Integration Requirements</h2>
+
+                            <div class="requirements-section">
+                                <div class="requirement-group">
+                                    <h3>🌐 Technical Requirements</h3>
+                                    <div class="req-list">
+                                        <div class="req-item">
+                                            <span class="req-icon">✅</span>
+                                            <span>Public website with accessible product pages</span>
+                                        </div>
+                                        <div class="req-item">
+                                            <span class="req-icon">✅</span>
+                                            <span>Consistent URL structure for product listings</span>
+                                        </div>
+                                        <div class="req-item">
+                                            <span class="req-icon">✅</span>
+                                            <span>Product images hosted on reliable CDN</span>
+                                        </div>
+                                        <div class="req-item">
+                                            <span class="req-icon">⭐</span>
+                                            <span>API endpoints (preferred but not required)</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="requirement-group">
+                                    <h3>📊 Content Requirements</h3>
+                                    <div class="req-list">
+                                        <div class="req-item">
+                                            <span class="req-icon">✅</span>
+                                            <span>Product titles, descriptions, and prices</span>
+                                        </div>
+                                        <div class="req-item">
+                                            <span class="req-icon">✅</span>
+                                            <span>High-quality product images</span>
+                                        </div>
+                                        <div class="req-item">
+                                            <span class="req-icon">✅</span>
+                                            <span>Seller/vendor information</span>
+                                        </div>
+                                        <div class="req-item">
+                                            <span class="req-icon">⭐</span>
+                                            <span>Product categories and specifications</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="requirement-group">
+                                    <h3>🤝 Business Requirements</h3>
+                                    <div class="req-list">
+                                        <div class="req-item">
+                                            <span class="req-icon">✅</span>
+                                            <span>Valid business license in Saudi Arabia</span>
+                                        </div>
+                                        <div class="req-item">
+                                            <span class="req-icon">✅</span>
+                                            <span>Commitment to maintain data accuracy</span>
+                                        </div>
+                                        <div class="req-item">
+                                            <span class="req-icon">✅</span>
+                                            <span>Compliance with local e-commerce regulations</span>
+                                        </div>
+                                        <div class="req-item">
+                                            <span class="req-icon">⭐</span>
+                                            <span>Dedicated partnership contact</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2>💰 Partnership Models</h2>
+
+                            <div class="partnership-models">
+                                <div class="model-card">
+                                    <div class="model-header">
+                                        <h3>🆓 Basic Integration</h3>
+                                        <div class="model-price">Free</div>
+                                    </div>
+                                    <div class="model-features">
+                                        <ul>
+                                            <li>Product data scraping and indexing</li>
+                                            <li>Standard search result placement</li>
+                                            <li>Basic performance analytics</li>
+                                            <li>Community support</li>
+                                        </ul>
+                                    </div>
+                                    <div class="model-ideal">
+                                        <strong>Ideal for:</strong> Small to medium marketplaces, testing integration
+                                    </div>
+                                </div>
+
+                                <div class="model-card premium">
+                                    <div class="model-header">
+                                        <h3>⭐ Premium Partnership</h3>
+                                        <div class="model-price">Revenue Share</div>
+                                    </div>
+                                    <div class="model-features">
+                                        <ul>
+                                            <li>Priority search result placement</li>
+                                            <li>Enhanced product showcase</li>
+                                            <li>Advanced analytics dashboard</li>
+                                            <li>Dedicated account manager</li>
+                                            <li>Custom integration support</li>
+                                        </ul>
+                                    </div>
+                                    <div class="model-ideal">
+                                        <strong>Ideal for:</strong> Established marketplaces seeking growth
+                                    </div>
+                                </div>
+
+                                <div class="model-card enterprise">
+                                    <div class="model-header">
+                                        <h3>🏢 Enterprise Solution</h3>
+                                        <div class="model-price">Custom</div>
+                                    </div>
+                                    <div class="model-features">
+                                        <ul>
+                                            <li>White-label integration options</li>
+                                            <li>Custom API development</li>
+                                            <li>Real-time data synchronization</li>
+                                            <li>Advanced marketing tools</li>
+                                            <li>24/7 priority support</li>
+                                        </ul>
+                                    </div>
+                                    <div class="model-ideal">
+                                        <strong>Ideal for:</strong> Large marketplaces, enterprise clients
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2>📞 Get Started Today</h2>
+
+                            <div class="contact-section">
+                                <div class="contact-card">
+                                    <h3>📧 Email Integration</h3>
+                                    <p>Send us your marketplace details and we'll get back to you within 24 hours</p>
+                                    <a href="mailto:partnerships@skawr.com?subject=Marketplace%20Integration%20Inquiry" class="contact-btn primary">partnerships@skawr.com</a>
+                                </div>
+
+                                <div class="contact-card">
+                                    <h3>📅 Schedule a Call</h3>
+                                    <p>Book a consultation to discuss your specific integration needs</p>
+                                    <a href="#" class="contact-btn secondary">Schedule Meeting</a>
+                                </div>
+
+                                <div class="contact-card">
+                                    <h3>💬 Direct Chat</h3>
+                                    <p>Chat with our partnership team for immediate questions</p>
+                                    <a href="../support/faq.html" class="contact-btn tertiary">Support Center</a>
+                                </div>
+                            </div>
+
+                            <div class="faq-section">
+                                <h2>❓ Frequently Asked Questions</h2>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">How long does integration typically take?</div>
+                                    <div class="faq-answer">Most integrations are completed within 7-10 business days from initial contact to going live.</div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">Do you charge for integration?</div>
+                                    <div class="faq-answer">Our basic integration is completely free. Premium partnerships operate on a revenue-sharing model that benefits both parties.</div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">How often is product data updated?</div>
+                                    <div class="faq-answer">Data is updated every 4-6 hours for most partners, with hourly updates available for premium partnerships.</div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">Can we control which products are included?</div>
+                                    <div class="faq-answer">Yes, we can work with you to configure filtering rules and category selections based on your preferences.</div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <div class="page-navigation">
+                            <div class="nav-prev">
+                                <a href="../developer/api-reference.html" class="nav-link">
+                                    <div class="nav-icon">←</div>
+                                    <div class="nav-text">
+                                        <div class="nav-label">Previous</div>
+                                        <div class="nav-title">API Reference</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nav-next">
+                                <a href="../support/faq.html" class="nav-link">
+                                    <div class="nav-text">
+                                        <div class="nav-label">Next</div>
+                                        <div class="nav-title">Support & FAQ</div>
+                                    </div>
+                                    <div class="nav-icon">→</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        // Sidebar toggle for mobile
+        document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+
+        // Chapter toggle functionality
+        document.querySelectorAll('.chapter-link').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const chapter = this.parentElement;
+                chapter.classList.toggle('expanded');
+            });
+        });
+
+        // FAQ toggle functionality
+        document.querySelectorAll('.faq-item').forEach(function(item) {
+            const question = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+
+            question.addEventListener('click', function() {
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+
+    <style>
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-left: 1rem;
+        }
+        .breadcrumb a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .intro-callout {
+            background: linear-gradient(135deg, var(--skawr-primary) 0%, var(--skawr-highlight) 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .benefit-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.2s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            color: var(--skawr-text-title);
+            margin-bottom: 1rem;
+        }
+
+        .partners-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .partner-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .partner-card.verified {
+            border-color: var(--skawr-green);
+        }
+
+        .partner-card.verified::before {
+            content: '✓ VERIFIED';
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--skawr-green);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .partner-card.coming-soon {
+            border: 2px dashed var(--color-border);
+            opacity: 0.8;
+        }
+
+        .partner-logo {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .partner-card h3 {
+            color: var(--skawr-text-title);
+            margin-bottom: 0.5rem;
+        }
+
+        .partner-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .stat {
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .cta-button a {
+            background: var(--skawr-primary);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .cta-button a:hover {
+            background: var(--skawr-primary-dk);
+            transform: translateY(-1px);
+        }
+
+        .integration-steps {
+            margin: 2rem 0;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .step-number {
+            background: var(--skawr-primary);
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content h3 {
+            color: var(--skawr-text-title);
+            margin-bottom: 1rem;
+        }
+
+        .step-details {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .step-details ul {
+            margin-left: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .requirements-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .requirement-group {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .requirement-group h3 {
+            color: var(--skawr-text-title);
+            margin-bottom: 1rem;
+            border-bottom: 2px solid var(--skawr-primary);
+            padding-bottom: 0.5rem;
+        }
+
+        .req-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .req-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .req-icon {
+            font-size: 1.1rem;
+        }
+
+        .partnership-models {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .model-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .model-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .model-card.premium {
+            border-color: var(--skawr-primary);
+            position: relative;
+        }
+
+        .model-card.premium::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--skawr-primary);
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .model-card.enterprise {
+            border-color: var(--skawr-green);
+        }
+
+        .model-header {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .model-header h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .model-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--skawr-primary);
+        }
+
+        .model-features {
+            padding: 1.5rem;
+        }
+
+        .model-features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .model-features li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .model-features li:before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--skawr-green);
+            font-weight: 600;
+        }
+
+        .model-ideal {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .contact-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .contact-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .contact-card h3 {
+            color: var(--skawr-text-title);
+            margin-bottom: 1rem;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-top: 1rem;
+            transition: all 0.2s ease;
+        }
+
+        .contact-btn.primary {
+            background: var(--skawr-primary);
+            color: white;
+        }
+
+        .contact-btn.secondary {
+            background: var(--skawr-green);
+            color: white;
+        }
+
+        .contact-btn.tertiary {
+            background: #f8f9fa;
+            color: var(--skawr-text-title);
+            border: 1px solid var(--color-border);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-1px);
+        }
+
+        .faq-section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .faq-question {
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            position: relative;
+        }
+
+        .faq-question:after {
+            content: '+';
+            position: absolute;
+            right: 1.5rem;
+            font-size: 1.5rem;
+            color: var(--skawr-primary);
+        }
+
+        .faq-item.active .faq-question:after {
+            content: '−';
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--color-text);
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            border-color: var(--color-accent);
+        }
+
+        .nav-prev .nav-link:hover {
+            transform: translateX(-4px);
+        }
+
+        .nav-next .nav-link:hover {
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 768px) {
+            .benefits-grid,
+            .partners-showcase,
+            .requirements-section,
+            .partnership-models,
+            .contact-section {
+                grid-template-columns: 1fr;
+            }
+
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .step-number {
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>

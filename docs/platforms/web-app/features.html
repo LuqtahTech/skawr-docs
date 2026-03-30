@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Application Features - Skawr Documentation</title>
+    <link rel="stylesheet" href="../../gitbook-style.css">
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <style>
+        .web-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .web-hero::before {
+            content: '💻';
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            font-size: 4rem;
+            opacity: 0.3;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .tech-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .tech-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .page-section {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            margin: 3rem 0;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, var(--skawr-primary) 0%, var(--skawr-primary-dk) 100%);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .page-icon {
+            font-size: 2.5rem;
+        }
+
+        .page-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-description {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .page-content {
+            padding: 2rem;
+        }
+
+        .feature-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature-card:hover {
+            background: white;
+            border-color: var(--skawr-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            background: var(--skawr-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--skawr-text-title);
+        }
+
+        .feature-description {
+            color: var(--skawr-text-secondary);
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .benefit-tag {
+            background: rgba(237, 116, 83, 0.1);
+            color: var(--skawr-primary);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .workflow-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid var(--skawr-hyperlink);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .workflow-title {
+            color: var(--skawr-hyperlink);
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .workflow-step {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(86, 136, 255, 0.2);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--skawr-hyperlink);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            margin: 1rem 0 0.75rem;
+            font-size: 1.1rem;
+        }
+
+        .step-description {
+            color: var(--skawr-text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .step-details {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .step-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .step-feature {
+            background: rgba(86, 136, 255, 0.1);
+            color: var(--skawr-hyperlink);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .tech-stack-section {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tech-category {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--skawr-primary);
+        }
+
+        .tech-category h4 {
+            color: var(--skawr-primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .tech-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0.75rem 0;
+            padding: 0.75rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+
+        .tech-item:hover {
+            border-color: var(--skawr-primary);
+            background: var(--skawr-card-bg);
+        }
+
+        .tech-logo {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--skawr-primary);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .tech-details {
+            flex: 1;
+        }
+
+        .tech-name {
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            margin-bottom: 0.25rem;
+        }
+
+        .tech-version {
+            color: var(--skawr-primary);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .tech-purpose {
+            font-size: 0.85rem;
+            color: var(--skawr-text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .performance-showcase {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid var(--skawr-green);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .performance-title {
+            color: var(--skawr-green);
+            font-size: 1.6rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .performance-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .performance-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(76, 175, 80, 0.2);
+        }
+
+        .performance-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--skawr-green);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .performance-label {
+            color: var(--skawr-text-secondary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .performance-description {
+            color: var(--skawr-text-muted);
+            font-size: 0.85rem;
+        }
+
+        .security-features {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .security-title {
+            color: #d97706;
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .security-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--skawr-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: var(--skawr-primary-dk);
+        }
+
+        .breadcrumb-separator {
+            color: var(--skawr-text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .tech-badges {
+                justify-content: center;
+            }
+
+            .feature-showcase {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .performance-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .security-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <!-- Sidebar -->
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <div class="skawr-logo">
+                        <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" fill="#ED7453"/>
+                            <path d="M30 35 L50 55 L70 35 L65 30 L50 45 L35 30 Z" fill="white"/>
+                            <path d="M30 65 L50 45 L70 65 L65 70 L50 55 L35 70 Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h1 class="book-title">
+                        <span class="book-title-icon">📖</span>
+                        Skawr Docs
+                    </h1>
+                    <p class="book-subtitle">Complete Documentation</p>
+                </div>
+
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter">
+                            <a href="../../index.html">🏠 Overview</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../product/overview.html">📦 Product</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../market/competition.html">📊 Market Analysis</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../business/model.html">💼 Business Model</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../brand/identity.html">🎨 Brand Identity</a>
+                        </li>
+                        <li class="chapter active">
+                            <a href="../features-overview.html">🛠️ Platform Features</a>
+                            <ul class="articles">
+                                <li><a href="../features-overview.html">Features Overview</a></li>
+                                <li><a href="../backend-api/features.html">Backend API</a></li>
+                                <li><a href="features.html">Web Application</a></li>
+                                <li><a href="../mobile-app/features.html">Mobile App</a></li>
+                                <li><a href="../scraper-service/features.html">Scraper Service</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../developer/getting-started.html">👨‍💻 Developer</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../system/architecture.html">🏗️ Architecture</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../support/faq.html">❓ Support</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/skawr" class="github-link">
+                        <span>📖</span>
+                        <span>GitHub</span>
+                    </a>
+                    <div class="sidebar-version">Version 1.0.0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="book-body">
+            <div class="body-inner">
+                <!-- Toolbar -->
+                <div class="book-toolbar">
+                    <div>
+                        <button class="btn btn-sm sidebar-toggle">☰ Menu</button>
+                    </div>
+                    <div>
+                        <a href="https://github.com/skawr/skawr-docs" class="btn btn-sm">📝 Edit</a>
+                    </div>
+                </div>
+
+                <!-- Breadcrumb -->
+                <div class="breadcrumb">
+                    <nav class="breadcrumb-nav">
+                        <a href="../../index.html">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="../features-overview.html">Platforms</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span>Web Application</span>
+                    </nav>
+                </div>
+
+                <!-- Page Content -->
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <!-- Web App Hero -->
+                        <div class="web-hero">
+                            <h1 class="hero-title">Skawr Web Application</h1>
+                            <div class="hero-subtitle">
+                                Modern React-powered interface for intelligent product search, listing management, and comprehensive marketplace functionality
+                            </div>
+
+                            <div class="tech-badges">
+                                <div class="tech-badge">React 19.1</div>
+                                <div class="tech-badge">TypeScript</div>
+                                <div class="tech-badge">Vite Build</div>
+                                <div class="tech-badge">TanStack Query</div>
+                                <div class="tech-badge">React Router</div>
+                            </div>
+                        </div>
+
+                        <!-- Dashboard Page -->
+                        <div class="page-section">
+                            <div class="page-header">
+                                <div class="page-icon">🏠</div>
+                                <div>
+                                    <h2 class="page-title">Central Dashboard</h2>
+                                    <div class="page-description">Command center for all marketplace activities with real-time insights and quick actions</div>
+                                </div>
+                            </div>
+                            <div class="page-content">
+                                <div class="feature-showcase">
+                                    <div class="feature-card">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">📊</div>
+                                            <div class="feature-title">Activity Overview</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            Real-time dashboard displaying key metrics, recent activities, sales performance, and marketplace insights at a glance.
+                                        </div>
+                                        <div class="feature-benefits">
+                                            <div class="benefit-tag">Real-time Metrics</div>
+                                            <div class="benefit-tag">Sales Analytics</div>
+                                            <div class="benefit-tag">Activity Feed</div>
+                                            <div class="benefit-tag">Quick Insights</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="feature-card">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">⚡</div>
+                                            <div class="feature-title">Quick Actions Hub</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            One-click access to frequently used features like creating listings, searching products, managing inventory, and checking messages.
+                                        </div>
+                                        <div class="feature-benefits">
+                                            <div class="benefit-tag">One-Click Actions</div>
+                                            <div class="benefit-tag">Shortcuts</div>
+                                            <div class="benefit-tag">Fast Navigation</div>
+                                            <div class="benefit-tag">Productivity</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="feature-card">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">🔔</div>
+                                            <div class="feature-title">Notification Center</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            Centralized notifications for price alerts, new messages, listing updates, and important marketplace events with smart filtering.
+                                        </div>
+                                        <div class="feature-benefits">
+                                            <div class="benefit-tag">Smart Alerts</div>
+                                            <div class="benefit-tag">Priority Filtering</div>
+                                            <div class="benefit-tag">Real-time Updates</div>
+                                            <div class="benefit-tag">Action Items</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="feature-card">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">📈</div>
+                                            <div class="feature-title">Performance Analytics</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            Comprehensive analytics showing listing performance, search trends, user engagement, and revenue insights with interactive charts.
+                                        </div>
+                                        <div class="feature-benefits">
+                                            <div class="benefit-tag">Interactive Charts</div>
+                                            <div class="benefit-tag">Trend Analysis</div>
+                                            <div class="benefit-tag">Revenue Insights</div>
+                                            <div class="benefit-tag">Export Reports</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Search Experience -->
+                        <div class="page-section">
+                            <div class="page-header">
+                                <div class="page-icon">🔍</div>
+                                <div>
+                                    <h2 class="page-title">Advanced Search Experience</h2>
+                                    <div class="page-description">Intelligent search interface with AI-powered suggestions and comprehensive filtering</div>
+                                </div>
+                            </div>
+                            <div class="page-content">
+                                <div class="feature-showcase">
+                                    <div class="feature-card">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">⚡</div>
+                                            <div class="feature-title">Live Search Interface</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            Real-time search with instant suggestions, auto-complete, and intelligent query understanding that works in both Arabic and English.
+                                        </div>
+                                        <div class="feature-benefits">
+                                            <div class="benefit-tag">Real-time Results</div>
+                                            <div class="benefit-tag">Auto-complete</div>
+                                            <div class="benefit-tag">Arabic/English</div>
+                                            <div class="benefit-tag">Smart Suggestions</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="feature-card">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">🎯</div>
+                                            <div class="feature-title">Smart Filter System</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            Dynamic filtering with price ranges, categories, locations, conditions, and marketplace-specific filters that update based on search results.
+                                        </div>
+                                        <div class="feature-benefits">
+                                            <div class="benefit-tag">Dynamic Filters</div>
+                                            <div class="benefit-tag">Price Ranges</div>
+                                            <div class="benefit-tag">Location-based</div>
+                                            <div class="benefit-tag">Condition Filters</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="feature-card">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">💾</div>
+                                            <div class="feature-title">Search Management</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            Save frequently used searches, create price alerts, view search history, and get notifications when new matching products are found.
+                                        </div>
+                                        <div class="feature-benefits">
+                                            <div class="benefit-tag">Save Searches</div>
+                                            <div class="benefit-tag">Price Alerts</div>
+                                            <div class="benefit-tag">Search History</div>
+                                            <div class="benefit-tag">Smart Notifications</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="feature-card">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">📊</div>
+                                            <div class="feature-title">Comparison Tools</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            Side-by-side product comparison with detailed specifications, price history, seller ratings, and marketplace availability.
+                                        </div>
+                                        <div class="feature-benefits">
+                                            <div class="benefit-tag">Side-by-side</div>
+                                            <div class="benefit-tag">Price History</div>
+                                            <div class="benefit-tag">Seller Ratings</div>
+                                            <div class="benefit-tag">Detailed Specs</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Management -->
+                        <div class="page-section">
+                            <div class="page-header">
+                                <div class="page-icon">📝</div>
+                                <div>
+                                    <h2 class="page-title">Product Listing Management</h2>
+                                    <div class="page-description">Comprehensive tools for creating, managing, and optimizing product listings</div>
+                                </div>
+                            </div>
+                            <div class="page-content">
+                                <div class="feature-showcase">
+                                    <div class="feature-card">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">✨</div>
+                                            <div class="feature-title">AI-Powered Listing Creator</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            Step-by-step listing wizard with AI assistance for generating descriptions, category suggestions, pricing recommendations, and SEO optimization.
+                                        </div>
+                                        <div class="feature-benefits">
+                                            <div class="benefit-tag">AI Descriptions</div>
+                                            <div class="benefit-tag">Smart Categories</div>
+                                            <div class="benefit-tag">Price Guidance</div>
+                                            <div class="benefit-tag">SEO Optimization</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="feature-card">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">📷</div>
+                                            <div class="feature-title">Advanced Image Management</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            Professional image upload with automatic optimization, background removal, quality enhancement, and multiple format support.
+                                        </div>
+                                        <div class="feature-benefits">
+                                            <div class="benefit-tag">Auto Optimization</div>
+                                            <div class="benefit-tag">Background Removal</div>
+                                            <div class="benefit-tag">Quality Enhancement</div>
+                                            <div class="benefit-tag">Multiple Formats</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="feature-card">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">📋</div>
+                                            <div class="feature-title">Bulk Operations Suite</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            Efficiently manage multiple listings with bulk editing, status changes, price updates, and inventory management with progress tracking.
+                                        </div>
+                                        <div class="feature-benefits">
+                                            <div class="benefit-tag">Bulk Edit</div>
+                                            <div class="benefit-tag">Status Management</div>
+                                            <div class="benefit-tag">Price Updates</div>
+                                            <div class="benefit-tag">Progress Tracking</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="feature-card">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">📈</div>
+                                            <div class="feature-title">Listing Analytics</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            Detailed performance metrics for each listing including views, clicks, conversions, and optimization suggestions to improve visibility.
+                                        </div>
+                                        <div class="feature-benefits">
+                                            <div class="benefit-tag">Performance Metrics</div>
+                                            <div class="benefit-tag">View Analytics</div>
+                                            <div class="benefit-tag">Conversion Tracking</div>
+                                            <div class="benefit-tag">Optimization Tips</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- User Workflows -->
+                        <div class="workflow-section">
+                            <h2 class="workflow-title">
+                                <span>🔄</span>
+                                Complete User Workflows
+                            </h2>
+
+                            <div class="workflow-steps">
+                                <div class="workflow-step">
+                                    <div class="step-number">1</div>
+                                    <h3 class="step-title">Authentication & Onboarding</h3>
+                                    <div class="step-description">
+                                        Secure login with multiple authentication options, guided onboarding tour, and personalized dashboard setup.
+                                    </div>
+                                    <div class="step-details">
+                                        <div class="step-features">
+                                            <div class="step-feature">Multi-factor Auth</div>
+                                            <div class="step-feature">Social Login</div>
+                                            <div class="step-feature">Guided Tour</div>
+                                            <div class="step-feature">Profile Setup</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="workflow-step">
+                                    <div class="step-number">2</div>
+                                    <h3 class="step-title">Product Discovery</h3>
+                                    <div class="step-description">
+                                        Advanced search with filters, comparison tools, price alerts, and personalized recommendations based on user behavior.
+                                    </div>
+                                    <div class="step-details">
+                                        <div class="step-features">
+                                            <div class="step-feature">Smart Search</div>
+                                            <div class="step-feature">Advanced Filters</div>
+                                            <div class="step-feature">Comparison Tools</div>
+                                            <div class="step-feature">Price Alerts</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="workflow-step">
+                                    <div class="step-number">3</div>
+                                    <h3 class="step-title">Listing Creation</h3>
+                                    <div class="step-description">
+                                        AI-assisted listing creation with smart descriptions, category suggestions, and professional image editing tools.
+                                    </div>
+                                    <div class="step-details">
+                                        <div class="step-features">
+                                            <div class="step-feature">AI Assistance</div>
+                                            <div class="step-feature">Smart Categories</div>
+                                            <div class="step-feature">Image Tools</div>
+                                            <div class="step-feature">SEO Optimization</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="workflow-step">
+                                    <div class="step-number">4</div>
+                                    <h3 class="step-title">Performance Monitoring</h3>
+                                    <div class="step-description">
+                                        Real-time analytics, performance tracking, optimization suggestions, and automated reporting for better decision-making.
+                                    </div>
+                                    <div class="step-details">
+                                        <div class="step-features">
+                                            <div class="step-feature">Real-time Analytics</div>
+                                            <div class="step-feature">Performance Tracking</div>
+                                            <div class="step-feature">Optimization Tips</div>
+                                            <div class="step-feature">Automated Reports</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Technology Stack -->
+                        <div class="tech-stack-section">
+                            <h2 class="section-title">Technology Stack & Architecture</h2>
+
+                            <div class="tech-grid">
+                                <div class="tech-category">
+                                    <h4>⚛️ Frontend Framework</h4>
+                                    <div class="tech-item">
+                                        <div class="tech-logo">R</div>
+                                        <div class="tech-details">
+                                            <div class="tech-name">React</div>
+                                            <div class="tech-version">v19.1.1</div>
+                                            <div class="tech-purpose">Modern UI library with hooks and concurrent features</div>
+                                        </div>
+                                    </div>
+                                    <div class="tech-item">
+                                        <div class="tech-logo">TS</div>
+                                        <div class="tech-details">
+                                            <div class="tech-name">TypeScript</div>
+                                            <div class="tech-version">Latest</div>
+                                            <div class="tech-purpose">Type-safe development and better IDE support</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tech-category">
+                                    <h4>🔧 Build & Development</h4>
+                                    <div class="tech-item">
+                                        <div class="tech-logo">V</div>
+                                        <div class="tech-details">
+                                            <div class="tech-name">Vite</div>
+                                            <div class="tech-version">Latest</div>
+                                            <div class="tech-purpose">Lightning-fast build tool and dev server</div>
+                                        </div>
+                                    </div>
+                                    <div class="tech-item">
+                                        <div class="tech-logo">ES</div>
+                                        <div class="tech-details">
+                                            <div class="tech-name">ESLint</div>
+                                            <div class="tech-version">Latest</div>
+                                            <div class="tech-purpose">Code quality and consistency enforcement</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tech-category">
+                                    <h4>🌐 Routing & Navigation</h4>
+                                    <div class="tech-item">
+                                        <div class="tech-logo">RR</div>
+                                        <div class="tech-details">
+                                            <div class="tech-name">React Router</div>
+                                            <div class="tech-version">v6.28</div>
+                                            <div class="tech-purpose">Client-side routing with nested routes</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="tech-category">
+                                    <h4>📊 State Management</h4>
+                                    <div class="tech-item">
+                                        <div class="tech-logo">TQ</div>
+                                        <div class="tech-details">
+                                            <div class="tech-name">TanStack Query</div>
+                                            <div class="tech-version">v5.90</div>
+                                            <div class="tech-purpose">Server state management and caching</div>
+                                        </div>
+                                    </div>
+                                    <div class="tech-item">
+                                        <div class="tech-logo">A</div>
+                                        <div class="tech-details">
+                                            <div class="tech-name">Axios</div>
+                                            <div class="tech-version">v1.12</div>
+                                            <div class="tech-purpose">HTTP client for API communication</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Security Features -->
+                        <div class="security-features">
+                            <h3 class="security-title">
+                                <span>🛡️</span>
+                                Security & Performance Features
+                            </h3>
+
+                            <div class="security-grid">
+                                <div class="security-card">
+                                    <h4 class="card-title">
+                                        <span>🔐</span>
+                                        Advanced Authentication
+                                    </h4>
+                                    <div class="card-content">
+                                        <strong>Protected Routes:</strong> Route-level authentication guards with automatic redirects.<br><br>
+                                        <strong>Token Management:</strong> Secure JWT token handling with automatic refresh and storage.<br><br>
+                                        <strong>Session Security:</strong> Secure session management with configurable timeout and cleanup.
+                                    </div>
+                                </div>
+
+                                <div class="security-card">
+                                    <h4 class="card-title">
+                                        <span>⚡</span>
+                                        Performance Optimization
+                                    </h4>
+                                    <div class="card-content">
+                                        <strong>Code Splitting:</strong> Automatic route-based code splitting for faster loading.<br><br>
+                                        <strong>Smart Caching:</strong> Intelligent caching strategies for API responses and static assets.<br><br>
+                                        <strong>Lazy Loading:</strong> Component and image lazy loading for optimal performance.
+                                    </div>
+                                </div>
+
+                                <div class="security-card">
+                                    <h4 class="card-title">
+                                        <span>🔒</span>
+                                        Data Protection
+                                    </h4>
+                                    <div class="card-content">
+                                        <strong>Input Validation:</strong> Comprehensive client-side validation with sanitization.<br><br>
+                                        <strong>HTTPS Enforcement:</strong> All communications encrypted with HTTPS protocol.<br><br>
+                                        <strong>XSS Protection:</strong> Built-in protection against cross-site scripting attacks.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Performance Metrics -->
+                        <div class="performance-showcase">
+                            <h3 class="performance-title">Performance & User Experience Metrics</h3>
+
+                            <div class="performance-grid">
+                                <div class="performance-card">
+                                    <span class="performance-value">&lt;2s</span>
+                                    <div class="performance-label">Initial Load Time</div>
+                                    <div class="performance-description">Fast first contentful paint</div>
+                                </div>
+
+                                <div class="performance-card">
+                                    <span class="performance-value">&lt;500ms</span>
+                                    <div class="performance-label">Navigation Speed</div>
+                                    <div class="performance-description">Between route transitions</div>
+                                </div>
+
+                                <div class="performance-card">
+                                    <span class="performance-value">95+</span>
+                                    <div class="performance-label">Lighthouse Score</div>
+                                    <div class="performance-description">Performance benchmark</div>
+                                </div>
+
+                                <div class="performance-card">
+                                    <span class="performance-value">100%</span>
+                                    <div class="performance-label">Mobile Responsive</div>
+                                    <div class="performance-description">All devices supported</div>
+                                </div>
+
+                                <div class="performance-card">
+                                    <span class="performance-value">&lt;1%</span>
+                                    <div class="performance-label">Error Rate</div>
+                                    <div class="performance-description">Client-side errors</div>
+                                </div>
+
+                                <div class="performance-card">
+                                    <span class="performance-value">24/7</span>
+                                    <div class="performance-label">Availability</div>
+                                    <div class="performance-description">Continuous uptime</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation -->
+                        <div class="page-navigation">
+                            <a href="../backend-api/features.html" class="nav-link">
+                                <span class="nav-icon">←</span>
+                                <div class="nav-text">
+                                    <div class="nav-label">Previous</div>
+                                    <div class="nav-title">Backend API</div>
+                                </div>
+                            </a>
+                            <a href="../mobile-app/features.html" class="nav-link">
+                                <div class="nav-text">
+                                    <div class="nav-label">Next</div>
+                                    <div class="nav-title">Mobile Application</div>
+                                </div>
+                                <span class="nav-icon">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        document.querySelector('.sidebar-toggle')?.addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+
+        // Add animation to elements on scroll
+        const observeElements = (selector) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll(selector).forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        };
+
+        // Observe various elements for animations
+        observeElements('.page-section');
+        observeElements('.feature-card');
+        observeElements('.workflow-step');
+        observeElements('.tech-item');
+        observeElements('.security-card');
+        observeElements('.performance-card');
+
+        // Interactive feature card hover effects
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.toggle('expanded');
+            });
+        });
+
+        // Tech stack item hover effects
+        document.querySelectorAll('.tech-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.borderColor = 'var(--skawr-primary)';
+                this.style.backgroundColor = 'var(--skawr-card-bg)';
+            });
+            item.addEventListener('mouseleave', function() {
+                this.style.borderColor = 'var(--color-border)';
+                this.style.backgroundColor = 'white';
+            });
+        });
+
+        // Animate performance metrics
+        function animateCounters() {
+            document.querySelectorAll('.performance-value').forEach(counter => {
+                const value = counter.textContent;
+                if (value.includes('%')) {
+                    const finalValue = parseInt(value);
+                    let currentValue = 0;
+                    const increment = finalValue / 30;
+
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= finalValue) {
+                            counter.textContent = value;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(currentValue) + '%';
+                        }
+                    }, 50);
+                }
+            });
+        }
+
+        // Start animations when elements come into view
+        const performanceObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    performanceObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('.performance-showcase').forEach(section => {
+            performanceObserver.observe(section);
+        });
+
+        // Workflow step interactions
+        document.querySelectorAll('.workflow-step').forEach(step => {
+            step.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

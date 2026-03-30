@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Reference - Skawr Documentation</title>
+    <link rel="stylesheet" href="../gitbook-style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body>
+    <div class="book">
+        <!-- Sidebar -->
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <h1 class="book-title">
+                        <span class="book-title-icon">📚</span>
+                        Skawr
+                    </h1>
+                    <p class="book-subtitle">Platform Documentation</p>
+                </div>
+
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter">
+                            <a href="../index.html">📖 Introduction</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="#business" class="chapter-link">🏢 Business Overview</a>
+                            <ul class="articles">
+                                <li><a href="../product/overview.html">Product Overview</a></li>
+                                <li><a href="../product/value-proposition.html">Value Proposition</a></li>
+                                <li><a href="../market/competition.html">Competitive Analysis</a></li>
+                                <li><a href="../business/model.html">Business Model</a></li>
+                                <li><a href="../brand/identity.html">Brand Identity</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="#platforms" class="chapter-link">🏗️ Platform Architecture</a>
+                            <ul class="articles">
+                                <li><a href="../platforms/features-overview.html">Platform Overview</a></li>
+                                <li><a href="../system/architecture.html">System Architecture</a></li>
+                                <li><a href="../platforms/backend-api/features.html">Backend API</a></li>
+                                <li><a href="../platforms/web-app/features.html">Web Application</a></li>
+                                <li><a href="../platforms/mobile-app/features.html">Mobile App</a></li>
+                                <li><a href="../platforms/scraper-service/features.html">Scraper Service</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter expanded">
+                            <a href="#developer" class="chapter-link">🔧 Developer Resources</a>
+                            <ul class="articles">
+                                <li><a href="getting-started.html">Getting Started</a></li>
+                                <li><a href="api-reference.html" class="active">API Reference</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="../support/faq.html">❓ Support & FAQ</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/ziyad00/skawr-docs" class="github-link">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                        Edit on GitHub
+                    </a>
+                    <div class="sidebar-version">v1.0.0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="book-body">
+            <div class="body-inner">
+                <div class="book-toolbar">
+                    <div class="toolbar-left">
+                        <button class="btn btn-sm sidebar-toggle">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z"></path>
+                            </svg>
+                        </button>
+                        <nav class="breadcrumb">
+                            <a href="../index.html">Documentation</a>
+                            <span>›</span>
+                            <a href="#developer">Developer Resources</a>
+                            <span>›</span>
+                            <span>API Reference</span>
+                        </nav>
+                    </div>
+                    <div class="toolbar-right">
+                        <button class="btn btn-sm" onclick="toggleTryIt()">
+                            <span id="try-it-text">Try It Out</span>
+                        </button>
+                        <a href="https://github.com/ziyad00/skawr-docs" class="btn btn-sm">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <article class="page-content">
+                            <h1>🔧 API Reference</h1>
+
+                            <div class="api-overview">
+                                <p>The Skawr API provides programmatic access to our marketplace aggregation platform. Use our RESTful API to search products, manage listings, and integrate with the Skawr ecosystem.</p>
+
+                                <div class="api-info">
+                                    <div class="api-detail">
+                                        <strong>Base URL:</strong>
+                                        <code>https://api.skawr.com/v1</code>
+                                    </div>
+                                    <div class="api-detail">
+                                        <strong>Authentication:</strong> Bearer Token (API Key)
+                                    </div>
+                                    <div class="api-detail">
+                                        <strong>Rate Limiting:</strong> 1000 requests per hour
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h2>🔑 Authentication</h2>
+                            <p>All API requests require authentication using an API key. Include your API key in the Authorization header:</p>
+
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>cURL</span>
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                </div>
+                                <pre><code class="language-bash">curl -H "Authorization: Bearer YOUR_API_KEY" \
+     https://api.skawr.com/v1/search</code></pre>
+                            </div>
+
+                            <h2>🔍 Search API</h2>
+
+                            <div class="endpoint">
+                                <div class="endpoint-header">
+                                    <span class="method get">GET</span>
+                                    <span class="url">/search</span>
+                                </div>
+
+                                <p>Search for products across all integrated marketplaces with AI-powered semantic search.</p>
+
+                                <h3>Query Parameters</h3>
+                                <div class="params-table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Parameter</th>
+                                                <th>Type</th>
+                                                <th>Required</th>
+                                                <th>Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><code>q</code></td>
+                                                <td>string</td>
+                                                <td>✅</td>
+                                                <td>Search query in Arabic or English</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>limit</code></td>
+                                                <td>integer</td>
+                                                <td>❌</td>
+                                                <td>Number of results (1-100, default: 20)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>offset</code></td>
+                                                <td>integer</td>
+                                                <td>❌</td>
+                                                <td>Pagination offset (default: 0)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>sort</code></td>
+                                                <td>string</td>
+                                                <td>❌</td>
+                                                <td>Sort by: relevance, price_asc, price_desc, date</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>marketplace</code></td>
+                                                <td>string</td>
+                                                <td>❌</td>
+                                                <td>Filter by marketplace: haraj, dubizzle, opensooq</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>min_price</code></td>
+                                                <td>number</td>
+                                                <td>❌</td>
+                                                <td>Minimum price filter (SAR)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>max_price</code></td>
+                                                <td>number</td>
+                                                <td>❌</td>
+                                                <td>Maximum price filter (SAR)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="try-it-section" style="display: none;">
+                                    <h3>Try It Out</h3>
+                                    <div class="try-it-form">
+                                        <div class="form-group">
+                                            <label>Search Query:</label>
+                                            <input type="text" id="search-q" placeholder="iPhone 15" value="iPhone 15">
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label>Limit:</label>
+                                                <input type="number" id="search-limit" placeholder="20" value="10">
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Sort:</label>
+                                                <select id="search-sort">
+                                                    <option value="relevance">Relevance</option>
+                                                    <option value="price_asc">Price (Low to High)</option>
+                                                    <option value="price_desc">Price (High to Low)</option>
+                                                    <option value="date">Date</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <button class="try-it-btn" onclick="trySearchAPI()">Send Request</button>
+                                    </div>
+                                    <div id="try-it-result"></div>
+                                </div>
+
+                                <h3>Example Request</h3>
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span>cURL</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code class="language-bash">curl -G "https://api.skawr.com/v1/search" \
+     -H "Authorization: Bearer YOUR_API_KEY" \
+     -d "q=iPhone 15" \
+     -d "limit=10" \
+     -d "sort=price_asc"</code></pre>
+                                </div>
+
+                                <h3>Example Response</h3>
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span>JSON</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code class="language-json">{
+  "status": "success",
+  "data": {
+    "total": 45,
+    "limit": 10,
+    "offset": 0,
+    "results": [
+      {
+        "id": "prod_123456",
+        "title": "iPhone 15 Pro Max 256GB - Natural Titanium",
+        "description": "Latest iPhone 15 Pro Max with titanium build...",
+        "price": {
+          "amount": 4299,
+          "currency": "SAR",
+          "formatted": "4,299 SAR"
+        },
+        "marketplace": {
+          "name": "Haraj",
+          "logo": "https://cdn.skawr.com/logos/haraj.png",
+          "url": "https://haraj.com.sa/listings/123456"
+        },
+        "seller": {
+          "name": "TechStore",
+          "rating": 4.8,
+          "verified": true
+        },
+        "images": [
+          "https://images.skawr.com/prod_123456_1.jpg",
+          "https://images.skawr.com/prod_123456_2.jpg"
+        ],
+        "location": "Riyadh, Saudi Arabia",
+        "created_at": "2024-01-15T10:30:00Z",
+        "updated_at": "2024-01-15T10:30:00Z"
+      }
+    ]
+  },
+  "meta": {
+    "execution_time": 0.234,
+    "search_id": "search_789012"
+  }
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <h2>📊 SaaS Management API</h2>
+
+                            <div class="endpoint">
+                                <div class="endpoint-header">
+                                    <span class="method post">POST</span>
+                                    <span class="url">/saas/tenants</span>
+                                </div>
+
+                                <p>Create a new tenant for white-label marketplace integration.</p>
+
+                                <h3>Request Body</h3>
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span>JSON</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code class="language-json">{
+  "name": "AlRajhi Marketplace",
+  "domain": "marketplace.alrajhi.com",
+  "config": {
+    "branding": {
+      "logo": "https://example.com/logo.png",
+      "primary_color": "#1976d2",
+      "secondary_color": "#f57c00"
+    },
+    "features": {
+      "search": true,
+      "price_comparison": true,
+      "analytics": true
+    },
+    "marketplaces": ["haraj", "dubizzle", "opensooq"]
+  }
+}</code></pre>
+                                </div>
+
+                                <h3>Example Response</h3>
+                                <div class="code-example">
+                                    <div class="code-header">
+                                        <span>JSON</span>
+                                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                    </div>
+                                    <pre><code class="language-json">{
+  "status": "success",
+  "data": {
+    "tenant_id": "tenant_abc123",
+    "api_key": "sk_live_xyz789...",
+    "subdomain": "alrajhi-marketplace",
+    "status": "active",
+    "created_at": "2024-01-15T10:30:00Z"
+  }
+}</code></pre>
+                                </div>
+                            </div>
+
+                            <h2>📈 Analytics API</h2>
+
+                            <div class="endpoint">
+                                <div class="endpoint-header">
+                                    <span class="method get">GET</span>
+                                    <span class="url">/analytics/search-trends</span>
+                                </div>
+
+                                <p>Get search trends and popular queries for market insights.</p>
+
+                                <h3>Query Parameters</h3>
+                                <div class="params-table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Parameter</th>
+                                                <th>Type</th>
+                                                <th>Required</th>
+                                                <th>Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><code>period</code></td>
+                                                <td>string</td>
+                                                <td>❌</td>
+                                                <td>Time period: 7d, 30d, 90d (default: 7d)</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>category</code></td>
+                                                <td>string</td>
+                                                <td>❌</td>
+                                                <td>Filter by category</td>
+                                            </tr>
+                                            <tr>
+                                                <td><code>marketplace</code></td>
+                                                <td>string</td>
+                                                <td>❌</td>
+                                                <td>Filter by marketplace</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <h2>⚠️ Error Handling</h2>
+
+                            <p>The API uses standard HTTP status codes and returns detailed error information:</p>
+
+                            <div class="error-codes">
+                                <div class="error-code">
+                                    <span class="status">400</span>
+                                    <span class="message">Bad Request - Invalid parameters</span>
+                                </div>
+                                <div class="error-code">
+                                    <span class="status">401</span>
+                                    <span class="message">Unauthorized - Invalid API key</span>
+                                </div>
+                                <div class="error-code">
+                                    <span class="status">429</span>
+                                    <span class="message">Rate Limited - Too many requests</span>
+                                </div>
+                                <div class="error-code">
+                                    <span class="status">500</span>
+                                    <span class="message">Internal Server Error</span>
+                                </div>
+                            </div>
+
+                            <h3>Error Response Format</h3>
+                            <div class="code-example">
+                                <div class="code-header">
+                                    <span>JSON</span>
+                                    <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                                </div>
+                                <pre><code class="language-json">{
+  "status": "error",
+  "error": {
+    "code": "INVALID_PARAMETER",
+    "message": "The 'q' parameter is required",
+    "details": {
+      "parameter": "q",
+      "expected": "string",
+      "received": "null"
+    }
+  },
+  "request_id": "req_xyz123"
+}</code></pre>
+                            </div>
+
+                            <h2>📚 SDK Libraries</h2>
+
+                            <div class="sdk-grid">
+                                <div class="sdk-card">
+                                    <h3>JavaScript/Node.js</h3>
+                                    <div class="code-example">
+                                        <pre><code class="language-bash">npm install skawr-sdk</code></pre>
+                                    </div>
+                                    <div class="code-example">
+                                        <pre><code class="language-javascript">import { Skawr } from 'skawr-sdk';
+
+const skawr = new Skawr({
+  apiKey: 'your_api_key'
+});
+
+const results = await skawr.search('iPhone 15');</code></pre>
+                                    </div>
+                                </div>
+
+                                <div class="sdk-card">
+                                    <h3>Python</h3>
+                                    <div class="code-example">
+                                        <pre><code class="language-bash">pip install skawr-python</code></pre>
+                                    </div>
+                                    <div class="code-example">
+                                        <pre><code class="language-python">from skawr import Skawr
+
+client = Skawr(api_key='your_api_key')
+results = client.search('iPhone 15')</code></pre>
+                                    </div>
+                                </div>
+
+                                <div class="sdk-card">
+                                    <h3>PHP</h3>
+                                    <div class="code-example">
+                                        <pre><code class="language-bash">composer require skawr/skawr-php</code></pre>
+                                    </div>
+                                    <div class="code-example">
+                                        <pre><code class="language-php"><?php
+use Skawr\Client;
+
+$skawr = new Client('your_api_key');
+$results = $skawr->search('iPhone 15');</code></pre>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <div class="page-navigation">
+                            <div class="nav-prev">
+                                <a href="getting-started.html" class="nav-link">
+                                    <div class="nav-icon">←</div>
+                                    <div class="nav-text">
+                                        <div class="nav-label">Previous</div>
+                                        <div class="nav-title">Getting Started</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nav-next">
+                                <a href="integration-guides.html" class="nav-link">
+                                    <div class="nav-text">
+                                        <div class="nav-label">Next</div>
+                                        <div class="nav-title">Integration Guides</div>
+                                    </div>
+                                    <div class="nav-icon">→</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <script>
+        // Sidebar toggle for mobile
+        document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+
+        // Chapter toggle functionality
+        document.querySelectorAll('.chapter-link').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const chapter = this.parentElement;
+                chapter.classList.toggle('expanded');
+            });
+        });
+
+        function copyCode(button) {
+            const code = button.parentElement.nextElementSibling.textContent;
+            navigator.clipboard.writeText(code).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+
+        function toggleTryIt() {
+            const sections = document.querySelectorAll('.try-it-section');
+            const button = document.getElementById('try-it-text');
+
+            sections.forEach(section => {
+                if (section.style.display === 'none') {
+                    section.style.display = 'block';
+                    button.textContent = 'Hide Try It';
+                } else {
+                    section.style.display = 'none';
+                    button.textContent = 'Try It Out';
+                }
+            });
+        }
+
+        function trySearchAPI() {
+            const q = document.getElementById('search-q').value;
+            const limit = document.getElementById('search-limit').value;
+            const sort = document.getElementById('search-sort').value;
+
+            const resultDiv = document.getElementById('try-it-result');
+            resultDiv.innerHTML = '<div class="loading">Sending request...</div>';
+
+            // Simulate API call
+            setTimeout(() => {
+                const mockResponse = {
+                    status: "success",
+                    data: {
+                        total: 12,
+                        limit: parseInt(limit),
+                        offset: 0,
+                        results: [
+                            {
+                                id: "prod_demo_1",
+                                title: q + " - Pro Max 256GB",
+                                price: { amount: 4299, currency: "SAR", formatted: "4,299 SAR" },
+                                marketplace: { name: "Haraj", url: "https://haraj.com.sa" },
+                                seller: { name: "TechStore", rating: 4.8, verified: true }
+                            },
+                            {
+                                id: "prod_demo_2",
+                                title: q + " - Standard 128GB",
+                                price: { amount: 3499, currency: "SAR", formatted: "3,499 SAR" },
+                                marketplace: { name: "Dubizzle", url: "https://dubizzle.com.sa" },
+                                seller: { name: "MobileShop", rating: 4.5, verified: true }
+                            }
+                        ]
+                    }
+                };
+
+                resultDiv.innerHTML = `
+                    <h4>Response:</h4>
+                    <div class="code-example">
+                        <pre><code class="language-json">${JSON.stringify(mockResponse, null, 2)}</code></pre>
+                    </div>
+                `;
+                Prism.highlightAll();
+            }, 1500);
+        }
+    </script>
+
+    <style>
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-left: 1rem;
+        }
+        .breadcrumb a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .api-overview {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .api-info {
+            background: #f8f9fa;
+            border-radius: 6px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .api-detail {
+            margin-bottom: 0.5rem;
+            font-family: monospace;
+        }
+
+        .endpoint {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .endpoint-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .method {
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .method.get {
+            background: #e8f5e8;
+            color: #2e7d2e;
+        }
+
+        .method.post {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .url {
+            font-family: monospace;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .params-table {
+            margin: 1rem 0;
+        }
+
+        .params-table table {
+            width: 100%;
+            border-collapse: collapse;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .params-table th,
+        .params-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--color-border);
+            text-align: left;
+        }
+
+        .params-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+        }
+
+        .params-table code {
+            background: #f1f3f4;
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9rem;
+        }
+
+        .code-example {
+            background: #f8f9fa;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .code-header {
+            background: #e9ecef;
+            padding: 0.5rem 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .copy-btn {
+            background: transparent;
+            border: 1px solid #ced4da;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+
+        .copy-btn:hover {
+            background: white;
+        }
+
+        .code-example pre {
+            margin: 0;
+            padding: 1rem;
+            overflow-x: auto;
+        }
+
+        .try-it-section {
+            background: #f8f9fa;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .try-it-form {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        .try-it-btn {
+            background: var(--color-accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .loading {
+            padding: 1rem;
+            text-align: center;
+            color: var(--color-text-light);
+        }
+
+        .error-codes {
+            display: grid;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .error-code {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .error-code .status {
+            font-weight: 600;
+            font-family: monospace;
+            background: #e74c3c;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+        }
+
+        .sdk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 1rem 0;
+        }
+
+        .sdk-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .sdk-card h3 {
+            margin-bottom: 1rem;
+            color: var(--color-text);
+        }
+
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            border-color: var(--color-accent);
+        }
+
+        .nav-prev .nav-link:hover {
+            transform: translateX(-4px);
+        }
+
+        .nav-next .nav-link:hover {
+            transform: translateX(4px);
+        }
+    </style>
+</body>
+</html>

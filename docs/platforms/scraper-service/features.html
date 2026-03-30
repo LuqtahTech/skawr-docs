@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scraper Service Features - Skawr Documentation</title>
+    <link rel="stylesheet" href="../../gitbook-style.css">
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico">
+    <style>
+        .scraper-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .scraper-hero::before {
+            content: '🕷️';
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            font-size: 4rem;
+            opacity: 0.3;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+        }
+
+        .capability-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .capability-badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .engine-section {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            margin: 3rem 0;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .engine-header {
+            background: linear-gradient(135deg, var(--skawr-charcoal) 0%, var(--skawr-bg-dark-1) 100%);
+            color: white;
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .engine-icon {
+            font-size: 2.5rem;
+        }
+
+        .engine-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .engine-description {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .engine-content {
+            padding: 2rem;
+        }
+
+        .scraper-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .scraper-feature {
+            background: #f8f9fa;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .scraper-feature:hover {
+            background: white;
+            border-color: var(--skawr-primary);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon {
+            width: 4rem;
+            height: 4rem;
+            background: var(--skawr-primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--skawr-text-title);
+        }
+
+        .feature-description {
+            color: var(--skawr-text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .spec-tag {
+            background: rgba(237, 116, 83, 0.1);
+            color: var(--skawr-primary);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .workflow-diagram {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid var(--skawr-hyperlink);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+        }
+
+        .workflow-title {
+            color: var(--skawr-hyperlink);
+            font-size: 2rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .workflow-step {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+            border: 1px solid rgba(86, 136, 255, 0.2);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3rem;
+            height: 3rem;
+            background: var(--skawr-hyperlink);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            margin: 1rem 0 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        .step-description {
+            color: var(--skawr-text-secondary);
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .step-details {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .step-metrics {
+            display: flex;
+            justify-content: space-around;
+            gap: 1rem;
+        }
+
+        .step-metric {
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--skawr-hyperlink);
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 0.8rem;
+            color: var(--skawr-text-muted);
+        }
+
+        .processing-pipeline {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .pipeline-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pipeline-stages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pipeline-stage {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--skawr-green);
+            transition: all 0.3s ease;
+        }
+
+        .pipeline-stage:hover {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .stage-title {
+            color: var(--skawr-green);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stage-description {
+            color: var(--skawr-text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+
+        .stage-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .stage-feature {
+            background: rgba(76, 175, 80, 0.1);
+            color: var(--skawr-green);
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .monitoring-dashboard {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .monitoring-title {
+            color: #d97706;
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .monitoring-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .monitoring-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: #f59e0b;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .card-title {
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            font-size: 1.1rem;
+        }
+
+        .card-content {
+            color: var(--skawr-text-secondary);
+            line-height: 1.6;
+        }
+
+        .card-content strong {
+            color: var(--skawr-text-title);
+        }
+
+        .performance-metrics {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid var(--skawr-green);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .metrics-title {
+            color: var(--skawr-green);
+            font-size: 1.8rem;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(76, 175, 80, 0.2);
+        }
+
+        .metric-card-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--skawr-green);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-card-label {
+            color: var(--skawr-text-secondary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-card-description {
+            color: var(--skawr-text-muted);
+            font-size: 0.85rem;
+        }
+
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--skawr-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: var(--skawr-primary-dk);
+        }
+
+        .breadcrumb-separator {
+            color: var(--skawr-text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .capability-badges {
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .scraper-features {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .pipeline-stages {
+                grid-template-columns: 1fr;
+            }
+
+            .monitoring-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .step-metrics {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <!-- Sidebar -->
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <div class="skawr-logo">
+                        <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" fill="#ED7453"/>
+                            <path d="M30 35 L50 55 L70 35 L65 30 L50 45 L35 30 Z" fill="white"/>
+                            <path d="M30 65 L50 45 L70 65 L65 70 L50 55 L35 70 Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h1 class="book-title">
+                        <span class="book-title-icon">📖</span>
+                        Skawr Docs
+                    </h1>
+                    <p class="book-subtitle">Complete Documentation</p>
+                </div>
+
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter">
+                            <a href="../../index.html">🏠 Overview</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../product/overview.html">📦 Product</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../market/competition.html">📊 Market Analysis</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../business/model.html">💼 Business Model</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../brand/identity.html">🎨 Brand Identity</a>
+                        </li>
+                        <li class="chapter active">
+                            <a href="../features-overview.html">🛠️ Platform Features</a>
+                            <ul class="articles">
+                                <li><a href="../features-overview.html">Features Overview</a></li>
+                                <li><a href="../backend-api/features.html">Backend API</a></li>
+                                <li><a href="../web-app/features.html">Web Application</a></li>
+                                <li><a href="../mobile-app/features.html">Mobile App</a></li>
+                                <li><a href="features.html">Scraper Service</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../developer/getting-started.html">👨‍💻 Developer</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../system/architecture.html">🏗️ Architecture</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../../support/faq.html">❓ Support</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/skawr" class="github-link">
+                        <span>📖</span>
+                        <span>GitHub</span>
+                    </a>
+                    <div class="sidebar-version">Version 1.0.0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="book-body">
+            <div class="body-inner">
+                <!-- Toolbar -->
+                <div class="book-toolbar">
+                    <div>
+                        <button class="btn btn-sm sidebar-toggle">☰ Menu</button>
+                    </div>
+                    <div>
+                        <a href="https://github.com/skawr/skawr-docs" class="btn btn-sm">📝 Edit</a>
+                    </div>
+                </div>
+
+                <!-- Breadcrumb -->
+                <div class="breadcrumb">
+                    <nav class="breadcrumb-nav">
+                        <a href="../../index.html">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="../features-overview.html">Platforms</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span>Scraper Service</span>
+                    </nav>
+                </div>
+
+                <!-- Page Content -->
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <!-- Scraper Hero -->
+                        <div class="scraper-hero">
+                            <h1 class="hero-title">Intelligent Scraper Service</h1>
+                            <div class="hero-subtitle">
+                                High-performance data collection engine with Celery workers, AI-powered processing, and real-time marketplace monitoring
+                            </div>
+
+                            <div class="capability-badges">
+                                <div class="capability-badge">
+                                    🌐 Multi-Platform Scraping
+                                </div>
+                                <div class="capability-badge">
+                                    ⚡ Distributed Processing
+                                </div>
+                                <div class="capability-badge">
+                                    🧠 AI Data Processing
+                                </div>
+                                <div class="capability-badge">
+                                    📊 Real-time Monitoring
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Data Collection Engine -->
+                        <div class="engine-section">
+                            <div class="engine-header">
+                                <div class="engine-icon">🔄</div>
+                                <div>
+                                    <h2 class="engine-title">Advanced Data Collection Engine</h2>
+                                    <div class="engine-description">Sophisticated scraping technology with anti-detection capabilities and intelligent rate limiting</div>
+                                </div>
+                            </div>
+                            <div class="engine-content">
+                                <div class="scraper-features">
+                                    <div class="scraper-feature">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">🕷️</div>
+                                            <div class="feature-title">Smart Web Scraping Engine</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            Advanced scraping technology with rotating proxies, browser automation, JavaScript rendering, and sophisticated anti-bot detection evasion mechanisms.
+                                        </div>
+                                        <div class="feature-specs">
+                                            <div class="spec-tag">Rotating Proxies</div>
+                                            <div class="spec-tag">Browser Automation</div>
+                                            <div class="spec-tag">JS Rendering</div>
+                                            <div class="spec-tag">Anti-Detection</div>
+                                            <div class="spec-tag">CAPTCHA Solving</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="scraper-feature">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">🚀</div>
+                                            <div class="feature-title">Distributed Task Processing</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            Celery-powered distributed architecture with automatic scaling, load balancing, priority queues, and fault-tolerant task execution across multiple worker nodes.
+                                        </div>
+                                        <div class="feature-specs">
+                                            <div class="spec-tag">Auto Scaling</div>
+                                            <div class="spec-tag">Load Balancing</div>
+                                            <div class="spec-tag">Priority Queues</div>
+                                            <div class="spec-tag">Fault Tolerance</div>
+                                            <div class="spec-tag">Worker Management</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="scraper-feature">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">⏱️</div>
+                                            <div class="feature-title">Real-Time Data Monitoring</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            Continuous monitoring of product prices, availability, and marketplace changes with instant notifications, trend analysis, and predictive alerts.
+                                        </div>
+                                        <div class="feature-specs">
+                                            <div class="spec-tag">Price Tracking</div>
+                                            <div class="spec-tag">Stock Monitoring</div>
+                                            <div class="spec-tag">Change Detection</div>
+                                            <div class="spec-tag">Trend Analysis</div>
+                                            <div class="spec-tag">Predictive Alerts</div>
+                                        </div>
+                                    </div>
+
+                                    <div class="scraper-feature">
+                                        <div class="feature-header">
+                                            <div class="feature-icon">🔍</div>
+                                            <div class="feature-title">Intelligent Target Discovery</div>
+                                        </div>
+                                        <div class="feature-description">
+                                            AI-powered discovery of new products, categories, and marketplaces with automatic pattern recognition, content analysis, and expansion suggestions.
+                                        </div>
+                                        <div class="feature-specs">
+                                            <div class="spec-tag">AI Discovery</div>
+                                            <div class="spec-tag">Pattern Recognition</div>
+                                            <div class="spec-tag">Content Analysis</div>
+                                            <div class="spec-tag">Auto Expansion</div>
+                                            <div class="spec-tag">Smart Suggestions</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scraping Workflow -->
+                        <div class="workflow-diagram">
+                            <h2 class="workflow-title">
+                                <span>🔄</span>
+                                Intelligent Scraping Workflow
+                            </h2>
+
+                            <div class="workflow-steps">
+                                <div class="workflow-step">
+                                    <div class="step-number">1</div>
+                                    <h3 class="step-title">Target Discovery</h3>
+                                    <div class="step-description">
+                                        AI-powered discovery of products and marketplaces with intelligent crawling strategies and pattern recognition.
+                                    </div>
+                                    <div class="step-details">
+                                        <div class="step-metrics">
+                                            <div class="step-metric">
+                                                <span class="metric-value">100K+</span>
+                                                <div class="metric-label">URLs/Day</div>
+                                            </div>
+                                            <div class="step-metric">
+                                                <span class="metric-value">95%</span>
+                                                <div class="metric-label">Accuracy</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="workflow-step">
+                                    <div class="step-number">2</div>
+                                    <h3 class="step-title">Data Extraction</h3>
+                                    <div class="step-description">
+                                        Advanced extraction with browser automation, JavaScript rendering, and intelligent content parsing for complex websites.
+                                    </div>
+                                    <div class="step-details">
+                                        <div class="step-metrics">
+                                            <div class="step-metric">
+                                                <span class="metric-value">50K+</span>
+                                                <div class="metric-label">Products/Hour</div>
+                                            </div>
+                                            <div class="step-metric">
+                                                <span class="metric-value">99.5%</span>
+                                                <div class="metric-label">Success Rate</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="workflow-step">
+                                    <div class="step-number">3</div>
+                                    <h3 class="step-title">Quality Processing</h3>
+                                    <div class="step-description">
+                                        AI-powered data cleaning, validation, normalization, and quality scoring with duplicate detection and enrichment.
+                                    </div>
+                                    <div class="step-details">
+                                        <div class="step-metrics">
+                                            <div class="step-metric">
+                                                <span class="metric-value">98%</span>
+                                                <div class="metric-label">Clean Data</div>
+                                            </div>
+                                            <div class="step-metric">
+                                                <span class="metric-value">&lt;2%</span>
+                                                <div class="metric-label">Duplicates</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="workflow-step">
+                                    <div class="step-number">4</div>
+                                    <h3 class="step-title">Real-Time Indexing</h3>
+                                    <div class="step-description">
+                                        Live data synchronization with search engines, database updates, and cache refresh for immediate availability.
+                                    </div>
+                                    <div class="step-details">
+                                        <div class="step-metrics">
+                                            <div class="step-metric">
+                                                <span class="metric-value">&lt;30s</span>
+                                                <div class="metric-label">Index Time</div>
+                                            </div>
+                                            <div class="step-metric">
+                                                <span class="metric-value">24/7</span>
+                                                <div class="metric-label">Availability</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Data Processing Pipeline -->
+                        <div class="processing-pipeline">
+                            <h3 class="pipeline-title">
+                                <span>⚙️</span>
+                                Data Processing & Quality Pipeline
+                            </h3>
+
+                            <div class="pipeline-stages">
+                                <div class="pipeline-stage">
+                                    <h4 class="stage-title">
+                                        <span>🧹</span>
+                                        Data Cleaning & Validation
+                                    </h4>
+                                    <div class="stage-description">
+                                        Automated data cleaning with validation rules, normalization algorithms, and quality checks to ensure accurate and consistent information.
+                                    </div>
+                                    <div class="stage-features">
+                                        <div class="stage-feature">Input Validation</div>
+                                        <div class="stage-feature">Format Normalization</div>
+                                        <div class="stage-feature">Quality Scoring</div>
+                                        <div class="stage-feature">Error Detection</div>
+                                    </div>
+                                </div>
+
+                                <div class="pipeline-stage">
+                                    <h4 class="stage-title">
+                                        <span>🏷️</span>
+                                        Smart Categorization Engine
+                                    </h4>
+                                    <div class="stage-description">
+                                        AI-powered product categorization with machine learning models trained on Saudi marketplace data for accurate classification.
+                                    </div>
+                                    <div class="stage-features">
+                                        <div class="stage-feature">Auto-Categorization</div>
+                                        <div class="stage-feature">Tag Generation</div>
+                                        <div class="stage-feature">Brand Recognition</div>
+                                        <div class="stage-feature">Attribute Extraction</div>
+                                    </div>
+                                </div>
+
+                                <div class="pipeline-stage">
+                                    <h4 class="stage-title">
+                                        <span>🔍</span>
+                                        Duplicate Detection System
+                                    </h4>
+                                    <div class="stage-description">
+                                        Advanced duplicate detection using fuzzy matching, image similarity, and content fingerprinting to maintain data integrity.
+                                    </div>
+                                    <div class="stage-features">
+                                        <div class="stage-feature">Fuzzy Matching</div>
+                                        <div class="stage-feature">Image Similarity</div>
+                                        <div class="stage-feature">Content Fingerprinting</div>
+                                        <div class="stage-feature">Merge Logic</div>
+                                    </div>
+                                </div>
+
+                                <div class="pipeline-stage">
+                                    <h4 class="stage-title">
+                                        <span>✨</span>
+                                        Data Enrichment Process
+                                    </h4>
+                                    <div class="stage-description">
+                                        Enhance product data with additional information from multiple sources, including images, specifications, and market insights.
+                                    </div>
+                                    <div class="stage-features">
+                                        <div class="stage-feature">Image Enhancement</div>
+                                        <div class="stage-feature">Spec Enrichment</div>
+                                        <div class="stage-feature">Price History</div>
+                                        <div class="stage-feature">Market Insights</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Monitoring Dashboard -->
+                        <div class="monitoring-dashboard">
+                            <h3 class="monitoring-title">
+                                <span>📊</span>
+                                Real-Time Monitoring & Analytics
+                            </h3>
+
+                            <div class="monitoring-grid">
+                                <div class="monitoring-card">
+                                    <div class="card-header">
+                                        <div class="card-icon">📈</div>
+                                        <div class="card-title">Performance Metrics</div>
+                                    </div>
+                                    <div class="card-content">
+                                        <strong>Success Rate Monitoring:</strong> Real-time tracking of scraping success rates with automatic alerts for performance degradation.<br><br>
+                                        <strong>Response Time Analysis:</strong> Detailed analytics on scraping speed, bottleneck identification, and optimization recommendations.<br><br>
+                                        <strong>Resource Utilization:</strong> Monitoring of CPU, memory, and network usage across distributed workers.
+                                    </div>
+                                </div>
+
+                                <div class="monitoring-card">
+                                    <div class="card-header">
+                                        <div class="card-icon">🔄</div>
+                                        <div class="card-title">Reliability Systems</div>
+                                    </div>
+                                    <div class="card-content">
+                                        <strong>Auto-Recovery:</strong> Intelligent retry mechanisms with exponential backoff and circuit breakers for failed requests.<br><br>
+                                        <strong>Health Checks:</strong> Continuous monitoring of target websites with automatic detection of structural changes.<br><br>
+                                        <strong>Failover Management:</strong> Automatic routing around failed proxies and workers to maintain service availability.
+                                    </div>
+                                </div>
+
+                                <div class="monitoring-card">
+                                    <div class="card-header">
+                                        <div class="card-icon">🚨</div>
+                                        <div class="card-title">Alert & Notification System</div>
+                                    </div>
+                                    <div class="card-content">
+                                        <strong>Smart Alerts:</strong> Intelligent alerting system with customizable thresholds and priority levels for different types of issues.<br><br>
+                                        <strong>Escalation Policies:</strong> Automatic escalation procedures for critical issues with multiple notification channels.<br><br>
+                                        <strong>Predictive Warnings:</strong> Machine learning-based predictions for potential issues before they impact service quality.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Performance Metrics -->
+                        <div class="performance-metrics">
+                            <h3 class="metrics-title">System Performance & Reliability Metrics</h3>
+
+                            <div class="metrics-grid">
+                                <div class="metric-card">
+                                    <span class="metric-card-value">5M+</span>
+                                    <div class="metric-card-label">Products Processed Daily</div>
+                                    <div class="metric-card-description">High-volume data processing capacity</div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <span class="metric-card-value">99.5%</span>
+                                    <div class="metric-card-label">Success Rate</div>
+                                    <div class="metric-card-description">Reliable data extraction accuracy</div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <span class="metric-card-value">&lt;30s</span>
+                                    <div class="metric-card-label">Data Freshness</div>
+                                    <div class="metric-card-description">Real-time data availability</div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <span class="metric-card-value">50K+</span>
+                                    <div class="metric-card-label">Products/Hour</div>
+                                    <div class="metric-card-description">High-throughput processing speed</div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <span class="metric-card-value">98%</span>
+                                    <div class="metric-card-label">Data Quality Score</div>
+                                    <div class="metric-card-description">Clean, validated information</div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <span class="metric-card-value">24/7</span>
+                                    <div class="metric-card-label">Continuous Operation</div>
+                                    <div class="metric-card-description">Always-on data collection</div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <span class="metric-card-value">&lt;2%</span>
+                                    <div class="metric-card-label">Duplicate Rate</div>
+                                    <div class="metric-card-description">Effective deduplication</div>
+                                </div>
+
+                                <div class="metric-card">
+                                    <span class="metric-card-value">100+</span>
+                                    <div class="metric-card-label">Concurrent Workers</div>
+                                    <div class="metric-card-description">Scalable processing power</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation -->
+                        <div class="page-navigation">
+                            <a href="../mobile-app/features.html" class="nav-link">
+                                <span class="nav-icon">←</span>
+                                <div class="nav-text">
+                                    <div class="nav-label">Previous</div>
+                                    <div class="nav-title">Mobile Application</div>
+                                </div>
+                            </a>
+                            <a href="../../developer/getting-started.html" class="nav-link">
+                                <div class="nav-text">
+                                    <div class="nav-label">Next</div>
+                                    <div class="nav-title">Developer Guide</div>
+                                </div>
+                                <span class="nav-icon">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        document.querySelector('.sidebar-toggle')?.addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+
+        // Add animation to elements on scroll
+        const observeElements = (selector) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll(selector).forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        };
+
+        // Observe various elements for animations
+        observeElements('.engine-section');
+        observeElements('.scraper-feature');
+        observeElements('.workflow-step');
+        observeElements('.pipeline-stage');
+        observeElements('.monitoring-card');
+        observeElements('.metric-card');
+
+        // Interactive scraper feature hover effects
+        document.querySelectorAll('.scraper-feature').forEach(feature => {
+            feature.addEventListener('click', function() {
+                this.classList.toggle('expanded');
+            });
+        });
+
+        // Workflow step interactions
+        document.querySelectorAll('.workflow-step').forEach(step => {
+            step.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            step.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Pipeline stage hover effects
+        document.querySelectorAll('.pipeline-stage').forEach(stage => {
+            stage.addEventListener('mouseenter', function() {
+                this.style.borderLeftColor = 'var(--skawr-primary)';
+            });
+            stage.addEventListener('mouseleave', function() {
+                this.style.borderLeftColor = 'var(--skawr-green)';
+            });
+        });
+
+        // Animate performance metrics
+        function animateCounters() {
+            document.querySelectorAll('.metric-card-value').forEach(counter => {
+                const value = counter.textContent;
+                if (value.includes('M+') || value.includes('K+')) {
+                    const baseValue = parseInt(value);
+                    let currentValue = 0;
+                    const increment = baseValue / 30;
+
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= baseValue) {
+                            counter.textContent = value;
+                            clearInterval(timer);
+                        } else {
+                            if (value.includes('M+')) {
+                                counter.textContent = (currentValue / 1000).toFixed(1) + 'M+';
+                            } else if (value.includes('K+')) {
+                                counter.textContent = Math.floor(currentValue) + 'K+';
+                            }
+                        }
+                    }, 50);
+                }
+                if (value.includes('%')) {
+                    const finalValue = parseFloat(value);
+                    let currentValue = 0;
+                    const increment = finalValue / 30;
+
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= finalValue) {
+                            counter.textContent = value;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = currentValue.toFixed(1) + '%';
+                        }
+                    }, 50);
+                }
+            });
+
+            document.querySelectorAll('.metric-value').forEach(counter => {
+                const value = counter.textContent;
+                if (value.includes('K+')) {
+                    const baseValue = parseInt(value);
+                    let currentValue = 0;
+                    const increment = baseValue / 30;
+
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= baseValue) {
+                            counter.textContent = value;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = Math.floor(currentValue) + 'K+';
+                        }
+                    }, 50);
+                }
+                if (value.includes('%')) {
+                    const finalValue = parseFloat(value);
+                    let currentValue = 0;
+                    const increment = finalValue / 30;
+
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= finalValue) {
+                            counter.textContent = value;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = currentValue.toFixed(1) + '%';
+                        }
+                    }, 50);
+                }
+            });
+        }
+
+        // Start animations when elements come into view
+        const performanceObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    performanceObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('.performance-metrics, .workflow-diagram').forEach(section => {
+            performanceObserver.observe(section);
+        });
+
+        // Add loading animation to workflow steps
+        document.querySelectorAll('.workflow-step').forEach((step, index) => {
+            step.style.animationDelay = `${index * 0.2}s`;
+        });
+
+        // Interactive monitoring cards
+        document.querySelectorAll('.monitoring-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

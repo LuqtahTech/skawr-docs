@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Platform Features Overview - Skawr Documentation</title>
+    <link rel="stylesheet" href="../gitbook-style.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <style>
+        .platform-showcase {
+            background: linear-gradient(135deg, #fff5f0 0%, #fef2e8 100%);
+            border: 2px solid var(--skawr-primary);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .showcase-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--skawr-primary);
+            margin-bottom: 1rem;
+        }
+
+        .showcase-subtitle {
+            font-size: 1.2rem;
+            color: var(--skawr-text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .platform-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .platform-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-color: var(--skawr-primary);
+        }
+
+        .platform-header {
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--skawr-charcoal) 0%, var(--skawr-bg-dark-1) 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .platform-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 100%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .platform-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+
+        .platform-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .platform-description {
+            color: var(--skawr-text-inactive);
+            font-size: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .platform-content {
+            padding: 2rem;
+        }
+
+        .feature-category {
+            margin: 2rem 0;
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--skawr-primary);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .feature-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .feature-item {
+            background: #f8f9fa;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .feature-item:hover {
+            background: white;
+            border-color: var(--skawr-primary);
+            transform: translateX(4px);
+        }
+
+        .feature-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-description {
+            color: var(--skawr-text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .feature-benefits {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .benefit-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .benefit-item {
+            background: rgba(237, 116, 83, 0.05);
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--skawr-primary);
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .tech-stack {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            margin: 3rem 0;
+            padding: 2rem;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tech-category {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--skawr-primary);
+        }
+
+        .tech-category h4 {
+            color: var(--skawr-primary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .tech-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: 0.75rem 0;
+            padding: 0.5rem;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--color-border);
+        }
+
+        .tech-icon {
+            width: 2rem;
+            height: 2rem;
+            background: var(--skawr-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 0.8rem;
+        }
+
+        .tech-details {
+            flex: 1;
+        }
+
+        .tech-name {
+            font-weight: 600;
+            color: var(--skawr-text-title);
+        }
+
+        .tech-purpose {
+            font-size: 0.85rem;
+            color: var(--skawr-text-secondary);
+        }
+
+        .integration-flow {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid var(--skawr-hyperlink);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .flow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .flow-step {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2rem;
+            height: 2rem;
+            background: var(--skawr-hyperlink);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            margin: 1rem 0 0.5rem;
+        }
+
+        .step-description {
+            color: var(--skawr-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .api-endpoints {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .endpoint-header {
+            background: var(--skawr-charcoal);
+            color: white;
+            padding: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .endpoint-list {
+            padding: 1.5rem;
+        }
+
+        .endpoint-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            margin: 0.75rem 0;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid var(--skawr-green);
+        }
+
+        .endpoint-method {
+            background: var(--skawr-green);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            min-width: 4rem;
+            text-align: center;
+        }
+
+        .endpoint-method.post {
+            background: var(--skawr-primary);
+        }
+
+        .endpoint-method.delete {
+            background: var(--skawr-error);
+        }
+
+        .endpoint-path {
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-weight: 600;
+            color: var(--skawr-text-title);
+        }
+
+        .endpoint-description {
+            color: var(--skawr-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .success-metrics {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 1px solid var(--skawr-green);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(76, 175, 80, 0.2);
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--skawr-green);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            color: var(--skawr-text-secondary);
+            font-weight: 500;
+        }
+
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--skawr-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: var(--skawr-primary-dk);
+        }
+
+        .breadcrumb-separator {
+            color: var(--skawr-text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .platform-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .flow-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+
+            .showcase-title {
+                font-size: 1.8rem;
+            }
+
+            .endpoint-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <!-- Sidebar -->
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <div class="skawr-logo">
+                        <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" fill="#ED7453"/>
+                            <path d="M30 35 L50 55 L70 35 L65 30 L50 45 L35 30 Z" fill="white"/>
+                            <path d="M30 65 L50 45 L70 65 L65 70 L50 55 L35 70 Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h1 class="book-title">
+                        <span class="book-title-icon">📖</span>
+                        Skawr Docs
+                    </h1>
+                    <p class="book-subtitle">Complete Documentation</p>
+                </div>
+
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter">
+                            <a href="../index.html">🏠 Overview</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../product/overview.html">📦 Product</a>
+                            <ul class="articles">
+                                <li><a href="../product/overview.html">Overview</a></li>
+                                <li><a href="../product/value-proposition.html">Value Proposition</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="../market/competition.html">📊 Market Analysis</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../business/model.html">💼 Business Model</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../brand/identity.html">🎨 Brand Identity</a>
+                        </li>
+                        <li class="chapter active">
+                            <a href="features-overview.html">🛠️ Platform Features</a>
+                            <ul class="articles">
+                                <li><a href="features-overview.html">Features Overview</a></li>
+                                <li><a href="backend-api/features.html">Backend API</a></li>
+                                <li><a href="web-app/features.html">Web Application</a></li>
+                                <li><a href="mobile-app/features.html">Mobile App</a></li>
+                                <li><a href="scraper-service/features.html">Scraper Service</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="../developer/getting-started.html">👨‍💻 Developer</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../system/architecture.html">🏗️ Architecture</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../support/faq.html">❓ Support</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/skawr" class="github-link">
+                        <span>📖</span>
+                        <span>GitHub</span>
+                    </a>
+                    <div class="sidebar-version">Version 1.0.0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="book-body">
+            <div class="body-inner">
+                <!-- Toolbar -->
+                <div class="book-toolbar">
+                    <div>
+                        <button class="btn btn-sm sidebar-toggle">☰ Menu</button>
+                    </div>
+                    <div>
+                        <a href="https://github.com/skawr/skawr-docs" class="btn btn-sm">📝 Edit</a>
+                    </div>
+                </div>
+
+                <!-- Breadcrumb -->
+                <div class="breadcrumb">
+                    <nav class="breadcrumb-nav">
+                        <a href="../index.html">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="features-overview.html">Platforms</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span>Features Overview</span>
+                    </nav>
+                </div>
+
+                <!-- Page Content -->
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <header>
+                            <h1>Platform Features Overview</h1>
+                            <p class="hero-description">
+                                Comprehensive guide to all Skawr platform features, from intelligent search and marketplace aggregation to SaaS tools and mobile experiences.
+                            </p>
+                        </header>
+
+                        <!-- Platform Showcase -->
+                        <div class="platform-showcase">
+                            <div class="showcase-title">Complete Marketplace Ecosystem</div>
+                            <div class="showcase-subtitle">Four integrated platforms working together to transform Saudi e-commerce</div>
+                        </div>
+
+                        <!-- Platform Overview -->
+                        <section>
+                            <h2 class="section-title">Platform Architecture</h2>
+
+                            <div class="platform-grid">
+                                <!-- Backend API -->
+                                <div class="platform-card">
+                                    <div class="platform-header">
+                                        <div class="platform-icon">🚀</div>
+                                        <div class="platform-title">Backend API Engine</div>
+                                        <div class="platform-description">FastAPI-powered core system providing intelligent search, multi-tenant SaaS, and marketplace integrations</div>
+                                    </div>
+                                    <div class="platform-content">
+                                        <div class="feature-category">
+                                            <div class="category-title">
+                                                <span>🔍</span>
+                                                Intelligent Search Features
+                                            </div>
+                                            <div class="feature-list">
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>🧠</span>
+                                                        AI-Powered Hybrid Search
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Combines keyword matching with semantic vector search for understanding user intent beyond exact keywords
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Arabic/English</div>
+                                                            <div class="benefit-item">Intent Recognition</div>
+                                                            <div class="benefit-item">Typo Tolerance</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>⚡</span>
+                                                        Real-Time Autocomplete
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Lightning-fast search suggestions that learn from user behavior and popular searches
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">&lt;100ms Response</div>
+                                                            <div class="benefit-item">Smart Suggestions</div>
+                                                            <div class="benefit-item">Popular Terms</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>🎯</span>
+                                                        Advanced Filtering System
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Dynamic faceted search with price ranges, categories, locations, conditions, and marketplace-specific filters
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Price Ranges</div>
+                                                            <div class="benefit-item">Category Trees</div>
+                                                            <div class="benefit-item">Location-Based</div>
+                                                            <div class="benefit-item">Condition Filters</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="feature-category">
+                                            <div class="category-title">
+                                                <span>🏢</span>
+                                                Multi-Tenant SaaS Platform
+                                            </div>
+                                            <div class="feature-list">
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>🔐</span>
+                                                        Enterprise Client Management
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Complete client isolation with custom search indices, API keys, usage tracking, and billing management
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Data Isolation</div>
+                                                            <div class="benefit-item">Custom Indices</div>
+                                                            <div class="benefit-item">API Management</div>
+                                                            <div class="benefit-item">Usage Analytics</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>📊</span>
+                                                        Bulk Operations Suite
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Efficient bulk product uploads, index management, and batch processing for enterprise clients
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Bulk Upload</div>
+                                                            <div class="benefit-item">Progress Tracking</div>
+                                                            <div class="benefit-item">Error Handling</div>
+                                                            <div class="benefit-item">Validation</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="feature-category">
+                                            <div class="category-title">
+                                                <span>🔗</span>
+                                                Marketplace Integrations
+                                            </div>
+                                            <div class="feature-list">
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>🛒</span>
+                                                        Salla Integration Suite
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Complete Salla marketplace integration with OAuth, webhooks, product sync, and embedded widgets
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">OAuth Flow</div>
+                                                            <div class="benefit-item">Real-time Sync</div>
+                                                            <div class="benefit-item">Webhook System</div>
+                                                            <div class="benefit-item">Widget Embed</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>🔄</span>
+                                                        Webhook Reliability System
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Enterprise-grade webhook processing with automatic retries, dead letter queues, and monitoring
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Auto Retry</div>
+                                                            <div class="benefit-item">Dead Letter Queue</div>
+                                                            <div class="benefit-item">Monitoring</div>
+                                                            <div class="benefit-item">Manual Recovery</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Web Application -->
+                                <div class="platform-card">
+                                    <div class="platform-header">
+                                        <div class="platform-icon">💻</div>
+                                        <div class="platform-title">Web Application</div>
+                                        <div class="platform-description">React-powered user interface for search, listing management, and dashboard functionality</div>
+                                    </div>
+                                    <div class="platform-content">
+                                        <div class="feature-category">
+                                            <div class="category-title">
+                                                <span>🎨</span>
+                                                User Experience Features
+                                            </div>
+                                            <div class="feature-list">
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>📱</span>
+                                                        Responsive Design System
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Mobile-first responsive design that works perfectly across all devices and screen sizes
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Mobile-First</div>
+                                                            <div class="benefit-item">Cross-Browser</div>
+                                                            <div class="benefit-item">Touch Optimized</div>
+                                                            <div class="benefit-item">Fast Loading</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>🔍</span>
+                                                        Advanced Search Interface
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Intuitive search interface with real-time suggestions, filters, and advanced search options
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Live Search</div>
+                                                            <div class="benefit-item">Smart Filters</div>
+                                                            <div class="benefit-item">Save Searches</div>
+                                                            <div class="benefit-item">Search History</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>📊</span>
+                                                        Comprehensive Dashboard
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Centralized dashboard for managing listings, viewing analytics, and accessing all platform features
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Activity Overview</div>
+                                                            <div class="benefit-item">Quick Actions</div>
+                                                            <div class="benefit-item">Analytics</div>
+                                                            <div class="benefit-item">Notifications</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="feature-category">
+                                            <div class="category-title">
+                                                <span>📝</span>
+                                                Product Management
+                                            </div>
+                                            <div class="feature-list">
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>✨</span>
+                                                        Smart Listing Creator
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Step-by-step listing wizard with AI assistance for descriptions, category suggestions, and pricing guidance
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">AI Descriptions</div>
+                                                            <div class="benefit-item">Category AI</div>
+                                                            <div class="benefit-item">Price Guidance</div>
+                                                            <div class="benefit-item">Image Upload</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>📋</span>
+                                                        Listing Management Suite
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Complete listing management with bulk operations, performance tracking, and optimization suggestions
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Bulk Edit</div>
+                                                            <div class="benefit-item">Performance Metrics</div>
+                                                            <div class="benefit-item">Status Management</div>
+                                                            <div class="benefit-item">Optimization Tips</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="feature-category">
+                                            <div class="category-title">
+                                                <span>🔐</span>
+                                                Security & Performance
+                                            </div>
+                                            <div class="feature-list">
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>🛡️</span>
+                                                        Advanced Authentication
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Secure authentication system with protected routes, session management, and automatic token refresh
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Route Protection</div>
+                                                            <div class="benefit-item">Session Management</div>
+                                                            <div class="benefit-item">Auto-refresh</div>
+                                                            <div class="benefit-item">Secure Storage</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>⚡</span>
+                                                        Performance Optimization
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Optimized performance with code splitting, caching, lazy loading, and modern build optimizations
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Code Splitting</div>
+                                                            <div class="benefit-item">Smart Caching</div>
+                                                            <div class="benefit-item">Lazy Loading</div>
+                                                            <div class="benefit-item">Hot Reload</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Mobile Application -->
+                                <div class="platform-card">
+                                    <div class="platform-header">
+                                        <div class="platform-icon">📱</div>
+                                        <div class="platform-title">Mobile Application</div>
+                                        <div class="platform-description">Flutter-powered native mobile app for iOS and Android with marketplace functionality</div>
+                                    </div>
+                                    <div class="platform-content">
+                                        <div class="feature-category">
+                                            <div class="category-title">
+                                                <span>🚀</span>
+                                                Native Mobile Features
+                                            </div>
+                                            <div class="feature-list">
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>📱</span>
+                                                        Cross-Platform Native Experience
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Single codebase delivering native performance on both iOS and Android with platform-specific optimizations
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">iOS Native</div>
+                                                            <div class="benefit-item">Android Native</div>
+                                                            <div class="benefit-item">60fps Performance</div>
+                                                            <div class="benefit-item">Native Widgets</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>📷</span>
+                                                        Camera Integration
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Built-in camera functionality for product photography with filters, editing, and automatic optimization
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Photo Capture</div>
+                                                            <div class="benefit-item">Image Editing</div>
+                                                            <div class="benefit-item">Filters</div>
+                                                            <div class="benefit-item">Auto Optimize</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>🔔</span>
+                                                        Push Notifications
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Real-time push notifications for price alerts, new messages, listing updates, and marketplace activity
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Price Alerts</div>
+                                                            <div class="benefit-item">Activity Updates</div>
+                                                            <div class="benefit-item">Chat Messages</div>
+                                                            <div class="benefit-item">Custom Preferences</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>📍</span>
+                                                        Location-Based Features
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        GPS integration for location-based search, nearby deals, local marketplace filtering, and delivery preferences
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Nearby Search</div>
+                                                            <div class="benefit-item">Local Deals</div>
+                                                            <div class="benefit-item">Delivery Zones</div>
+                                                            <div class="benefit-item">Map Integration</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="feature-category">
+                                            <div class="category-title">
+                                                <span>💬</span>
+                                                Communication & Social
+                                            </div>
+                                            <div class="feature-list">
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>💬</span>
+                                                        In-App Messaging
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Real-time messaging system between buyers and sellers with image sharing, read receipts, and conversation history
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Real-time Chat</div>
+                                                            <div class="benefit-item">Image Sharing</div>
+                                                            <div class="benefit-item">Read Receipts</div>
+                                                            <div class="benefit-item">Chat History</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>⭐</span>
+                                                        Review & Rating System
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Comprehensive review system with ratings, photos, detailed feedback, and seller reputation tracking
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Star Ratings</div>
+                                                            <div class="benefit-item">Photo Reviews</div>
+                                                            <div class="benefit-item">Detailed Feedback</div>
+                                                            <div class="benefit-item">Seller Reputation</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="feature-category">
+                                            <div class="category-title">
+                                                <span>🛡️</span>
+                                                Security & Privacy
+                                            </div>
+                                            <div class="feature-list">
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>🔐</span>
+                                                        Biometric Authentication
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Advanced security with fingerprint, Face ID, and PIN authentication for secure access to the app
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Fingerprint</div>
+                                                            <div class="benefit-item">Face ID</div>
+                                                            <div class="benefit-item">PIN Code</div>
+                                                            <div class="benefit-item">Secure Storage</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>🛡️</span>
+                                                        Privacy Protection
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Comprehensive privacy controls with data encryption, secure communications, and user privacy settings
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">End-to-end Encryption</div>
+                                                            <div class="benefit-item">Privacy Controls</div>
+                                                            <div class="benefit-item">Data Protection</div>
+                                                            <div class="benefit-item">GDPR Compliant</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Scraper Service -->
+                                <div class="platform-card">
+                                    <div class="platform-header">
+                                        <div class="platform-icon">🕷️</div>
+                                        <div class="platform-title">Scraper Service</div>
+                                        <div class="platform-description">Intelligent data collection system with Celery workers for real-time marketplace monitoring</div>
+                                    </div>
+                                    <div class="platform-content">
+                                        <div class="feature-category">
+                                            <div class="category-title">
+                                                <span>🔄</span>
+                                                Data Collection Engine
+                                            </div>
+                                            <div class="feature-list">
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>🕷️</span>
+                                                        Smart Web Scraping
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Advanced scraping technology with anti-bot detection, rate limiting, and respect for robots.txt
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Anti-Detection</div>
+                                                            <div class="benefit-item">Rate Limiting</div>
+                                                            <div class="benefit-item">Robots.txt</div>
+                                                            <div class="benefit-item">Error Handling</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>🚀</span>
+                                                        Distributed Processing
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Celery-powered distributed task processing for handling millions of products across multiple marketplaces
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Parallel Processing</div>
+                                                            <div class="benefit-item">Queue Management</div>
+                                                            <div class="benefit-item">Worker Scaling</div>
+                                                            <div class="benefit-item">Job Prioritization</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>⏱️</span>
+                                                        Real-Time Monitoring
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Continuous monitoring of product prices, availability, and marketplace changes with instant updates
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Price Tracking</div>
+                                                            <div class="benefit-item">Stock Monitoring</div>
+                                                            <div class="benefit-item">Change Detection</div>
+                                                            <div class="benefit-item">Alert System</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="feature-category">
+                                            <div class="category-title">
+                                                <span>📊</span>
+                                                Data Processing & Quality
+                                            </div>
+                                            <div class="feature-list">
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>🧹</span>
+                                                        Data Cleaning & Validation
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Automated data cleaning with validation, normalization, and quality checks to ensure accurate information
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Data Validation</div>
+                                                            <div class="benefit-item">Normalization</div>
+                                                            <div class="benefit-item">Duplicate Detection</div>
+                                                            <div class="benefit-item">Quality Scoring</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>🏷️</span>
+                                                        Smart Categorization
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        AI-powered product categorization and tag generation for better search and discovery
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Auto-Categorization</div>
+                                                            <div class="benefit-item">Tag Generation</div>
+                                                            <div class="benefit-item">Brand Recognition</div>
+                                                            <div class="benefit-item">Attribute Extraction</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="feature-category">
+                                            <div class="category-title">
+                                                <span>📈</span>
+                                                Performance & Reliability
+                                            </div>
+                                            <div class="feature-list">
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>📊</span>
+                                                        Performance Monitoring
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Comprehensive monitoring of scraping performance, success rates, and system health with detailed analytics
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Success Rates</div>
+                                                            <div class="benefit-item">Response Times</div>
+                                                            <div class="benefit-item">Error Tracking</div>
+                                                            <div class="benefit-item">Health Metrics</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="feature-item">
+                                                    <div class="feature-title">
+                                                        <span>🔄</span>
+                                                        Fault Tolerance
+                                                    </div>
+                                                    <div class="feature-description">
+                                                        Robust error handling with automatic retries, fallback strategies, and graceful failure management
+                                                    </div>
+                                                    <div class="feature-benefits">
+                                                        <div class="benefit-list">
+                                                            <div class="benefit-item">Auto Retry</div>
+                                                            <div class="benefit-item">Circuit Breakers</div>
+                                                            <div class="benefit-item">Fallback Strategies</div>
+                                                            <div class="benefit-item">Graceful Degradation</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Technology Stack -->
+                        <section>
+                            <div class="tech-stack">
+                                <h2 class="section-title">Technology Stack</h2>
+                                <div class="tech-grid">
+                                    <div class="tech-category">
+                                        <h4>🚀 Backend Technologies</h4>
+                                        <div class="tech-item">
+                                            <div class="tech-icon">F</div>
+                                            <div class="tech-details">
+                                                <div class="tech-name">FastAPI</div>
+                                                <div class="tech-purpose">High-performance API framework</div>
+                                            </div>
+                                        </div>
+                                        <div class="tech-item">
+                                            <div class="tech-icon">P</div>
+                                            <div class="tech-details">
+                                                <div class="tech-name">PostgreSQL</div>
+                                                <div class="tech-purpose">Primary database with pgvector</div>
+                                            </div>
+                                        </div>
+                                        <div class="tech-item">
+                                            <div class="tech-icon">E</div>
+                                            <div class="tech-details">
+                                                <div class="tech-name">Elasticsearch</div>
+                                                <div class="tech-purpose">Search and analytics engine</div>
+                                            </div>
+                                        </div>
+                                        <div class="tech-item">
+                                            <div class="tech-icon">C</div>
+                                            <div class="tech-details">
+                                                <div class="tech-name">Celery</div>
+                                                <div class="tech-purpose">Distributed task queue</div>
+                                            </div>
+                                        </div>
+                                        <div class="tech-item">
+                                            <div class="tech-icon">R</div>
+                                            <div class="tech-details">
+                                                <div class="tech-name">Redis</div>
+                                                <div class="tech-purpose">Caching and message broker</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tech-category">
+                                        <h4>💻 Frontend Technologies</h4>
+                                        <div class="tech-item">
+                                            <div class="tech-icon">R</div>
+                                            <div class="tech-details">
+                                                <div class="tech-name">React 19.1</div>
+                                                <div class="tech-purpose">Modern UI framework</div>
+                                            </div>
+                                        </div>
+                                        <div class="tech-item">
+                                            <div class="tech-icon">T</div>
+                                            <div class="tech-details">
+                                                <div class="tech-name">TypeScript</div>
+                                                <div class="tech-purpose">Type-safe development</div>
+                                            </div>
+                                        </div>
+                                        <div class="tech-item">
+                                            <div class="tech-icon">V</div>
+                                            <div class="tech-details">
+                                                <div class="tech-name">Vite</div>
+                                                <div class="tech-purpose">Fast build tool</div>
+                                            </div>
+                                        </div>
+                                        <div class="tech-item">
+                                            <div class="tech-icon">Q</div>
+                                            <div class="tech-details">
+                                                <div class="tech-name">TanStack Query</div>
+                                                <div class="tech-purpose">Server state management</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tech-category">
+                                        <h4>📱 Mobile Technologies</h4>
+                                        <div class="tech-item">
+                                            <div class="tech-icon">F</div>
+                                            <div class="tech-details">
+                                                <div class="tech-name">Flutter</div>
+                                                <div class="tech-purpose">Cross-platform mobile framework</div>
+                                            </div>
+                                        </div>
+                                        <div class="tech-item">
+                                            <div class="tech-icon">D</div>
+                                            <div class="tech-details">
+                                                <div class="tech-name">Dart</div>
+                                                <div class="tech-purpose">Programming language</div>
+                                            </div>
+                                        </div>
+                                        <div class="tech-item">
+                                            <div class="tech-icon">F</div>
+                                            <div class="tech-details">
+                                                <div class="tech-name">Firebase</div>
+                                                <div class="tech-purpose">Backend services integration</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tech-category">
+                                        <h4>☁️ Infrastructure</h4>
+                                        <div class="tech-item">
+                                            <div class="tech-icon">A</div>
+                                            <div class="tech-details">
+                                                <div class="tech-name">AWS</div>
+                                                <div class="tech-purpose">Cloud infrastructure</div>
+                                            </div>
+                                        </div>
+                                        <div class="tech-item">
+                                            <div class="tech-icon">D</div>
+                                            <div class="tech-details">
+                                                <div class="tech-name">Docker</div>
+                                                <div class="tech-purpose">Containerization</div>
+                                            </div>
+                                        </div>
+                                        <div class="tech-item">
+                                            <div class="tech-icon">K</div>
+                                            <div class="tech-details">
+                                                <div class="tech-name">Kubernetes</div>
+                                                <div class="tech-purpose">Container orchestration</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Integration Flow -->
+                        <section>
+                            <div class="integration-flow">
+                                <h2 class="section-title" style="text-align: center; color: var(--skawr-hyperlink);">Platform Integration Flow</h2>
+                                <div class="flow-steps">
+                                    <div class="flow-step">
+                                        <div class="step-number">1</div>
+                                        <div class="step-title">Data Collection</div>
+                                        <div class="step-description">Scraper service gathers product data from multiple marketplaces</div>
+                                    </div>
+                                    <div class="flow-step">
+                                        <div class="step-number">2</div>
+                                        <div class="step-title">Data Processing</div>
+                                        <div class="step-description">AI-powered cleaning, categorization, and indexing</div>
+                                    </div>
+                                    <div class="flow-step">
+                                        <div class="step-number">3</div>
+                                        <div class="step-title">Search & Discovery</div>
+                                        <div class="step-description">Backend API provides intelligent search and recommendations</div>
+                                    </div>
+                                    <div class="flow-step">
+                                        <div class="step-number">4</div>
+                                        <div class="step-title">User Interface</div>
+                                        <div class="step-description">Web and mobile apps deliver seamless user experience</div>
+                                    </div>
+                                    <div class="flow-step">
+                                        <div class="step-number">5</div>
+                                        <div class="step-title">Real-time Updates</div>
+                                        <div class="step-description">Continuous monitoring and updates across all platforms</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Success Metrics -->
+                        <section>
+                            <div class="success-metrics">
+                                <h2 class="section-title" style="text-align: center; color: var(--skawr-green);">Platform Performance Metrics</h2>
+                                <div class="metrics-grid">
+                                    <div class="metric-card">
+                                        <span class="metric-value">&lt;200ms</span>
+                                        <div class="metric-label">Search Response Time</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <span class="metric-value">99.9%</span>
+                                        <div class="metric-label">System Uptime</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <span class="metric-value">1000+</span>
+                                        <div class="metric-label">Requests/Second</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <span class="metric-value">5M+</span>
+                                        <div class="metric-label">Products Indexed</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <span class="metric-value">&lt;2s</span>
+                                        <div class="metric-label">Page Load Time</div>
+                                    </div>
+                                    <div class="metric-card">
+                                        <span class="metric-value">24/7</span>
+                                        <div class="metric-label">Real-time Monitoring</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Navigation -->
+                        <div class="page-navigation">
+                            <a href="../brand/identity.html" class="nav-link">
+                                <span class="nav-icon">←</span>
+                                <div class="nav-text">
+                                    <div class="nav-label">Previous</div>
+                                    <div class="nav-title">Brand Identity</div>
+                                </div>
+                            </a>
+                            <a href="backend-api/features.html" class="nav-link">
+                                <div class="nav-text">
+                                    <div class="nav-label">Next</div>
+                                    <div class="nav-title">Backend API Details</div>
+                                </div>
+                                <span class="nav-icon">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        document.querySelector('.sidebar-toggle')?.addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+
+        // Add smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation to cards on scroll
+        const observeElements = (selector, animationClass) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll(selector).forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        };
+
+        // Observe various elements for animations
+        observeElements('.platform-card', 'animate-up');
+        observeElements('.tech-category', 'animate-up');
+        observeElements('.flow-step', 'animate-up');
+        observeElements('.metric-card', 'animate-up');
+
+        // Add interactive hover effects for platform cards
+        document.querySelectorAll('.platform-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.borderColor = 'var(--skawr-primary)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.borderColor = 'var(--color-border)';
+            });
+        });
+
+        // Feature item interactions
+        document.querySelectorAll('.feature-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('expanded');
+            });
+        });
+
+        // Counter animation for metrics
+        function animateCounters() {
+            document.querySelectorAll('.metric-value').forEach(counter => {
+                const value = counter.textContent;
+                if (value.includes('ms') || value.includes('s')) {
+                    // Handle time values
+                    return;
+                }
+                if (value.includes('%')) {
+                    const finalValue = parseFloat(value);
+                    let currentValue = 0;
+                    const increment = finalValue / 30;
+
+                    const timer = setInterval(() => {
+                        currentValue += increment;
+                        if (currentValue >= finalValue) {
+                            counter.textContent = value;
+                            clearInterval(timer);
+                        } else {
+                            counter.textContent = currentValue.toFixed(1) + '%';
+                        }
+                    }, 50);
+                }
+            });
+        }
+
+        // Start counter animation when metrics come into view
+        const metricsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    metricsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('.success-metrics').forEach(section => {
+            metricsObserver.observe(section);
+        });
+
+        // Tech stack item hover effects
+        document.querySelectorAll('.tech-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.borderColor = 'var(--skawr-primary)';
+                this.style.backgroundColor = 'var(--skawr-card-bg)';
+            });
+            item.addEventListener('mouseleave', function() {
+                this.style.borderColor = 'var(--color-border)';
+                this.style.backgroundColor = 'white';
+            });
+        });
+    </script>
+</body>
+</html>

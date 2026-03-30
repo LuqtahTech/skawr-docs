@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Identity - Skawr Documentation</title>
+    <link rel="stylesheet" href="../gitbook-style.css">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <style>
+        .brand-essence {
+            background: linear-gradient(135deg, #fff5f0 0%, #fef2e8 100%);
+            border: 2px solid var(--skawr-primary);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brand-essence::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(237, 116, 83, 0.05) 0%, transparent 70%);
+            animation: subtle-pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes subtle-pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .brand-promise {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--skawr-primary);
+            line-height: 1.4;
+            position: relative;
+            z-index: 2;
+        }
+
+        .brand-subtitle {
+            font-size: 1.2rem;
+            color: var(--skawr-text-secondary);
+            margin-top: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .value-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(237, 116, 83, 0.15);
+            border-color: var(--skawr-primary);
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--skawr-primary) 0%, var(--skawr-primary-dk) 100%);
+        }
+
+        .value-number {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            width: 2.5rem;
+            height: 2.5rem;
+            background: var(--skawr-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .value-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .value-arabic {
+            color: var(--skawr-primary);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-left: 0.5rem;
+        }
+
+        .value-item {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .value-item::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--skawr-primary);
+            font-weight: 600;
+        }
+
+        .value-label {
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            margin-bottom: 0.25rem;
+        }
+
+        .value-description {
+            color: var(--skawr-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .personality-section {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            margin: 3rem 0;
+            overflow: hidden;
+        }
+
+        .personality-header {
+            background: linear-gradient(135deg, var(--skawr-charcoal) 0%, var(--skawr-bg-dark-1) 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .personality-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .personality-subtitle {
+            color: var(--skawr-text-inactive);
+            font-size: 1.1rem;
+        }
+
+        .personality-content {
+            padding: 2rem;
+        }
+
+        .personality-traits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .trait-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--skawr-primary);
+            transition: all 0.3s ease;
+        }
+
+        .trait-card:hover {
+            transform: translateX(8px);
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .trait-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--skawr-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .trait-arabic {
+            color: var(--skawr-text-secondary);
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .trait-points {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .trait-points li {
+            padding: 0.25rem 0;
+            color: var(--skawr-text-secondary);
+            font-size: 0.9rem;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        .trait-points li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--skawr-primary);
+        }
+
+        .voice-tone {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            margin: 3rem 0;
+            padding: 2rem;
+        }
+
+        .voice-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .voice-example {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            position: relative;
+        }
+
+        .voice-context {
+            font-weight: 600;
+            color: var(--skawr-primary);
+            margin-bottom: 0.75rem;
+            font-size: 1rem;
+        }
+
+        .voice-sample {
+            color: var(--skawr-text-secondary);
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .voice-description {
+            color: var(--skawr-text-muted);
+            font-size: 0.85rem;
+        }
+
+        .messaging-framework {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid var(--skawr-hyperlink);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .primary-message {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .message-english {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--skawr-hyperlink);
+            margin-bottom: 0.75rem;
+        }
+
+        .message-arabic {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--skawr-text-secondary);
+            direction: rtl;
+            text-align: center;
+        }
+
+        .supporting-messages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .message-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(86, 136, 255, 0.1);
+        }
+
+        .message-category {
+            font-weight: 600;
+            color: var(--skawr-hyperlink);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .message-text {
+            color: var(--skawr-text-title);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .message-arabic-text {
+            color: var(--skawr-text-secondary);
+            font-size: 0.9rem;
+            direction: rtl;
+        }
+
+        .positioning-statement {
+            background: linear-gradient(135deg, var(--skawr-green) 0%, #059669 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .positioning-statement::before {
+            content: '💡';
+            position: absolute;
+            top: 1.5rem;
+            right: 2rem;
+            font-size: 2rem;
+            opacity: 0.7;
+        }
+
+        .positioning-text {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            position: relative;
+            z-index: 2;
+        }
+
+        .positioning-text strong {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .personas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .persona-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .persona-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .persona-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .persona-avatar {
+            width: 4rem;
+            height: 4rem;
+            background: var(--skawr-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .persona-title {
+            flex: 1;
+        }
+
+        .persona-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            margin-bottom: 0.25rem;
+        }
+
+        .persona-arabic {
+            color: var(--skawr-primary);
+            font-weight: 500;
+        }
+
+        .persona-details {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .persona-section {
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .persona-section h5 {
+            color: var(--skawr-primary);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .persona-section p {
+            color: var(--skawr-text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .evolution-timeline {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            margin: 3rem 0;
+            overflow: hidden;
+        }
+
+        .timeline-phase {
+            padding: 2rem;
+            border-bottom: 1px solid #f0f0f0;
+            position: relative;
+        }
+
+        .timeline-phase:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-phase::before {
+            content: '';
+            position: absolute;
+            left: 2rem;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--skawr-primary) 0%, var(--skawr-primary-dk) 100%);
+        }
+
+        .phase-content {
+            margin-left: 3rem;
+        }
+
+        .phase-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--skawr-primary);
+            margin-bottom: 1rem;
+        }
+
+        .phase-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .phase-detail {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: var(--skawr-text-title);
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-value {
+            color: var(--skawr-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .guidelines-section {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 3rem 0;
+        }
+
+        .guidelines-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .guidelines-column {
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .dos-column {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 4px solid var(--skawr-green);
+        }
+
+        .donts-column {
+            background: linear-gradient(135deg, #fff5f5 0%, #fef2f2 100%);
+            border-left: 4px solid var(--skawr-error);
+        }
+
+        .guidelines-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dos-title {
+            color: var(--skawr-green);
+        }
+
+        .donts-title {
+            color: var(--skawr-error);
+        }
+
+        .guidelines-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .guidelines-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--skawr-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .dos-column .guidelines-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--skawr-green);
+            font-weight: 600;
+        }
+
+        .donts-column .guidelines-list li::before {
+            content: '✗';
+            position: absolute;
+            left: 0;
+            color: var(--skawr-error);
+            font-weight: 600;
+        }
+
+        .breadcrumb {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .breadcrumb-nav {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+        }
+
+        .breadcrumb-nav a {
+            color: var(--skawr-primary);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .breadcrumb-nav a:hover {
+            color: var(--skawr-primary-dk);
+        }
+
+        .breadcrumb-separator {
+            color: var(--skawr-text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .personality-traits {
+                grid-template-columns: 1fr;
+            }
+
+            .voice-examples {
+                grid-template-columns: 1fr;
+            }
+
+            .supporting-messages {
+                grid-template-columns: 1fr;
+            }
+
+            .personas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .guidelines-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-promise {
+                font-size: 1.4rem;
+            }
+
+            .message-english {
+                font-size: 1.3rem;
+            }
+
+            .positioning-text {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <!-- Sidebar -->
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <div class="skawr-logo">
+                        <svg width="40" height="40" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="45" fill="#ED7453"/>
+                            <path d="M30 35 L50 55 L70 35 L65 30 L50 45 L35 30 Z" fill="white"/>
+                            <path d="M30 65 L50 45 L70 65 L65 70 L50 55 L35 70 Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <h1 class="book-title">
+                        <span class="book-title-icon">📖</span>
+                        Skawr Docs
+                    </h1>
+                    <p class="book-subtitle">Complete Documentation</p>
+                </div>
+
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter">
+                            <a href="../index.html">🏠 Overview</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../product/overview.html">📦 Product</a>
+                            <ul class="articles">
+                                <li><a href="../product/overview.html">Overview</a></li>
+                                <li><a href="../product/value-proposition.html">Value Proposition</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter">
+                            <a href="../market/competition.html">📊 Market Analysis</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../business/model.html">💼 Business Model</a>
+                        </li>
+                        <li class="chapter active">
+                            <a href="identity.html">🎨 Brand Identity</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../platforms/README.html">🛠️ Platforms</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../developer/getting-started.html">👨‍💻 Developer</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../system/architecture.html">🏗️ Architecture</a>
+                        </li>
+                        <li class="chapter">
+                            <a href="../support/faq.html">❓ Support</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/skawr" class="github-link">
+                        <span>📖</span>
+                        <span>GitHub</span>
+                    </a>
+                    <div class="sidebar-version">Version 1.0.0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="book-body">
+            <div class="body-inner">
+                <!-- Toolbar -->
+                <div class="book-toolbar">
+                    <div>
+                        <button class="btn btn-sm sidebar-toggle">☰ Menu</button>
+                    </div>
+                    <div>
+                        <a href="https://github.com/skawr/skawr-docs" class="btn btn-sm">📝 Edit</a>
+                    </div>
+                </div>
+
+                <!-- Breadcrumb -->
+                <div class="breadcrumb">
+                    <nav class="breadcrumb-nav">
+                        <a href="../index.html">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="identity.html">Brand</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span>Brand Identity</span>
+                    </nav>
+                </div>
+
+                <!-- Page Content -->
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <header>
+                            <h1>Brand Identity</h1>
+                            <p class="hero-description">
+                                Comprehensive guide to Skawr's brand essence, values, personality, and messaging framework that shapes our identity in the Saudi e-commerce ecosystem.
+                            </p>
+                        </header>
+
+                        <!-- Brand Essence -->
+                        <div class="brand-essence">
+                            <div class="brand-promise">"We bring every marketplace to your fingertips, so you never miss the perfect product or perfect price."</div>
+                            <div class="brand-subtitle">Transforming fragmented online shopping into intelligent, unified product discovery for Saudi consumers.</div>
+                        </div>
+
+                        <!-- Core Brand Values -->
+                        <section>
+                            <h2 class="section-title">Core Brand Values</h2>
+
+                            <div class="values-grid">
+                                <div class="value-card">
+                                    <div class="value-number">1</div>
+                                    <h3 class="value-title">
+                                        Intelligent Simplicity
+                                        <span class="value-arabic">(الذكاء البسيط)</span>
+                                    </h3>
+                                    <div class="value-item">
+                                        <div class="value-label">Meaning:</div>
+                                        <div class="value-description">Making complex marketplace navigation effortless through AI</div>
+                                    </div>
+                                    <div class="value-item">
+                                        <div class="value-label">Expression:</div>
+                                        <div class="value-description">Clean interfaces, natural search, instant results</div>
+                                    </div>
+                                    <div class="value-item">
+                                        <div class="value-label">Customer Benefit:</div>
+                                        <div class="value-description">Shop smarter without technical complexity</div>
+                                    </div>
+                                </div>
+
+                                <div class="value-card">
+                                    <div class="value-number">2</div>
+                                    <h3 class="value-title">
+                                        Cultural Authenticity
+                                        <span class="value-arabic">(الأصالة الثقافية)</span>
+                                    </h3>
+                                    <div class="value-item">
+                                        <div class="value-label">Meaning:</div>
+                                        <div class="value-description">Built by Saudis, for Saudis, respecting local shopping culture</div>
+                                    </div>
+                                    <div class="value-item">
+                                        <div class="value-label">Expression:</div>
+                                        <div class="value-description">Bilingual experience, local marketplace focus, Saudi-first features</div>
+                                    </div>
+                                    <div class="value-item">
+                                        <div class="value-label">Customer Benefit:</div>
+                                        <div class="value-description">Technology that understands Saudi consumers</div>
+                                    </div>
+                                </div>
+
+                                <div class="value-card">
+                                    <div class="value-number">3</div>
+                                    <h3 class="value-title">
+                                        Comprehensive Trust
+                                        <span class="value-arabic">(الثقة الشاملة)</span>
+                                    </h3>
+                                    <div class="value-item">
+                                        <div class="value-label">Meaning:</div>
+                                        <div class="value-description">Reliable, accurate, and transparent information across all platforms</div>
+                                    </div>
+                                    <div class="value-item">
+                                        <div class="value-label">Expression:</div>
+                                        <div class="value-description">Real-time data, honest comparisons, verified information</div>
+                                    </div>
+                                    <div class="value-item">
+                                        <div class="value-label">Customer Benefit:</div>
+                                        <div class="value-description">Confidence in every shopping decision</div>
+                                    </div>
+                                </div>
+
+                                <div class="value-card">
+                                    <div class="value-number">4</div>
+                                    <h3 class="value-title">
+                                        Empowering Discovery
+                                        <span class="value-arabic">(التمكين والاستكشاف)</span>
+                                    </h3>
+                                    <div class="value-item">
+                                        <div class="value-label">Meaning:</div>
+                                        <div class="value-description">Helping users find products they didn't know they were looking for</div>
+                                    </div>
+                                    <div class="value-item">
+                                        <div class="value-label">Expression:</div>
+                                        <div class="value-description">Smart recommendations, cross-platform insights, deal discovery</div>
+                                    </div>
+                                    <div class="value-item">
+                                        <div class="value-label">Customer Benefit:</div>
+                                        <div class="value-description">Better shopping outcomes and savings</div>
+                                    </div>
+                                </div>
+
+                                <div class="value-card">
+                                    <div class="value-number">5</div>
+                                    <h3 class="value-title">
+                                        Continuous Innovation
+                                        <span class="value-arabic">(الابتكار المستمر)</span>
+                                    </h3>
+                                    <div class="value-item">
+                                        <div class="value-label">Meaning:</div>
+                                        <div class="value-description">Always improving the shopping experience through technology</div>
+                                    </div>
+                                    <div class="value-item">
+                                        <div class="value-label">Expression:</div>
+                                        <div class="value-description">AI advancement, feature development, user experience enhancement</div>
+                                    </div>
+                                    <div class="value-item">
+                                        <div class="value-label">Customer Benefit:</div>
+                                        <div class="value-description">Ever-improving platform that evolves with needs</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Brand Personality -->
+                        <section>
+                            <div class="personality-section">
+                                <div class="personality-header">
+                                    <h2 class="personality-title">Brand Personality</h2>
+                                    <div class="personality-subtitle">How Skawr behaves and communicates with users</div>
+                                </div>
+                                <div class="personality-content">
+                                    <h3 style="color: var(--skawr-primary); margin-bottom: 2rem;">Primary Traits</h3>
+                                    <div class="personality-traits">
+                                        <div class="trait-card">
+                                            <h4 class="trait-name">Intelligent Guide</h4>
+                                            <div class="trait-arabic">(المرشد الذكي)</div>
+                                            <ul class="trait-points">
+                                                <li>Knowledgeable about all marketplaces and products</li>
+                                                <li>Provides helpful, relevant suggestions</li>
+                                                <li>Never overwhelming, always clear</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="trait-card">
+                                            <h4 class="trait-name">Trusted Friend</h4>
+                                            <div class="trait-arabic">(الصديق الموثوق)</div>
+                                            <ul class="trait-points">
+                                                <li>Honest about prices and availability</li>
+                                                <li>Looks out for user's best interests</li>
+                                                <li>Reliable and consistent</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="trait-card">
+                                            <h4 class="trait-name">Cultural Bridge</h4>
+                                            <div class="trait-arabic">(الجسر الثقافي)</div>
+                                            <ul class="trait-points">
+                                                <li>Seamlessly blends Arabic and English</li>
+                                                <li>Understands Saudi shopping behaviors</li>
+                                                <li>Respects local preferences and customs</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <h3 style="color: var(--skawr-primary); margin: 2rem 0 1rem;">Supporting Traits</h3>
+                                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                                        <div class="trait-card">
+                                            <h4 class="trait-name">Efficient</h4>
+                                            <div class="trait-arabic">(فعّال)</div>
+                                            <p style="margin: 0; color: var(--skawr-text-secondary); font-size: 0.9rem;">Gets things done quickly and correctly</p>
+                                        </div>
+                                        <div class="trait-card">
+                                            <h4 class="trait-name">Inclusive</h4>
+                                            <div class="trait-arabic">(شامل)</div>
+                                            <p style="margin: 0; color: var(--skawr-text-secondary); font-size: 0.9rem;">Works for all types of Saudi shoppers</p>
+                                        </div>
+                                        <div class="trait-card">
+                                            <h4 class="trait-name">Progressive</h4>
+                                            <div class="trait-arabic">(متقدم)</div>
+                                            <p style="margin: 0; color: var(--skawr-text-secondary); font-size: 0.9rem;">Uses cutting-edge technology for better experiences</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Voice & Tone -->
+                        <section>
+                            <div class="voice-tone">
+                                <h2 class="section-title">Brand Voice & Tone</h2>
+
+                                <h3 style="color: var(--skawr-primary); margin-bottom: 1.5rem;">Voice Characteristics</h3>
+                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-bottom: 2rem;">
+                                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--skawr-green);">
+                                        <h4 style="color: var(--skawr-green); margin-bottom: 1rem;">Helpful, Not Pushy</h4>
+                                        <ul style="margin: 0; padding-left: 1rem; color: var(--skawr-text-secondary); font-size: 0.9rem;">
+                                            <li>Provides information without pressure</li>
+                                            <li>Suggests rather than commands</li>
+                                            <li>Educates rather than sells</li>
+                                        </ul>
+                                    </div>
+                                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--skawr-hyperlink);">
+                                        <h4 style="color: var(--skawr-hyperlink); margin-bottom: 1rem;">Confident, Not Arrogant</h4>
+                                        <ul style="margin: 0; padding-left: 1rem; color: var(--skawr-text-secondary); font-size: 0.9rem;">
+                                            <li>Shows expertise without condescension</li>
+                                            <li>Admits when information isn't available</li>
+                                            <li>Learns from user feedback</li>
+                                        </ul>
+                                    </div>
+                                    <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; border-left: 4px solid var(--skawr-primary);">
+                                        <h4 style="color: var(--skawr-primary); margin-bottom: 1rem;">Friendly, Not Casual</h4>
+                                        <ul style="margin: 0; padding-left: 1rem; color: var(--skawr-text-secondary); font-size: 0.9rem;">
+                                            <li>Professional but approachable</li>
+                                            <li>Respectful of cultural norms</li>
+                                            <li>Warm without being overly familiar</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <h3 style="color: var(--skawr-primary); margin-bottom: 1.5rem;">Tone Variations by Context</h3>
+                                <div class="voice-examples">
+                                    <div class="voice-example">
+                                        <div class="voice-context">Search & Discovery</div>
+                                        <div class="voice-sample">"Let's find exactly what you're looking for..."</div>
+                                        <div class="voice-description">Encouraging, optimistic, solution-focused</div>
+                                    </div>
+
+                                    <div class="voice-example">
+                                        <div class="voice-context">Price Comparison</div>
+                                        <div class="voice-sample">"Here are the current prices across all platforms..."</div>
+                                        <div class="voice-description">Factual, transparent, value-oriented</div>
+                                    </div>
+
+                                    <div class="voice-example">
+                                        <div class="voice-context">Deal Alerts</div>
+                                        <div class="voice-sample">"Great news! The product you've been watching just dropped in price..."</div>
+                                        <div class="voice-description">Excited, urgent (appropriately), beneficial</div>
+                                    </div>
+
+                                    <div class="voice-example">
+                                        <div class="voice-context">Customer Support</div>
+                                        <div class="voice-sample">"I understand your concern, let me help you find the right information..."</div>
+                                        <div class="voice-description">Patient, understanding, solution-focused</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Brand Messaging Framework -->
+                        <section>
+                            <div class="messaging-framework">
+                                <h2 class="section-title" style="text-align: center; color: var(--skawr-hyperlink); margin-bottom: 2rem;">Brand Messaging Framework</h2>
+
+                                <div class="primary-message">
+                                    <div class="message-english">"All of Saudi Arabia's marketplaces, one intelligent search"</div>
+                                    <div class="message-arabic">جميع الأسواق السعودية، بحث ذكي واحد</div>
+                                </div>
+
+                                <h3 style="text-align: center; color: var(--skawr-hyperlink); margin-bottom: 1.5rem;">Supporting Messages</h3>
+                                <div class="supporting-messages">
+                                    <div class="message-card">
+                                        <div class="message-category">For Discovery</div>
+                                        <div class="message-text">"Find products you never knew existed"</div>
+                                        <div class="message-arabic-text">اكتشف منتجات لم تعرف بوجودها</div>
+                                    </div>
+
+                                    <div class="message-card">
+                                        <div class="message-category">For Efficiency</div>
+                                        <div class="message-text">"Shopping made simple, smart, and fast"</div>
+                                        <div class="message-arabic-text">التسوق أصبح بسيطاً وذكياً وسريعاً</div>
+                                    </div>
+
+                                    <div class="message-card">
+                                        <div class="message-category">For Savings</div>
+                                        <div class="message-text">"Never miss a better price again"</div>
+                                        <div class="message-arabic-text">لن تفوتك أفضل الأسعار مرة أخرى</div>
+                                    </div>
+
+                                    <div class="message-card">
+                                        <div class="message-category">For Trust</div>
+                                        <div class="message-text">"Real prices, real-time, across all platforms"</div>
+                                        <div class="message-arabic-text">أسعار حقيقية، في الوقت الحقيقي، عبر جميع المنصات</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Brand Positioning Statement -->
+                        <section>
+                            <div class="positioning-statement">
+                                <h2 style="color: white; margin-bottom: 1.5rem; text-align: center;">Brand Positioning Statement</h2>
+                                <div class="positioning-text">
+                                    <strong>For Saudi online shoppers</strong> who are frustrated with visiting multiple marketplace websites to find products and compare prices, <strong>Skawr</strong> is the intelligent marketplace aggregator that <strong>brings every major Saudi e-commerce platform into one AI-powered search experience</strong>, unlike individual marketplaces or international comparison sites that offer limited coverage and poor Arabic language support, <strong>Skawr provides comprehensive product discovery with bilingual AI search that understands Saudi shopping behavior</strong>.
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Target Audience Personas -->
+                        <section>
+                            <h2 class="section-title">Target Audience Personas</h2>
+
+                            <div class="personas-grid">
+                                <div class="persona-card">
+                                    <div class="persona-header">
+                                        <div class="persona-avatar">🧠</div>
+                                        <div class="persona-title">
+                                            <div class="persona-name">The Smart Shopper</div>
+                                            <div class="persona-arabic">المتسوق الذكي</div>
+                                        </div>
+                                    </div>
+                                    <div class="persona-details">
+                                        <div class="persona-section">
+                                            <h5>Demographics</h5>
+                                            <p>25-40, urban, middle to upper income</p>
+                                        </div>
+                                        <div class="persona-section">
+                                            <h5>Behavior</h5>
+                                            <p>Compares prices, uses technology, values efficiency</p>
+                                        </div>
+                                        <div class="persona-section">
+                                            <h5>Goals</h5>
+                                            <p>Best deals, time savings, comprehensive options</p>
+                                        </div>
+                                        <div class="persona-section">
+                                            <h5>Brand Relationship</h5>
+                                            <p>Skawr as essential shopping tool</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="persona-card">
+                                    <div class="persona-header">
+                                        <div class="persona-avatar">💼</div>
+                                        <div class="persona-title">
+                                            <div class="persona-name">The Busy Professional</div>
+                                            <div class="persona-arabic">المهني المشغول</div>
+                                        </div>
+                                    </div>
+                                    <div class="persona-details">
+                                        <div class="persona-section">
+                                            <h5>Demographics</h5>
+                                            <p>30-50, high income, time-constrained</p>
+                                        </div>
+                                        <div class="persona-section">
+                                            <h5>Behavior</h5>
+                                            <p>Values convenience over bargain hunting</p>
+                                        </div>
+                                        <div class="persona-section">
+                                            <h5>Goals</h5>
+                                            <p>Quick decisions, reliable information, quality products</p>
+                                        </div>
+                                        <div class="persona-section">
+                                            <h5>Brand Relationship</h5>
+                                            <p>Skawr as trusted advisor</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="persona-card">
+                                    <div class="persona-header">
+                                        <div class="persona-avatar">🏷️</div>
+                                        <div class="persona-title">
+                                            <div class="persona-name">The Deal Hunter</div>
+                                            <div class="persona-arabic">صائد الصفقات</div>
+                                        </div>
+                                    </div>
+                                    <div class="persona-details">
+                                        <div class="persona-section">
+                                            <h5>Demographics</h5>
+                                            <p>18-35, price-sensitive, social media active</p>
+                                        </div>
+                                        <div class="persona-section">
+                                            <h5>Behavior</h5>
+                                            <p>Actively seeks discounts, shares deals, patient searcher</p>
+                                        </div>
+                                        <div class="persona-section">
+                                            <h5>Goals</h5>
+                                            <p>Maximum savings, exclusive deals, early access</p>
+                                        </div>
+                                        <div class="persona-section">
+                                            <h5>Brand Relationship</h5>
+                                            <p>Skawr as deal discovery partner</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Brand Evolution Strategy -->
+                        <section>
+                            <h2 class="section-title">Brand Evolution Strategy</h2>
+
+                            <div class="evolution-timeline">
+                                <div class="timeline-phase">
+                                    <div class="phase-content">
+                                        <h3 class="phase-title">Phase 1: Market Introduction (0-12 months)</h3>
+                                        <div class="phase-details">
+                                            <div class="phase-detail">
+                                                <div class="detail-label">Focus</div>
+                                                <div class="detail-value">Establishing credibility and core value demonstration</div>
+                                            </div>
+                                            <div class="phase-detail">
+                                                <div class="detail-label">Messaging</div>
+                                                <div class="detail-value">"The smart way to shop across all Saudi marketplaces"</div>
+                                            </div>
+                                            <div class="phase-detail">
+                                                <div class="detail-label">Goals</div>
+                                                <div class="detail-value">Brand recognition, user acquisition, marketplace partnerships</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-phase">
+                                    <div class="phase-content">
+                                        <h3 class="phase-title">Phase 2: Market Leadership (12-24 months)</h3>
+                                        <div class="phase-details">
+                                            <div class="phase-detail">
+                                                <div class="detail-label">Focus</div>
+                                                <div class="detail-value">Becoming the default choice for marketplace shopping</div>
+                                            </div>
+                                            <div class="phase-detail">
+                                                <div class="detail-label">Messaging</div>
+                                                <div class="detail-value">"Saudi Arabia's marketplace search leader"</div>
+                                            </div>
+                                            <div class="phase-detail">
+                                                <div class="detail-label">Goals</div>
+                                                <div class="detail-value">Market dominance, feature innovation, user retention</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="timeline-phase">
+                                    <div class="phase-content">
+                                        <h3 class="phase-title">Phase 3: Regional Expansion (24+ months)</h3>
+                                        <div class="phase-details">
+                                            <div class="phase-detail">
+                                                <div class="detail-label">Focus</div>
+                                                <div class="detail-value">GCC expansion while maintaining Saudi identity</div>
+                                            </div>
+                                            <div class="phase-detail">
+                                                <div class="detail-label">Messaging</div>
+                                                <div class="detail-value">"The Middle East's intelligent shopping platform"</div>
+                                            </div>
+                                            <div class="phase-detail">
+                                                <div class="detail-label">Goals</div>
+                                                <div class="detail-value">Regional presence, cultural adaptation, scale benefits</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Brand Guidelines -->
+                        <section>
+                            <div class="guidelines-section">
+                                <h2 class="section-title">Brand Protection & Guidelines</h2>
+
+                                <div class="guidelines-grid">
+                                    <div class="guidelines-column dos-column">
+                                        <h3 class="guidelines-title dos-title">
+                                            ✓ Do's
+                                        </h3>
+                                        <ul class="guidelines-list">
+                                            <li>Always provide accurate, up-to-date information</li>
+                                            <li>Respect both Arabic and English equally in all communications</li>
+                                            <li>Focus on user benefit rather than technical features</li>
+                                            <li>Maintain professional but friendly communication style</li>
+                                            <li>Show genuine understanding of Saudi shopping culture</li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="guidelines-column donts-column">
+                                        <h3 class="guidelines-title donts-title">
+                                            ✗ Don'ts
+                                        </h3>
+                                        <ul class="guidelines-list">
+                                            <li>Never promise unrealistic savings or deals</li>
+                                            <li>Don't favor one marketplace over others in communication</li>
+                                            <li>Avoid technical jargon that excludes non-technical users</li>
+                                            <li>Don't ignore cultural sensitivities in marketing or features</li>
+                                            <li>Never compromise on data accuracy or transparency</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 12px; margin-top: 2rem; border-left: 4px solid var(--skawr-primary);">
+                                    <h4 style="color: var(--skawr-primary); margin-bottom: 1rem;">Brand Monitoring</h4>
+                                    <ul style="margin: 0; padding-left: 1.5rem; color: var(--skawr-text-secondary);">
+                                        <li><strong>User Sentiment:</strong> Regular monitoring of social media and reviews</li>
+                                        <li><strong>Competitive Positioning:</strong> Tracking how competitors position against us</li>
+                                        <li><strong>Message Consistency:</strong> Ensuring all touchpoints reflect brand values</li>
+                                        <li><strong>Cultural Relevance:</strong> Ongoing assessment of cultural alignment and sensitivity</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Strategic Summary -->
+                        <section class="platform-overview">
+                            <h2 class="section-title">Strategic Summary</h2>
+                            <div class="overview-text">
+                                <p>This brand identity creates a strong foundation for building trust and recognition in the Saudi market while positioning Skawr for long-term growth and expansion across the region.</p>
+
+                                <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); padding: 1.5rem; border-radius: 12px; border-left: 6px solid var(--skawr-green); margin-top: 2rem;">
+                                    <h4 style="color: var(--skawr-green); margin-bottom: 1rem;">Brand Success Pillars</h4>
+                                    <ul style="margin: 0; padding-left: 1.5rem;">
+                                        <li><strong>Cultural Authenticity:</strong> Deep understanding of Saudi shopping behavior and preferences</li>
+                                        <li><strong>Intelligent Simplicity:</strong> Making complex technology accessible and intuitive</li>
+                                        <li><strong>Trust & Transparency:</strong> Honest, reliable information that builds long-term relationships</li>
+                                        <li><strong>Continuous Evolution:</strong> Brand that grows and adapts with user needs and market expansion</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Navigation -->
+                        <div class="page-navigation">
+                            <a href="../business/model.html" class="nav-link">
+                                <span class="nav-icon">←</span>
+                                <div class="nav-text">
+                                    <div class="nav-label">Previous</div>
+                                    <div class="nav-title">Business Model</div>
+                                </div>
+                            </a>
+                            <a href="../platforms/README.html" class="nav-link">
+                                <div class="nav-text">
+                                    <div class="nav-label">Next</div>
+                                    <div class="nav-title">Platforms Overview</div>
+                                </div>
+                                <span class="nav-icon">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar toggle functionality
+        document.querySelector('.sidebar-toggle')?.addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+
+        // Add smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation to cards on scroll
+        const observeElements = (selector, animationClass) => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll(selector).forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+                el.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                observer.observe(el);
+            });
+        };
+
+        // Observe various elements for animations
+        observeElements('.value-card', 'animate-up');
+        observeElements('.trait-card', 'animate-up');
+        observeElements('.voice-example', 'animate-up');
+        observeElements('.message-card', 'animate-up');
+        observeElements('.persona-card', 'animate-up');
+
+        // Add hover effects to value cards
+        document.querySelectorAll('.value-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.borderColor = 'var(--skawr-primary)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.borderColor = 'var(--color-border)';
+            });
+        });
+
+        // Pulse animation for brand essence
+        const brandEssence = document.querySelector('.brand-essence');
+        if (brandEssence) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-pulse');
+                    }
+                });
+            });
+            observer.observe(brandEssence);
+        }
+
+        // Arabic text direction handling
+        document.querySelectorAll('.message-arabic, .message-arabic-text, .value-arabic, .trait-arabic, .persona-arabic').forEach(element => {
+            element.setAttribute('dir', 'rtl');
+        });
+
+        // Interactive personality traits
+        document.querySelectorAll('.trait-card').forEach(trait => {
+            trait.addEventListener('click', function() {
+                this.classList.toggle('expanded');
+                // Add any additional interactive behavior here
+            });
+        });
+    </script>
+</body>
+</html>
