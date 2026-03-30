@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skawr Documentation</title>
+    <link rel="stylesheet" href="gitbook-style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
+</head>
+<body>
+    <!-- GitBook-style Layout -->
+    <div class="book">
+        <!-- Sidebar -->
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <!-- Logo -->
+                <div class="book-header">
+                    <div class="skawr-logo">
+                        <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" width="120" height="30">
+                            <text x="10" y="150" font-family="'Inter', Arial, sans-serif" font-size="160" font-weight="600" fill="#FFFFFF" letter-spacing="-5">SKAWR</text>
+                            <circle cx="760" cy="130" r="30" fill="#ED7453"/>
+                        </svg>
+                    </div>
+                    <p class="book-subtitle">Platform Documentation</p>
+                </div>
+
+                <!-- Navigation -->
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter active">
+                            <a href="#introduction">📖 Introduction</a>
+                        </li>
+
+                        <li class="chapter expanded">
+                            <a href="#business" class="chapter-link">🏢 Business Overview</a>
+                            <ul class="articles">
+                                <li><a href="product/overview.html">Product Overview</a></li>
+                                <li><a href="product/value-proposition.html">Value Proposition</a></li>
+                                <li><a href="market/competition.html">Competitive Analysis</a></li>
+                                <li><a href="business/model.html">Business Model</a></li>
+                                <li><a href="brand/identity.html">Brand Identity</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="chapter">
+                            <a href="#platforms" class="chapter-link">🏗️ Platform Architecture</a>
+                            <ul class="articles">
+                                <li><a href="platforms/index.html">Platform Overview</a></li>
+                                <li><a href="system/architecture.html">System Architecture</a></li>
+                                <li><a href="platforms/backend-api.html">Backend API</a></li>
+                                <li><a href="platforms/web-app.html">Web Application</a></li>
+                                <li><a href="platforms/mobile-app.html">Mobile App</a></li>
+                                <li><a href="platforms/scraper-service.html">Scraper Service</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="chapter">
+                            <a href="#developer" class="chapter-link">🔧 Developer Resources</a>
+                            <ul class="articles">
+                                <li><a href="developer/getting-started.html">Getting Started</a></li>
+                                <li><a href="developer/api-reference.html">API Reference</a></li>
+                                <li><a href="developer/integration-guides.html">Integration Guides</a></li>
+                                <li><a href="developer/sdk-docs.html">SDK Documentation</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="chapter">
+                            <a href="#partnerships" class="chapter-link">🤝 Partnerships</a>
+                            <ul class="articles">
+                                <li><a href="partnerships/marketplace-integration.html">Marketplace Integration</a></li>
+                                <li><a href="partnerships/salla-plugin.html">Salla Plugin Guide</a></li>
+                                <li><a href="partnerships/white-label.html">White-label Solutions</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="chapter">
+                            <a href="#support" class="chapter-link">❓ Support</a>
+                            <ul class="articles">
+                                <li><a href="support/faq.html">FAQ</a></li>
+                                <li><a href="support/troubleshooting.html">Troubleshooting</a></li>
+                                <li><a href="support/contact.html">Contact Support</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Footer -->
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/ziyad00/skawr-docs" class="github-link">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                        Edit on GitHub
+                    </a>
+                    <div class="sidebar-version">v1.0.0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="book-body">
+            <div class="body-inner">
+                <!-- Toolbar -->
+                <div class="book-toolbar">
+                    <div class="toolbar-left">
+                        <button class="btn btn-sm sidebar-toggle">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z"></path>
+                            </svg>
+                        </button>
+                        <div class="search-container">
+                            <input type="text" id="search-input" placeholder="Search documentation..." class="search-input">
+                            <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M11.742 10.344a6.5 6.5 0 10-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 001.415-1.414l-3.85-3.85a1.007 1.007 0 00-.115-.1zM12 6.5a5.5 5.5 0 11-11 0 5.5 5.5 0 0111 0z"></path>
+                            </svg>
+                            <div id="search-results" class="search-results"></div>
+                        </div>
+                    </div>
+                    <div class="toolbar-right">
+                        <a href="https://github.com/ziyad00/skawr-docs" class="btn btn-sm">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Page Content -->
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <section id="introduction" class="normal">
+                            <!-- Hero Section -->
+                            <div class="hero-section">
+                                <div class="hero-logo">
+                                    <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" width="200" height="50">
+                                        <text x="10" y="150" font-family="'Inter', Arial, sans-serif" font-size="160" font-weight="700" fill="#ED7453" letter-spacing="-5">SKAWR</text>
+                                        <circle cx="760" cy="130" r="30" fill="#ED7453"/>
+                                    </svg>
+                                </div>
+                                <h1 class="hero-title">
+                                    Platform Documentation
+                                </h1>
+                                <p class="hero-description">
+                                    Complete business and technical documentation for Saudi Arabia's first AI-powered marketplace aggregator
+                                </p>
+                                <div class="hero-stats">
+                                    <div class="stat">
+                                        <div class="stat-number">4</div>
+                                        <div class="stat-label">Platform Components</div>
+                                    </div>
+                                    <div class="stat">
+                                        <div class="stat-number">20+</div>
+                                        <div class="stat-label">API Endpoints</div>
+                                    </div>
+                                    <div class="stat">
+                                        <div class="stat-number">15+</div>
+                                        <div class="stat-label">Documentation Pages</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Quick Navigation -->
+                            <div class="quick-nav">
+                                <h2 class="section-title">📚 Documentation Sections</h2>
+                                <div class="nav-cards">
+                                    <div class="nav-card business">
+                                        <div class="card-icon">🏢</div>
+                                        <h3>Business Overview</h3>
+                                        <p>Product strategy, market analysis, and business model</p>
+                                        <a href="product/overview.html" class="card-link">Explore →</a>
+                                    </div>
+
+                                    <div class="nav-card platform">
+                                        <div class="card-icon">🏗️</div>
+                                        <h3>Platform Architecture</h3>
+                                        <p>System diagrams, technical specs, and component details</p>
+                                        <a href="system/architecture.html" class="card-link">Explore →</a>
+                                    </div>
+
+                                    <div class="nav-card developer">
+                                        <div class="card-icon">🔧</div>
+                                        <h3>Developer Resources</h3>
+                                        <p>API reference, SDKs, and integration guides</p>
+                                        <a href="developer/getting-started.html" class="card-link">Explore →</a>
+                                    </div>
+
+                                    <div class="nav-card partnership">
+                                        <div class="card-icon">🤝</div>
+                                        <h3>Partnerships</h3>
+                                        <p>Marketplace integration and white-label solutions</p>
+                                        <a href="partnerships/marketplace-integration.html" class="card-link">Explore →</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Platform Overview -->
+                            <div class="platform-overview">
+                                <h2 class="section-title">🎯 Platform Overview</h2>
+                                <div class="overview-content">
+                                    <p class="overview-text">
+                                        <strong>Skawr</strong> is Saudi Arabia's first AI-powered marketplace aggregator that helps consumers find and compare products across all major online marketplaces in one unified search experience.
+                                    </p>
+
+                                    <div class="features-grid">
+                                        <div class="feature">
+                                            <div class="feature-icon">🤖</div>
+                                            <h4>AI-Powered Search</h4>
+                                            <p>Semantic search with Arabic and English support</p>
+                                        </div>
+                                        <div class="feature">
+                                            <div class="feature-icon">🔄</div>
+                                            <h4>Real-time Data</h4>
+                                            <p>Live price and availability updates</p>
+                                        </div>
+                                        <div class="feature">
+                                            <div class="feature-icon">📱</div>
+                                            <h4>Multi-Platform</h4>
+                                            <p>Web, mobile, and API access</p>
+                                        </div>
+                                        <div class="feature">
+                                            <div class="feature-icon">🛡️</div>
+                                            <h4>Enterprise Ready</h4>
+                                            <p>Scalable SaaS architecture</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Getting Started -->
+                            <div class="getting-started">
+                                <h2 class="section-title">🚀 Getting Started</h2>
+                                <div class="steps">
+                                    <div class="step">
+                                        <div class="step-number">1</div>
+                                        <div class="step-content">
+                                            <h4>Explore Business Documentation</h4>
+                                            <p>Understand Skawr's value proposition and market positioning</p>
+                                        </div>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">2</div>
+                                        <div class="step-content">
+                                            <h4>Review Platform Architecture</h4>
+                                            <p>Dive into technical specifications and component details</p>
+                                        </div>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">3</div>
+                                        <div class="step-content">
+                                            <h4>Start Development</h4>
+                                            <p>Use our API reference and SDKs for integration</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Deployment Info -->
+                            <div class="deployment-info">
+                                <h3>📊 Documentation Statistics</h3>
+                                <div class="info-grid">
+                                    <div class="info-item">
+                                        <strong>Last Updated:</strong> <span id="lastUpdated"></span>
+                                    </div>
+                                    <div class="info-item">
+                                        <strong>Version:</strong> 1.0.0
+                                    </div>
+                                    <div class="info-item">
+                                        <strong>Build Status:</strong> ✅ Success
+                                    </div>
+                                    <div class="info-item">
+                                        <strong>Auto-Deploy:</strong> Enabled
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Page Navigation -->
+                        <div class="page-navigation">
+                            <div class="nav-next">
+                                <a href="product/overview.html" class="nav-link">
+                                    <div class="nav-text">
+                                        <div class="nav-label">Next</div>
+                                        <div class="nav-title">Product Overview</div>
+                                    </div>
+                                    <div class="nav-icon">→</div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Set last updated date
+        document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString();
+
+        // Sidebar toggle for mobile
+        document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+
+        // Chapter toggle functionality
+        document.querySelectorAll('.chapter-link').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const chapter = this.parentElement;
+                chapter.classList.toggle('expanded');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Auto-expand business section by default
+        document.addEventListener('DOMContentLoaded', function() {
+            const businessSection = document.querySelector('.chapter:nth-child(2)');
+            if (businessSection) {
+                businessSection.classList.add('expanded');
+            }
+        });
+
+        // Search functionality
+        const searchData = [
+            { title: 'Product Overview', url: 'product/overview.html', content: 'Skawr marketplace aggregator AI-powered search Saudi Arabia' },
+            { title: 'Value Proposition', url: 'product/value-proposition.html', content: 'Value unique selling points competitive advantages benefits' },
+            { title: 'Competitive Analysis', url: 'market/competition.html', content: 'Market competition analysis competitors landscape' },
+            { title: 'Business Model', url: 'business/model.html', content: 'Revenue streams monetization business strategy' },
+            { title: 'Brand Identity', url: 'brand/identity.html', content: 'Brand messaging identity values positioning' },
+            { title: 'Platform Architecture', url: 'platforms/index.html', content: 'Technical architecture platform components backend' },
+            { title: 'Backend API', url: 'platforms/backend-api.html', content: 'API endpoints FastAPI search SaaS admin' },
+            { title: 'Web Application', url: 'platforms/web-app.html', content: 'React web app frontend user interface' },
+            { title: 'Mobile Application', url: 'platforms/mobile-app.html', content: 'Flutter mobile app iOS Android Firebase' },
+            { title: 'Scraper Service', url: 'platforms/scraper-service.html', content: 'Data scraping Celery workers marketplace integration' },
+            { title: 'Getting Started', url: 'developer/getting-started.html', content: 'Quick start guide setup installation' },
+            { title: 'API Reference', url: 'developer/api-reference.html', content: 'API documentation endpoints parameters examples' },
+            { title: 'Integration Guides', url: 'developer/integration-guides.html', content: 'Integration guides tutorials SDK' },
+            { title: 'SDK Documentation', url: 'developer/sdk-docs.html', content: 'SDK libraries JavaScript Python PHP' }
+        ];
+
+        const searchInput = document.getElementById('search-input');
+        const searchResults = document.getElementById('search-results');
+
+        searchInput.addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase().trim();
+
+            if (query.length < 2) {
+                searchResults.style.display = 'none';
+                return;
+            }
+
+            const results = searchData.filter(item =>
+                item.title.toLowerCase().includes(query) ||
+                item.content.toLowerCase().includes(query)
+            ).slice(0, 5);
+
+            if (results.length > 0) {
+                const resultsHTML = results.map(result => `
+                    <a href="${result.url}" class="search-result-item">
+                        <div class="search-result-title">${result.title}</div>
+                        <div class="search-result-content">${result.content.substring(0, 80)}...</div>
+                    </a>
+                `).join('');
+
+                searchResults.innerHTML = resultsHTML;
+                searchResults.style.display = 'block';
+            } else {
+                searchResults.innerHTML = '<div class="search-no-results">No results found</div>';
+                searchResults.style.display = 'block';
+            }
+        });
+
+        // Close search results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-container')) {
+                searchResults.style.display = 'none';
+            }
+        });
+
+        // Handle search result clicks
+        searchResults.addEventListener('click', function(e) {
+            if (e.target.closest('.search-result-item')) {
+                searchResults.style.display = 'none';
+                searchInput.value = '';
+            }
+        });
+
+        // Keyboard navigation for search
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                searchResults.style.display = 'none';
+                searchInput.blur();
+            }
+        });
+    </script>
+
+    <style>
+        .search-container {
+            position: relative;
+            margin-left: 1rem;
+            max-width: 300px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.5rem 2.5rem 0.5rem 1rem;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            background: white;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--color-accent);
+            box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--color-text-light);
+            pointer-events: none;
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
+            display: none;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .search-result-item {
+            display: block;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: var(--color-text);
+            border-bottom: 1px solid #f1f3f4;
+            transition: background 0.2s ease;
+        }
+
+        .search-result-item:hover {
+            background: #f8f9fa;
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            color: var(--color-text);
+        }
+
+        .search-result-content {
+            font-size: 0.8rem;
+            color: var(--color-text-light);
+            line-height: 1.3;
+        }
+
+        .search-no-results {
+            padding: 1rem;
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                display: none;
+            }
+        }
+    </style>
+</body>
+</html><!-- Build trigger -->
