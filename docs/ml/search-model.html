@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search ML Model - SKAWR Docs</title>
+    <link rel="stylesheet" href="../gitbook-style.css">
+</head>
+<body>
+    <div class="book">
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <a href="../index.html" style="text-decoration:none; color:inherit;">
+                        <div class="skawr-logo">
+                            <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" width="120" height="30">
+                                <text x="10" y="150" font-family="'Inter', Arial, sans-serif" font-size="160" font-weight="600" fill="#FFFFFF" letter-spacing="-5">SKAWR</text>
+                                <circle cx="760" cy="130" r="30" fill="#ED7453"/>
+                            </svg>
+                        </div>
+                    </a>
+                    <p class="book-subtitle">ML Documentation</p>
+                </div>
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter"><a href="../index.html">Back to Docs</a></li>
+                        <li class="chapter active"><a href="#model">Search Model</a></li>
+                        <li class="chapter"><a href="training-data.html">Training Data</a></li>
+                        <li class="chapter"><a href="training-plan.html">Training Plan</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="book-body">
+            <div class="body-inner">
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <section class="normal markdown-section">
+
+<h1 id="model">SKAWR Search Model</h1>
+<p>Fine-tuned embedding model for Arabic + English marketplace product search.</p>
+
+<h2>Overview</h2>
+<table>
+    <tr><td><strong>Base Model</strong></td><td><code>intfloat/multilingual-e5-large</code></td></tr>
+    <tr><td><strong>Method</strong></td><td>LoRA fine-tuning (Low-Rank Adaptation)</td></tr>
+    <tr><td><strong>Total Parameters</strong></td><td>567M (560M frozen + 7.1M trainable)</td></tr>
+    <tr><td><strong>Trainable</strong></td><td>1.25% of total parameters</td></tr>
+    <tr><td><strong>Output</strong></td><td>1024-dimensional embeddings</td></tr>
+    <tr><td><strong>Languages</strong></td><td>Arabic, English</td></tr>
+    <tr><td><strong>Use Case</strong></td><td>Marketplace product search and matching</td></tr>
+</table>
+
+<h2>How It Works</h2>
+<p>The model converts product text and search queries into 1024-dimensional vectors. Products with similar meaning have vectors that are close together, enabling semantic search.</p>
+
+<h3>Search Flow</h3>
+<pre><code>User types "iPhone 15"
+    ↓
+Model encodes: "query: iPhone 15" → [0.12, -0.34, 0.56, ...]  (1024 numbers)
+    ↓
+Compare against pre-computed product vectors in database
+    ↓
+Return products with highest cosine similarity</code></pre>
+
+<h3>E5 Prefix Convention</h3>
+<p>The E5 model requires specific prefixes to work correctly:</p>
+<ul>
+    <li><strong>Search queries</strong>: Prefix with <code>"query: "</code></li>
+    <li><strong>Product documents</strong>: Prefix with <code>"passage: "</code></li>
+</ul>
+<p>Without these prefixes, the model treats all text as generic and cannot distinguish between "searching for iPhones" and "a document about iPhones."</p>
+
+<h2>LoRA Fine-tuning</h2>
+<p>Instead of training all 560M parameters (requires 20GB+ VRAM), LoRA freezes the base model and trains small adapter layers inserted into the attention mechanism.</p>
+
+<table>
+    <tr><td><strong>LoRA Rank (r)</strong></td><td>16</td></tr>
+    <tr><td><strong>Alpha</strong></td><td>32</td></tr>
+    <tr><td><strong>Target Modules</strong></td><td>query, key, value, dense</td></tr>
+    <tr><td><strong>Dropout</strong></td><td>0.1</td></tr>
+    <tr><td><strong>VRAM Usage</strong></td><td>~6-8 GB (fits on RTX 4070 Ti)</td></tr>
+</table>
+
+<p>After training, the LoRA adapters are merged back into the base model. The final model is the same size as the original E5 but with weights tuned for SKAWR marketplace search.</p>
+
+<h2>Training Configuration</h2>
+<table>
+    <tr><td><strong>Epochs</strong></td><td>3</td></tr>
+    <tr><td><strong>Batch Size</strong></td><td>8</td></tr>
+    <tr><td><strong>Learning Rate</strong></td><td>2e-4</td></tr>
+    <tr><td><strong>Optimizer</strong></td><td>AdamW</td></tr>
+    <tr><td><strong>Scheduler</strong></td><td>Linear warmup (10%)</td></tr>
+    <tr><td><strong>Precision</strong></td><td>Mixed FP16</td></tr>
+    <tr><td><strong>Loss Function</strong></td><td>InfoNCE Contrastive</td></tr>
+    <tr><td><strong>Checkpoints</strong></td><td>Every 1000 batches + per epoch</td></tr>
+</table>
+
+<h3>Loss Function</h3>
+<p>InfoNCE contrastive loss teaches the model that a query should match its correct product more than any other product in the batch. Temperature scaling (0.05) sharpens the similarity scores.</p>
+
+<h3>Training Pairs</h3>
+<p>Generated on-the-fly each batch:</p>
+<ul>
+    <li><strong>70% positive</strong>: Query from product title, paired with the full product text</li>
+    <li><strong>30% negative</strong>: Query paired with a random product from a different domain</li>
+</ul>
+
+<h2>Hardware</h2>
+<table>
+    <tr><td><strong>GPU</strong></td><td>NVIDIA GeForce RTX 4070 Ti SUPER</td></tr>
+    <tr><td><strong>VRAM</strong></td><td>16 GB</td></tr>
+    <tr><td><strong>System RAM</strong></td><td>32 GB</td></tr>
+    <tr><td><strong>Training Time</strong></td><td>~1.5 hours (3 epochs)</td></tr>
+</table>
+
+<h2>Usage</h2>
+<h3>Python</h3>
+<pre><code>from transformers import AutoTokenizer, AutoModel
+import torch, torch.nn.functional as F
+
+model_path = "models/checkpoints/e5-lora/merged"
+tokenizer = AutoTokenizer.from_pretrained(model_path)
+model = AutoModel.from_pretrained(model_path)
+
+def embed(text, prefix="query: "):
+    inputs = tokenizer(f"{prefix}{text}", max_length=256,
+                       padding=True, truncation=True, return_tensors="pt")
+    with torch.no_grad():
+        out = model(**inputs)
+    emb = out.last_hidden_state.mean(dim=1)
+    return F.normalize(emb, p=2, dim=1)
+
+# Search
+query = embed("iPhone 15", prefix="query: ")
+product = embed("iPhone 15 Pro Max 256GB for sale", prefix="passage: ")
+score = torch.cosine_similarity(query, product).item()
+print(f"Similarity: {score:.3f}")</code></pre>
+
+<h2>Repository</h2>
+<p><strong>Repo</strong>: <a href="https://github.com/LuqtahTech/skawr-search-ml">LuqtahTech/skawr-search-ml</a></p>
+
+<h3>Key Files</h3>
+<table>
+    <tr><td><code>scripts/finetune_e5_lora.py</code></td><td>LoRA fine-tuning script</td></tr>
+    <tr><td><code>scripts/search_and_judge.py</code></td><td>Run queries for quality review</td></tr>
+    <tr><td><code>scripts/hard_negative_mining.py</code></td><td>Find and fix wrong search results</td></tr>
+    <tr><td><code>scripts/progressive_resize.py</code></td><td>Scale model up when needed</td></tr>
+    <tr><td><code>config/hybrid_model_config.yaml</code></td><td>Custom model config</td></tr>
+    <tr><td><code>data/processed/</code></td><td>Training data splits</td></tr>
+    <tr><td><code>models/checkpoints/e5-lora/</code></td><td>Model checkpoints</td></tr>
+</table>
+
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

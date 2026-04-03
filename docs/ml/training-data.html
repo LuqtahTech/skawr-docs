@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Training Data - SKAWR Docs</title>
+    <link rel="stylesheet" href="../gitbook-style.css">
+</head>
+<body>
+    <div class="book">
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <a href="../index.html" style="text-decoration:none; color:inherit;">
+                        <div class="skawr-logo">
+                            <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" width="120" height="30">
+                                <text x="10" y="150" font-family="'Inter', Arial, sans-serif" font-size="160" font-weight="600" fill="#FFFFFF" letter-spacing="-5">SKAWR</text>
+                                <circle cx="760" cy="130" r="30" fill="#ED7453"/>
+                            </svg>
+                        </div>
+                    </a>
+                    <p class="book-subtitle">ML Documentation</p>
+                </div>
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter"><a href="../index.html">Back to Docs</a></li>
+                        <li class="chapter"><a href="search-model.html">Search Model</a></li>
+                        <li class="chapter active"><a href="#data">Training Data</a></li>
+                        <li class="chapter"><a href="training-plan.html">Training Plan</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="book-body">
+            <div class="body-inner">
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <section class="normal markdown-section">
+
+<h1 id="data">Training Data</h1>
+
+<h2>Data Sources</h2>
+
+<h3>Haraj Products (Primary)</h3>
+<table>
+    <tr><td><strong>Source</strong></td><td>Haraj.com.sa (scraped via GraphQL API)</td></tr>
+    <tr><td><strong>Storage</strong></td><td>Supabase PostgreSQL + pgvector</td></tr>
+    <tr><td><strong>Products</strong></td><td>28,832</td></tr>
+    <tr><td><strong>Language</strong></td><td>Arabic (primary), some English</td></tr>
+    <tr><td><strong>Domain</strong></td><td>General marketplace (phones, cars, furniture, electronics)</td></tr>
+    <tr><td><strong>Fields</strong></td><td>title, description, price, category, image_url, product_url</td></tr>
+</table>
+
+<p>Scraped by <code>skawr-scraper</code> running on VPS (173.212.246.10) as a systemd service. Scrapes all Haraj categories continuously.</p>
+
+<h4>Data Quality Notes</h4>
+<ul>
+    <li>64% of products have no price (price in description text, not structured field)</li>
+    <li>Titles are short (2-10 words typically)</li>
+    <li>Descriptions range from 10 to 2000+ characters</li>
+    <li>Mixed Arabic/English content common</li>
+    <li>Categories: phones, cars, electronics, furniture, clothing, sports, books, games</li>
+</ul>
+
+<h3>Kaggle Datasets (Supplementary)</h3>
+
+<h4>Craigslist Cars</h4>
+<table>
+    <tr><td><strong>Dataset</strong></td><td><code>austinreese/craigslist-carstrucks-data</code></td></tr>
+    <tr><td><strong>Products</strong></td><td>49,971 (sampled from 400k+)</td></tr>
+    <tr><td><strong>Language</strong></td><td>English</td></tr>
+    <tr><td><strong>Fields used</strong></td><td>manufacturer, model, description, type, price</td></tr>
+    <tr><td><strong>Domain</strong></td><td>Automotive</td></tr>
+</table>
+
+<h4>CarDekho</h4>
+<table>
+    <tr><td><strong>Dataset</strong></td><td><code>nehalbirla/vehicle-dataset-from-cardekho</code></td></tr>
+    <tr><td><strong>Products</strong></td><td>301</td></tr>
+    <tr><td><strong>Language</strong></td><td>English</td></tr>
+    <tr><td><strong>Fields used</strong></td><td>Car_Name, Fuel_Type, Transmission</td></tr>
+</table>
+
+<h4>USA Cars</h4>
+<table>
+    <tr><td><strong>Dataset</strong></td><td><code>doaaalsenani/usa-cers-dataset</code></td></tr>
+    <tr><td><strong>Products</strong></td><td>2,499</td></tr>
+    <tr><td><strong>Language</strong></td><td>English</td></tr>
+    <tr><td><strong>Fields used</strong></td><td>brand, model, title_status</td></tr>
+</table>
+
+<h2>Combined Dataset</h2>
+<table>
+    <tr><td><strong>Total Products</strong></td><td>82,771</td></tr>
+    <tr><td><strong>Training Set</strong></td><td>66,216 (80%)</td></tr>
+    <tr><td><strong>Validation Set</strong></td><td>8,277 (10%)</td></tr>
+    <tr><td><strong>Test Set</strong></td><td>8,278 (10%)</td></tr>
+</table>
+
+<h3>Domain Distribution</h3>
+<table>
+    <tr><td>General (Haraj)</td><td>30,000</td><td>36%</td></tr>
+    <tr><td>Automotive (Kaggle)</td><td>52,771</td><td>64%</td></tr>
+</table>
+
+<h2>Data Processing</h2>
+
+<h3>Text Field</h3>
+<p>Each product's <code>text</code> field is created by combining title and description:</p>
+<pre><code>text = title + ". " + description</code></pre>
+
+<h3>Filtering</h3>
+<ul>
+    <li>Remove products with null text</li>
+    <li>Remove products with text shorter than 10 characters</li>
+    <li>Truncate text to 500 characters (memory optimization)</li>
+    <li>Tokenizer truncates to 256 tokens at training time</li>
+</ul>
+
+<h3>Pair Generation</h3>
+<p>Training pairs are generated on-the-fly (not pre-computed) to save memory:</p>
+<ul>
+    <li><strong>Query</strong>: First 50 characters of product title, prefixed with <code>"query: "</code></li>
+    <li><strong>Positive product</strong> (70%): The same product's full text, prefixed with <code>"passage: "</code></li>
+    <li><strong>Negative product</strong> (30%): Random product from a different domain</li>
+</ul>
+
+<h2>Embeddings in Supabase</h2>
+
+<h3>Vector Columns</h3>
+<table>
+    <tr><td><code>title_embedding</code></td><td>1024-dim vector from title only</td></tr>
+    <tr><td><code>description_embedding</code></td><td>1024-dim vector from description only</td></tr>
+    <tr><td><code>combined_embedding</code></td><td>1024-dim vector from title + description</td></tr>
+    <tr><td><code>has_embedding</code></td><td>Boolean flag</td></tr>
+    <tr><td><code>embedding_generated_at</code></td><td>Timestamp</td></tr>
+</table>
+
+<h3>Search Function</h3>
+<p>Supabase RPC function <code>search_products_by_similarity</code> performs cosine similarity search against the <code>combined_embedding</code> column.</p>
+
+<h2>Data Pipeline</h2>
+<pre><code>Haraj.com.sa
+    ↓ (skawr-scraper on VPS, systemd service)
+Supabase PostgreSQL
+    ↓ (embedding-cli.py on local GPU)
+Product embeddings (1024-dim vectors)
+    ↓ (stored back in Supabase)
+Vector search via RPC function</code></pre>
+
+<h2>Files</h2>
+<table>
+    <tr><td><code>data/processed/train.csv</code></td><td>Training split (66k rows)</td></tr>
+    <tr><td><code>data/processed/validation.csv</code></td><td>Validation split (8.3k rows)</td></tr>
+    <tr><td><code>data/processed/test.csv</code></td><td>Test split (8.3k rows)</td></tr>
+    <tr><td><code>data/processed/haraj_products.csv</code></td><td>Raw Haraj data from Supabase</td></tr>
+    <tr><td><code>data/kaggle/automotive/</code></td><td>Raw Kaggle automotive CSVs</td></tr>
+    <tr><td><code>data/kaggle/fashion/</code></td><td>Raw Kaggle fashion dataset</td></tr>
+</table>
+
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
