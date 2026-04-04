@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Training Data - Skawr Documentation</title>
     <link rel="stylesheet" href="../gitbook-style.css">
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
     <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📚</text></svg>">
 </head>
 <body>
@@ -98,136 +97,882 @@
         <!-- Main Content -->
         <div class="book-body">
             <div class="body-inner">
+                <div class="book-toolbar">
+                    <div class="toolbar-left">
+                        <button class="btn btn-sm sidebar-toggle">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z"></path>
+                            </svg>
+                        </button>
+                        <nav class="breadcrumb">
+                            <a href="../index.html">Documentation</a>
+                            <span>›</span>
+                            <a href="#ml">Search ML</a>
+                            <span>›</span>
+                            <span>Training Data</span>
+                        </nav>
+                    </div>
+                    <div class="toolbar-right">
+                        <a href="https://github.com/ziyad00/skawr-docs" class="btn btn-sm">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
                 <div class="page-wrapper">
                     <div class="page-inner">
-                        <section class="normal markdown-section">
+                        <article class="page-content">
+                            <h1>📊 Training Data</h1>
 
-<h1 id="data">Training Data</h1>
+                            <div class="architecture-intro">
+                                <p>Multi-source training dataset combining Arabic marketplace products from Haraj with supplementary English automotive data from Kaggle.</p>
 
-<h2>Data Sources</h2>
+                                <div class="architecture-stats">
+                                    <div class="arch-stat">
+                                        <div class="stat-number">82,771</div>
+                                        <div class="stat-label">Products</div>
+                                    </div>
+                                    <div class="arch-stat">
+                                        <div class="stat-number">2</div>
+                                        <div class="stat-label">Languages</div>
+                                    </div>
+                                    <div class="arch-stat">
+                                        <div class="stat-number">4</div>
+                                        <div class="stat-label">Sources</div>
+                                    </div>
+                                </div>
+                            </div>
 
-<h3>Haraj Products (Primary)</h3>
-<table>
-    <tr><td><strong>Source</strong></td><td>Haraj.com.sa (scraped via GraphQL API)</td></tr>
-    <tr><td><strong>Storage</strong></td><td>Supabase PostgreSQL + pgvector</td></tr>
-    <tr><td><strong>Products</strong></td><td>28,832</td></tr>
-    <tr><td><strong>Language</strong></td><td>Arabic (primary), some English</td></tr>
-    <tr><td><strong>Domain</strong></td><td>General marketplace (phones, cars, furniture, electronics)</td></tr>
-    <tr><td><strong>Fields</strong></td><td>title, description, price, category, image_url, product_url</td></tr>
-</table>
+                            <div class="diagram-nav">
+                                <h2>📋 Quick Navigation</h2>
+                                <div class="nav-grid">
+                                    <a href="#haraj" class="diagram-nav-item">
+                                        <span class="nav-icon">🏪</span>
+                                        <span>Haraj</span>
+                                    </a>
+                                    <a href="#kaggle" class="diagram-nav-item">
+                                        <span class="nav-icon">📦</span>
+                                        <span>Kaggle</span>
+                                    </a>
+                                    <a href="#processing" class="diagram-nav-item">
+                                        <span class="nav-icon">🔄</span>
+                                        <span>Processing</span>
+                                    </a>
+                                    <a href="#supabase" class="diagram-nav-item">
+                                        <span class="nav-icon">💾</span>
+                                        <span>Supabase</span>
+                                    </a>
+                                </div>
+                            </div>
 
-<p>Scraped by <code>skawr-scraper</code> running on VPS (173.212.246.10) as a systemd service. Scrapes all Haraj categories continuously.</p>
+                            <!-- Haraj Section -->
+                            <div class="diagram-section" id="haraj">
+                                <div class="diagram-header">
+                                    <h2>🏪 Haraj Products (Primary)</h2>
+                                </div>
+                                <div class="section-content">
+                                    <table class="styled-table">
+                                        <tbody>
+                                            <tr><td><strong>Source</strong></td><td>Haraj.com.sa (scraped via GraphQL API)</td></tr>
+                                            <tr><td><strong>Storage</strong></td><td>Supabase PostgreSQL + pgvector</td></tr>
+                                            <tr><td><strong>Products</strong></td><td>28,832</td></tr>
+                                            <tr><td><strong>Language</strong></td><td>Arabic (primary), some English</td></tr>
+                                            <tr><td><strong>Domain</strong></td><td>General marketplace (phones, cars, furniture, electronics)</td></tr>
+                                            <tr><td><strong>Fields</strong></td><td>title, description, price, category, image_url, product_url</td></tr>
+                                        </tbody>
+                                    </table>
 
-<h4>Data Quality Notes</h4>
-<ul>
-    <li>64% of products have no price (price in description text, not structured field)</li>
-    <li>Titles are short (2-10 words typically)</li>
-    <li>Descriptions range from 10 to 2000+ characters</li>
-    <li>Mixed Arabic/English content common</li>
-    <li>Categories: phones, cars, electronics, furniture, clothing, sports, books, games</li>
-</ul>
+                                    <p>Scraped by <code>skawr-scraper</code> running on VPS (173.212.246.10) as a systemd service. Scrapes all Haraj categories continuously.</p>
 
-<h3>Kaggle Datasets (Supplementary)</h3>
+                                    <h3>Data Quality Notes</h3>
+                                    <ul>
+                                        <li>64% of products have no price (price in description text, not structured field)</li>
+                                        <li>Titles are short (2-10 words typically)</li>
+                                        <li>Descriptions range from 10 to 2000+ characters</li>
+                                        <li>Mixed Arabic/English content common</li>
+                                        <li>Categories: phones, cars, electronics, furniture, clothing, sports, books, games</li>
+                                    </ul>
+                                </div>
+                            </div>
 
-<h4>Craigslist Cars</h4>
-<table>
-    <tr><td><strong>Dataset</strong></td><td><code>austinreese/craigslist-carstrucks-data</code></td></tr>
-    <tr><td><strong>Products</strong></td><td>49,971 (sampled from 400k+)</td></tr>
-    <tr><td><strong>Language</strong></td><td>English</td></tr>
-    <tr><td><strong>Fields used</strong></td><td>manufacturer, model, description, type, price</td></tr>
-    <tr><td><strong>Domain</strong></td><td>Automotive</td></tr>
-</table>
+                            <!-- Kaggle Section -->
+                            <div class="diagram-section" id="kaggle">
+                                <div class="diagram-header">
+                                    <h2>📦 Kaggle Datasets (Supplementary)</h2>
+                                </div>
+                                <div class="section-content">
+                                    <div class="dataset-cards">
+                                        <div class="dataset-card">
+                                            <div class="dataset-card-header">
+                                                <span class="dataset-icon">🚗</span>
+                                                <h4>Craigslist Cars</h4>
+                                            </div>
+                                            <table class="styled-table">
+                                                <tbody>
+                                                    <tr><td><strong>Dataset</strong></td><td><code>austinreese/craigslist-carstrucks-data</code></td></tr>
+                                                    <tr><td><strong>Products</strong></td><td>49,971 (sampled from 400k+)</td></tr>
+                                                    <tr><td><strong>Language</strong></td><td>English</td></tr>
+                                                    <tr><td><strong>Fields used</strong></td><td>manufacturer, model, description, type, price</td></tr>
+                                                    <tr><td><strong>Domain</strong></td><td>Automotive</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
 
-<h4>CarDekho</h4>
-<table>
-    <tr><td><strong>Dataset</strong></td><td><code>nehalbirla/vehicle-dataset-from-cardekho</code></td></tr>
-    <tr><td><strong>Products</strong></td><td>301</td></tr>
-    <tr><td><strong>Language</strong></td><td>English</td></tr>
-    <tr><td><strong>Fields used</strong></td><td>Car_Name, Fuel_Type, Transmission</td></tr>
-</table>
+                                        <div class="dataset-card">
+                                            <div class="dataset-card-header">
+                                                <span class="dataset-icon">🏎️</span>
+                                                <h4>CarDekho</h4>
+                                            </div>
+                                            <table class="styled-table">
+                                                <tbody>
+                                                    <tr><td><strong>Dataset</strong></td><td><code>nehalbirla/vehicle-dataset-from-cardekho</code></td></tr>
+                                                    <tr><td><strong>Products</strong></td><td>301</td></tr>
+                                                    <tr><td><strong>Language</strong></td><td>English</td></tr>
+                                                    <tr><td><strong>Fields used</strong></td><td>Car_Name, Fuel_Type, Transmission</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
 
-<h4>USA Cars</h4>
-<table>
-    <tr><td><strong>Dataset</strong></td><td><code>doaaalsenani/usa-cers-dataset</code></td></tr>
-    <tr><td><strong>Products</strong></td><td>2,499</td></tr>
-    <tr><td><strong>Language</strong></td><td>English</td></tr>
-    <tr><td><strong>Fields used</strong></td><td>brand, model, title_status</td></tr>
-</table>
+                                        <div class="dataset-card">
+                                            <div class="dataset-card-header">
+                                                <span class="dataset-icon">🇺🇸</span>
+                                                <h4>USA Cars</h4>
+                                            </div>
+                                            <table class="styled-table">
+                                                <tbody>
+                                                    <tr><td><strong>Dataset</strong></td><td><code>doaaalsenani/usa-cers-dataset</code></td></tr>
+                                                    <tr><td><strong>Products</strong></td><td>2,499</td></tr>
+                                                    <tr><td><strong>Language</strong></td><td>English</td></tr>
+                                                    <tr><td><strong>Fields used</strong></td><td>brand, model, title_status</td></tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
 
-<h2>Combined Dataset</h2>
-<table>
-    <tr><td><strong>Total Products</strong></td><td>82,771</td></tr>
-    <tr><td><strong>Training Set</strong></td><td>66,216 (80%)</td></tr>
-    <tr><td><strong>Validation Set</strong></td><td>8,277 (10%)</td></tr>
-    <tr><td><strong>Test Set</strong></td><td>8,278 (10%)</td></tr>
-</table>
+                                    <h3>Combined Dataset</h3>
+                                    <table class="styled-table">
+                                        <tbody>
+                                            <tr><td><strong>Total Products</strong></td><td>82,771</td></tr>
+                                            <tr><td><strong>Training Set</strong></td><td>66,216 (80%)</td></tr>
+                                            <tr><td><strong>Validation Set</strong></td><td>8,277 (10%)</td></tr>
+                                            <tr><td><strong>Test Set</strong></td><td>8,278 (10%)</td></tr>
+                                        </tbody>
+                                    </table>
 
-<h3>Domain Distribution</h3>
-<table>
-    <tr><td>General (Haraj)</td><td>30,000</td><td>36%</td></tr>
-    <tr><td>Automotive (Kaggle)</td><td>52,771</td><td>64%</td></tr>
-</table>
+                                    <h3>Domain Distribution</h3>
+                                    <div class="distribution-bars">
+                                        <div class="dist-row">
+                                            <div class="dist-label">General (Haraj)</div>
+                                            <div class="dist-bar-wrapper">
+                                                <div class="dist-bar haraj-bar" style="width: 36%;">
+                                                    <span>30,000 — 36%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="dist-row">
+                                            <div class="dist-label">Automotive (Kaggle)</div>
+                                            <div class="dist-bar-wrapper">
+                                                <div class="dist-bar kaggle-bar" style="width: 64%;">
+                                                    <span>52,771 — 64%</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-<h2>Data Processing</h2>
+                            <!-- Processing Section -->
+                            <div class="diagram-section" id="processing">
+                                <div class="diagram-header">
+                                    <h2>🔄 Data Processing</h2>
+                                </div>
+                                <div class="section-content">
+                                    <h3>Text Field</h3>
+                                    <p>Each product's <code>text</code> field is created by combining title and description:</p>
+                                    <pre><code>text = title + ". " + description</code></pre>
 
-<h3>Text Field</h3>
-<p>Each product's <code>text</code> field is created by combining title and description:</p>
-<pre><code>text = title + ". " + description</code></pre>
+                                    <h3>Filtering</h3>
+                                    <ul>
+                                        <li>Remove products with null text</li>
+                                        <li>Remove products with text shorter than 10 characters</li>
+                                        <li>Truncate text to 500 characters (memory optimization)</li>
+                                        <li>Tokenizer truncates to 256 tokens at training time</li>
+                                    </ul>
 
-<h3>Filtering</h3>
-<ul>
-    <li>Remove products with null text</li>
-    <li>Remove products with text shorter than 10 characters</li>
-    <li>Truncate text to 500 characters (memory optimization)</li>
-    <li>Tokenizer truncates to 256 tokens at training time</li>
-</ul>
+                                    <h3>Pair Generation</h3>
+                                    <p>Training pairs are generated on-the-fly (not pre-computed) to save memory:</p>
+                                    <div class="info-cards">
+                                        <div class="info-card query-card">
+                                            <div class="info-card-header">Query</div>
+                                            <div class="info-card-body">First 50 characters of product title, prefixed with <code>"query: "</code></div>
+                                        </div>
+                                        <div class="info-card positive">
+                                            <div class="info-card-header">Positive Product (70%)</div>
+                                            <div class="info-card-body">The same product's full text, prefixed with <code>"passage: "</code></div>
+                                        </div>
+                                        <div class="info-card negative">
+                                            <div class="info-card-header">Negative Product (30%)</div>
+                                            <div class="info-card-body">Random product from a different domain</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-<h3>Pair Generation</h3>
-<p>Training pairs are generated on-the-fly (not pre-computed) to save memory:</p>
-<ul>
-    <li><strong>Query</strong>: First 50 characters of product title, prefixed with <code>"query: "</code></li>
-    <li><strong>Positive product</strong> (70%): The same product's full text, prefixed with <code>"passage: "</code></li>
-    <li><strong>Negative product</strong> (30%): Random product from a different domain</li>
-</ul>
+                            <!-- Data Pipeline Visual -->
+                            <div class="diagram-section" id="pipeline">
+                                <div class="diagram-header">
+                                    <h2>🔀 Data Pipeline</h2>
+                                </div>
+                                <div class="section-content">
+                                    <div class="pipeline-flow">
+                                        <div class="pipeline-step pipeline-source">
+                                            <div class="pipeline-icon">🌐</div>
+                                            <div class="pipeline-label">Haraj.com.sa</div>
+                                            <div class="pipeline-detail">Source marketplace</div>
+                                        </div>
+                                        <div class="pipeline-connector">
+                                            <div class="connector-line"></div>
+                                            <div class="connector-label">skawr-scraper on VPS<br>systemd service</div>
+                                        </div>
+                                        <div class="pipeline-step pipeline-storage">
+                                            <div class="pipeline-icon">💾</div>
+                                            <div class="pipeline-label">Supabase PostgreSQL</div>
+                                            <div class="pipeline-detail">Raw product data</div>
+                                        </div>
+                                        <div class="pipeline-connector">
+                                            <div class="connector-line"></div>
+                                            <div class="connector-label">embedding-cli.py<br>on local GPU</div>
+                                        </div>
+                                        <div class="pipeline-step pipeline-process">
+                                            <div class="pipeline-icon">🧠</div>
+                                            <div class="pipeline-label">Product Embeddings</div>
+                                            <div class="pipeline-detail">1024-dim vectors</div>
+                                        </div>
+                                        <div class="pipeline-connector">
+                                            <div class="connector-line"></div>
+                                            <div class="connector-label">stored back<br>in Supabase</div>
+                                        </div>
+                                        <div class="pipeline-step pipeline-output">
+                                            <div class="pipeline-icon">🔍</div>
+                                            <div class="pipeline-label">Vector Search</div>
+                                            <div class="pipeline-detail">via RPC function</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-<h2>Embeddings in Supabase</h2>
+                            <!-- Supabase Section -->
+                            <div class="diagram-section" id="supabase">
+                                <div class="diagram-header">
+                                    <h2>💾 Embeddings in Supabase</h2>
+                                </div>
+                                <div class="section-content">
+                                    <h3>Vector Columns</h3>
+                                    <table class="styled-table">
+                                        <tbody>
+                                            <tr><td><code>title_embedding</code></td><td>1024-dim vector from title only</td></tr>
+                                            <tr><td><code>description_embedding</code></td><td>1024-dim vector from description only</td></tr>
+                                            <tr><td><code>combined_embedding</code></td><td>1024-dim vector from title + description</td></tr>
+                                            <tr><td><code>has_embedding</code></td><td>Boolean flag</td></tr>
+                                            <tr><td><code>embedding_generated_at</code></td><td>Timestamp</td></tr>
+                                        </tbody>
+                                    </table>
 
-<h3>Vector Columns</h3>
-<table>
-    <tr><td><code>title_embedding</code></td><td>1024-dim vector from title only</td></tr>
-    <tr><td><code>description_embedding</code></td><td>1024-dim vector from description only</td></tr>
-    <tr><td><code>combined_embedding</code></td><td>1024-dim vector from title + description</td></tr>
-    <tr><td><code>has_embedding</code></td><td>Boolean flag</td></tr>
-    <tr><td><code>embedding_generated_at</code></td><td>Timestamp</td></tr>
-</table>
+                                    <h3>Search Function</h3>
+                                    <p>Supabase RPC function <code>search_products_by_similarity</code> performs cosine similarity search against the <code>combined_embedding</code> column.</p>
+                                </div>
+                            </div>
 
-<h3>Search Function</h3>
-<p>Supabase RPC function <code>search_products_by_similarity</code> performs cosine similarity search against the <code>combined_embedding</code> column.</p>
+                            <!-- Files Section -->
+                            <div class="architecture-summary">
+                                <h2>📂 Files</h2>
+                                <div class="summary-grid">
+                                    <div class="summary-card">
+                                        <h3>📊 Processed Data</h3>
+                                        <ul>
+                                            <li><code>data/processed/train.csv</code> — Training split (66k rows)</li>
+                                            <li><code>data/processed/validation.csv</code> — Validation split (8.3k rows)</li>
+                                            <li><code>data/processed/test.csv</code> — Test split (8.3k rows)</li>
+                                        </ul>
+                                    </div>
+                                    <div class="summary-card">
+                                        <h3>📦 Raw Data</h3>
+                                        <ul>
+                                            <li><code>data/processed/haraj_products.csv</code> — Raw Haraj data from Supabase</li>
+                                            <li><code>data/kaggle/automotive/</code> — Raw Kaggle automotive CSVs</li>
+                                            <li><code>data/kaggle/fashion/</code> — Raw Kaggle fashion dataset</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
 
-<h2>Data Pipeline</h2>
-<pre><code>Haraj.com.sa
-    ↓ (skawr-scraper on VPS, systemd service)
-Supabase PostgreSQL
-    ↓ (embedding-cli.py on local GPU)
-Product embeddings (1024-dim vectors)
-    ↓ (stored back in Supabase)
-Vector search via RPC function</code></pre>
-
-<h2>Files</h2>
-<table>
-    <tr><td><code>data/processed/train.csv</code></td><td>Training split (66k rows)</td></tr>
-    <tr><td><code>data/processed/validation.csv</code></td><td>Validation split (8.3k rows)</td></tr>
-    <tr><td><code>data/processed/test.csv</code></td><td>Test split (8.3k rows)</td></tr>
-    <tr><td><code>data/processed/haraj_products.csv</code></td><td>Raw Haraj data from Supabase</td></tr>
-    <tr><td><code>data/kaggle/automotive/</code></td><td>Raw Kaggle automotive CSVs</td></tr>
-    <tr><td><code>data/kaggle/fashion/</code></td><td>Raw Kaggle fashion dataset</td></tr>
-</table>
-
-                        </section>
+                        <div class="page-navigation">
+                            <div class="nav-prev">
+                                <a href="search-model.html" class="nav-link">
+                                    <div class="nav-icon">←</div>
+                                    <div class="nav-text">
+                                        <div class="nav-label">Previous</div>
+                                        <div class="nav-title">Search Model</div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="nav-next">
+                                <a href="training-plan.html" class="nav-link">
+                                    <div class="nav-text">
+                                        <div class="nav-label">Next</div>
+                                        <div class="nav-title">Training Plan</div>
+                                    </div>
+                                    <div class="nav-icon">→</div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Sidebar toggle for mobile
+        document.querySelector('.sidebar-toggle').addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+
+        // Chapter toggle functionality
+        document.querySelectorAll('.chapter-link').forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const chapter = this.parentElement;
+                chapter.classList.toggle('expanded');
+            });
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.diagram-nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+
+    <style>
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--color-text-light);
+            margin-left: 1rem;
+        }
+
+        .breadcrumb a {
+            color: var(--color-accent);
+            text-decoration: none;
+        }
+
+        .architecture-intro {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .architecture-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .arch-stat {
+            text-align: center;
+        }
+
+        .arch-stat .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .arch-stat .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .diagram-nav {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .nav-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .diagram-nav-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: all 0.2s ease;
+        }
+
+        .diagram-nav-item:hover {
+            background: var(--color-accent);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-icon {
+            font-size: 1.25rem;
+        }
+
+        .diagram-section {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .diagram-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: #f8f9fa;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .diagram-header h2 {
+            margin: 0;
+            color: var(--color-text);
+        }
+
+        .section-content {
+            padding: 2rem;
+        }
+
+        .section-content h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--color-text);
+        }
+
+        .section-content p {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .styled-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        .styled-table td {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .styled-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .styled-table td:first-child {
+            width: 200px;
+            background: #f8f9fa;
+            font-weight: 500;
+        }
+
+        /* Dataset cards */
+        .dataset-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .dataset-card {
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .dataset-card-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            background: #f8f9fa;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .dataset-card-header h4 {
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        .dataset-icon {
+            font-size: 1.25rem;
+        }
+
+        .dataset-card .styled-table {
+            margin: 0;
+        }
+
+        .dataset-card .styled-table td:first-child {
+            width: 120px;
+        }
+
+        /* Distribution bars */
+        .distribution-bars {
+            margin-top: 1rem;
+        }
+
+        .dist-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .dist-label {
+            width: 160px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .dist-bar-wrapper {
+            flex: 1;
+            background: #f0f0f0;
+            border-radius: 6px;
+            overflow: hidden;
+            height: 36px;
+        }
+
+        .dist-bar {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 1rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: white;
+        }
+
+        .haraj-bar {
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .kaggle-bar {
+            background: linear-gradient(90deg, #43a047 0%, #1b5e20 100%);
+        }
+
+        /* Info cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .info-card {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--color-border);
+        }
+
+        .info-card-header {
+            padding: 0.75rem 1rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .info-card-body {
+            padding: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            background: white;
+        }
+
+        .info-card.query-card .info-card-header {
+            background: #e3f2fd;
+            color: #1565c0;
+        }
+
+        .info-card.positive .info-card-header {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .info-card.negative .info-card-header {
+            background: #fce4ec;
+            color: #c62828;
+        }
+
+        /* Pipeline flow */
+        .pipeline-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0;
+            padding: 1rem 0;
+        }
+
+        .pipeline-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.25rem 2rem;
+            border-radius: 10px;
+            border: 2px solid;
+            min-width: 260px;
+            text-align: center;
+            background: white;
+        }
+
+        .pipeline-source {
+            border-color: #1976d2;
+            background: #e3f2fd;
+        }
+
+        .pipeline-storage {
+            border-color: #7b1fa2;
+            background: #f3e5f5;
+        }
+
+        .pipeline-process {
+            border-color: #388e3c;
+            background: #e8f5e9;
+        }
+
+        .pipeline-output {
+            border-color: #f57c00;
+            background: #fff3e0;
+        }
+
+        .pipeline-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pipeline-label {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .pipeline-detail {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .pipeline-connector {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0.25rem 0;
+        }
+
+        .connector-line {
+            width: 2px;
+            height: 20px;
+            background: var(--color-accent, #1976d2);
+        }
+
+        .connector-label {
+            font-size: 0.8rem;
+            color: #666;
+            text-align: center;
+            padding: 0.25rem 0.75rem;
+            background: #f8f9fa;
+            border-radius: 4px;
+            border: 1px solid var(--color-border);
+            line-height: 1.4;
+        }
+
+        .connector-line + .connector-label {
+            margin-top: 0;
+        }
+
+        .connector-label + .connector-line {
+            margin-top: 0;
+        }
+
+        /* Extend connector to include a bottom line */
+        .pipeline-connector::after {
+            content: '';
+            display: block;
+            width: 2px;
+            height: 20px;
+            background: var(--color-accent, #1976d2);
+        }
+
+        /* Architecture summary */
+        .architecture-summary {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .summary-card {
+            background: #f8f9fa;
+            border: 1px solid var(--color-border);
+            border-radius: 6px;
+            padding: 1.5rem;
+        }
+
+        .summary-card h3 {
+            color: var(--color-text);
+            margin-bottom: 1rem;
+        }
+
+        .summary-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .summary-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #e9ecef;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .summary-card li:before {
+            content: '>';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+            font-weight: 600;
+            font-family: monospace;
+        }
+
+        .summary-card li:last-child {
+            border-bottom: none;
+        }
+
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--color-text);
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover {
+            border-color: var(--color-accent);
+        }
+
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        code {
+            font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+        }
+
+        @media (max-width: 768px) {
+            .nav-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .architecture-stats {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dataset-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .info-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .diagram-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            .styled-table td:first-child {
+                width: 120px;
+            }
+
+            .dist-row {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.25rem;
+            }
+
+            .dist-label {
+                width: auto;
+            }
+
+            .pipeline-step {
+                min-width: auto;
+                width: 100%;
+            }
+        }
+    </style>
 </body>
 </html>
