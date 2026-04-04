@@ -505,7 +505,7 @@
         }
 
         .diagram-nav {
-            background: white;
+            background: var(--color-content-bg);
             border: 1px solid var(--color-border);
             border-radius: 8px;
             padding: 2rem;
@@ -524,7 +524,7 @@
             align-items: center;
             gap: 0.75rem;
             padding: 1rem;
-            background: #f8f9fa;
+            background: var(--color-content-bg);
             border: 1px solid var(--color-border);
             border-radius: 6px;
             text-decoration: none;
@@ -544,7 +544,7 @@
         }
 
         .diagram-section {
-            background: white;
+            background: var(--color-content-bg);
             border: 1px solid var(--color-border);
             border-radius: 8px;
             margin-bottom: 2rem;
@@ -556,7 +556,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.5rem 2rem;
-            background: #f8f9fa;
+            background: var(--color-content-bg);
             border-bottom: 1px solid var(--color-border);
         }
 
@@ -597,7 +597,7 @@
 
         .styled-table td:first-child {
             width: 200px;
-            background: #f8f9fa;
+            background: var(--color-content-bg);
             font-weight: 500;
         }
 
@@ -620,7 +620,7 @@
             align-items: center;
             gap: 0.75rem;
             padding: 1rem 1.25rem;
-            background: #f8f9fa;
+            background: var(--color-content-bg);
             border-bottom: 1px solid var(--color-border);
         }
 
@@ -662,7 +662,7 @@
 
         .dist-bar-wrapper {
             flex: 1;
-            background: #f0f0f0;
+            background: var(--color-content-bg);
             border-radius: 6px;
             overflow: hidden;
             height: 36px;
@@ -711,7 +711,7 @@
             padding: 1rem;
             font-size: 0.9rem;
             line-height: 1.6;
-            background: white;
+            background: var(--color-content-bg);
         }
 
         .info-card.query-card .info-card-header {
@@ -747,7 +747,7 @@
             border: 2px solid;
             min-width: 260px;
             text-align: center;
-            background: white;
+            background: var(--color-content-bg);
         }
 
         .pipeline-source {
@@ -782,7 +782,7 @@
 
         .pipeline-detail {
             font-size: 0.85rem;
-            color: #666;
+            color: var(--color-text-light);
             margin-top: 0.25rem;
         }
 
@@ -801,10 +801,10 @@
 
         .connector-label {
             font-size: 0.8rem;
-            color: #666;
+            color: var(--color-text-light);
             text-align: center;
             padding: 0.25rem 0.75rem;
-            background: #f8f9fa;
+            background: var(--color-content-bg);
             border-radius: 4px;
             border: 1px solid var(--color-border);
             line-height: 1.4;
@@ -829,7 +829,7 @@
 
         /* Architecture summary */
         .architecture-summary {
-            background: white;
+            background: var(--color-content-bg);
             border: 1px solid var(--color-border);
             border-radius: 8px;
             padding: 2rem;
@@ -844,7 +844,7 @@
         }
 
         .summary-card {
-            background: #f8f9fa;
+            background: var(--color-content-bg);
             border: 1px solid var(--color-border);
             border-radius: 6px;
             padding: 1.5rem;
@@ -862,7 +862,7 @@
 
         .summary-card li {
             padding: 0.5rem 0;
-            border-bottom: 1px solid #e9ecef;
+            border-bottom: 1px solid var(--color-border);
             position: relative;
             padding-left: 1.5rem;
         }
@@ -893,7 +893,7 @@
             align-items: center;
             gap: 1rem;
             padding: 1rem 1.5rem;
-            background: white;
+            background: var(--color-content-bg);
             border: 1px solid var(--color-border);
             border-radius: 8px;
             text-decoration: none;
@@ -964,6 +964,43 @@
             .pipeline-step {
                 min-width: auto;
                 width: 100%;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .info-card.query-card .info-card-header {
+                background: #0d2744;
+                color: #64b5f6;
+            }
+
+            .info-card.positive .info-card-header {
+                background: #1b3a1e;
+                color: #81c784;
+            }
+
+            .info-card.negative .info-card-header {
+                background: #3e1520;
+                color: #ef9a9a;
+            }
+
+            .pipeline-source {
+                border-color: #42a5f5;
+                background: #0d2744;
+            }
+
+            .pipeline-storage {
+                border-color: #ab47bc;
+                background: #2a1033;
+            }
+
+            .pipeline-process {
+                border-color: #66bb6a;
+                background: #1b3a1e;
+            }
+
+            .pipeline-output {
+                border-color: #ffa726;
+                background: #3e2700;
             }
         }
     </style>
