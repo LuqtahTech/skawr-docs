@@ -608,6 +608,131 @@ body {
     color: var(--color-accent);
 }
 
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-content-bg: #1a1a2e;
+        --color-text: #e4e4e7;
+        --color-text-light: #a1a1aa;
+        --color-border: #2d2d3d;
+        --color-sidebar-bg: #111122;
+    }
+
+    body {
+        background: #0f0f1a;
+    }
+
+    .nav-card,
+    .step,
+    .platform-overview,
+    .deployment-info {
+        background: #1e1e30;
+        border-color: #2d2d3d;
+    }
+
+    .nav-card:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .nav-link {
+        background: #1e1e30;
+        border-color: #2d2d3d;
+    }
+
+    .btn {
+        color: #e4e4e7;
+        border-color: #2d2d3d;
+    }
+
+    .btn:hover {
+        background: #2d2d3d;
+    }
+
+    .book-toolbar {
+        background: #1a1a2e;
+        border-color: #2d2d3d;
+    }
+
+    .breadcrumb a {
+        color: #a1a1aa;
+    }
+
+    .breadcrumb span {
+        color: #71717a;
+    }
+
+    .section-title {
+        border-bottom-color: #2d2d3d;
+    }
+
+    .page-navigation {
+        border-top-color: #2d2d3d;
+    }
+
+    .deployment-info {
+        background: #1a2e1a;
+        border-color: #2d3d2d;
+    }
+
+    .hero-title {
+        color: #e4e4e7;
+    }
+
+    code, pre {
+        background: #1e1e30;
+        color: #e4e4e7;
+    }
+
+    table {
+        border-color: #2d2d3d;
+    }
+
+    th {
+        background: #1e1e30;
+        color: #e4e4e7;
+    }
+
+    td {
+        border-color: #2d2d3d;
+    }
+
+    .articles {
+        background: rgba(0, 0, 0, 0.2);
+    }
+
+    .book-sidebar-footer {
+        border-top-color: #2d2d3d;
+    }
+
+    .book-header {
+        border-bottom-color: #2d2d3d;
+    }
+
+    /* Architecture page specifics */
+    .architecture-stats .arch-stat {
+        background: #1e1e30;
+    }
+
+    .diagram-nav-item {
+        background: #1e1e30;
+        border-color: #2d2d3d;
+        color: #e4e4e7;
+    }
+
+    .diagram-nav-item:hover {
+        border-color: var(--skawr-primary);
+    }
+
+    .diagram-section {
+        background: #1e1e30;
+        border-color: #2d2d3d;
+    }
+
+    .diagram-header {
+        border-bottom-color: #2d2d3d;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .book-sidebar {
