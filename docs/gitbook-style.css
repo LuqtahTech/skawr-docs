@@ -608,92 +608,101 @@ body {
     color: var(--color-accent);
 }
 
-/* Dark Mode */
+/* Dark Mode — aligned with @skawr/core design tokens */
 @media (prefers-color-scheme: dark) {
     :root {
-        --color-content-bg: #1a1a2e;
-        --color-text: #e4e4e7;
-        --color-text-light: #a1a1aa;
-        --color-border: #2d2d3d;
-        --color-sidebar-bg: #111122;
+        /* From core tokens.css dark mode (HSL converted to hex) */
+        --skawr-text-primary:   #F2F2F2;
+        --skawr-text-secondary: #8C8C96;
+        --skawr-text-muted:     #8C8C96;
+        --skawr-text-title:     #F2F2F2;
+        --skawr-card-bg:        #1C1C22;
+        --skawr-placeholder:    #2A2A32;
+        --skawr-divider:        #2A2A32;
+
+        /* Documentation theme variables */
+        --color-content-bg: #131318;       /* hsl(240 6% 7%) */
+        --color-text: #F2F2F2;             /* hsl(0 0% 95%) */
+        --color-text-light: #8C8C96;       /* hsl(247 5% 55%) */
+        --color-border: #2A2A32;           /* hsl(240 4% 18%) */
+        --color-sidebar-bg: #0E0E14;       /* darker than content */
     }
 
     body {
-        background: #0f0f1a;
+        background: #131318;
     }
 
     .nav-card,
     .step,
-    .platform-overview,
-    .deployment-info {
-        background: #1e1e30;
-        border-color: #2d2d3d;
+    .platform-overview {
+        background: #1C1C22;
+        border-color: #2A2A32;
     }
 
     .nav-card:hover {
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
     }
 
     .nav-link {
-        background: #1e1e30;
-        border-color: #2d2d3d;
+        background: #1C1C22;
+        border-color: #2A2A32;
     }
 
     .btn {
-        color: #e4e4e7;
-        border-color: #2d2d3d;
+        color: #F2F2F2;
+        border-color: #2A2A32;
     }
 
     .btn:hover {
-        background: #2d2d3d;
+        background: #2A2A32;
     }
 
     .book-toolbar {
-        background: #1a1a2e;
-        border-color: #2d2d3d;
+        background: #131318;
+        border-color: #2A2A32;
     }
 
     .breadcrumb a {
-        color: #a1a1aa;
+        color: #8C8C96;
     }
 
     .breadcrumb span {
-        color: #71717a;
+        color: #5C5C66;
     }
 
     .section-title {
-        border-bottom-color: #2d2d3d;
+        border-bottom-color: #2A2A32;
     }
 
     .page-navigation {
-        border-top-color: #2d2d3d;
+        border-top-color: #2A2A32;
     }
 
     .deployment-info {
-        background: #1a2e1a;
-        border-color: #2d3d2d;
+        background: #1C2A1C;
+        border-color: #2A3D2A;
     }
 
     .hero-title {
-        color: #e4e4e7;
+        color: #F2F2F2;
     }
 
     code, pre {
-        background: #1e1e30;
-        color: #e4e4e7;
+        background: #1C1C22;
+        color: #F2F2F2;
     }
 
     table {
-        border-color: #2d2d3d;
+        border-color: #2A2A32;
     }
 
     th {
-        background: #1e1e30;
-        color: #e4e4e7;
+        background: #1C1C22;
+        color: #F2F2F2;
     }
 
     td {
-        border-color: #2d2d3d;
+        border-color: #2A2A32;
     }
 
     .articles {
@@ -701,22 +710,21 @@ body {
     }
 
     .book-sidebar-footer {
-        border-top-color: #2d2d3d;
+        border-top-color: #2A2A32;
     }
 
     .book-header {
-        border-bottom-color: #2d2d3d;
+        border-bottom-color: #2A2A32;
     }
 
-    /* Architecture page specifics */
     .architecture-stats .arch-stat {
-        background: #1e1e30;
+        background: #1C1C22;
     }
 
     .diagram-nav-item {
-        background: #1e1e30;
-        border-color: #2d2d3d;
-        color: #e4e4e7;
+        background: #1C1C22;
+        border-color: #2A2A32;
+        color: #F2F2F2;
     }
 
     .diagram-nav-item:hover {
@@ -724,12 +732,12 @@ body {
     }
 
     .diagram-section {
-        background: #1e1e30;
-        border-color: #2d2d3d;
+        background: #1C1C22;
+        border-color: #2A2A32;
     }
 
     .diagram-header {
-        border-bottom-color: #2d2d3d;
+        border-bottom-color: #2A2A32;
     }
 }
 
