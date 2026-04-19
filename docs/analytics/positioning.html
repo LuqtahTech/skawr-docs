@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Positioning - Skawr Analytics</title>
+    <link rel="stylesheet" href="../gitbook-style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+    <style>
+        .oneliner {
+            background: linear-gradient(135deg, var(--skawr-primary) 0%, var(--skawr-primary-dk) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 14px;
+            margin: 2rem 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.55;
+            box-shadow: 0 8px 25px rgba(237, 116, 83, 0.2);
+        }
+
+        .not-list {
+            background: #fff8f6;
+            border: 1px solid #f7d2c5;
+            border-radius: 10px;
+            padding: 1.5rem 1.5rem 1.5rem 2.2rem;
+            margin: 1rem 0 2rem;
+        }
+
+        .not-list li {
+            color: var(--skawr-text-secondary);
+            margin-bottom: 0.35rem;
+        }
+
+        .pillar-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.75rem 2rem;
+            margin: 1.25rem 0;
+            border-left: 4px solid var(--skawr-primary);
+        }
+
+        .pillar-card.alt { border-left-color: var(--skawr-hyperlink); }
+        .pillar-card.alt2 { border-left-color: var(--skawr-green); }
+        .pillar-card.alt3 { border-left-color: #8B5CF6; }
+
+        .pillar-card h3 {
+            color: var(--skawr-text-title);
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+        }
+
+        .pillar-card h3 .pill-num {
+            display: inline-block;
+            background: var(--skawr-primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            border-radius: 50%;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-right: 0.6rem;
+            vertical-align: middle;
+        }
+        .pillar-card.alt h3 .pill-num { background: var(--skawr-hyperlink); }
+        .pillar-card.alt2 h3 .pill-num { background: var(--skawr-green); }
+        .pillar-card.alt3 h3 .pill-num { background: #8B5CF6; }
+
+        .pillar-card p, .pillar-card li { color: var(--skawr-text-secondary); line-height: 1.6; }
+        .pillar-card strong { color: var(--skawr-text-title); }
+
+        .mvp-scope-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .mvp-scope-table th {
+            background: var(--skawr-placeholder);
+            padding: 1rem;
+            text-align: left;
+            color: var(--skawr-text-title);
+            font-weight: 600;
+        }
+        .mvp-scope-table td {
+            padding: 1rem;
+            border-top: 1px solid var(--color-border);
+            color: var(--skawr-text-secondary);
+            vertical-align: top;
+        }
+        .mvp-scope-table td.pillar-label { font-weight: 600; color: var(--skawr-text-title); }
+        .yes-tag { background: #e8f5e9; color: #2e7d32; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; font-weight: 600; }
+        .later-tag { background: #fff3e0; color: #e65100; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <h1 class="book-title"><span class="book-title-icon">📈</span> Skawr Analytics</h1>
+                    <p class="book-subtitle">Strategy &amp; Design Docs</p>
+                </div>
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter"><a href="../index.html">🏠 Back to Skawr Docs</a></li>
+                        <li class="chapter expanded active">
+                            <a href="index.html" class="chapter-link">📈 Analytics Platform</a>
+                            <ul class="articles">
+                                <li><a href="index.html">Overview</a></li>
+                                <li><a href="positioning.html" class="active">Positioning</a></li>
+                                <li><a href="competitors.html">Competitor Landscape</a></li>
+                                <li><a href="amplitude-deep-dive.html">Amplitude Deep-Dive</a></li>
+                                <li><a href="mvp-direction.html">MVP Direction</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter"><a href="../product/overview.html">📦 Marketplace Product</a></li>
+                        <li class="chapter"><a href="../platforms/index.html">🏗️ Platforms</a></li>
+                        <li class="chapter"><a href="../developer/getting-started.html">🔧 Developer</a></li>
+                        <li class="chapter"><a href="../support/faq.html">❓ Support</a></li>
+                    </ul>
+                </nav>
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/LuqtahTech/skawr-analytics" class="github-link">Strategy Repo</a>
+                    <div class="sidebar-version">Pre-build</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-body">
+            <div class="body-inner">
+                <div class="book-toolbar">
+                    <div><button class="btn btn-sm sidebar-toggle">☰ Menu</button></div>
+                    <div><a href="https://github.com/LuqtahTech/skawr-analytics/blob/main/docs/positioning.md" class="btn btn-sm">📝 Source</a></div>
+                </div>
+
+                <div class="breadcrumb">
+                    <nav class="breadcrumb-nav">
+                        <a href="../index.html">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="index.html">Analytics</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span>Positioning</span>
+                    </nav>
+                </div>
+
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <header>
+                            <h1>Positioning</h1>
+                            <p class="hero-description">
+                                What we are, who it's for, and why the four-pillar combination wins where 14-year-old incumbents already exist.
+                            </p>
+                        </header>
+
+                        <section>
+                            <h2 class="section-title">One-liner</h2>
+                            <div class="oneliner">
+                                Smart MENA-first product analytics that tells you what's happening — without you asking — and groups your users by how they actually behave.
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">Category</h2>
+                            <div class="overview-text">
+                                <p>Product analytics for web + mobile + server apps. Drop-in SDK, event tracking, funnels, retention, journeys. Same category as Amplitude, Mixpanel, PostHog.</p>
+                                <p><strong>We are not:</strong></p>
+                                <ul class="not-list">
+                                    <li>A search platform.</li>
+                                    <li>A chatbot wrapper on analytics.</li>
+                                    <li>A generic horizontal tool with no opinion (we ship vertical templates).</li>
+                                    <li>An open-source project (PostHog already owns that lane).</li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">Who it's for</h2>
+                            <div class="overview-text">
+                                <p>B2B product / growth teams running web or mobile apps. Two priority segments:</p>
+                                <ol>
+                                    <li><strong>MENA-based product teams</strong> (Saudi, UAE, Egypt) where Amplitude / Mixpanel feel foreign — wrong currency, no Arabic, no local payment, data outside region. Empty market.</li>
+                                    <li><strong>Global SMB / startup teams</strong> burned by Amplitude's MTU pricing — they're punished for retaining users. Wedge globally on price + clarity, even before the MENA story.</li>
+                                </ol>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">The four pillars</h2>
+
+                            <div class="pillar-card">
+                                <h3><span class="pill-num">1</span> Proactive smart insights — push, not pull</h3>
+                                <p>The system tells you:</p>
+                                <ul>
+                                    <li>"Signups dropped 30% yesterday — driven by Android users on iOS Safari fallback."</li>
+                                    <li>"Users who view pricing twice convert 4× more often."</li>
+                                    <li>"Step 3 of your onboarding funnel has a hidden drop-off for users from organic search."</li>
+                                </ul>
+                                <p>No "ask the chatbot" UX. Insights surface in a feed/inbox the moment they're detected. Every insight links back to the underlying chart so the user can verify the math themselves (<strong>transparent AI — no black box</strong>).</p>
+                            </div>
+
+                            <div class="pillar-card alt">
+                                <h3><span class="pill-num">2</span> Embeddings-powered behavioral clustering</h3>
+                                <p>Most analytics tools cohort users by <em>rules you write</em> ("users who did X then Y in 7 days"). That only finds patterns you already suspected.</p>
+                                <p>We embed each user's behavioral journey (sequence of events, properties, timing) into a vector and cluster on semantic similarity. The system surfaces cohorts you didn't know existed: <em>"we found a group of 4,200 users who all hit a specific pre-purchase pattern — they convert 7× higher than average. Here's the pattern."</em></p>
+                                <p>Reuses embedding infra we already operate (Fireworks via skawr-indexer). Real technical edge — almost nobody in the analytics space does this well.</p>
+                            </div>
+
+                            <div class="pillar-card alt2">
+                                <h3><span class="pill-num">3</span> MENA-first</h3>
+                                <ul>
+                                    <li>Arabic UI with proper <strong>RTL layout</strong> (not bolted on — designed RTL-first).</li>
+                                    <li>Hijri calendar option alongside Gregorian.</li>
+                                    <li><strong>Ramadan / Eid-aware</strong> time periodization (don't compare DAU during Ramadan to a non-Ramadan week and call it "down 40%").</li>
+                                    <li>MENA data residency: AWS <code>me-south-1</code> (Bahrain) and <code>me-central-1</code> (UAE).</li>
+                                    <li>PDPL (Saudi) compliance baked in, not an enterprise add-on.</li>
+                                    <li>Local pricing in SAR / AED, Mada / Tabby / Tamara as payment options alongside cards.</li>
+                                    <li>Arabic support, Arabic docs, Arabic onboarding emails.</li>
+                                </ul>
+                            </div>
+
+                            <div class="pillar-card alt3">
+                                <h3><span class="pill-num">4</span> Vertical templates — opinionated for the app type you actually build</h3>
+                                <p>Generic analytics ships you an empty canvas. We ship pre-defined funnels, events, dashboards, and benchmarks per vertical:</p>
+                                <ul>
+                                    <li><strong>Marketplaces</strong> (MVP target): listing-view → contact-seller → message-sent → deal-closed; supply/demand health; seller cohorts; price-band conversion; chat-to-close ratio. Benchmarks calibrated against MENA marketplace norms.</li>
+                                    <li><strong>Fintech</strong> (Phase 2): KYC funnel, first-deposit, first-transaction, churn at 30/60/90, fraud-flag rate.</li>
+                                    <li><strong>Edtech</strong> (Phase 2): course-enrollment → first-lesson → completion; lesson drop-off curves; cohort retention by course.</li>
+                                </ul>
+                                <p>Vertical templates make a new customer productive in minutes instead of weeks. They also let us anchor benchmarks ("you're in the bottom quartile for marketplace listing-to-contact ratio in MENA") — something horizontal tools can't credibly do.</p>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">Why this combination wins</h2>
+                            <div class="overview-text">
+                                <p>Globally there are 14-year-old incumbents (Amplitude, Mixpanel) with much more product. We don't out-feature them. We out-position them on four axes:</p>
+                                <ul>
+                                    <li><strong>Push-not-pull insights</strong> — June.so does this for B2B SaaS weekly reports, but nobody does it natively in the core product.</li>
+                                    <li><strong>Embeddings-powered cohort discovery</strong> — essentially nobody in product analytics does this. Real differentiation, hard to copy without an embeddings stack already operating.</li>
+                                    <li><strong>MENA-first</strong> — zero credible local players. Amplitude has no Arabic UI, no MENA region, no local payment.</li>
+                                    <li><strong>Vertical templates with regional benchmarks</strong> — Amplitude / Mixpanel are deliberately horizontal. We start opinionated.</li>
+                                </ul>
+                                <p>No single competitor sits in even two of these quadrants, let alone all four. <strong>That's the moat.</strong></p>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">MVP scope vs. long-term vision</h2>
+                            <div class="overview-text">
+                                <p>The four pillars are the <strong>vision</strong>. MVP picks a subset:</p>
+                            </div>
+
+                            <table class="mvp-scope-table">
+                                <thead>
+                                    <tr><th>Pillar</th><th>MVP scope</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="pillar-label">1. Smart insights</td>
+                                        <td><span class="yes-tag">MVP</span> Anomaly detection on top metrics + funnel drop-off detection. Deeper insight types come later.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pillar-label">2. Embeddings clustering</td>
+                                        <td><span class="yes-tag">MVP narrow</span> One auto-discovered cohort surfaced per project per week. Validate the model works before expanding.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pillar-label">3. MENA-first</td>
+                                        <td><span class="yes-tag">MVP</span> Arabic UI, RTL, Hijri, MENA region, local payment. Non-negotiable from day 1.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="pillar-label">4. Verticals</td>
+                                        <td><span class="yes-tag">MVP marketplace only</span> / <span class="later-tag">Phase 2 fintech &amp; edtech</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="overview-text">
+                                <p>See <a href="mvp-direction.html" style="color: var(--skawr-primary);">MVP Direction</a> for the build order.</p>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">What we explicitly do NOT do</h2>
+                            <ul class="not-list">
+                                <li>Natural-language chatbot ("ask Amplitude" / "ask Mixpanel"). Intentional — current LLM Q&amp;A on analytics hallucinates.</li>
+                                <li>Open-source / dev-first positioning. PostHog owns that lane.</li>
+                                <li>Try to be everything for every vertical at once. We launch with one (marketplaces) and add others only when customers ask.</li>
+                            </ul>
+                        </section>
+
+                        <div class="page-navigation">
+                            <a href="index.html" class="nav-link">
+                                <span class="nav-icon">←</span>
+                                <div class="nav-text"><div class="nav-label">Previous</div><div class="nav-title">Overview</div></div>
+                            </a>
+                            <a href="competitors.html" class="nav-link">
+                                <div class="nav-text"><div class="nav-label">Next</div><div class="nav-title">Competitor Landscape</div></div>
+                                <span class="nav-icon">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.sidebar-toggle')?.addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+    </script>
+</body>
+</html>

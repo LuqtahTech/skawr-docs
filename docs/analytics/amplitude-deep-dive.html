@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amplitude Deep-Dive - Skawr Analytics</title>
+    <link rel="stylesheet" href="../gitbook-style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+    <style>
+        .onboarding-steps { counter-reset: step; margin: 1.5rem 0; padding: 0; list-style: none; }
+        .onboarding-steps li {
+            counter-increment: step;
+            position: relative;
+            padding: 1rem 1rem 1rem 3.5rem;
+            margin: 0.75rem 0;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            color: var(--skawr-text-secondary);
+            line-height: 1.6;
+        }
+        .onboarding-steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            background: var(--skawr-primary);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            line-height: 2rem;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .pricing-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .pricing-tier {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem;
+            position: relative;
+        }
+        .pricing-tier.growth { border-color: var(--skawr-error); }
+        .pricing-tier.growth::after {
+            content: "MTU pain";
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background: var(--skawr-error);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .tier-name { font-weight: 700; color: var(--skawr-text-title); margin-bottom: 0.5rem; font-size: 1rem; }
+        .tier-price { color: var(--skawr-primary); font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; }
+        .tier-desc { color: var(--skawr-text-secondary); font-size: 0.9rem; line-height: 1.5; }
+
+        .mtu-callout {
+            background: #fef2f2;
+            border-left: 5px solid var(--skawr-error);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1.5rem 0;
+        }
+        .mtu-callout h4 { color: var(--skawr-error); margin-top: 0; margin-bottom: 0.5rem; }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+        .feature-pill {
+            background: #f8f8f8;
+            border: 1px solid var(--color-border);
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--skawr-text-title);
+        }
+        .feature-pill.weak {
+            background: #fff7ed;
+            border-color: #fed7aa;
+        }
+        .feature-pill.bad {
+            background: #fef2f2;
+            border-color: #fecaca;
+            color: var(--skawr-error);
+        }
+
+        .beat-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .beat-table th {
+            background: var(--skawr-charcoal);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        .beat-table td {
+            padding: 1rem;
+            border-top: 1px solid var(--color-border);
+            color: var(--skawr-text-secondary);
+            vertical-align: top;
+            line-height: 1.55;
+        }
+        .beat-table td:first-child { font-weight: 600; color: var(--skawr-text-title); }
+
+        .gap-list { margin: 0; padding-left: 1.5rem; color: var(--skawr-text-secondary); }
+        .gap-list li { margin-bottom: 0.5rem; line-height: 1.55; }
+        .gap-list strong { color: var(--skawr-text-title); }
+
+        .recommendation {
+            background: linear-gradient(135deg, #fff7f3 0%, #ffece2 100%);
+            border-left: 5px solid var(--skawr-primary);
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+        .recommendation h3 { color: var(--skawr-primary); margin-top: 0; }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <h1 class="book-title"><span class="book-title-icon">📈</span> Skawr Analytics</h1>
+                    <p class="book-subtitle">Strategy &amp; Design Docs</p>
+                </div>
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter"><a href="../index.html">🏠 Back to Skawr Docs</a></li>
+                        <li class="chapter expanded active">
+                            <a href="index.html" class="chapter-link">📈 Analytics Platform</a>
+                            <ul class="articles">
+                                <li><a href="index.html">Overview</a></li>
+                                <li><a href="positioning.html">Positioning</a></li>
+                                <li><a href="competitors.html">Competitor Landscape</a></li>
+                                <li><a href="amplitude-deep-dive.html" class="active">Amplitude Deep-Dive</a></li>
+                                <li><a href="mvp-direction.html">MVP Direction</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter"><a href="../product/overview.html">📦 Marketplace Product</a></li>
+                        <li class="chapter"><a href="../platforms/index.html">🏗️ Platforms</a></li>
+                        <li class="chapter"><a href="../developer/getting-started.html">🔧 Developer</a></li>
+                        <li class="chapter"><a href="../support/faq.html">❓ Support</a></li>
+                    </ul>
+                </nav>
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/LuqtahTech/skawr-analytics" class="github-link">Strategy Repo</a>
+                    <div class="sidebar-version">Pre-build</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-body">
+            <div class="body-inner">
+                <div class="book-toolbar">
+                    <div><button class="btn btn-sm sidebar-toggle">☰ Menu</button></div>
+                    <div><a href="https://github.com/LuqtahTech/skawr-analytics/blob/main/docs/amplitude-deep-dive.md" class="btn btn-sm">📝 Source</a></div>
+                </div>
+
+                <div class="breadcrumb">
+                    <nav class="breadcrumb-nav">
+                        <a href="../index.html">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="index.html">Analytics</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span>Amplitude Deep-Dive</span>
+                    </nav>
+                </div>
+
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <header>
+                            <h1>Amplitude — Reference Competitor Deep-Dive</h1>
+                            <p class="hero-description">
+                                What we're benchmarking against globally. Where we copy them, where we beat them.
+                            </p>
+                        </header>
+
+                        <section>
+                            <h2 class="section-title">1. Day-1 onboarding</h2>
+                            <div class="overview-text"><p>The bar to clear:</p></div>
+                            <ol class="onboarding-steps">
+                                <li>Sign up with email / Google.</li>
+                                <li>A short setup wizard: workspace name → role → app type (web / mobile / both).</li>
+                                <li>SDK install snippet shown immediately, language-detected (JS, React, iOS, Android, server).</li>
+                                <li>Autocapture turned on by default — even before you instrument anything, basic page views and clicks start flowing.</li>
+                                <li><strong>Time-to-first-event: ~2–5 minutes</strong> from signup. This is the headline metric they optimize for.</li>
+                                <li>A demo project pre-loaded so the dashboard isn't empty while waiting for real events.</li>
+                                <li>First chart auto-generated ("Daily active users over the last 30 days") so you see <em>something</em> working immediately.</li>
+                            </ol>
+                            <div class="overview-text">
+                                <p><strong>Implications for us:</strong> the onboarding bar is high. Anything slower than ~5 minutes from signup to "I see my own event" loses. Demo project + first auto-chart is non-negotiable.</p>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">2. Pricing (the most important section)</h2>
+                            <div class="pricing-tiers">
+                                <div class="pricing-tier">
+                                    <div class="tier-name">Starter</div>
+                                    <div class="tier-price">Free</div>
+                                    <div class="tier-desc">Up to ~10M events/month. Limited seats, limited data history.</div>
+                                </div>
+                                <div class="pricing-tier">
+                                    <div class="tier-name">Plus</div>
+                                    <div class="tier-price">~$49/mo</div>
+                                    <div class="tier-desc">More seats, longer retention, basic dashboards.</div>
+                                </div>
+                                <div class="pricing-tier growth">
+                                    <div class="tier-name">Growth</div>
+                                    <div class="tier-price">$1k–$2k+/mo</div>
+                                    <div class="tier-desc">Priced by <strong>Monthly Tracked Users (MTU)</strong> — every unique user counts, regardless of activity.</div>
+                                </div>
+                                <div class="pricing-tier">
+                                    <div class="tier-name">Enterprise</div>
+                                    <div class="tier-price">Quote</div>
+                                    <div class="tier-desc">SSO, audit logs, SLAs, custom data residency.</div>
+                                </div>
+                            </div>
+
+                            <h3 style="margin-top: 2rem;">The MTU problem (this is the wedge)</h3>
+                            <div class="mtu-callout">
+                                <h4>You get punished for retaining users.</h4>
+                                <p>MTU = Monthly Tracked User. Pricing scales by <em>how many unique users you have</em>, not how much value you get.</p>
+                                <p>If you have 100k MAU and grow to 500k MAU, your bill 5×s — even if those users are doing the same thing. <strong>This is the single most-complained-about thing in every Amplitude review.</strong></p>
+                                <p style="margin-bottom: 0;"><strong>Our move:</strong> flat-rate or event-volume pricing. <em>"Never get punished for growing"</em> as the pricing-page headline.</p>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">3. Core feature map</h2>
+                            <div class="feature-grid">
+                                <div class="feature-pill">Events — log + autocapture</div>
+                                <div class="feature-pill">Funnels</div>
+                                <div class="feature-pill">Retention curves</div>
+                                <div class="feature-pill">Pathfinder</div>
+                                <div class="feature-pill">Behavioral cohorts</div>
+                                <div class="feature-pill weak">Session replay (second-class)</div>
+                                <div class="feature-pill">AI Insights / Compass</div>
+                                <div class="feature-pill bad">Ask Amplitude (hallucinates)</div>
+                                <div class="feature-pill">Experiment (A/B)</div>
+                                <div class="feature-pill">CDP / data pipelines</div>
+                                <div class="feature-pill">Dashboards</div>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">4. What they do well (copy these)</h2>
+                            <ul class="gap-list">
+                                <li><strong>Pathfinder.</strong> Visualizing actual user paths is a feature people genuinely talk about.</li>
+                                <li><strong>Funnels.</strong> Their funnel math + UX is the reference. Step-by-step drop-off, breakdown by any property, time-to-convert.</li>
+                                <li><strong>Compass / Insights.</strong> The auto-detection backend is solid (anomaly detection + driver attribution). Our "smart insights" should target this quality bar.</li>
+                                <li><strong>Warehouse-native architecture.</strong> They sit on top of Snowflake / BigQuery / Databricks for big customers. Lets enterprise customers keep their data, query it directly.</li>
+                                <li><strong>Self-serve UX.</strong> A non-technical PM can build a funnel in 30 seconds.</li>
+                                <li><strong>Demo project.</strong> Empty dashboards on Day 1 kill activation. Their pre-loaded demo is smart.</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">5. What they do poorly (beat these)</h2>
+                            <table class="beat-table">
+                                <thead>
+                                    <tr><th>Complaint</th><th>What we do</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>MTU pricing punishes retention</td>
+                                        <td>Flat-rate or event-volume tiers. "Pay for what you ingest, not how many users you keep."</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ask Amplitude hallucinates</td>
+                                        <td>No chatbot. Push insights with explicit math + chart links. Transparent AI.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Session replay is second-class</td>
+                                        <td>Treat replay as first-class from MVP. Tie replays to insights ("here are the 12 sessions where this drop-off happened").</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Data governance is a nightmare (taxonomy drifts, event schemas multiply)</td>
+                                        <td>Schema enforcement built in. Suggested taxonomies. Block events that don't match a registered schema (warn-or-block toggle).</td>
+                                    </tr>
+                                    <tr>
+                                        <td>No MENA presence</td>
+                                        <td>Arabic UI, RTL, Hijri calendar, MENA data residency, local payment, local support.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>AI Insights bolted on</td>
+                                        <td>Insights are the core navigation, not a sidebar. Open the app → see the insight feed first.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">6. Recent moves (last ~12 months)</h2>
+                            <ul class="gap-list">
+                                <li><strong>Acquired Command AI</strong> — onboarding / in-app guidance product.</li>
+                                <li><strong>Launched AI Agents</strong> — agent-style automations on top of analytics data.</li>
+                                <li><strong>Expanded warehouse-native offering</strong> — bigger push to compete with Snowflake-native tools.</li>
+                                <li><strong>Pricing repackaging</strong> — multiple shifts trying to defuse the MTU complaints. Hasn't solved them.</li>
+                                <li><strong>Layoffs</strong> — trimming. Signals competitive pressure and a market that's not as easy as it was.</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">7. Gaps for a MENA-first competitor</h2>
+                            <div class="overview-text"><p>Direct gaps Amplitude does not (and likely will not) close:</p></div>
+                            <ul class="gap-list">
+                                <li><strong>Pricing model</strong> — flat-rate, transparent, scales with value not user count.</li>
+                                <li><strong>Arabic UI / RTL</strong> — designed RTL-first, not bolted on.</li>
+                                <li><strong>MENA data residency</strong> — AWS me-south-1 (Bahrain) and me-central-1 (UAE).</li>
+                                <li><strong>Local payment</strong> — SAR / AED, Mada / Tabby / Tamara alongside cards.</li>
+                                <li><strong>Push-not-pull insights</strong> — no chatbot; insight inbox is the home screen.</li>
+                                <li><strong>Transparent AI</strong> — every insight links to its supporting chart. Click to see the math.</li>
+                                <li><strong>Native session replay</strong> — first-class, not bolted on.</li>
+                                <li><strong>Arabic support</strong> — docs, emails, in-app chat in Arabic with native speakers.</li>
+                                <li><strong>Ramadan / Eid-aware analytics</strong> — comparison periods know about Hijri events.</li>
+                                <li><strong>Generous free tier</strong> — let small MENA startups grow with us before paying.</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">8. Recommendation</h2>
+                            <div class="recommendation">
+                                <h3>Hook with pricing. Moat with MENA.</h3>
+                                <p><strong>The MTU-pricing flip is the most leverageable hook.</strong> It hits a universally felt pain point and gives us a clear value prop in one line: <em>"Never get punished for growing."</em></p>
+                                <p><strong>The Arabic / MENA angle is the moat.</strong> It's hard for Amplitude to copy in any timeframe — they'd need to rebuild UI, redo billing, set up MENA infra, hire local support. That's a multi-year retrofit.</p>
+                                <p style="margin-bottom: 0;">So: the pricing flip is what gets the first meeting / first signup. The MENA stack is what keeps customers and prevents Amplitude from competing once they notice us. Build the pricing page around <em>"never get punished for growing."</em> Build the product around the MENA stack.</p>
+                            </div>
+                        </section>
+
+                        <div class="page-navigation">
+                            <a href="competitors.html" class="nav-link">
+                                <span class="nav-icon">←</span>
+                                <div class="nav-text"><div class="nav-label">Previous</div><div class="nav-title">Competitor Landscape</div></div>
+                            </a>
+                            <a href="mvp-direction.html" class="nav-link">
+                                <div class="nav-text"><div class="nav-label">Next</div><div class="nav-title">MVP Direction</div></div>
+                                <span class="nav-icon">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.sidebar-toggle')?.addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skawr Analytics - Skawr Documentation</title>
+    <link rel="stylesheet" href="../gitbook-style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+    <style>
+        .pillar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.25rem;
+            margin: 2rem 0;
+        }
+
+        .pillar-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-left: 4px solid var(--skawr-primary);
+            border-radius: 12px;
+            padding: 1.75rem;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+        }
+
+        .pillar-number {
+            display: inline-block;
+            background: var(--skawr-primary);
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border-radius: 50%;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .pillar-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--skawr-text-title);
+            margin-bottom: 0.5rem;
+        }
+
+        .pillar-desc {
+            color: var(--skawr-text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+
+        .callout {
+            background: linear-gradient(135deg, #fff7f3 0%, #ffece2 100%);
+            border-left: 4px solid var(--skawr-primary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        .callout h4 {
+            color: var(--skawr-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .doc-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .doc-link {
+            display: block;
+            padding: 1.25rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            text-decoration: none;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .doc-link:hover {
+            border-color: var(--skawr-primary);
+            transform: translateY(-2px);
+        }
+
+        .doc-link h4 {
+            color: var(--skawr-text-title);
+            margin-bottom: 0.35rem;
+        }
+
+        .doc-link p {
+            color: var(--skawr-text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.7rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.4px;
+            text-transform: uppercase;
+        }
+
+        .badge-pre-build { background: #fff3e0; color: #e65100; }
+        .badge-mvp { background: #e8f5e9; color: #2e7d32; }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <h1 class="book-title">
+                        <span class="book-title-icon">📈</span>
+                        Skawr Analytics
+                    </h1>
+                    <p class="book-subtitle">Strategy &amp; Design Docs</p>
+                </div>
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter"><a href="../index.html">🏠 Back to Skawr Docs</a></li>
+                        <li class="chapter expanded active">
+                            <a href="index.html" class="chapter-link">📈 Analytics Platform</a>
+                            <ul class="articles">
+                                <li><a href="index.html" class="active">Overview</a></li>
+                                <li><a href="positioning.html">Positioning</a></li>
+                                <li><a href="competitors.html">Competitor Landscape</a></li>
+                                <li><a href="amplitude-deep-dive.html">Amplitude Deep-Dive</a></li>
+                                <li><a href="mvp-direction.html">MVP Direction</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter"><a href="../product/overview.html">📦 Marketplace Product</a></li>
+                        <li class="chapter"><a href="../platforms/index.html">🏗️ Platforms</a></li>
+                        <li class="chapter"><a href="../developer/getting-started.html">🔧 Developer</a></li>
+                        <li class="chapter"><a href="../support/faq.html">❓ Support</a></li>
+                    </ul>
+                </nav>
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/LuqtahTech/skawr-analytics" class="github-link">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+                        Strategy Repo
+                    </a>
+                    <div class="sidebar-version">Pre-build</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-body">
+            <div class="body-inner">
+                <div class="book-toolbar">
+                    <div><button class="btn btn-sm sidebar-toggle">☰ Menu</button></div>
+                    <div><a href="https://github.com/LuqtahTech/skawr-analytics" class="btn btn-sm">📝 Strategy Repo</a></div>
+                </div>
+
+                <div class="breadcrumb">
+                    <nav class="breadcrumb-nav">
+                        <a href="../index.html">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span>Analytics Platform</span>
+                    </nav>
+                </div>
+
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <header>
+                            <h1>Skawr Analytics <span class="badge badge-pre-build">Pre-build</span></h1>
+                            <p class="hero-description">
+                                Smart MENA-first product analytics that tells you what's happening — without you asking — and groups your users by how they actually behave.
+                            </p>
+                        </header>
+
+                        <section class="platform-overview">
+                            <h2 class="section-title">What it is</h2>
+                            <div class="overview-text">
+                                <p>A new product line for Skawr — separate from the marketplace business. Same category as <strong>Amplitude / Mixpanel / PostHog</strong>: drop in an SDK, events flow up, you get funnels, retention, user journeys, drop-offs. We compete on positioning, not feature count.</p>
+                                <p><strong>Who it's for:</strong> B2B product / growth teams running web or mobile apps. Two priority segments:</p>
+                                <ol>
+                                    <li><strong>MENA-based product teams</strong> (Saudi, UAE, Egypt) where Amplitude / Mixpanel feel foreign — wrong currency, no Arabic, no local payment, data outside region.</li>
+                                    <li><strong>Global SMB startups</strong> burned by Amplitude's MTU pricing — punished for retaining users.</li>
+                                </ol>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">The four pillars</h2>
+                            <div class="pillar-grid">
+                                <div class="pillar-card">
+                                    <div class="pillar-number">1</div>
+                                    <div class="pillar-title">Proactive smart insights</div>
+                                    <div class="pillar-desc">System auto-detects anomalies, drivers, and hidden drop-offs. Push, not pull. No chatbot. Every insight links to the math.</div>
+                                </div>
+                                <div class="pillar-card">
+                                    <div class="pillar-number">2</div>
+                                    <div class="pillar-title">Embeddings-powered clustering</div>
+                                    <div class="pillar-desc">Groups users by semantic similarity of their journey (not rule-based cohorts). Surfaces cohorts you didn't know existed. Reuses our Fireworks embeddings stack.</div>
+                                </div>
+                                <div class="pillar-card">
+                                    <div class="pillar-number">3</div>
+                                    <div class="pillar-title">MENA-first</div>
+                                    <div class="pillar-desc">Arabic UI, RTL-first, Hijri calendar, Ramadan-aware comparisons, AWS me-south-1 residency, SAR/AED + Mada/Tabby/Tamara, PDPL compliance.</div>
+                                </div>
+                                <div class="pillar-card">
+                                    <div class="pillar-number">4</div>
+                                    <div class="pillar-title">Vertical templates</div>
+                                    <div class="pillar-desc">Opinionated funnels, dashboards, and benchmarks per app type. <strong>MVP target:</strong> marketplaces. Phase 2: fintech, edtech.</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">MVP focus <span class="badge badge-mvp">Marketplace-first</span></h2>
+                            <div class="overview-text">
+                                <p>Strategy anchor: <strong>Saudi / UAE marketplace startups (10k–500k MAU)</strong>. Pre-defined marketplace funnels (listing → contact → message → close), regional benchmarks seeded from skawr-scraper data, Arabic UI, and pricing that doesn't punish retention.</p>
+                            </div>
+
+                            <div class="callout">
+                                <h4>The pricing wedge</h4>
+                                <p style="margin: 0;">Amplitude charges by <strong>Monthly Tracked Users (MTU)</strong> — every retained user raises the bill. This is the single most-complained-about thing in the category. Our pricing flip: flat-rate or event-volume tiers. Page headline: <em>"Never get punished for growing."</em></p>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">Documents</h2>
+                            <div class="doc-links">
+                                <a class="doc-link" href="positioning.html">
+                                    <h4>Positioning →</h4>
+                                    <p>One-liner, category, target audience, differentiators, what we do NOT do.</p>
+                                </a>
+                                <a class="doc-link" href="competitors.html">
+                                    <h4>Competitor Landscape →</h4>
+                                    <p>Amplitude, Mixpanel, PostHog, Heap, FullStory, Pendo, June.so. Where we win.</p>
+                                </a>
+                                <a class="doc-link" href="amplitude-deep-dive.html">
+                                    <h4>Amplitude Deep-Dive →</h4>
+                                    <p>Reference competitor: onboarding, MTU pricing, features, complaints, recent moves.</p>
+                                </a>
+                                <a class="doc-link" href="mvp-direction.html">
+                                    <h4>MVP Direction →</h4>
+                                    <p>What to copy, what to beat, Day-1 user flow, open questions still to decide.</p>
+                                </a>
+                            </div>
+                        </section>
+
+                        <section class="platform-overview">
+                            <h2 class="section-title">Status</h2>
+                            <div class="overview-text">
+                                <p>Pre-build. Strategy and research phase. Source of truth for the underlying markdown docs: <a href="https://github.com/LuqtahTech/skawr-analytics" style="color: var(--skawr-primary);">LuqtahTech/skawr-analytics</a>.</p>
+                            </div>
+                        </section>
+
+                        <div class="page-navigation">
+                            <a href="../index.html" class="nav-link">
+                                <span class="nav-icon">←</span>
+                                <div class="nav-text">
+                                    <div class="nav-label">Back</div>
+                                    <div class="nav-title">Skawr Docs Home</div>
+                                </div>
+                            </a>
+                            <a href="positioning.html" class="nav-link">
+                                <div class="nav-text">
+                                    <div class="nav-label">Next</div>
+                                    <div class="nav-title">Positioning</div>
+                                </div>
+                                <span class="nav-icon">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector('.sidebar-toggle')?.addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+    </script>
+</body>
+</html>

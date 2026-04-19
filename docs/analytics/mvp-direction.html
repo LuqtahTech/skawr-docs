@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MVP Direction - Skawr Analytics</title>
+    <link rel="stylesheet" href="../gitbook-style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+    <style>
+        .tagline-box {
+            background: linear-gradient(135deg, var(--skawr-charcoal) 0%, var(--skawr-charcoal-bar) 100%);
+            color: white;
+            padding: 1.75rem 2rem;
+            border-radius: 14px;
+            margin: 2rem 0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            border-left: 5px solid var(--skawr-primary);
+        }
+        .tagline-box strong { color: var(--skawr-primary); }
+
+        .checklist {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin: 1.5rem 0;
+        }
+        .checklist li {
+            list-style: none;
+            padding: 0.5rem 0 0.5rem 2rem;
+            position: relative;
+            color: var(--skawr-text-secondary);
+            line-height: 1.55;
+        }
+        .checklist li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            color: var(--skawr-green);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .pillar-section {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 1.75rem 2rem;
+            margin: 1.25rem 0;
+            border-left: 5px solid var(--skawr-primary);
+        }
+        .pillar-section.alt { border-left-color: var(--skawr-hyperlink); }
+        .pillar-section.alt2 { border-left-color: var(--skawr-green); }
+        .pillar-section.alt3 { border-left-color: #8B5CF6; }
+        .pillar-section h3 { color: var(--skawr-text-title); margin-top: 0; }
+        .pillar-section p, .pillar-section li { color: var(--skawr-text-secondary); line-height: 1.6; }
+        .pillar-section strong { color: var(--skawr-text-title); }
+        .pillar-section code {
+            background: #f3f4f6;
+            padding: 0.1rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.88em;
+            color: var(--skawr-primary-dk);
+        }
+
+        .wedge-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .wedge-table th { background: var(--skawr-charcoal); color: white; padding: 1rem; text-align: left; font-weight: 600; }
+        .wedge-table td { padding: 1rem; border-top: 1px solid var(--color-border); color: var(--skawr-text-secondary); vertical-align: top; line-height: 1.55; }
+        .wedge-table td.rank { font-weight: 700; color: var(--skawr-primary); font-size: 1.1rem; width: 40px; }
+
+        .flow-steps { counter-reset: step; margin: 1.5rem 0; padding: 0; list-style: none; }
+        .flow-steps li {
+            counter-increment: step;
+            position: relative;
+            padding: 1rem 1rem 1rem 3.5rem;
+            margin: 0.5rem 0;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            color: var(--skawr-text-secondary);
+            line-height: 1.6;
+        }
+        .flow-steps li::before {
+            content: counter(step);
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            background: var(--skawr-primary);
+            color: white;
+            width: 2rem; height: 2rem; line-height: 2rem;
+            text-align: center;
+            border-radius: 50%;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        .flow-steps li strong { color: var(--skawr-text-title); }
+
+        .metric-row {
+            background: #f8f8f8;
+            border-left: 4px solid var(--skawr-green);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin: 0.75rem 0;
+            color: var(--skawr-text-title);
+        }
+        .metric-row strong { color: var(--skawr-green); }
+
+        .open-q-list { margin: 0; padding-left: 1.5rem; }
+        .open-q-list li {
+            color: var(--skawr-text-secondary);
+            margin-bottom: 0.75rem;
+            line-height: 1.6;
+        }
+        .open-q-list strong { color: var(--skawr-text-title); }
+        .lean-tag {
+            display: inline-block;
+            background: #fff7f3;
+            border: 1px solid #f7d2c5;
+            color: var(--skawr-primary-dk);
+            padding: 0.1rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 0.4rem;
+        }
+
+        .defer-list li { color: var(--skawr-text-muted); }
+
+        .vertical-hero {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border: 1px solid #bbf7d0;
+            border-left: 5px solid var(--skawr-green);
+            padding: 1.75rem;
+            border-radius: 12px;
+            margin: 1.5rem 0;
+        }
+        .vertical-hero h3 { color: #15803d; margin-top: 0; }
+
+        .event-taxonomy {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        .event-taxonomy code {
+            background: white;
+            border: 1px solid var(--color-border);
+            padding: 0.5rem 0.75rem;
+            border-radius: 6px;
+            color: var(--skawr-primary-dk);
+            font-size: 0.85rem;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <h1 class="book-title"><span class="book-title-icon">📈</span> Skawr Analytics</h1>
+                    <p class="book-subtitle">Strategy &amp; Design Docs</p>
+                </div>
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter"><a href="../index.html">🏠 Back to Skawr Docs</a></li>
+                        <li class="chapter expanded active">
+                            <a href="index.html" class="chapter-link">📈 Analytics Platform</a>
+                            <ul class="articles">
+                                <li><a href="index.html">Overview</a></li>
+                                <li><a href="positioning.html">Positioning</a></li>
+                                <li><a href="competitors.html">Competitor Landscape</a></li>
+                                <li><a href="amplitude-deep-dive.html">Amplitude Deep-Dive</a></li>
+                                <li><a href="mvp-direction.html" class="active">MVP Direction</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter"><a href="../product/overview.html">📦 Marketplace Product</a></li>
+                        <li class="chapter"><a href="../platforms/index.html">🏗️ Platforms</a></li>
+                        <li class="chapter"><a href="../developer/getting-started.html">🔧 Developer</a></li>
+                        <li class="chapter"><a href="../support/faq.html">❓ Support</a></li>
+                    </ul>
+                </nav>
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/LuqtahTech/skawr-analytics" class="github-link">Strategy Repo</a>
+                    <div class="sidebar-version">Pre-build</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-body">
+            <div class="body-inner">
+                <div class="book-toolbar">
+                    <div><button class="btn btn-sm sidebar-toggle">☰ Menu</button></div>
+                    <div><a href="https://github.com/LuqtahTech/skawr-analytics/blob/main/docs/mvp-direction.md" class="btn btn-sm">📝 Source</a></div>
+                </div>
+
+                <div class="breadcrumb">
+                    <nav class="breadcrumb-nav">
+                        <a href="../index.html">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="index.html">Analytics</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span>MVP Direction</span>
+                    </nav>
+                </div>
+
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <header>
+                            <h1>MVP Direction</h1>
+                            <p class="hero-description">
+                                The shortest path from zero to "first paying MENA marketplace customer."
+                            </p>
+                        </header>
+
+                        <section>
+                            <h2 class="section-title">What we copy from Amplitude (table stakes)</h2>
+                            <div class="overview-text"><p>Ship or lose. If any of these are missing on day 1, we look like a toy.</p></div>
+                            <ul class="checklist">
+                                <li>SDKs for web (JS), iOS, Android, Node. Server-side ingest.</li>
+                                <li>Autocapture on web (page views, clicks, form submits) so Day 1 isn't empty.</li>
+                                <li>Event tracking with properties + user properties.</li>
+                                <li>Funnels (multi-step, with breakdown by property).</li>
+                                <li>Retention curves.</li>
+                                <li>User journeys / pathfinder view.</li>
+                                <li>Dashboards + saved views.</li>
+                                <li>Demo project pre-loaded on signup.</li>
+                                <li>Time-to-first-event under 5 minutes.</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">What we beat Amplitude on — the four pillars at MVP</h2>
+
+                            <div class="pillar-section">
+                                <h3>Pillar 1 — Smart insights (the daily-use UX)</h3>
+                                <ul>
+                                    <li>Insight feed is the <strong>home screen</strong>. Not a sidebar, not a tab — the <em>first thing</em> you see.</li>
+                                    <li>MVP detection types:
+                                        <ul>
+                                            <li><strong>Anomalies</strong> on top metrics (DAU, signups, key event counts) using simple statistical baselines.</li>
+                                            <li><strong>Funnel drop-off detection</strong> — find steps where conversion is significantly worse than expected.</li>
+                                            <li><strong>Driver attribution</strong> — for any anomaly, which segment / property explains the change ("Android users on Chrome 119" / "users from organic search").</li>
+                                        </ul>
+                                    </li>
+                                    <li>Every insight links to the supporting chart. Click to see the math. <strong>No black box.</strong></li>
+                                    <li>No chatbot. Insights are explicit, scoped, and verifiable.</li>
+                                </ul>
+                                <p>Defer to Phase 2: predictive insights, forecasting, churn prediction.</p>
+                            </div>
+
+                            <div class="pillar-section alt">
+                                <h3>Pillar 2 — Embeddings-powered behavioral clustering</h3>
+                                <ul>
+                                    <li><strong>MVP scope:</strong> narrow but real. One auto-discovered cohort surfaced per project per week.</li>
+                                    <li>Pipeline: encode each user's last-30-days event sequence as a vector → cluster (HDBSCAN or similar) → score clusters by uplift on a key metric (conversion, retention) → surface the top-uplift cluster as an insight.</li>
+                                    <li>The insight names the cluster ("4,200 users who view → favorite → return-within-2-days") and quantifies its conversion advantage vs the baseline.</li>
+                                    <li>Reuses Fireworks embeddings stack already operating in skawr-indexer. Real moat — almost nobody in product analytics does this.</li>
+                                </ul>
+                                <p>Defer to Phase 2: real-time cluster assignment, cohort comparison, predictive cohort flow.</p>
+                            </div>
+
+                            <div class="pillar-section alt2">
+                                <h3>Pillar 3 — MENA stack (the moat)</h3>
+                                <ul>
+                                    <li>Arabic UI, RTL-first. Designed RTL, not bolted on.</li>
+                                    <li>Hijri calendar option alongside Gregorian.</li>
+                                    <li>Time periods are Ramadan / Eid aware (Ramadan-week comparisons are flagged, not silently regressed).</li>
+                                    <li>Data residency: AWS <code>me-south-1</code> (Bahrain) primary; <code>me-central-1</code> (UAE) for customers requiring it.</li>
+                                    <li>PDPL (Saudi) compliance baked in from day 1.</li>
+                                    <li>Local pricing: SAR / AED first-class, USD secondary.</li>
+                                    <li>Local payment: Mada, Tabby, Tamara alongside cards.</li>
+                                    <li>Arabic docs, Arabic onboarding emails, Arabic in-app support.</li>
+                                </ul>
+                            </div>
+
+                            <div class="pillar-section alt3">
+                                <h3>Pillar 4 — Vertical templates (MVP: marketplaces only)</h3>
+                                <div class="vertical-hero">
+                                    <h3>Why marketplaces first</h3>
+                                    <ul>
+                                        <li>We already know the domain (Skawr-Marketplace, skawr-scraper has scraped Haraj / Dubizzle / OpenSooq / Mstaml).</li>
+                                        <li>Saudi / UAE marketplace startups are a warm first-customer pool.</li>
+                                        <li>Marketplace funnels are well-defined and high-value (deal completion = revenue).</li>
+                                    </ul>
+                                </div>
+
+                                <h4 style="color: var(--skawr-text-title); margin-top: 1.5rem;">What ships in the marketplace template</h4>
+
+                                <p><strong>Pre-defined event taxonomy:</strong></p>
+                                <div class="event-taxonomy">
+                                    <code>listing_view</code>
+                                    <code>listing_favorite</code>
+                                    <code>seller_contact</code>
+                                    <code>message_sent</code>
+                                    <code>message_received</code>
+                                    <code>phone_revealed</code>
+                                    <code>deal_closed</code>
+                                    <code>listing_created</code>
+                                    <code>listing_renewed</code>
+                                    <code>listing_expired</code>
+                                    <code>report_filed</code>
+                                </div>
+
+                                <p><strong>Pre-built funnels:</strong></p>
+                                <ul>
+                                    <li>view → contact → message → close</li>
+                                    <li>create → first-view → first-contact</li>
+                                    <li>signup → first-listing → first-deal</li>
+                                </ul>
+
+                                <p><strong>Pre-built dashboards:</strong> supply/demand health (active listings vs active buyers); seller cohorts (by category, by tier); buyer cohorts (by intent depth); category-level conversion; chat-to-close ratio; price-band conversion.</p>
+
+                                <p><strong>MENA marketplace benchmarks:</strong> <em>"Your listing-to-contact ratio is in the bottom quartile vs MENA marketplaces in your category."</em> Benchmark dataset built from anonymized customer data over time (chicken-and-egg: seed with our own scraped data + manual industry estimates).</p>
+
+                                <p>Defer Phase 2: fintech template (KYC, deposit, transaction, churn), edtech template (enrollment, lesson, completion).</p>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">Pricing — the hook</h2>
+                            <div class="tagline-box">
+                                Pricing page headline: <strong>"Never get punished for growing."</strong>
+                            </div>
+                            <ul class="checklist">
+                                <li>Flat-rate or event-volume tiers. No MTU. No "punish you for retaining users."</li>
+                                <li>Free tier generous enough that early-stage MENA startups can ship to production without paying.</li>
+                                <li>Local pricing: SAR / AED first-class, USD secondary.</li>
+                                <li>Local payment: Mada, Tabby, Tamara alongside cards.</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">What we explicitly defer (post-MVP)</h2>
+                            <ul class="gap-list defer-list" style="list-style: disc; padding-left: 1.5rem;">
+                                <li>Session replay (planned, but not Day 1).</li>
+                                <li>A/B testing / Experiment.</li>
+                                <li>Feature flags.</li>
+                                <li>Reverse ETL / CDP features.</li>
+                                <li>Open-source / self-host.</li>
+                                <li>Natural-language chatbot (intentional — explicitly rejected).</li>
+                                <li>Fintech and edtech vertical templates.</li>
+                                <li>Predictive insights (churn forecasts, LTV prediction).</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">Wedge customer (who we sell to first)</h2>
+                            <table class="wedge-table">
+                                <thead>
+                                    <tr><th>Rank</th><th>Segment</th><th>Why</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="rank">1</td>
+                                        <td><strong>Saudi / UAE marketplace startups (10k–500k MAU)</strong></td>
+                                        <td>Money, care about local + Arabic, hate the Amplitude bill, and the marketplace template means they're productive in minutes. <strong>First.</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rank">2</td>
+                                        <td>Saudi / UAE non-marketplace product startups</td>
+                                        <td>Same buyer profile, but slower onramp without a vertical template.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="rank">3</td>
+                                        <td>Global SMB startups burned by MTU pricing</td>
+                                        <td>Bigger TAM but harder differentiation (no MENA hook, no MENA-marketplace template).</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">Open questions (need decisions before MVP build)</h2>
+                            <ul class="open-q-list">
+                                <li><strong>Tech stack.</strong> Backend language / framework? <span class="lean-tag">Lean: Python (FastAPI)</span> — reuse skawr-indexer DNA. Embeddings stack already operating.</li>
+                                <li><strong>Event store.</strong> ClickHouse for events (industry standard for analytics), or stay on OpenSearch? <span class="lean-tag">Lean: ClickHouse</span> for events; Postgres for metadata; OpenSearch only if needed.</li>
+                                <li><strong>Pricing tiers.</strong> Flat tier prices need actual numbers. What does the SAR-denominated ladder look like, and what's included at each?</li>
+                                <li><strong>Insight detection v1.</strong> Anomaly + funnel drop-off + driver attribution — that's the MVP set. Do we add anything else, or hold the line?</li>
+                                <li><strong>Embeddings clustering cadence.</strong> Run nightly, weekly, or on-demand? <span class="lean-tag">Lean: weekly</span> — matches the "one cohort per week" insight cadence.</li>
+                                <li><strong>Arabic content.</strong> Hire/contract a native Arabic copywriter, or start with bilingual founders translating?</li>
+                                <li><strong>Brand / domain.</strong> Subdomain of skawr.com? Standalone domain? Arabic-first or English-first name?</li>
+                                <li><strong>Marketplace benchmark seeding.</strong> How do we get to credible benchmarks before we have customers? Options: anonymized data from skawr-scraper's existing crawl; published industry estimates; manual partner data from 2–3 friendly marketplaces.</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">Day 1 user flow (what activation looks like)</h2>
+                            <ol class="flow-steps">
+                                <li>Sign up (email or Google).</li>
+                                <li>Wizard: workspace name → role → <strong>vertical (marketplace / general)</strong> → app type (web / mobile / both) → language (English / Arabic).</li>
+                                <li>SDK snippet shown — language auto-detected. Copy-paste, paste into your app.</li>
+                                <li><strong>If marketplace selected:</strong> marketplace event taxonomy is pre-loaded; SDK snippet includes example calls for <code>listing_view</code> and <code>seller_contact</code>; pre-built marketplace funnel + dashboard appear in the workspace.</li>
+                                <li>Autocapture begins flowing pageviews / clicks within 60 seconds of paste.</li>
+                                <li>Demo project pre-loaded with sample marketplace data so the dashboard isn't empty.</li>
+                                <li>As soon as the user's own first event arrives, the banner says "real data is in" and the workspace switches.</li>
+                                <li><strong>Within 24h:</strong> first auto-insight surfaces in the inbox. (Welcome insight: top event + first anomaly if any.)</li>
+                                <li><strong>Within 7 days:</strong> first behavioral cluster surfaced (Pillar 2) — system says "we found a cohort of N users who behave like this and convert M× higher than baseline."</li>
+                            </ol>
+
+                            <div class="metric-row">
+                                <strong>Activation metric:</strong> % of new signups who see their own first event within 5 minutes. Bar: <strong>&gt; 60%</strong>.
+                            </div>
+                            <div class="metric-row">
+                                <strong>Retention metric:</strong> % of week-1 signups who return in week 4 with the insight feed showing ≥3 unread insights.
+                            </div>
+                        </section>
+
+                        <div class="page-navigation">
+                            <a href="amplitude-deep-dive.html" class="nav-link">
+                                <span class="nav-icon">←</span>
+                                <div class="nav-text"><div class="nav-label">Previous</div><div class="nav-title">Amplitude Deep-Dive</div></div>
+                            </a>
+                            <a href="index.html" class="nav-link">
+                                <div class="nav-text"><div class="nav-label">Back to</div><div class="nav-title">Analytics Overview</div></div>
+                                <span class="nav-icon">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.sidebar-toggle')?.addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+    </script>
+</body>
+</html>

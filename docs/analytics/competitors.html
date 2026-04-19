@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Competitor Landscape - Skawr Analytics</title>
+    <link rel="stylesheet" href="../gitbook-style.css">
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📈</text></svg>">
+    <style>
+        .comp-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0 2.5rem;
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        .comp-table th {
+            background: var(--skawr-charcoal);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+        .comp-table td {
+            padding: 1rem;
+            border-top: 1px solid var(--color-border);
+            vertical-align: top;
+            color: var(--skawr-text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.55;
+        }
+        .comp-table tr:nth-child(even) td { background: #fafafa; }
+        .comp-name {
+            font-weight: 700;
+            color: var(--skawr-text-title);
+            white-space: nowrap;
+        }
+
+        .empty-market {
+            background: linear-gradient(135deg, #fff7f3 0%, #ffece2 100%);
+            border: 1px solid #f7d2c5;
+            border-left: 5px solid var(--skawr-primary);
+            padding: 1.75rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+        .empty-market h3 {
+            color: var(--skawr-primary);
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+        }
+        .empty-market ul { margin: 0.75rem 0 0; padding-left: 1.5rem; color: var(--skawr-text-secondary); }
+
+        .quadrant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        .quadrant {
+            background: white;
+            border: 1px solid var(--color-border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            border-top: 4px solid var(--skawr-primary);
+        }
+        .quadrant:nth-child(2) { border-top-color: var(--skawr-hyperlink); }
+        .quadrant:nth-child(3) { border-top-color: var(--skawr-green); }
+        .quadrant:nth-child(4) { border-top-color: #8B5CF6; }
+        .quadrant h4 {
+            color: var(--skawr-text-title);
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+        .quadrant p {
+            color: var(--skawr-text-secondary);
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .conclusion {
+            background: var(--skawr-charcoal);
+            color: #f4f4f5;
+            padding: 2rem;
+            border-radius: 14px;
+            margin: 2rem 0;
+        }
+        .conclusion h3 { color: var(--skawr-primary); margin-top: 0; }
+        .conclusion ul { padding-left: 1.5rem; color: #d4d4d4; }
+        .conclusion strong { color: white; }
+    </style>
+</head>
+<body>
+    <div class="book">
+        <div class="book-sidebar">
+            <div class="book-sidebar-content">
+                <div class="book-header">
+                    <h1 class="book-title"><span class="book-title-icon">📈</span> Skawr Analytics</h1>
+                    <p class="book-subtitle">Strategy &amp; Design Docs</p>
+                </div>
+                <nav class="book-navigation">
+                    <ul class="summary">
+                        <li class="chapter"><a href="../index.html">🏠 Back to Skawr Docs</a></li>
+                        <li class="chapter expanded active">
+                            <a href="index.html" class="chapter-link">📈 Analytics Platform</a>
+                            <ul class="articles">
+                                <li><a href="index.html">Overview</a></li>
+                                <li><a href="positioning.html">Positioning</a></li>
+                                <li><a href="competitors.html" class="active">Competitor Landscape</a></li>
+                                <li><a href="amplitude-deep-dive.html">Amplitude Deep-Dive</a></li>
+                                <li><a href="mvp-direction.html">MVP Direction</a></li>
+                            </ul>
+                        </li>
+                        <li class="chapter"><a href="../product/overview.html">📦 Marketplace Product</a></li>
+                        <li class="chapter"><a href="../platforms/index.html">🏗️ Platforms</a></li>
+                        <li class="chapter"><a href="../developer/getting-started.html">🔧 Developer</a></li>
+                        <li class="chapter"><a href="../support/faq.html">❓ Support</a></li>
+                    </ul>
+                </nav>
+                <div class="book-sidebar-footer">
+                    <a href="https://github.com/LuqtahTech/skawr-analytics" class="github-link">Strategy Repo</a>
+                    <div class="sidebar-version">Pre-build</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="book-body">
+            <div class="body-inner">
+                <div class="book-toolbar">
+                    <div><button class="btn btn-sm sidebar-toggle">☰ Menu</button></div>
+                    <div><a href="https://github.com/LuqtahTech/skawr-analytics/blob/main/docs/competitors.md" class="btn btn-sm">📝 Source</a></div>
+                </div>
+
+                <div class="breadcrumb">
+                    <nav class="breadcrumb-nav">
+                        <a href="../index.html">Home</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <a href="index.html">Analytics</a>
+                        <span class="breadcrumb-separator">›</span>
+                        <span>Competitor Landscape</span>
+                    </nav>
+                </div>
+
+                <div class="page-wrapper">
+                    <div class="page-inner">
+                        <header>
+                            <h1>Competitor Landscape</h1>
+                            <p class="hero-description">
+                                The space is crowded. We win by positioning, not by out-featuring.
+                            </p>
+                        </header>
+
+                        <section>
+                            <h2 class="section-title">Cross-platform product analytics (direct competitors)</h2>
+                            <table class="comp-table">
+                                <thead>
+                                    <tr>
+                                        <th>Tool</th>
+                                        <th>Shape</th>
+                                        <th>Strength</th>
+                                        <th>Weakness for our wedge</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="comp-name">Amplitude</td>
+                                        <td>Web + mobile + server. Funnels, retention, behavioral cohorts, AI Insights, Experiment, CDP.</td>
+                                        <td>Most complete feature set. Pathfinder + Compass. Warehouse-native.</td>
+                                        <td>MTU-based pricing punishes retention. Ask Amplitude hallucinates. No Arabic / no MENA region.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="comp-name">Mixpanel</td>
+                                        <td>Same shape, simpler / cleaner UX.</td>
+                                        <td>Easier learning curve than Amplitude.</td>
+                                        <td>Same MTU pricing issue. No MENA presence. Feature set narrower.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="comp-name">PostHog</td>
+                                        <td>Open-source all-in-one: events + funnels + session replay + heatmaps + feature flags.</td>
+                                        <td>Owns the dev-first / OSS lane. Self-host.</td>
+                                        <td>Steep for non-technical PMs. UI density.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="comp-name">Heap</td>
+                                        <td>Auto-captures every interaction; you define events retroactively.</td>
+                                        <td>Zero-instrumentation onramp.</td>
+                                        <td>Costly. Schema drift. Less proactive.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="comp-name">FullStory</td>
+                                        <td>Session-replay-led, with analytics layered on.</td>
+                                        <td>Best-in-class replay.</td>
+                                        <td>Replay-first means analytics is second-class.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="comp-name">Pendo</td>
+                                        <td>Analytics + in-app onboarding guides.</td>
+                                        <td>Tied to product-tour use case.</td>
+                                        <td>Less powerful as pure analytics.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">Adjacent: push-not-pull insight tools</h2>
+                            <table class="comp-table">
+                                <thead>
+                                    <tr><th>Tool</th><th>What it does</th><th>Why it matters to us</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="comp-name">June.so</td>
+                                        <td>Auto-generates weekly insight reports for B2B SaaS — "we tell you what to look at."</td>
+                                        <td>Closest precedent for our "smart, no chatbot" angle. Validates the push-not-pull model. Narrow vertical (B2B SaaS) — leaves room for us to do it across the broader analytics product.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="comp-name">Contentsquare</td>
+                                        <td>AI-driven journey / drop-off detection (enterprise).</td>
+                                        <td>Validates auto-detection of drop-offs as a buyer-relevant feature. But it's expensive and enterprise-only.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">Adjacent: classic web analytics</h2>
+                            <div class="overview-text"><p>Not direct competitors — different category — but mentioned as reference.</p></div>
+                            <table class="comp-table">
+                                <thead>
+                                    <tr><th>Tool</th><th>Why it's not us</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="comp-name">Google Analytics</td>
+                                        <td>Pageview-led, not event / user-journey-led. Free but limited for product analytics use cases.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="comp-name">Umami</td>
+                                        <td>Privacy-first web analytics. Pageviews + basic events. No user journeys, no funnels at depth.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">MENA region</h2>
+                            <div class="empty-market">
+                                <h3>Basically empty.</h3>
+                                <p>No serious local product-analytics player. Amplitude / Mixpanel are sold via resellers but have:</p>
+                                <ul>
+                                    <li>No Arabic UI.</li>
+                                    <li>No MENA data residency.</li>
+                                    <li>USD-only pricing.</li>
+                                    <li>No local payment options (Mada, Tabby, Tamara).</li>
+                                    <li>No local support hours.</li>
+                                </ul>
+                                <p style="margin-top: 1rem;"><strong>This is the moat.</strong></p>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">The four quadrants of differentiation</h2>
+                            <div class="overview-text">
+                                <p>We compete on four axes. No competitor sits in even two of these, let alone all four.</p>
+                            </div>
+                            <div class="quadrant-grid">
+                                <div class="quadrant">
+                                    <h4>1. Proactive smart insights</h4>
+                                    <p>Closest precedent: June.so, narrow B2B-SaaS use case only.</p>
+                                </div>
+                                <div class="quadrant">
+                                    <h4>2. Embeddings-powered clustering</h4>
+                                    <p>Essentially nobody — real technical moat.</p>
+                                </div>
+                                <div class="quadrant">
+                                    <h4>3. MENA-first stack</h4>
+                                    <p>Arabic, RTL, Hijri, MENA region, local payment — empty market.</p>
+                                </div>
+                                <div class="quadrant">
+                                    <h4>4. Vertical templates + regional benchmarks</h4>
+                                    <p>Marketplaces first; nobody horizontal does this credibly.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h2 class="section-title">Strategic conclusion</h2>
+                            <div class="conclusion">
+                                <h3>Positioning summary</h3>
+                                <ul>
+                                    <li><strong>Globally:</strong> point at Amplitude as the reference. We're "Amplitude, but with push-not-pull insights, embeddings-discovered cohorts, marketplace-first templates, and pricing that doesn't punish retention."</li>
+                                    <li><strong>Regionally:</strong> there is nobody to point at. We're <em>"the first credible MENA-built product analytics."</em></li>
+                                </ul>
+                            </div>
+                        </section>
+
+                        <div class="page-navigation">
+                            <a href="positioning.html" class="nav-link">
+                                <span class="nav-icon">←</span>
+                                <div class="nav-text"><div class="nav-label">Previous</div><div class="nav-title">Positioning</div></div>
+                            </a>
+                            <a href="amplitude-deep-dive.html" class="nav-link">
+                                <div class="nav-text"><div class="nav-label">Next</div><div class="nav-title">Amplitude Deep-Dive</div></div>
+                                <span class="nav-icon">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.querySelector('.sidebar-toggle')?.addEventListener('click', function() {
+            document.querySelector('.book').classList.toggle('sidebar-collapsed');
+        });
+    </script>
+</body>
+</html>
