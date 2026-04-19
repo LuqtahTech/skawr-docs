@@ -13,7 +13,7 @@
             position: relative;
             padding: 1rem 1rem 1rem 3.5rem;
             margin: 0.75rem 0;
-            background: white;
+            background: var(--color-content-bg);
             border: 1px solid var(--color-border);
             border-radius: 10px;
             color: var(--skawr-text-secondary);
@@ -42,7 +42,7 @@
             margin: 1.5rem 0;
         }
         .pricing-tier {
-            background: white;
+            background: var(--color-content-bg);
             border: 1px solid var(--color-border);
             border-radius: 12px;
             padding: 1.5rem;
@@ -103,7 +103,7 @@
             width: 100%;
             border-collapse: collapse;
             margin: 1.5rem 0;
-            background: white;
+            background: var(--color-content-bg);
             border: 1px solid var(--color-border);
             border-radius: 12px;
             overflow: hidden;
@@ -136,6 +136,22 @@
             margin: 2rem 0;
         }
         .recommendation h3 { color: var(--skawr-primary); margin-top: 0; }
+
+        @media (prefers-color-scheme: dark) {
+            .mtu-callout { background: rgba(220, 38, 38, 0.10); }
+            .feature-pill { background: rgba(255, 255, 255, 0.04); }
+            .feature-pill.weak {
+                background: rgba(237, 116, 83, 0.10);
+                border-color: rgba(237, 116, 83, 0.25);
+            }
+            .feature-pill.bad {
+                background: rgba(220, 38, 38, 0.10);
+                border-color: rgba(220, 38, 38, 0.25);
+            }
+            .recommendation {
+                background: linear-gradient(135deg, rgba(237, 116, 83, 0.12) 0%, rgba(237, 116, 83, 0.05) 100%);
+            }
+        }
     </style>
 </head>
 <body>

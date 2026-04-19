@@ -11,7 +11,7 @@
             width: 100%;
             border-collapse: collapse;
             margin: 1.5rem 0 2.5rem;
-            background: white;
+            background: var(--color-content-bg);
             border: 1px solid var(--color-border);
             border-radius: 12px;
             overflow: hidden;
@@ -62,7 +62,7 @@
             margin: 1.5rem 0;
         }
         .quadrant {
-            background: white;
+            background: var(--color-content-bg);
             border: 1px solid var(--color-border);
             border-radius: 10px;
             padding: 1.25rem;
@@ -92,6 +92,14 @@
         .conclusion h3 { color: var(--skawr-primary); margin-top: 0; }
         .conclusion ul { padding-left: 1.5rem; color: #d4d4d4; }
         .conclusion strong { color: white; }
+
+        @media (prefers-color-scheme: dark) {
+            .comp-table tr:nth-child(even) td { background: rgba(255, 255, 255, 0.03); }
+            .empty-market {
+                background: linear-gradient(135deg, rgba(237, 116, 83, 0.12) 0%, rgba(237, 116, 83, 0.05) 100%);
+                border-color: rgba(237, 116, 83, 0.25);
+            }
+        }
     </style>
 </head>
 <body>

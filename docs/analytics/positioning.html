@@ -33,7 +33,7 @@
         }
 
         .pillar-card {
-            background: white;
+            background: var(--color-content-bg);
             border: 1px solid var(--color-border);
             border-radius: 12px;
             padding: 1.75rem 2rem;
@@ -75,7 +75,7 @@
             width: 100%;
             border-collapse: collapse;
             margin: 1.5rem 0;
-            background: white;
+            background: var(--color-content-bg);
             border: 1px solid var(--color-border);
             border-radius: 10px;
             overflow: hidden;
@@ -96,6 +96,15 @@
         .mvp-scope-table td.pillar-label { font-weight: 600; color: var(--skawr-text-title); }
         .yes-tag { background: #e8f5e9; color: #2e7d32; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; font-weight: 600; }
         .later-tag { background: #fff3e0; color: #e65100; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.8rem; font-weight: 600; }
+
+        @media (prefers-color-scheme: dark) {
+            .not-list {
+                background: rgba(237, 116, 83, 0.08);
+                border-color: rgba(237, 116, 83, 0.25);
+            }
+            .yes-tag { background: rgba(46, 125, 50, 0.18); color: #81c784; }
+            .later-tag { background: rgba(230, 81, 0, 0.18); color: #ffb74d; }
+        }
     </style>
 </head>
 <body>

@@ -15,7 +15,7 @@
         }
 
         .pillar-card {
-            background: white;
+            background: var(--color-content-bg);
             border: 1px solid var(--color-border);
             border-left: 4px solid var(--skawr-primary);
             border-radius: 12px;
@@ -78,7 +78,7 @@
         .doc-link {
             display: block;
             padding: 1.25rem;
-            background: white;
+            background: var(--color-content-bg);
             border: 1px solid var(--color-border);
             border-radius: 10px;
             text-decoration: none;
@@ -113,6 +113,14 @@
 
         .badge-pre-build { background: #fff3e0; color: #e65100; }
         .badge-mvp { background: #e8f5e9; color: #2e7d32; }
+
+        @media (prefers-color-scheme: dark) {
+            .callout {
+                background: linear-gradient(135deg, rgba(237, 116, 83, 0.12) 0%, rgba(237, 116, 83, 0.05) 100%);
+            }
+            .badge-pre-build { background: rgba(230, 81, 0, 0.18); color: #ffb74d; }
+            .badge-mvp { background: rgba(46, 125, 50, 0.18); color: #81c784; }
+        }
     </style>
 </head>
 <body>
