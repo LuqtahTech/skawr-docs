@@ -8,7 +8,7 @@ This document provides context for the future "migrate to AWS + switch to Stripe
 
 ## What Was Built (Phase 1 — Polar.sh on VPS)
 
-The `saas-payment-integration` spec implemented a provider-agnostic payment system in `skawr-backend/skawr-indexer/` with these abstraction points:
+The `saas-payment-integration` spec implemented a provider-agnostic payment system in `skawr-search/skawr-indexer/` with these abstraction points:
 
 ### Protocol Interfaces (swap these for AWS adapters)
 
@@ -34,7 +34,7 @@ Billing tables are provider-agnostic:
 
 ### Existing Terraform (Ready to Deploy)
 
-The Terraform config at `skawr-backend/infrastructure/skawr-indexer/` already includes:
+The Terraform config at `skawr-search/infrastructure/skawr-indexer/` already includes:
 - VPC, ECS Fargate (1vCPU/2GB), RDS PostgreSQL, ALB, ECR, Redis (ElastiCache)
 - OpenSearch (t3.small.search)
 - Secrets Manager for env vars

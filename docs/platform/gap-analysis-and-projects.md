@@ -92,7 +92,7 @@ A full inventory of gaps, missing pieces, and potential projects across all Skaw
 | # | Gap | Description | Effort | Skills needed |
 |---|-----|-------------|--------|---------------|
 | 41 | **Remove legacy per-request scrapers** | The `main` branch still has TS scraper clients (`lib/integration/`) that run at request time. The `staging` branch uses the indexer only. Promote staging → main and delete the dead code. | 1–2 days | Frontend dev |
-| 42 | **Mobile responsiveness** | The marketplace frontend (`skwar-web-mvp`) needs mobile QA. Test all pages on mobile viewports, fix layout issues. | 3–5 days | Frontend dev |
+| 42 | **Mobile responsiveness** | The marketplace frontend (`skawr-web`) needs mobile QA. Test all pages on mobile viewports, fix layout issues. | 3–5 days | Frontend dev |
 | 43 | **SEO optimization** | Add proper meta tags, structured data (JSON-LD for products), sitemap generation, OpenGraph tags for social sharing. Next.js supports all of this but it needs to be implemented per-page. | 1 week | Frontend dev |
 | 44 | **Arabic language support** | The marketplace frontend is English-only. Need RTL layout, Arabic translations, language switcher. | 2–3 weeks | Frontend dev + Arabic speaker |
 | 45 | **User accounts & saved searches** | Currently using Supabase auth but limited features. Need: save searches, favorites, alerts ("notify me when X appears"), search history. | 2–3 weeks | Full-stack |
@@ -138,18 +138,18 @@ These are good for interns because they're isolated, have clear scope, and won't
 
 | # | Project | Repo | Difficulty | Duration |
 |---|---------|------|------------|----------|
-| A | **Arabic locale for Shopify widget** | skawr-backend/skawr/ | Easy | 2–3 days |
+| A | **Arabic locale for Shopify widget** | skawr-search/skawr/ | Easy | 2–3 days |
 | B | **Landing page Arabic version** | skawr-landing | Easy-Medium | 1 week |
 | C | **Documentation site refresh** | skawr-docs | Easy | 1–2 weeks |
 | D | **Revenue dashboard frontend** | skawr-analytics/frontend | Medium | 1 week |
 | E | **Paths/Sankey visualization** | skawr-analytics/frontend | Medium | 1–2 weeks |
 | F | **Event rules management UI** | skawr-analytics/frontend | Medium | 1–2 weeks |
-| G | **Search analytics dashboard** | skawr-backend/skawr-dashboard-client | Medium | 1–2 weeks |
+| G | **Search analytics dashboard** | skawr-search/skawr-dashboard-client | Medium | 1–2 weeks |
 | H | **Pricing page component** | skawr-landing | Easy-Medium | 3–5 days |
-| I | **Mobile responsiveness QA + fixes** | skwar-web-mvp | Easy-Medium | 1 week |
-| J | **Autocomplete in Shopify widget** | skawr-backend/skawr/ | Medium | 3–5 days |
-| K | **SEO meta tags + structured data** | skwar-web-mvp | Easy-Medium | 1 week |
-| L | **Load testing script** | skawr-backend/skawr-indexer | Medium | 3–5 days |
+| I | **Mobile responsiveness QA + fixes** | skawr-web | Easy-Medium | 1 week |
+| J | **Autocomplete in Shopify widget** | skawr-search/skawr/ | Medium | 3–5 days |
+| K | **SEO meta tags + structured data** | skawr-web | Easy-Medium | 1 week |
+| L | **Load testing script** | skawr-search/skawr-indexer | Medium | 3–5 days |
 | M | **Onboarding wizard (analytics)** | skawr-analytics/frontend | Medium | 1–2 weeks |
 | N | **Demo project seed data** | skawr-analytics/backend | Medium | 3–5 days |
 
