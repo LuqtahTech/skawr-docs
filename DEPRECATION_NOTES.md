@@ -9,7 +9,7 @@ The `docs/platforms/mobile-app/` section documents a Flutter iOS app that has be
 
 ### Platform Architecture
 The `docs/system/architecture.html` page may reference old component names. The current architecture is:
-- **skawr-indexer** (in skawr-backend monorepo): Core SaaS platform API — search, multi-tenant management, Salla/Shopify integrations, billing
+- **skawr-indexer** (in skawr-search monorepo): Core SaaS platform API — search, multi-tenant management, Salla/Shopify integrations, billing
 - **skawr-analytics**: Separate product analytics platform (FastAPI + Next.js)
 - **VPS deployment**: Docker + Traefik on Contabo (not AWS yet)
 - **OpenSearch**: Replaced Typesense long ago
