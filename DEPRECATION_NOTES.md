@@ -1,27 +1,62 @@
-# Skawr Docs — Deprecation Notes
+# Skawr Docs — Status & Navigation Guide
 
-This documentation site is partially outdated. The canonical source of truth for AI agents and developers is the steering files in `.kiro/steering/` within each repo.
+## Primary Reference: `docs/steering/`
 
-## Known Outdated Sections
+The **canonical source of truth** for AI agents and developers is now the `docs/steering/` folder:
 
-### Mobile App (Decommissioned)
-The `docs/platforms/mobile-app/` section documents a Flutter iOS app that has been **removed from the App Store** and is no longer active. The page has been replaced with a deprecation notice. Sidebar navigation across other pages still links to it — this is cosmetic and not worth a full HTML rewrite.
+| File | Covers |
+|------|--------|
+| `skawr-ecosystem.md` | Full ecosystem overview (5 products, 16 repos, infra, auth, conventions) |
+| `skawr-search-platform.md` | skawr-indexer technical reference (APIs, billing, Salla/Shopify) |
+| `skawr-analytics.md` | Analytics platform (SDKs, event model, insights, pages) |
+| `skawr-pricing-and-infra.md` | All pricing tiers + infrastructure strategy + scaling thresholds |
 
-### Platform Architecture
-The `docs/system/architecture.html` page may reference old component names. The current architecture is:
-- **skawr-indexer** (in skawr-search monorepo): Core SaaS platform API — search, multi-tenant management, Salla/Shopify integrations, billing
-- **skawr-analytics**: Separate product analytics platform (FastAPI + Next.js)
-- **VPS deployment**: Docker + Traefik on Contabo (not AWS yet)
-- **OpenSearch**: Replaced Typesense long ago
+These steering files are also usable as `.kiro/steering/` docs in any Skawr workspace.
 
-### What's Accurate
-- `docs/analytics/` — Positioning, competitor analysis, MVP direction docs are still accurate
-- `docs/platforms/backend-api/` — Mostly accurate (describes SaaS platform correctly)
-- `docs/platforms/scraper-service/` — Accurate
-- `docs/platforms/web-app/` — Accurate for skwar-web-mvp
+---
+
+## Legacy HTML Pages Status
+
+### Outdated / Deprecated Sections
+
+| Section | Status | Notes |
+|---------|--------|-------|
+| `platforms/mobile-app/` | **Decommissioned** | iOS app removed from App Store |
+| `system/architecture.html` | **Outdated** | References old component names. See `steering/skawr-ecosystem.md` instead |
+| `developer/integration-guides.html` | **Missing** | Never created; see SDK READMEs instead |
+| `developer/sdk-docs.html` | **Missing** | See `skawr-sdks/README.md` and `skawr-analytics/backend/skawr_sdk/` |
+| `partnerships/salla-plugin.html` | **Missing** | See `steering/skawr-search-platform.md` §7 (Salla Integration) |
+| `partnerships/white-label.html` | **Missing** | Not applicable anymore |
+| `support/troubleshooting.html` | **Missing** | Never created |
+| `support/contact.html` | **Missing** | Never created |
+
+### Accurate Sections
+
+| Section | Status |
+|---------|--------|
+| `analytics/` | ✅ Positioning, competitor analysis, MVP direction still accurate |
+| `platform/skawr-platform-overview.md` | ✅ Recently updated (July 2026) |
+| `platform/gap-analysis-and-projects.md` | ✅ Comprehensive project inventory |
+
+### Not Documented in HTML (covered in steering)
+
+- **skawr-login** (Zitadel Login v2 custom UI)
+- **CRO product** (skawr.com/cro — landing, pricing, audit tool)
+- **Blue/green deploys** (zero-downtime container swap)
+- **Polar.sh billing integration**
+- **Domain consolidation** (analytics.skawr.com, login.skawr.com, app.skawr.com)
+
+---
 
 ## Recommendation
-For up-to-date technical reference, use:
-- `.kiro/steering/skawr-ecosystem.md` in skawr-analytics repo
-- `.kiro/steering/saas-pricing-and-infra.md` for pricing/infrastructure context
-- Individual repo READMEs (recently updated July 2026)
+
+For up-to-date technical reference:
+1. **Start with** `docs/steering/skawr-ecosystem.md` for orientation
+2. **For search/indexer work**: `docs/steering/skawr-search-platform.md`
+3. **For analytics work**: `docs/steering/skawr-analytics.md`
+4. **For pricing/billing changes**: `docs/steering/skawr-pricing-and-infra.md`
+5. **For repo-specific details**: Individual repo READMEs (all updated July 2026)
+
+---
+
+*Last Updated: July 2026*
