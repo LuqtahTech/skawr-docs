@@ -95,7 +95,7 @@ The Terraform config at `skawr-search/infrastructure/skawr-indexer/` already inc
    - Apply existing Terraform to create AWS infrastructure
    - Push Docker image to ECR
    - Configure Secrets Manager with Stripe keys + SES credentials
-   - Update ALB/Route53 to point `api.ziyad.one` to new ALB (or keep VPS as fallback)
+   - Update ALB/Route53 to point `api.skawr.com` to new ALB (or keep VPS as fallback)
    - Verify health checks pass
 
 7. **Stripe-Specific Features (Optional Enhancements)**
