@@ -31,7 +31,7 @@ All repos live under `/Users/smsaleh/Documents/Skawr/` unless noted.
 |------|---------|-------|----------|
 | `skawr-search` | Core SaaS backend (indexer, billing, Salla/Shopify, search). Also contains `docker-compose.dev.yml` + R2 restore scripts (the "devbox") | Python FastAPI, PostgreSQL, OpenSearch 2.19.5, Redis 7 | `api.skawr.com` |
 | `skawr-analytics` | Product analytics platform (backend + frontend) | Next.js 16, FastAPI, PostgreSQL | `analytics.skawr.com` |
-| `skawr-dashboards` | Admin + client dashboards for search SaaS | React 19, Vite, TypeScript, Tailwind | `app.skawr.com` |
+| `skawr-dashboards` | Admin + client dashboards for search SaaS | React 19, Vite, TypeScript, Tailwind | `admin.skawr.com` / `dashboard.skawr.com` |
 | `skawr-web` | Marketplace frontend + SaaS landing + CRO section | Next.js 16, pnpm, Tailwind 4, Radix UI | `skawr.com` (Amplify) |
 | `skawr-login` | Zitadel Login v2 custom UI — unified SSO for all apps | Python FastAPI BFF, Jinja2 templates | `login.skawr.com` |
 | `skawr-auth` | Shared auth library (Python + TypeScript). Legacy JWT — being superseded by Zitadel OIDC | JWT, bcrypt | npm + pip packages |
@@ -104,7 +104,7 @@ All backend services run on a single VPS with Docker + Traefik.
 | `analytics-api.skawr.com` | skawr-analytics backend (VPS) | Migrated from `analytics-api.ziyad.one` |
 | `login.skawr.com` | skawr-login (VPS) | Zitadel Login v2 custom UI |
 | `id.skawr.com` | Zitadel instance | OIDC provider (IdP) — migrated from `id.ziyad.one` |
-| `app.skawr.com` | skawr-dashboards (VPS) | Admin + client dashboards (migrated from `admin.ziyad.one`) |
+| `admin.skawr.com` / `dashboard.skawr.com` | skawr-dashboards (VPS) | Admin + client dashboards (migrated from `admin.ziyad.one`) |
 | `umami.ziyad.one` | Umami analytics | Still on ziyad.one — no skawr.com equivalent |
 | `errors.ziyad.one` | Error tracking | Still on ziyad.one — no skawr.com equivalent |
 
@@ -205,7 +205,7 @@ Skawr is migrating from a legacy JWT system (`skawr-auth`) to Zitadel OIDC (`id.
 
 2. **Blue/green deploys** — The indexer uses blue/green on the VPS. CI scripts reference `DEPLOY_SLOT` env var. Never manually `docker compose up` the indexer in production — use the deploy script.
 
-3. **Domain consolidation happened** — `analytics.ziyad.one` → `analytics.skawr.com`, dashboards moved to `app.skawr.com`. Old domains redirect but don't use them in new code.
+3. **Domain consolidation happened** — `analytics.ziyad.one` → `analytics.skawr.com`, dashboards moved to `admin.skawr.com` & `dashboard.skawr.com`. Old domains redirect but don't use them in new code.
 
 4. **Zitadel is now at `id.skawr.com`** — The IdP has moved from `id.ziyad.one` to `id.skawr.com`. The custom login UI is at `login.skawr.com`. The only services still on `ziyad.one` are `umami.ziyad.one` (analytics) and `errors.ziyad.one` (error tracking).
 
