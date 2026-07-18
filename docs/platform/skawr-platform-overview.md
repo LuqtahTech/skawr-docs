@@ -23,7 +23,7 @@ Skawr (سكور — Arabic for "to scour/search") is a Saudi/MENA tech company b
 ├─────────────────┬────────────────────┬──────────────────────────┤
 │                 │                    │                          │
 │  MARKETPLACE    │    SEARCH SaaS     │      ANALYTICS           │
-│  (skawr.com)   │  (skawr.com/saas)  │  (analytics.ziyad.one)   │
+│  (skawr.com)   │  (skawr.com/saas)  │  (analytics.skawr.com)   │
 │                 │                    │                          │
 │  Consumers      │  Salla merchants   │  Product teams           │
 │  search Saudi   │  & e-commerce      │  track user behavior,    │
@@ -194,7 +194,7 @@ Customer's app                      Skawr Analytics
 - **Flutter/Dart** — mobile apps
 
 ### Current status
-- **Live and functional** at `analytics.ziyad.one`
+- **Live and functional** at `analytics.skawr.com`
 - Full event ingestion with enrichment (device, location, UTM parsing)
 - Working funnels, retention, cohorts, dashboards, event rules, insights
 - 5 SDKs published and usable
@@ -231,9 +231,9 @@ Everything runs on a single **Contabo VPS** in Germany (€26–40/month total).
 │       │          │ • Dashboards │     │ • Redis              │         │
 │       │          └──────────────┘     └──────────────────────┘         │
 │       │                                                                  │
-│       ├── analytics.ziyad.one → Analytics frontend                      │
-│       ├── analytics-api.ziyad.one → Analytics backend                   │
-│       └── api.ziyad.one → Search indexer API                            │
+│       ├── analytics.skawr.com → Analytics frontend                      │
+│       ├── analytics-api.skawr.com → Analytics backend                   │
+│       └── api.skawr.com → Search indexer API                            │
 │                                                                          │
 │  ┌──────────────────┐                                                   │
 │  │ Scrapers (cron)  │  Haraj (10min), Aqar (10min),                    │

@@ -44,7 +44,7 @@ These steering files are also usable as `.kiro/steering/` docs in any Skawr work
 - **CRO product** (skawr.com/cro — landing, pricing, audit tool)
 - **Blue/green deploys** (zero-downtime container swap)
 - **Polar.sh billing integration**
-- **Domain consolidation** (analytics.skawr.com, login.skawr.com, app.skawr.com)
+- **Domain consolidation** (analytics.skawr.com, login.skawr.com, admin.skawr.com, dashboard.skawr.com)
 
 ---
 

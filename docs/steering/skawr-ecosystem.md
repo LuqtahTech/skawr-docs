@@ -31,7 +31,7 @@ All repos live under `/Users/smsaleh/Documents/Skawr/` unless noted.
 |------|---------|-------|----------|
 | `skawr-search` | Core SaaS backend (indexer, billing, Salla/Shopify, search). Also contains `docker-compose.dev.yml` + R2 restore scripts (the "devbox") | Python FastAPI, PostgreSQL, OpenSearch 2.19.5, Redis 7 | `api.skawr.com` |
 | `skawr-analytics` | Product analytics platform (backend + frontend) | Next.js 16, FastAPI, PostgreSQL | `analytics.skawr.com` |
-| `skawr-dashboards` | Admin + client dashboards for search SaaS | React 19, Vite, TypeScript, Tailwind | `app.skawr.com` |
+| `skawr-dashboards` | Admin + client dashboards for search SaaS | React 19, Vite, TypeScript, Tailwind | `admin.skawr.com` / `dashboard.skawr.com` |
 | `skawr-web` | Marketplace frontend + SaaS landing + CRO section | Next.js 16, pnpm, Tailwind 4, Radix UI | `skawr.com` (Amplify) |
 | `skawr-login` | Zitadel Login v2 custom UI — unified SSO for all apps | Python FastAPI BFF, Jinja2 templates | `login.skawr.com` |
 | `skawr-auth` | Shared auth library (Python + TypeScript). Legacy JWT — being superseded by Zitadel OIDC | JWT, bcrypt | npm + pip packages |
@@ -101,9 +101,12 @@ All backend services run on a single VPS with Docker + Traefik.
 | `skawr.com/cro` | skawr-web | CRO landing + pricing + audit tool |
 | `api.skawr.com` | skawr-indexer (VPS) | Core SaaS API |
 | `analytics.skawr.com` | skawr-analytics frontend (VPS) | Migrated from `analytics.ziyad.one` |
+| `analytics-api.skawr.com` | skawr-analytics backend (VPS) | Migrated from `analytics-api.ziyad.one` |
 | `login.skawr.com` | skawr-login (VPS) | Zitadel Login v2 custom UI |
-| `id.ziyad.one` | Zitadel instance | OIDC provider (IdP) |
-| `app.skawr.com` | skawr-dashboards (VPS) | Admin + client dashboards |
+| `id.skawr.com` | Zitadel instance | OIDC provider (IdP) — migrated from `id.ziyad.one` |
+| `admin.skawr.com` / `dashboard.skawr.com` | skawr-dashboards (VPS) | Admin + client dashboards (migrated from `admin.ziyad.one`) |
+| `umami.ziyad.one` | Umami analytics | Still on ziyad.one — no skawr.com equivalent |
+| `errors.ziyad.one` | Error tracking | Still on ziyad.one — no skawr.com equivalent |
 
 ---
 
@@ -111,11 +114,11 @@ All backend services run on a single VPS with Docker + Traefik.
 
 ### Overview
 
-Skawr is migrating from a legacy JWT system (`skawr-auth`) to Zitadel OIDC (`id.ziyad.one`) with a custom Login v2 UI (`skawr-login`).
+Skawr is migrating from a legacy JWT system (`skawr-auth`) to Zitadel OIDC (`id.skawr.com`) with a custom Login v2 UI (`skawr-login`).
 
 ```
 ┌─────────────┐     ┌──────────────┐     ┌─────────────┐
-│  Any Skawr  │────▶│ login.skawr  │────▶│ id.ziyad.one│
+│  Any Skawr  │────▶│ login.skawr  │────▶│ id.skawr.com│
 │    App      │     │  (skawr-login│     │  (Zitadel)  │
 │             │◀────│   FastAPI)   │◀────│   OIDC IdP  │
 └─────────────┘     └──────────────┘     └─────────────┘
@@ -125,7 +128,7 @@ Skawr is migrating from a legacy JWT system (`skawr-auth`) to Zitadel OIDC (`id.
 
 | Component | Role |
 |-----------|------|
-| **Zitadel** (`id.ziyad.one`) | OIDC identity provider. Manages users, orgs, sessions, MFA. Source of truth for identity. |
+| **Zitadel** (`id.skawr.com`) | OIDC identity provider. Manages users, orgs, sessions, MFA. Source of truth for identity. |
 | **skawr-login** (`login.skawr.com`) | Custom Login v2 UI. Python/FastAPI BFF that talks to Zitadel's session/OIDC APIs. Renders login/register/MFA/password-reset flows with Skawr branding. All apps redirect here for auth. |
 | **skawr-auth** (library) | Legacy shared auth library (Python + TypeScript). Still used for JWT token validation in services that haven't migrated. Being phased out. |
 
@@ -140,7 +143,7 @@ Skawr is migrating from a legacy JWT system (`skawr-auth`) to Zitadel OIDC (`id.
 
 1. New services MUST use Zitadel OIDC via `skawr-login` redirect — do NOT implement custom login forms
 2. `skawr-auth` library is for backwards compatibility only — do not add new features to it
-3. All Zitadel tokens are validated against `id.ziyad.one/.well-known/openid-configuration`
+3. All Zitadel tokens are validated against `id.skawr.com/.well-known/openid-configuration`
 4. Tier gating removed from analytics — all SaaS customers get full analytics access
 
 ---
@@ -202,9 +205,9 @@ Skawr is migrating from a legacy JWT system (`skawr-auth`) to Zitadel OIDC (`id.
 
 2. **Blue/green deploys** — The indexer uses blue/green on the VPS. CI scripts reference `DEPLOY_SLOT` env var. Never manually `docker compose up` the indexer in production — use the deploy script.
 
-3. **Domain consolidation happened** — `analytics.ziyad.one` → `analytics.skawr.com`, dashboards moved to `app.skawr.com`. Old domains redirect but don't use them in new code.
+3. **Domain consolidation happened** — `analytics.ziyad.one` → `analytics.skawr.com`, dashboards moved to `admin.skawr.com` & `dashboard.skawr.com`. Old domains redirect but don't use them in new code.
 
-4. **Zitadel is at `id.ziyad.one`** — The IdP itself stays on ziyad.one (not skawr.com). The custom login UI is at `login.skawr.com`.
+4. **Zitadel is now at `id.skawr.com`** — The IdP has moved from `id.ziyad.one` to `id.skawr.com`. The custom login UI is at `login.skawr.com`. The only services still on `ziyad.one` are `umami.ziyad.one` (analytics) and `errors.ziyad.one` (error tracking).
 
 5. **CRO product is service-based, not SaaS** — Project-based pricing ($300–$1,200/project). `/cro/audit` is a free instant audit tool (lead gen). Don't add subscription logic.
 
