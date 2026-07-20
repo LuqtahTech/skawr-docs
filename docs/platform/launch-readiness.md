@@ -91,6 +91,42 @@ Currently v1 only. No documented deprecation policy, no sunset headers, no migra
 
 ---
 
+## Growth Studio Deployment Checklist 🟠
+
+> Added July 2026. Growth Studio is a new internal service (`skawr-growth`) that requires deployment and configuration before the acquisition workflow can run end-to-end.
+
+### Must-do before first use
+
+| # | Item | How | Status |
+|---|------|-----|--------|
+| 1 | **Deploy Growth stack to VPS** | `docker compose up -d` on Contabo (same as indexer pattern) | ⬜ |
+| 2 | **Configure Traefik route** | Add `growth-api.skawr.com` → port 8010 in the Traefik config | ⬜ |
+| 3 | **Create CI/CD deploy workflow** | Copy `deploy-indexer.yml` pattern, target `skawr-growth` | ⬜ |
+| 4 | **Set up Zitadel Growth project** | Create "Growth" project + audience in `id.skawr.com` admin | ⬜ |
+| 5 | **Configure dual-write on skawr-web** | Set `GROWTH_INGRESS_URL/KEY_ID/SECRET` in Amplify env vars | ⬜ |
+| 6 | **Share Search SERVICE_API_TOKEN** | Copy from indexer `.env` into Growth's `GROWTH_SEARCH_SERVICE_TOKEN` | ⬜ |
+| 7 | **Verify Growth API health** | `curl https://growth-api.skawr.com/health/ready` → status=ready | ⬜ |
+| 8 | **Run E2E validation on production DB** | `python3 scripts/e2e_validate.py` against the deployed instance | ⬜ |
+| 9 | **Add UptimeRobot monitor** | Monitor `growth-api.skawr.com/health/live` | ⬜ |
+| 10 | **Seed MVP sources + catalog** | `python3 scripts/seed.py` on the deployed instance | ⬜ |
+
+### Already configured (local `.env`)
+
+- ✅ Fireworks AI key (`GROWTH_FIREWORKS_API_KEY`)
+- ✅ HubSpot CRM token (`GROWTH_HUBSPOT_API_TOKEN`)
+- ✅ Google Sheets SA + spreadsheet ID (`GROWTH_SHEETS_*`)
+- ✅ Contact-route encryption key (`GROWTH_CONTACT_ROUTE_KEYS`)
+
+### Post-deploy verification
+
+- [ ] CRO audit scan creates a Growth candidate (dual-write working)
+- [ ] Reviewer can see accounts in the dashboard at `/growth`
+- [ ] Workflow editor loads and can save/publish
+- [ ] Approved export appends a row to Google Sheets
+- [ ] Kill-switch test: activate → verify action blocked → resume
+
+---
+
 ## Nice to Have (Post-Launch) 🟡
 
 | Item | Tools/Options | Why |
