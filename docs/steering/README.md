@@ -9,7 +9,6 @@ These files replace the outdated HTML docs and serve as the primary reference.
 |------|---------|
 | `skawr-ecosystem.md` | Master reference: all products, repos, infrastructure, auth, conventions, gotchas |
 | `skawr-search-platform.md` | Technical reference for skawr-search/skawr-indexer: APIs, multi-tenancy, billing, Salla/Shopify |
-| `skawr-analytics.md` | Technical reference for skawr-analytics: SDKs, event model, insights, frontend |
 | `skawr-pricing-and-infra.md` | Pricing tiers, infrastructure strategy, scaling thresholds, billing integration |
 
 ## Usage

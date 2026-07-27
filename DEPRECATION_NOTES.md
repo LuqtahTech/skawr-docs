@@ -8,7 +8,6 @@ The **canonical source of truth** for AI agents and developers is now the `docs/
 |------|--------|
 | `skawr-ecosystem.md` | Full ecosystem overview (5 products, 16 repos, infra, auth, conventions) |
 | `skawr-search-platform.md` | skawr-indexer technical reference (APIs, billing, Salla/Shopify) |
-| `skawr-analytics.md` | Analytics platform (SDKs, event model, insights, pages) |
 | `skawr-pricing-and-infra.md` | All pricing tiers + infrastructure strategy + scaling thresholds |
 
 These steering files are also usable as `.kiro/steering/` docs in any Skawr workspace.
@@ -53,7 +52,7 @@ These steering files are also usable as `.kiro/steering/` docs in any Skawr work
 For up-to-date technical reference:
 1. **Start with** `docs/steering/skawr-ecosystem.md` for orientation
 2. **For search/indexer work**: `docs/steering/skawr-search-platform.md`
-3. **For analytics work**: `docs/steering/skawr-analytics.md`
+3. **For analytics work**: the canonical `skawr-analytics.md` technical reference lives in the workspace `.kiro/steering/` (kept current there); the published mirror was removed as stale. See also `skawr-analytics/docs/features-catalog.md`.
 4. **For pricing/billing changes**: `docs/steering/skawr-pricing-and-infra.md`
 5. **For repo-specific details**: Individual repo READMEs (all updated July 2026)
 
