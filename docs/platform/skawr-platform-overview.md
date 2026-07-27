@@ -188,7 +188,7 @@ Customer's app                      Skawr Analytics
 
 ### SDKs available
 - **Web** (vanilla JavaScript) — auto-captures pageviews, clicks, forms
-- **React** (Next.js/React) — provider + hooks
+- **React** (Next.js/React) — provider + hooks. Auto-captures pageviews by default; click, form, and error capture are opt-in (default off) for privacy as of 0.7.0, enabled per stream
 - **Node.js** (server-side) — backend event tracking
 - **Python** — sync + async clients
 - **Flutter/Dart** — mobile apps
