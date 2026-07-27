@@ -1,0 +1,38 @@
+# Normalize line endings.
+#
+# Without this, git stores whatever bytes the working tree happens to hold.
+# On Windows, editors and tooling (PowerShell redirects, Python's
+# pathlib.write_text, some IDEs) silently rewrite a file to CRLF, and the
+# result is a "phantom diff": every line shows as changed when nothing did.
+# That churn buries real changes in review — a two-line edit has appeared as
+# 1200+ modified lines.
+#
+# `text=auto eol=lf` makes git normalize to LF in the object database on
+# commit and check out LF, regardless of each machine's core.autocrlf. It
+# travels with the repo, so CI and every contributor get it too. Binary files
+# are detected automatically and left untouched.
+* text=auto eol=lf
+
+# Belt and braces for files that MUST be LF: a shell script or Dockerfile with
+# CRLF fails on Linux with `bad interpreter: \r: No such file or directory`.
+*.sh    text eol=lf
+*.bash  text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+Dockerfile      text eol=lf
+Dockerfile.*    text eol=lf
+docker-compose.* text eol=lf
+
+# Never touch these — declaring them keeps `text=auto` heuristics out of it.
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.zip   binary
+*.gz    binary
