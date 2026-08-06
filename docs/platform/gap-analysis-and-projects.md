@@ -85,7 +85,7 @@ A full inventory of gaps, missing pieces, and potential projects across all Skaw
 
 ---
 
-## Product 3: Marketplace Aggregator (skawr.com)
+## Product 3: Marketplace Aggregator (skawr.com/marketplaces)
 
 ### High Priority
 
@@ -123,7 +123,7 @@ A full inventory of gaps, missing pieces, and potential projects across all Skaw
 
 | # | Gap | Description | Effort | Skills needed |
 |---|-----|-------------|--------|---------------|
-| 59 | **Pricing page (skawr.com/saas or landing)** | Pricing is decided but not published publicly. Need a designed pricing page with SAR/USD toggle, feature comparison, FAQ. | 3–5 days | Designer + frontend dev |
+| 59 | **Pricing page (skawr.com/search or landing)** | Pricing is decided but not published publicly. Need a designed pricing page with SAR/USD toggle, feature comparison, FAQ. | 3–5 days | Designer + frontend dev |
 | 60 | **Competitor comparison content** | The `docs/` folder has great competitive analysis but none of it is public-facing. Turn it into website content: "Skawr vs Algolia", "Skawr vs Meilisearch". | 1 week | Copywriter |
 | 61 | **Case study / demo video** | Needed for both Salla and Shopify app store submissions. Record a video showing: install → search working → analytics visible. | 1–2 days | Product/marketing |
 | 62 | **Arabic marketing content** | Landing page, docs, and all customer-facing content is English-only. The MENA positioning requires Arabic versions. | 2–3 weeks | Arabic copywriter + frontend |

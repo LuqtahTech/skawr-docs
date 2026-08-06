@@ -90,7 +90,7 @@ Everything below **MUST** work before onboarding the first paying customer.
 
 ### Documentation
 
-- [ ] API reference accessible (`skawr.com/saas/docs` or `api.skawr.com/docs`)
+- [ ] API reference accessible (`skawr.com/search/docs` or `api.skawr.com/docs`)
 - [ ] SDK README accurate (install + first search in <5 minutes)
 - [ ] Pricing page accurate and checkout works
 
@@ -111,7 +111,7 @@ Things that should work on the public website.
 - [ ] Results display correctly (4 pillars)
 - [ ] Email delivery of results works
 
-### SaaS Landing (`/saas`)
+### SaaS Landing (`/search`)
 
 - [ ] Page loads, no console errors
 - [ ] Dark mode toggle works
@@ -119,7 +119,7 @@ Things that should work on the public website.
 - [ ] Pricing page loads with correct tiers
 - [ ] "Get Started" → checkout flow initiates
 
-### Import Tool (`/saas/import`)
+### Import Tool (`/search/import`)
 
 - [ ] URL import accepts a store URL
 - [ ] Products are indexed
@@ -132,7 +132,7 @@ Things that should work on the public website.
 - [ ] Pricing page shows correct tiers
 - [ ] CTAs link to booking (`cal.com/skawr`)
 
-### Marketplace (`skawr.com`)
+### Marketplace (`skawr.com/marketplaces`)
 
 - [ ] Search returns results
 - [ ] Results from multiple marketplaces appear

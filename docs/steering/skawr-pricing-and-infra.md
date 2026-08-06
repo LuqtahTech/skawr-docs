@@ -134,17 +134,19 @@ Separate from core SaaS. Limits enforced independently.
 
 ## 8. Pricing Page Structure
 
+> IA update (2026): home = business hub; marketplace at /marketplaces; search product at /search (was /saas). Old paths 301-redirect.
+
 | URL | Purpose | CTA Destination |
 |-----|---------|-----------------|
-| `/saas/pricing` | Search Plugin pricing | Polar.sh checkout flow |
+| `/search/pricing` | Search Plugin pricing | Polar.sh checkout flow |
 | `/cro/pricing` | CRO service pricing | cal.com/skawr booking links |
 | `/pricing` | Marketplace price comparison tool | Consumer feature, NOT billing |
 
 - No unified pricing page combining search + CRO
 - Navbar pricing link is context-dependent:
-  - On search/SaaS pages → `/saas/pricing`
+  - On search/SaaS pages → `/search/pricing`
   - On CRO pages → `/cro/pricing`
-- "Get Started" CTAs go to `/saas/pricing`, NOT `/saas/import`
+- "Get Started" CTAs go to `/search/pricing`, NOT `/search/import`
 
 ---
 
@@ -155,7 +157,7 @@ Separate from core SaaS. Limits enforced independently.
 Handles SaaS subscriptions (Search Plugin).
 
 ### Checkout Flow
-1. User selects tier on `/saas/pricing`
+1. User selects tier on `/search/pricing`
 2. Frontend calls `POST /api/v1/billing/checkout/public` on indexer
 3. Backend validates request, returns Polar.sh checkout URL
 4. User redirected to Polar hosted checkout page

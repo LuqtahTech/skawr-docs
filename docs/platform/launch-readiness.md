@@ -8,8 +8,8 @@
 ## Already Have ✅
 
 - **Product** — Search works, billing works (Polar.sh subscriptions, trials, dunning)
-- **Landing pages** — SaaS landing (`/saas`) + CRO landing (`/cro`)
-- **Pricing page with checkout** — `/saas/pricing` → Polar.sh hosted checkout
+- **Landing pages** — Search landing (`/search`) + CRO landing (`/cro`)
+- **Pricing page with checkout** — `/search/pricing` → Polar.sh hosted checkout
 - **API documentation** — Swagger/OpenAPI at `/docs` on `api.skawr.com`
 - **Published SDKs** — `@skawr/search` (npm), Python SDK (PyPI), Flutter SDK (pub.dev)
 - **Error tracking** — GlitchTip at `errors.ziyad.one`

@@ -17,7 +17,7 @@
    - `Admin Dashboard` → `https://admin.skawr.com` (status 200)
    - `Client Dashboard` → `https://dashboard.skawr.com` (status 200)
    - `Website` → `https://skawr.com` (status 200)
-   - `SaaS Landing` → `https://skawr.com/saas` (status 200)
+   - `SaaS Landing` → `https://skawr.com/search` (status 200)
    - `CRO Landing` → `https://skawr.com/cro` (status 200)
    - `Zitadel` → `https://id.skawr.com` (status 200 or 301)
 3. **Add Slack alert** — My Settings → Alert Contacts → Slack webhook
@@ -49,8 +49,8 @@
 ### Tasks
 1. **Create support@skawr.com** — Use Google Workspace or a free forwarding service (ImprovMX free tier: forward to personal email)
 2. **Add "Contact Support" to client dashboard** — File: `skawr-dashboards/skawr-dashboard-client/src/components/Layout/Sidebar.tsx` — Add a footer link: `support@skawr.com`
-3. **Add support link to pricing page** — File: `skawr-web/app/saas/_components/Pricing.jsx` — Add below the tier cards: "Need help? Contact us at support@skawr.com"
-4. **Add support link to API docs** — File: `skawr-web/app/saas/docs/page.tsx` — Add to sidebar or footer
+3. **Add support link to pricing page** — File: `skawr-web/app/search/_components/Pricing.jsx` — Add below the tier cards: "Need help? Contact us at support@skawr.com"
+4. **Add support link to API docs** — File: `skawr-web/app/search/docs/page.tsx` — Add to sidebar or footer
 5. **Set up auto-reply** — Configure email auto-responder: "Thanks for contacting Skawr. We'll reply within 24 hours."
 
 **Outcome:** Visible support contact on all customer-facing surfaces, with guaranteed response acknowledgment.
@@ -65,7 +65,7 @@
 1. **Create email templates** — 3 emails in HTML (matching Skawr brand):
    - **Email 1 (immediate on signup):** "Welcome to Skawr" — API key shown, SDK install command, quickstart link
    - **Email 2 (day 2 if no events received):** "Did you integrate?" — code snippet, link to dashboard, "reply if you need help"
-   - **Email 3 (day 12):** "Your trial expires in 2 days" — usage summary, upgrade CTA to /saas/pricing
+   - **Email 3 (day 12):** "Your trial expires in 2 days" — usage summary, upgrade CTA to /search/pricing
 2. **Implement sending** — In `skawr-search/skawr-indexer/app/payments/notifications.py`:
    - Hook Email 1 into the trial provisioning flow (after Polar webhook creates account)
    - Hook Email 3 into the trial expiry scheduler (2 days before expiry)
