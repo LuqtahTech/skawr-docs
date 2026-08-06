@@ -3,6 +3,8 @@
 A guide to the Skawr ecosystem for co-founders, team members, and new hires.
 Covers what we build, how it fits together, and where things stand.
 
+> IA update (2026): home = business hub; marketplace at /marketplaces; search product at /search (was /saas). Old paths 301-redirect.
+
 ---
 
 ## What is Skawr?
@@ -18,21 +20,21 @@ Skawr (سكور — Arabic for "to scour/search") is a Saudi/MENA tech company b
 ## How It All Fits Together
 
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                        SKAWR PRODUCTS                            │
-├─────────────────┬────────────────────┬──────────────────────────┤
-│                 │                    │                          │
-│  MARKETPLACE    │    SEARCH SaaS     │      ANALYTICS           │
-│  (skawr.com)   │  (skawr.com/saas)  │  (analytics.skawr.com)   │
-│                 │                    │                          │
-│  Consumers      │  Salla merchants   │  Product teams           │
-│  search Saudi   │  & e-commerce      │  track user behavior,    │
-│  marketplaces   │  stores get AI     │  funnels, retention,     │
-│  in one place   │  search for their  │  cohorts, and get        │
-│                 │  own products      │  auto-generated insights │
-└────────┬────────┴─────────┬──────────┴────────────┬─────────────┘
-         │                  │                       │
-         ▼                  ▼                       ▼
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                                SKAWR PRODUCTS                                │
+├───────────────────────────┬──────────────────────┬───────────────────────────┤
+│                           │                      │                           │
+│  MARKETPLACE              │    SEARCH SaaS       │      ANALYTICS            │
+│  (skawr.com/marketplaces) │  (skawr.com/search)  │  (analytics.skawr.com)    │
+│                           │                      │                           │
+│  Consumers                │  Salla merchants     │  Product teams            │
+│  search Saudi             │  & e-commerce        │  track user behavior,     │
+│  marketplaces             │  stores get AI       │  funnels, retention,      │
+│  in one place             │  search for their    │  cohorts, and get         │
+│                           │  own products        │  auto-generated insights  │
+└─────────────┬─────────────────────────┬────────────────────────┬─────────────┘
+              │                         │                        │
+              ▼                         ▼                        ▼
 ┌─────────────────────────────────┐    ┌──────────────────────────┐
 │     SHARED INFRASTRUCTURE       │    │    ANALYTICS BACKEND     │
 │                                 │    │                          │
@@ -49,7 +51,7 @@ Skawr (سكور — Arabic for "to scour/search") is a Saudi/MENA tech company b
 ## Product 1: Skawr Marketplace
 
 ### What it does
-- Users visit `skawr.com` and search across multiple Saudi marketplaces simultaneously
+- Users visit `skawr.com/marketplaces` and search across multiple Saudi marketplaces simultaneously
 - Results come from Haraj, Aqar, Dubizzle, OpenSooq, and Mstaml — all in one search
 - AI-powered: understands Arabic queries, handles typos, semantic meaning (not just keywords)
 
@@ -60,7 +62,7 @@ Skawr (سكور — Arabic for "to scour/search") is a Saudi/MENA tech company b
 4. When a user searches, we combine keyword matching + AI similarity to rank results
 
 ### Current status
-- Live at `skawr.com`
+- Live at `skawr.com/marketplaces`
 - Serving real-time results from 4 Saudi marketplaces
 - Data refreshes every 10–30 minutes depending on the source
 
@@ -242,7 +244,7 @@ Everything runs on a single **Contabo VPS** in Germany (€26–40/month total).
 └──────────────────────────────────────────────────────────────────────────┘
 
 ┌─── AWS Amplify ───┐
-│ skawr.com         │  (marketplace frontend)
+│ skawr.com         │  (business hub + product landings)
 │ landing page      │  (marketing site)
 └───────────────────┘
 ```

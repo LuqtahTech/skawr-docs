@@ -9,10 +9,12 @@ Org: **LuqtahTech** on GitHub.
 
 Skawr is a Saudi/MENA-focused technology company building five products:
 
+> IA update (2026): home = business hub; marketplace at /marketplaces; search product at /search (was /saas). Old paths 301-redirect.
+
 | # | Product | URL | Description |
 |---|---------|-----|-------------|
-| 1 | **Marketplace Aggregator** | `skawr.com` | AI-powered search across Saudi marketplaces (Haraj, Aqar, Dubizzle, OpenSooq, Mstaml) |
-| 2 | **Search SaaS** | `skawr.com/saas` | Multi-tenant search-as-a-service with hybrid BM25 + vector search, billing via Polar.sh |
+| 1 | **Marketplace Aggregator** | `skawr.com/marketplaces` | AI-powered search across Saudi marketplaces (Haraj, Aqar, Dubizzle, OpenSooq, Mstaml) |
+| 2 | **Search SaaS** | `skawr.com/search` | Multi-tenant search-as-a-service with hybrid BM25 + vector search, billing via Polar.sh |
 | 3 | **Analytics** | `analytics.skawr.com` | MENA-first product analytics platform (like Amplitude/Mixpanel) |
 | 4 | **CRO Service** | `skawr.com/cro` | Conversion Rate Optimization consulting — project-based, 4-pillar framework |
 | 5 | **Salla/Shopify Extensions** | Salla App Store / Shopify Theme | Zero-code AI search widgets for e-commerce merchants |
@@ -50,7 +52,7 @@ All repos live under `/Users/smsaleh/Documents/Skawr/` unless noted.
 
 | Repo | Reason |
 |------|--------|
-| `skawr-landing` | Content merged into `skawr-web/app/saas/` |
+| `skawr-landing` | Content merged into `skawr-web/app/search/` |
 | `skawr-indexer` (standalone) | Merged into `skawr-search/skawr-indexer/` |
 
 ### Important Clarification
@@ -96,8 +98,9 @@ All backend services run on a single VPS with Docker + Traefik.
 
 | Domain | Service | Notes |
 |--------|---------|-------|
-| `skawr.com` | skawr-web (Amplify) | Marketplace + SaaS landing + CRO |
-| `skawr.com/saas` | skawr-web | SaaS product pages |
+| `skawr.com` | skawr-web (Amplify) | Business hub (home) + product landings |
+| `skawr.com/marketplaces` | skawr-web | Marketplace aggregator (results at `/marketplaces/search`) |
+| `skawr.com/search` | skawr-web | Search SaaS product pages (was `/saas`) |
 | `skawr.com/cro` | skawr-web | CRO landing + pricing + audit tool |
 | `api.skawr.com` | skawr-indexer (VPS) | Core SaaS API |
 | `analytics.skawr.com` | skawr-analytics frontend (VPS) | Migrated from `analytics.ziyad.one` |
@@ -225,7 +228,7 @@ Skawr is migrating from a legacy JWT system (`skawr-auth`) to Zitadel OIDC (`id.
 
 12. **iOS app is decommissioned** — Removed from App Store. Don't reference it.
 
-13. **skawr-landing is archived** — All SaaS marketing content lives in `skawr-web/app/saas/`.
+13. **skawr-landing is archived** — All SaaS marketing content lives in `skawr-web/app/search/`.
 
 14. **The React analytics SDK is `@skawr/analytics-react`** — Renamed from the old `@luqtahtech/analytics-react` package.
 
