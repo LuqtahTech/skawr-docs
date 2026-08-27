@@ -12,7 +12,6 @@
 # travels with the repo, so CI and every contributor get it too. Binary files
 # are detected automatically and left untouched.
 * text=auto eol=lf
-
 # Belt and braces for files that MUST be LF: a shell script or Dockerfile with
 # CRLF fails on Linux with `bad interpreter: \r: No such file or directory`.
 *.sh    text eol=lf
@@ -22,7 +21,6 @@
 Dockerfile      text eol=lf
 Dockerfile.*    text eol=lf
 docker-compose.* text eol=lf
-
 # Never touch these — declaring them keeps `text=auto` heuristics out of it.
 *.png   binary
 *.jpg   binary
@@ -34,5 +32,5 @@ docker-compose.* text eol=lf
 *.woff2 binary
 *.ttf   binary
 *.otf   binary
-*.zip   binary
+*.zip filter=lfs diff=lfs merge=lfs -text
 *.gz    binary
