@@ -89,6 +89,30 @@ Currently v1 only. No documented deprecation policy, no sunset headers, no migra
 
 **Risk**: Breaking changes with no warning when v2 ships.
 
+### 12. Terms of Service & Privacy Policy
+
+No legal pages published. No data processing agreement (DPA) for PDPL compliance. No cookie consent banner on marketing pages.
+
+**Risk**: Legal liability, can't onboard enterprise customers who require a DPA.
+
+### 13. SDK Error Boundaries
+
+SDKs don't have a documented "what happens if our service is down" degradation story. If `analytics-api.skawr.com` is unreachable, does the merchant's site slow down? (Answer: no, all requests are fire-and-forget — but this isn't documented anywhere customers can see.)
+
+**Risk**: Merchants fear integrating because they don't trust it won't break their store.
+
+### 14. Rate Limit Transparency
+
+No `X-RateLimit-Remaining` or `X-RateLimit-Reset` headers. No documented rate limits on the pricing page or docs. Customers hit 429s with no context.
+
+**Risk**: Developers get frustrated, churn to competitors with better DX.
+
+### 15. Billing Self-Service
+
+No way for customers to upgrade/downgrade tiers, update payment method, or view invoices without contacting support. Polar.sh provides a customer portal but it's not linked anywhere in the dashboard.
+
+**Risk**: Customers who want to upgrade can't self-serve → lost revenue.
+
 ---
 
 ## Growth Studio Deployment Checklist 🟠
@@ -173,9 +197,11 @@ Currently v1 only. No documented deprecation policy, no sunset headers, no migra
    - Email 2 (day 2): "Did you integrate?" + code example + dashboard link
    - Email 3 (day 12): "Your trial expires in 2 days" + upgrade CTA
 
+7. **Publish Terms of Service + Privacy Policy** — use a generator (Termly, iubenda) then customize. Link from footer of all pages.
+
 ### Day 5
 
-7. **Document the incident response process** — even if it's simple:
+8. **Document the incident response process** — even if it's simple:
    ```
    1. Alert fires (UptimeRobot → Slack)
    2. SSH to VPS: ssh root@173.212.246.10
