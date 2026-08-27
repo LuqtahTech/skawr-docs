@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skawr Growth Model</title>
+<style>
+  :root {
+    --primary: #ED7453;
+    --primary-dark: #E95223;
+    --teal: #0BBFA0;
+    --green: #4CAF50;
+    --error: #F44336;
+    --link: #5688FF;
+    --ink: #18181B;
+    --ink-2: #3F3F46;
+    --ink-3: #71717A;
+    --ink-4: #A1A1AA;
+    --base: #FFFFFF;
+    --sunken: #F4F4F5;
+    --line: rgba(0,0,0,0.08);
+    --line-strong: rgba(0,0,0,0.14);
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--sunken);
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 32px 24px 80px; }
+  h1 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 32px; font-weight: 700; letter-spacing: -0.025em; margin: 0 0 4px;
+  }
+  h2 {
+    font-family: 'Space Grotesk', system-ui, sans-serif;
+    font-size: 20px; font-weight: 700; letter-spacing: -0.02em; margin: 32px 0 12px;
+  }
+  .sub { color: var(--ink-3); margin: 0 0 24px; max-width: 720px; }
+  .card {
+    background: var(--base); border: 1px solid var(--line); border-radius: 12px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05); padding: 20px 24px; margin-bottom: 20px;
+  }
+  .grid { display: grid; gap: 20px; }
+  @media (min-width: 900px) { .grid-2 { grid-template-columns: 1fr 1fr; } }
+  label.field { display: block; margin-bottom: 12px; }
+  label.field span { display: block; font-size: 12px; color: var(--ink-3); margin-bottom: 4px; font-weight: 500; }
+  input[type=number] {
+    width: 100%; height: 34px; border: 1px solid var(--line-strong); border-radius: 8px;
+    padding: 0 10px; font-family: inherit; font-size: 13px; color: var(--ink);
+  }
+  input[type=number]:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(237,116,83,0.12); }
+  .inline-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th, td { padding: 8px 10px; text-align: right; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th:first-child, td:first-child { text-align: left; position: sticky; left: 0; background: var(--base); font-weight: 600; }
+  thead th { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-3); font-weight: 600; background: var(--sunken); }
+  thead th:first-child { background: var(--sunken); }
+  .table-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; }
+  .num { font-variant-numeric: tabular-nums; }
+  .rev { font-weight: 700; color: var(--primary-dark); }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+  .kpi { background: var(--sunken); border-radius: 10px; padding: 14px 16px; }
+  .kpi .v { font-family: 'Space Grotesk', system-ui, sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+  .kpi .l { font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-3); font-weight: 500; margin-top: 2px; }
+  .kpi.good .v { color: var(--green); }
+  .kpi.warn .v { color: var(--error); }
+  .bar-row { display: grid; grid-template-columns: 60px 1fr 90px; align-items: center; gap: 12px; margin-bottom: 6px; }
+  .bar-track { background: var(--sunken); border-radius: 6px; height: 22px; overflow: hidden; }
+  .bar-fill { height: 100%; background: linear-gradient(90deg, var(--primary), var(--primary-dark)); border-radius: 6px; }
+  .bar-lbl { font-size: 12px; color: var(--ink-3); }
+  .bar-val { font-size: 12px; text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  .editable-table input { height: 28px; font-size: 12px; text-align: right; }
+  .editable-table th, .editable-table td { padding: 4px 6px; }
+  .note { font-size: 12.5px; color: var(--ink-3); }
+  .split-legend { display:flex; gap:16px; flex-wrap:wrap; font-size:12px; color:var(--ink-3); margin-top:8px; }
+  .dot { display:inline-block; width:10px; height:10px; border-radius:2px; margin-right:5px; vertical-align:middle; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Skawr Growth Model</h1>
+  <p class="sub">A living 12-month model tying together organic effort, paid ads, CRO service revenue, and compounding SaaS MRR. Every input below is editable and the whole model recalculates instantly. Defaults are a realistic base case, not the aggressive target line. Adjust the assumptions to pressure-test your own numbers.</p>
+
+  <h2>Global assumptions</h2>
+  <div class="grid grid-2">
+    <div class="card">
+      <strong style="font-size:13px;">Funnel conversion rates</strong>
+      <div class="inline-grid" style="margin-top:12px;">
+        <label class="field"><span>Audit completion to qualified call</span><input type="number" id="auditToCall" value="15" step="1"> </label>
+        <label class="field"><span>Qualified call to CRO close (%)</span><input type="number" id="callToClose" value="35" step="1"></label>
+        <label class="field"><span>CRO client to SaaS attach (%)</span><input type="number" id="croToSaas" value="45" step="1"></label>
+        <label class="field"><span>Avg CRO project value ($)</span><input type="number" id="avgCro" value="650" step="10"></label>
+      </div>
+    </div>
+    <div class="card">
+      <strong style="font-size:13px;">SaaS economics</strong>
+      <div class="inline-grid" style="margin-top:12px;">
+        <label class="field"><span>Blended MRR per sub / ARPU ($)</span><input type="number" id="arpu" value="175" step="5"></label>
+        <label class="field"><span>Monthly churn (%)</span><input type="number" id="churn" value="3" step="0.5"></label>
+        <label class="field"><span>Gross margin (%)</span><input type="number" id="margin" value="80" step="1"></label>
+      </div>
+    </div>
+    <div class="card">
+      <strong style="font-size:13px;">Paid ads: awareness funnel (Meta, Snap, TikTok)</strong>
+      <div class="inline-grid" style="margin-top:12px;">
+        <label class="field"><span>CPM: cost per 1,000 impressions ($)</span><input type="number" id="cpm" value="5" step="0.5"></label>
+        <label class="field"><span>Ad click-through rate CTR (%)</span><input type="number" id="awarenessCtr" value="1" step="0.1"></label>
+        <label class="field"><span>Landing to audit completion (%)</span><input type="number" id="landingToAudit" value="10" step="1"></label>
+      </div>
+      <p class="note">Impressions to clicks to completed audits. Feeds the audit funnel (calls to CRO) and the self-serve path. Derived cost per completed audit: <strong id="derivedCpa" style="color:var(--primary-dark);">-</strong></p>
+    </div>
+    <div class="card">
+      <strong style="font-size:13px;">Paid ads: intent funnel (Google Search)</strong>
+      <div class="inline-grid" style="margin-top:12px;">
+        <label class="field"><span>Cost per click ($)</span><input type="number" id="cpc" value="2.0" step="0.1"></label>
+        <label class="field"><span>Google CTR: impression to click (%)</span><input type="number" id="googleCtr" value="3.5" step="0.1"></label>
+        <label class="field"><span>Click to preview started (%)</span><input type="number" id="clickToTrial" value="12" step="1"></label>
+        <label class="field"><span>Preview to paid sub (%)</span><input type="number" id="trialToPaid" value="20" step="1"></label>
+      </div>
+      <p class="note">Search spend captures high-intent merchants into the preview-on-your-own-products flow, then paid checkout. No free trial: access is gated until Polar confirms payment.</p>
+    </div>
+    <div class="card">
+      <strong style="font-size:13px;">Organic reach and self-serve</strong>
+      <div class="inline-grid" style="margin-top:12px;">
+        <label class="field"><span>Organic reach to visit (%)</span><input type="number" id="reachToVisit" value="2" step="0.5"></label>
+        <label class="field"><span>Organic visit to audit (%)</span><input type="number" id="visitToAudit" value="15" step="1"></label>
+        <label class="field"><span>Audit to self-serve paid sub (%)</span><input type="number" id="selfServeConv" value="2" step="0.5"></label>
+      </div>
+      <p class="note">Organic reach is derived backward from the organic audits driver. Self-serve subs come from audits that convert to paid without a sales call (nurture to preview to checkout).</p>
+    </div>
+  </div>
+
+  <h2>Monthly drivers (editable)</h2>
+  <p class="note" style="margin-bottom:12px;">These are the levers you control each month. Organic audits and organic direct signups come from LinkedIn content, SEO, app store presence, and referrals. Ad spend is 0 until you choose to start (base case starts Month 4).</p>
+  <div class="table-scroll">
+    <table class="editable-table">
+      <thead>
+        <tr><th>Driver</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th><th>M7</th><th>M8</th><th>M9</th><th>M10</th><th>M11</th><th>M12</th></tr>
+      </thead>
+      <tbody id="driversBody"></tbody>
+    </table>
+  </div>
+
+  <h2>Projection</h2>
+  <div class="kpis" id="kpis" style="margin-bottom:20px;"></div>
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Metric</th><th>M1</th><th>M2</th><th>M3</th><th>M4</th><th>M5</th><th>M6</th><th>M7</th><th>M8</th><th>M9</th><th>M10</th><th>M11</th><th>M12</th>
+        </tr>
+      </thead>
+      <tbody id="resultsBody"></tbody>
+    </table>
+  </div>
+
+  <h2>Total monthly revenue</h2>
+  <div class="card" id="chart"></div>
+  <div class="split-legend">
+    <span><span class="dot" style="background:var(--primary);"></span>SaaS MRR (recurring)</span>
+    <span><span class="dot" style="background:var(--teal);"></span>CRO (one-time)</span>
+  </div>
+
+  <h2>Organic content planner</h2>
+  <p class="note" style="margin-bottom:12px;">The organic reach the model needs each month has to come from actual posts. Set your channels, weekly cadence, and average impressions per post. The planner sums your monthly reach capacity and compares it to what the model requires. Boost rule: promote any organic post that beats the boost threshold (impressions per post) with a small paid push to extend its reach.</p>
+  <div class="card">
+    <div class="inline-grid" style="margin-bottom:16px;">
+      <label class="field"><span>Compare against which month</span><input type="number" id="plannerMonth" value="12" min="1" max="12" step="1"></label>
+      <label class="field"><span>Boost threshold (organic impressions per post)</span><input type="number" id="boostThreshold" value="5000" step="500"></label>
+    </div>
+    <div class="table-scroll" style="border:none;">
+      <table class="editable-table">
+        <thead>
+          <tr><th>Channel</th><th>Posts / week</th><th>Avg impressions / post</th><th>Monthly reach</th><th>Conv. probability (%)</th><th>Est. conversions / mo</th><th>Priority</th></tr>
+        </thead>
+        <tbody id="plannerBody"></tbody>
+        <tfoot id="plannerFoot"></tfoot>
+      </table>
+    </div>
+    <div id="plannerVerdict" style="margin-top:14px;"></div>
+  </div>
+
+  <h2>Notes on the calculations</h2>
+  <div class="card note">
+    <p><strong>MRR compounding:</strong> Active subs each month = prior active subs times (1 minus churn), plus new subs. MRR = active subs times ARPU. This is why SaaS overtakes CRO over time: it stacks, while CRO resets to zero every month.</p>
+    <p><strong>LTV:</strong> ARPU divided by monthly churn gives average customer lifetime revenue. At $175 ARPU and 3% churn, lifetime is ~33 months and gross LTV is ~$5,833. Multiply by gross margin for contribution LTV.</p>
+    <p><strong>CAC:</strong> Total ad spend divided by subscribers attributable to paid channels. CRO revenue is not counted as a cost offset here, so real blended CAC is even lower.</p>
+    <p><strong>Payback:</strong> CAC divided by monthly contribution per sub (ARPU times margin). Under one month means ads pay for themselves almost immediately.</p>
+    <p><strong>CRO capacity:</strong> CRO closes are capped by your delivery capacity each month. Two founders handle roughly 18 concurrent projects. The base case assumes hires at Month 4 and Month 7 to lift the cap.</p>
+    <p><strong>Two SaaS paths:</strong> Sales-assisted subs come through calls (audit to call to CRO to attach) and are capacity-bound. Self-serve subs come from audits that convert to paid without a call (nurture to preview to checkout). Self-serve carries the volume at scale, since you cannot staff ~1,000 calls per month. Only a small slice of audits should book a call; the rest should self-serve.</p>
+    <p><strong>Upstream volumes:</strong> Impressions and clicks are derived from spend and the CPM, CTR, and completion rates. Organic reach is derived backward from the organic audits driver using the reach-to-visit and visit-to-audit rates. Change those rates to see how much reach each audit actually costs.</p>
+    <p><strong>Boosting:</strong> Treat organic posts as free tests. When a post beats the boost threshold on its own, put a small paid budget behind it. You are amplifying proven creative rather than gambling on cold creative, which is the cheapest way to buy reach.</p>
+  </div>
+</div>
+
+<script>
+// ---- Monthly driver defaults (12 months) ----
+const drivers = {
+  organicAudits:   { label: "Organic audits", vals: [200,280,380,480,600,750,920,1120,1350,1600,1900,2250] },
+  organicDirect:   { label: "Organic direct SaaS signups", vals: [5,7,10,14,20,28,38,50,65,82,100,120] },
+  croCapacity:     { label: "CRO delivery capacity (max closes)", vals: [18,18,18,35,35,35,55,55,55,75,75,75] },
+  auditAdSpend:    { label: "Awareness ad spend ($)", vals: [0,0,0,2000,3500,5000,7000,9500,12000,15000,18500,22000] },
+  searchAdSpend:   { label: "Google/intent ad spend ($)", vals: [0,0,0,1000,1500,2500,3500,5000,6500,8000,10000,12000] },
+};
+
+const N = 12;
+
+function buildDriverInputs() {
+  const body = document.getElementById('driversBody');
+  body.innerHTML = '';
+  Object.keys(drivers).forEach(key => {
+    const tr = document.createElement('tr');
+    const th = document.createElement('td');
+    th.textContent = drivers[key].label;
+    tr.appendChild(th);
+    for (let i = 0; i < N; i++) {
+      const td = document.createElement('td');
+      const inp = document.createElement('input');
+      inp.type = 'number';
+      inp.value = drivers[key].vals[i];
+      inp.dataset.key = key;
+      inp.dataset.idx = i;
+      inp.addEventListener('input', () => { drivers[key].vals[i] = parseFloat(inp.value) || 0; recalc(); });
+      td.appendChild(inp);
+      tr.appendChild(td);
+    }
+    body.appendChild(tr);
+  });
+}
+
+function g(id) { return parseFloat(document.getElementById(id).value) || 0; }
+
+function recalc() {
+  const auditToCall = g('auditToCall')/100;
+  const callToClose = g('callToClose')/100;
+  const croToSaas = g('croToSaas')/100;
+  const avgCro = g('avgCro');
+  const arpu = g('arpu');
+  const churn = g('churn')/100;
+  const margin = g('margin')/100;
+  const cpm = g('cpm');
+  const awarenessCtr = g('awarenessCtr')/100;
+  const landingToAudit = g('landingToAudit')/100;
+  const cpc = g('cpc');
+  const googleCtr = g('googleCtr')/100;
+  const clickToTrial = g('clickToTrial')/100;
+  const trialToPaid = g('trialToPaid')/100;
+  const reachToVisit = g('reachToVisit')/100;
+  const visitToAudit = g('visitToAudit')/100;
+  const selfServeConv = g('selfServeConv')/100;
+
+  // Derived cost per completed audit from the awareness chain
+  const costPerClick = awarenessCtr > 0 ? (cpm/1000) / awarenessCtr : 0;
+  const costPerAudit = landingToAudit > 0 ? costPerClick / landingToAudit : 0;
+  document.getElementById('derivedCpa').textContent =
+    costPerAudit > 0 ? '$' + costPerAudit.toFixed(2) : '-';
+
+  const rows = {
+    awImpr: [], awClicks: [], paidAudits: [],
+    gImpr: [], gClicks: [], previews: [], searchSubs: [],
+    orgReach: [], orgVisits: [], orgAudits: [],
+    totalAudits: [], calls: [], croCloses: [], croRev: [],
+    selfServeSubs: [], newSubs: [], churnedSubs: [],
+    activeSubs: [], mrr: [], adSpend: [], paidSubs: [], cac: [], totalRev: []
+  };
+
+  let active = 0;
+  for (let i = 0; i < N; i++) {
+    const orgAudits = drivers.organicAudits.vals[i];
+    const auditSpend = drivers.auditAdSpend.vals[i];
+    const searchSpend = drivers.searchAdSpend.vals[i];
+    const cap = drivers.croCapacity.vals[i];
+    const orgDirect = drivers.organicDirect.vals[i];
+
+    // Awareness upstream
+    const awImpr = cpm > 0 ? (auditSpend / cpm) * 1000 : 0;
+    const awClicks = awImpr * awarenessCtr;
+    const paidAudits = costPerAudit > 0 ? auditSpend / costPerAudit : 0;
+
+    // Organic upstream (derived backward from the organic audits driver)
+    const orgVisits = visitToAudit > 0 ? orgAudits / visitToAudit : 0;
+    const orgReach = reachToVisit > 0 ? orgVisits / reachToVisit : 0;
+
+    const totalAudits = orgAudits + paidAudits;
+
+    // Sales-assisted path (audit -> call -> CRO -> attach)
+    const calls = totalAudits * auditToCall;
+    let croCloses = calls * callToClose;
+    if (croCloses > cap) croCloses = cap;
+    const croRev = croCloses * avgCro;
+    const saasFromCro = croCloses * croToSaas;
+
+    // Self-serve path (audit -> nurture -> preview -> checkout, no call)
+    const selfServeSubs = totalAudits * selfServeConv;
+
+    // Google intent upstream + direct subs
+    const gClicks = cpc > 0 ? searchSpend / cpc : 0;
+    const gImpr = googleCtr > 0 ? gClicks / googleCtr : 0;
+    const previews = gClicks * clickToTrial;
+    const searchSubs = previews * trialToPaid;
+
+    // paid-attributable subs (for CAC)
+    const paidAuditShare = totalAudits > 0 ? paidAudits / totalAudits : 0;
+    const paidSubs = (saasFromCro + selfServeSubs) * paidAuditShare + searchSubs;
+
+    const newSubs = saasFromCro + selfServeSubs + searchSubs + orgDirect;
+    const churned = active * churn;
+    active = active - churned + newSubs;
+    const mrr = active * arpu;
+    const adSpend = auditSpend + searchSpend;
+    const cac = paidSubs > 0 ? adSpend / paidSubs : 0;
+    const totalRev = croRev + mrr;
+
+    rows.awImpr.push(awImpr); rows.awClicks.push(awClicks); rows.paidAudits.push(paidAudits);
+    rows.gImpr.push(gImpr); rows.gClicks.push(gClicks); rows.previews.push(previews); rows.searchSubs.push(searchSubs);
+    rows.orgReach.push(orgReach); rows.orgVisits.push(orgVisits); rows.orgAudits.push(orgAudits);
+    rows.totalAudits.push(totalAudits); rows.calls.push(calls); rows.croCloses.push(croCloses); rows.croRev.push(croRev);
+    rows.selfServeSubs.push(selfServeSubs); rows.newSubs.push(newSubs); rows.churnedSubs.push(churned);
+    rows.activeSubs.push(active); rows.mrr.push(mrr); rows.adSpend.push(adSpend);
+    rows.paidSubs.push(paidSubs); rows.cac.push(cac); rows.totalRev.push(totalRev);
+  }
+
+  renderResults(rows);
+  renderKpis(rows, { arpu, churn, margin });
+  renderChart(rows);
+  renderOrganicPlanner(rows.orgReach);
+}
+
+const money = v => '$' + Math.round(v).toLocaleString();
+const money0 = v => '$' + Math.round(v).toLocaleString();
+const int = v => Math.round(v).toLocaleString();
+
+function renderResults(rows) {
+  const spec = [
+    ['section', 'Awareness ads (Meta / Snap / TikTok)'],
+    ['Ad impressions', rows.awImpr, int],
+    ['Ad clicks (audit page views)', rows.awClicks, int],
+    ['Paid audit completions', rows.paidAudits, int],
+    ['section', 'Intent ads (Google Search)'],
+    ['Google impressions', rows.gImpr, int],
+    ['Google clicks', rows.gClicks, int],
+    ['Preview starts', rows.previews, v => v.toFixed(0)],
+    ['Paid SaaS subs (search)', rows.searchSubs, v => v.toFixed(1)],
+    ['section', 'Organic (LinkedIn / SEO / app store)'],
+    ['Organic reach (impressions)', rows.orgReach, int],
+    ['Organic visits', rows.orgVisits, int],
+    ['Organic audit completions', rows.orgAudits, int],
+    ['section', 'Combined funnel'],
+    ['Total audit completions', rows.totalAudits, int],
+    ['Qualified calls', rows.calls, v => v.toFixed(0)],
+    ['CRO closes', rows.croCloses, v => v.toFixed(1)],
+    ['CRO revenue', rows.croRev, money0],
+    ['Self-serve SaaS subs', rows.selfServeSubs, v => v.toFixed(1)],
+    ['New subs (total)', rows.newSubs, v => v.toFixed(1)],
+    ['Churned subs', rows.churnedSubs, v => v.toFixed(1)],
+    ['Active subs', rows.activeSubs, v => int(v)],
+    ['SaaS MRR', rows.mrr, money0],
+    ['Ad spend', rows.adSpend, money0],
+    ['CAC (paid)', rows.cac, v => v > 0 ? money0(v) : '-'],
+    ['Total revenue', rows.totalRev, money0, true],
+  ];
+  const body = document.getElementById('resultsBody');
+  body.innerHTML = '';
+  spec.forEach(row => {
+    if (row[0] === 'section') {
+      const tr = document.createElement('tr');
+      const td = document.createElement('td');
+      td.colSpan = N + 1;
+      td.textContent = row[1];
+      td.style.cssText = 'background:var(--sunken);font-size:11px;text-transform:uppercase;letter-spacing:0.04em;color:var(--ink-3);font-weight:600;';
+      tr.appendChild(td);
+      body.appendChild(tr);
+      return;
+    }
+    const [label, arr, fmt, hl] = row;
+    const tr = document.createElement('tr');
+    const th = document.createElement('td');
+    th.textContent = label;
+    tr.appendChild(th);
+    arr.forEach(v => {
+      const td = document.createElement('td');
+      td.className = 'num' + (hl ? ' rev' : '');
+      td.textContent = fmt(v);
+      tr.appendChild(td);
+    });
+    body.appendChild(tr);
+  });
+}
+
+function renderKpis(rows, p) {
+  const ltv = p.churn > 0 ? p.arpu / p.churn : 0;
+  const contribLtv = ltv * p.margin;
+  // blended CAC over months with spend
+  let totalSpend = 0, totalPaidSubs = 0;
+  for (let i = 0; i < N; i++) { totalSpend += rows.adSpend[i]; totalPaidSubs += rows.paidSubs[i]; }
+  const blendedCac = totalPaidSubs > 0 ? totalSpend / totalPaidSubs : 0;
+  const ltvCac = blendedCac > 0 ? contribLtv / blendedCac : 0;
+  const payback = (p.arpu * p.margin) > 0 && blendedCac > 0 ? blendedCac / (p.arpu * p.margin) : 0;
+  const lifetime = p.churn > 0 ? 1 / p.churn : 0;
+
+  const kpis = [
+    { l: 'Month 1 revenue', v: money0(rows.totalRev[0]) },
+    { l: 'Month 3 revenue', v: money0(rows.totalRev[2]) },
+    { l: 'Month 6 revenue', v: money0(rows.totalRev[5]) },
+    { l: 'Month 9 revenue', v: money0(rows.totalRev[8]) },
+    { l: 'Month 12 revenue', v: money0(rows.totalRev[11]) },
+    { l: 'Active subs (M12)', v: int(rows.activeSubs[11]) },
+    { l: 'Contribution LTV', v: money0(contribLtv) },
+    { l: 'Blended CAC', v: blendedCac > 0 ? money0(blendedCac) : '-' },
+    { l: 'LTV : CAC', v: ltvCac > 0 ? ltvCac.toFixed(1) + ':1' : '-', cls: ltvCac >= 3 ? 'good' : (ltvCac > 0 ? 'warn' : '') },
+    { l: 'CAC payback (months)', v: payback > 0 ? payback.toFixed(1) : '-', cls: payback > 0 && payback <= 12 ? 'good' : '' },
+    { l: 'Avg customer lifetime (months)', v: lifetime.toFixed(0) },
+  ];
+  const el = document.getElementById('kpis');
+  el.innerHTML = '';
+  kpis.forEach(k => {
+    const d = document.createElement('div');
+    d.className = 'kpi ' + (k.cls || '');
+    d.innerHTML = '<div class="v">' + k.v + '</div><div class="l">' + k.l + '</div>';
+    el.appendChild(d);
+  });
+}
+
+function renderChart(rows) {
+  const max = Math.max(...rows.totalRev, 1);
+  const el = document.getElementById('chart');
+  el.innerHTML = '';
+  for (let i = 0; i < N; i++) {
+    const mrrPct = (rows.mrr[i] / max) * 100;
+    const croPct = (rows.croRev[i] / max) * 100;
+    const row = document.createElement('div');
+    row.className = 'bar-row';
+    row.innerHTML =
+      '<div class="bar-lbl">M' + (i+1) + '</div>' +
+      '<div class="bar-track" style="display:flex;">' +
+        '<div class="bar-fill" style="width:' + mrrPct + '%;background:var(--primary);"></div>' +
+        '<div class="bar-fill" style="width:' + croPct + '%;background:var(--teal);border-radius:0 6px 6px 0;"></div>' +
+      '</div>' +
+      '<div class="bar-val">' + money0(rows.totalRev[i]) + '</div>';
+    el.appendChild(row);
+  }
+}
+
+// ---- Organic content planner ----
+const WEEKS_PER_MONTH = 4.33;
+const channels = [
+  { name: 'LinkedIn (founder + company)', perWeek: 5, imprPerPost: 1200, convProb: 0.5, priority: 'P1' },
+  { name: 'TikTok', perWeek: 5, imprPerPost: 3000, convProb: 0.1, priority: 'P1' },
+  { name: 'SEO / blog (Hygiene)', perWeek: 2, imprPerPost: 4000, convProb: 0.8, priority: 'P1' },
+  { name: 'Instagram / Meta (organic)', perWeek: 4, imprPerPost: 800, convProb: 0.2, priority: 'P2' },
+  { name: 'YouTube (Hub + Shorts)', perWeek: 2, imprPerPost: 1500, convProb: 0.3, priority: 'P2' },
+  { name: 'X / Twitter', perWeek: 4, imprPerPost: 600, convProb: 0.2, priority: 'P3' },
+];
+let lastOrgReach = [];
+
+function buildPlannerInputs() {
+  const body = document.getElementById('plannerBody');
+  body.innerHTML = '';
+  channels.forEach((ch, idx) => {
+    const tr = document.createElement('tr');
+
+    const nameTd = document.createElement('td');
+    nameTd.style.textAlign = 'left';
+    const nameInp = document.createElement('input');
+    nameInp.type = 'text'; nameInp.value = ch.name; nameInp.style.minWidth = '190px'; nameInp.style.textAlign = 'left';
+    nameInp.addEventListener('input', () => { ch.name = nameInp.value; });
+    nameTd.appendChild(nameInp); tr.appendChild(nameTd);
+
+    const pwTd = document.createElement('td');
+    const pwInp = document.createElement('input');
+    pwInp.type = 'number'; pwInp.value = ch.perWeek; pwInp.step = '1'; pwInp.dataset.key = 'planner';
+    pwInp.addEventListener('input', () => { ch.perWeek = parseFloat(pwInp.value) || 0; renderOrganicPlanner(lastOrgReach); });
+    pwTd.appendChild(pwInp); tr.appendChild(pwTd);
+
+    const ipTd = document.createElement('td');
+    const ipInp = document.createElement('input');
+    ipInp.type = 'number'; ipInp.value = ch.imprPerPost; ipInp.step = '100'; ipInp.dataset.key = 'planner';
+    ipInp.addEventListener('input', () => { ch.imprPerPost = parseFloat(ipInp.value) || 0; renderOrganicPlanner(lastOrgReach); });
+    ipTd.appendChild(ipInp); tr.appendChild(ipTd);
+
+    const reachTd = document.createElement('td');
+    reachTd.className = 'num'; reachTd.id = 'reach-' + idx; reachTd.style.fontWeight = '600';
+    tr.appendChild(reachTd);
+
+    const cpTd = document.createElement('td');
+    const cpInp = document.createElement('input');
+    cpInp.type = 'number'; cpInp.value = ch.convProb; cpInp.step = '0.1'; cpInp.dataset.key = 'planner';
+    cpInp.addEventListener('input', () => { ch.convProb = parseFloat(cpInp.value) || 0; renderOrganicPlanner(lastOrgReach); });
+    cpTd.appendChild(cpInp); tr.appendChild(cpTd);
+
+    const convTd = document.createElement('td');
+    convTd.className = 'num'; convTd.id = 'conv-' + idx; convTd.style.fontWeight = '600';
+    tr.appendChild(convTd);
+
+    const prTd = document.createElement('td');
+    prTd.id = 'prio-' + idx; prTd.style.fontSize = '11px';
+    tr.appendChild(prTd);
+
+    body.appendChild(tr);
+  });
+}
+
+function renderOrganicPlanner(orgReach) {
+  lastOrgReach = orgReach || lastOrgReach;
+  const monthEl = document.getElementById('plannerMonth');
+  let m = parseInt(monthEl.value) || 12;
+  if (m < 1) m = 1; if (m > N) m = N;
+  const required = lastOrgReach.length ? lastOrgReach[m-1] : 0;
+  const boost = g('boostThreshold');
+
+  let total = 0, totalConv = 0;
+  channels.forEach((ch, idx) => {
+    const monthly = ch.perWeek * WEEKS_PER_MONTH * ch.imprPerPost;
+    const conv = monthly * (ch.convProb / 100);
+    total += monthly;
+    totalConv += conv;
+    const rc = document.getElementById('reach-' + idx);
+    if (rc) rc.textContent = int(monthly);
+    const cc = document.getElementById('conv-' + idx);
+    if (cc) cc.textContent = conv.toFixed(0);
+    const pc = document.getElementById('prio-' + idx);
+    if (pc) {
+      const boostable = ch.imprPerPost >= boost;
+      pc.innerHTML = ch.priority + (boostable ? ' <span style="color:var(--teal);font-weight:600;">boost</span>' : '');
+    }
+  });
+
+  const foot = document.getElementById('plannerFoot');
+  foot.innerHTML = '<tr><td style="text-align:left;font-weight:600;">Total</td><td></td><td></td><td class="num" style="font-weight:700;">' + int(total) + '</td><td></td><td class="num" style="font-weight:700;">' + totalConv.toFixed(0) + '</td><td></td></tr>';
+
+  const verdict = document.getElementById('plannerVerdict');
+  const gap = required - total;
+  if (required <= 0) {
+    verdict.innerHTML = '<div class="kpi" style="background:var(--sunken);"><div class="l">Model needs no organic reach in month ' + m + '</div></div>';
+    return;
+  }
+  const pct = Math.round((total / required) * 100);
+  const ok = total >= required;
+  verdict.innerHTML =
+    '<div class="kpis">' +
+      '<div class="kpi"><div class="v">' + int(required) + '</div><div class="l">Reach needed (month ' + m + ')</div></div>' +
+      '<div class="kpi"><div class="v">' + int(total) + '</div><div class="l">Your planned capacity</div></div>' +
+      '<div class="kpi ' + (ok ? 'good' : 'warn') + '"><div class="v">' + pct + '%</div><div class="l">' + (ok ? 'Covered' : 'Of requirement') + '</div></div>' +
+      (ok ? '' : '<div class="kpi warn"><div class="v">' + int(gap) + '</div><div class="l">Reach shortfall / month</div></div>') +
+    '</div>' +
+    (ok ? '' : '<p class="note" style="margin-top:12px;">To close the gap: add channels, raise cadence, lift impressions per post (better hooks), or boost your top posts with paid. As a rough guide, closing this shortfall on paid awareness ads at the current CPM would cost about <strong>$' + Math.round((gap/1000) * g('cpm')).toLocaleString() + '/month</strong>.</p>');
+}
+
+// init
+document.querySelectorAll('input[type=number]').forEach(inp => {
+  if (!inp.dataset.key) inp.addEventListener('input', recalc);
+});
+buildDriverInputs();
+buildPlannerInputs();
+recalc();
+</script>
+</body>
+</html>

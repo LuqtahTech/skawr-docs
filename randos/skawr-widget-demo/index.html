@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Acme Store — Skawr Widgets Demo</title>
+  <style>
+    :root { --ink:#1A1410; --muted:#6b6460; --line:rgba(0,0,0,0.08); }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--ink); background: #fafafa;
+    }
+    header.nav {
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 18px 32px; border-bottom: 1px solid var(--line); background:#fff;
+    }
+    .logo { font-weight: 800; font-size: 20px; letter-spacing:-0.02em; }
+    .nav a { color: var(--muted); text-decoration:none; margin-left: 20px; font-size:14px; }
+    .hero { max-width: 960px; margin: 56px auto 24px; padding: 0 24px; text-align:center; }
+    .hero h1 { font-size: 40px; letter-spacing:-0.03em; margin: 0 0 12px; }
+    .hero p { color: var(--muted); font-size: 18px; margin: 0; }
+    .grid { max-width: 960px; margin: 40px auto; padding: 0 24px; display:grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .card { background:#fff; border:1px solid var(--line); border-radius:14px; overflow:hidden; }
+    .card .ph { height: 150px; background: linear-gradient(135deg,#f0efee,#e7e5e3); }
+    .card .body { padding: 14px 16px; }
+    .card h3 { margin: 0 0 6px; font-size: 15px; }
+    .card .price { color:#E95223; font-weight:700; font-size:14px; }
+    .banner-note {
+      max-width: 960px; margin: 24px auto; padding: 14px 18px; border-radius: 12px;
+      background:#fff7f3; border:1px solid rgba(237,116,83,0.25); color:#8a4b34; font-size:13px;
+    }
+    footer { text-align:center; color:var(--muted); font-size:13px; padding: 40px; }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <span class="logo">ACME</span>
+    <nav>
+      <a href="#">Shop</a><a href="#">Cameras</a><a href="#">Phones</a><a href="#">Support</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>The Acme Store</h1>
+    <p>A demo storefront showing the Skawr Bar and SkawrBot widgets live.</p>
+  </section>
+
+  <div class="banner-note">
+    You should see the <b>Skawr Bar</b> pinned at the very top of this page, and a
+    <b>SkawrBot</b> chat bubble in the bottom-right corner. Click the bubble and try a
+    suggested question, or ask "do you have a camera?".
+  </div>
+
+  <div class="grid">
+    <div class="card"><div class="ph"></div><div class="body"><h3>Canon EOS R6</h3><div class="price">9,000 SAR</div></div></div>
+    <div class="card"><div class="ph"></div><div class="body"><h3>iPhone 15 Pro Max</h3><div class="price">4,500 SAR</div></div></div>
+    <div class="card"><div class="ph"></div><div class="body"><h3>Sony A7 IV</h3><div class="price">8,500 SAR</div></div></div>
+  </div>
+
+  <footer>Acme Store demo. Widgets served from localhost:8000 (Skawr indexer).</footer>
+
+  <!--
+    Skawr widgets. In production the src is https://api.skawr.com/static/... and
+    data-skawr-key is your PUBLIC (pk_) key. Here we use local patched copies and
+    a local key for the demo.
+  -->
+  <script
+    src="./skawrbar.js"
+    data-skawr-key="96a8a650.bdHcw5pd9e6QBqtOFFvaud-mePCDNgkKkhc-Cc0V2Hw"
+    async></script>
+  <script
+    src="./skawrbot.js"
+    data-skawr-key="96a8a650.bdHcw5pd9e6QBqtOFFvaud-mePCDNgkKkhc-Cc0V2Hw"
+    async></script>
+</body>
+</html>

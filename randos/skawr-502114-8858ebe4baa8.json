@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "skawr-502114",
+  "private_key_id": "8858ebe4baa83eb2f6e340788cef85827ba7e79e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDEkFG0M9veWHNo\nFMhG2Uox+UcWk3g/v8uIcrWkwG5wCxA53rGBh+b49lLtPFyeL7qJlLGy+AzuE5Oo\nyTyA6uwEhAllbqVtq3BNBiPOeXNf4McFryo/UFzwUd7Xc/SlGLwc4e1qMmlc7ikW\nBXpv6QZ0sF/IXKHVxzLaRZ3+dPezXSNBfCG/a0F3JOy7++W83fnVSjoAcYbWmS1V\nTJJvjPrc4oNL29ljd6P12qXgT6dfpRF8LJPs7sSQpFDnqlV8fHe61n6NNWuQc0xB\nTL1naJywiCaqSoW0K51aUYZKJOItRWBH6he2HW/YJ1/yOvND+cLVZvAesYjnk6JS\nuL1KRZwDAgMBAAECggEAALBKWPzfH4XkmzZXbUgdmaDR8VZOH/FzReS0L87GYRLo\n2T5A4owWikPyqAbqHCb2p4mJ0qKwooGwpr3tve97KP9KOSMmGThC8HVXcsW7wPFv\n2qk+cKWLbc9O0VpqpP/Tla/rV2mBADGLzoC+aREoujsgwS1YTWahQWDoQmTBtjMm\nKRPHpe10ni+fTGWsjwgZdf7m4lNuKEe2XDLTYRVXEVgtsHqnJNjqm1g6f5F839ji\n0VJqtssr374TMTCyrAE2IRzpZflH0eHEm+U2sbFpvLxmi9/rT4IBVouhofgYTxqD\ngy3xA/z6RAf9vXLaNkPxo0rrYl2x33wI5KUrcBmwYQKBgQDnzHBGpqbgNUos5YHm\niuXj+mBtrnl6m58lfDg0rX+JNOxa8dn1YDeiGjoo7jI/zu3I//VfLY4ZCtCGOrlW\n/tvU2La95W9l5KHP0XyTzuXqRz+MtHQng1JhvS7S4FFu/lrc9CEQD/S9Z4Fk9W3G\nOZhHzSozp2gHI6EUtnMfZWyqPwKBgQDZFh3HWm96oevTcJkK5WqaNX3HYh7BoFzF\n8LujbzAQHMKbk5rXMKyL0x0YYLyTkW3YTyHCHZwieden0L5N/Gtp4WjFd0uarLlN\nF0IgHGeuOzFRZwvnTbWAkyKAkdKxn7oa3GwLvc3glynNrMERCN53bGkG2fyHlhzy\nieqKo141PQKBgDApgTacz9WMHQJhGXF+cK/CySBg/SqlhRazzbXcSsCGd4mZ8NCU\nElsjGeyBOX2akDuQOzpwa7L2VUdekj3qLGD4OlgQgOnp7FkSzNClT44zCZhBslS3\na3mVZlI4e5MVVGnOa8Q7nH1yMSd5+zoRo3tfvKII6Yt6MrDsC9V9LGvfAoGBAKvC\nWOtbPWrs5FbV9vDtFYxPmGYB103h4KVoVD36gi+tYbiQb+mlBFBZR+L63xlu7ldA\nPPiGTvvkJWIMwhWYCzCp/SiHu9T0pmQ9a79WWh47jUjX3E41aM8DG0BYoDiTpT8N\neZtMoLD7SUMHVXZx6vrYVrzqCmkIt3ya7Gym16oNAoGAF5gvikKv5GxdbXK2YNAp\nj3MkClEZ3PleDX+/OZ+KwpnQkGYTTj8uKQbkEk+Wd95I0mO5OJ9kkHx2rBxnlswr\nfKUeowcH3fIT6pykI1RhJhGa5zbGk4TGp9j3nzAOOvFaPc0PA8aT4Vty4vlxJGTM\ny10txPKyYikeUT7CDA7p+yc=\n-----END PRIVATE KEY-----\n",
+  "client_email": "skawr-growth-sheets@skawr-502114.iam.gserviceaccount.com",
+  "client_id": "111500325160202218554",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/skawr-growth-sheets%40skawr-502114.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
